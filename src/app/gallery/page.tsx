@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
-  getDriveImages,
-  type DriveImage,
+  getDriveImages
 } from '@/ai/flows/google-drive-flow';
+import type { DriveImage } from '@/ai/schemas';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';

@@ -4,31 +4,17 @@
  * @fileOverview A Genkit flow for fetching images from a Google Drive folder.
  *
  * - getDriveImages - A function that retrieves image files from a specified Google Drive folder.
- * - DriveImage - The data structure for an image retrieved from Google Drive.
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
 import { google } from 'googleapis';
 import { Readable } from 'stream';
+import { DriveImage, DriveImageSchema, GetDriveImagesOutputSchema, type GetDriveImagesOutput } from '@/ai/schemas';
 
 // You can find the Folder ID in the URL of the Google Drive folder.
 // e.g. https://drive.google.com/drive/folders/THIS_IS_THE_ID
 const FOLDER_ID = 'YOUR_GOOGLE_DRIVE_FOLDER_ID_HERE';
 
-export const DriveImageSchema = z.object({
-  id: z.string().describe('The ID of the image file.'),
-  name: z.string().describe('The name of the image file.'),
-  dataUri: z
-    .string()
-    .describe('The base64-encoded data URI of the image.'),
-});
-export type DriveImage = z.infer<typeof DriveImageSchema>;
-
-export const GetDriveImagesOutputSchema = z.object({
-  images: z.array(DriveImageSchema),
-});
-export type GetDriveImagesOutput = z.infer<typeof GetDriveImagesOutputSchema>;
 
 async function streamToDataURI(
   stream: Readable,
