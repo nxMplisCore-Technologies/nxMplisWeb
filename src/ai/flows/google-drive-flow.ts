@@ -9,7 +9,7 @@
 import { ai } from '@/ai/genkit';
 import { google } from 'googleapis';
 import { Readable } from 'stream';
-import { DriveImage, DriveImageSchema, GetDriveImagesOutputSchema, type GetDriveImagesOutput } from '@/ai/schemas';
+import { DriveImage, GetDriveImagesOutputSchema, type GetDriveImagesOutput } from '@/ai/schemas';
 
 // You can find the Folder ID in the URL of the Google Drive folder.
 // e.g. https://drive.google.com/drive/folders/THIS_IS_THE_ID
