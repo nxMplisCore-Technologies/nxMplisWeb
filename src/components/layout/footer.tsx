@@ -6,6 +6,7 @@ const footerNavs = [
   { href: '/about', label: 'About Us' },
   { href: '/technology', label: 'Technology' },
   { href: '/industries', label: 'Industries' },
+  { href: '/anvaya', label: 'Anvaya' },
   { href: '/blog', label: 'Insights' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/careers', label: 'Careers' },
@@ -40,7 +41,7 @@ export function Footer() {
             <div>
               <h3 className="font-headline font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                {footerNavs.slice(0, 3).map(nav => (
+                {footerNavs.slice(0, 4).map(nav => (
                   <li key={nav.label}>
                     <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
                   </li>
@@ -50,7 +51,7 @@ export function Footer() {
             <div>
               <h3 className="font-headline font-semibold mb-4">Ecosystem</h3>
               <ul className="space-y-2">
-                {footerNavs.slice(3, 6).map(nav => (
+                {footerNavs.slice(4, 7).map(nav => (
                   <li key={nav.label}>
                     <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
                   </li>
