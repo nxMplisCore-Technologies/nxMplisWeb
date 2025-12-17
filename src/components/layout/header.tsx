@@ -16,6 +16,7 @@ const navLinks = [
   { href: '/anvaya', label: 'Anvaya' },
   { href: '/blog', label: 'Insights' },
   { href: '/gallery', label: 'Gallery' },
+  { href: '/pitch-deck', label: 'Pitch Deck' },
   { href: '/careers', label: 'Careers' },
 ];
 
