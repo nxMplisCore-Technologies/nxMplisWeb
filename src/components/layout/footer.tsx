@@ -3,14 +3,10 @@ import { Logo } from '@/components/icons';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const footerNavs = [
+  { href: '/anvaya', label: 'Anvaya™' },
+  { href: '/technology', label: 'Our Approach' },
   { href: '/about', label: 'About Us' },
-  { href: '/technology', label: 'Technology' },
-  { href: '/industries', label: 'Industries' },
-  { href: '/anvaya', label: 'Anvaya' },
-  { href: '/blog', label: 'Insights' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/pitch-deck', label: 'Pitch Deck' },
-  { href: '/careers', label: 'Careers' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -24,7 +20,7 @@ export function Footer() {
               <Logo />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Building the next generation of AI accelerators for the edge.
+              Wellness technology, thoughtfully engineered.
             </p>
             <div className="flex gap-2 mt-2">
               <Link href="#" className="p-2 rounded-md hover:bg-secondary">
@@ -42,7 +38,7 @@ export function Footer() {
             <div>
               <h3 className="font-headline font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                {footerNavs.slice(0, 4).map(nav => (
+                {footerNavs.slice(0, 3).map(nav => (
                   <li key={nav.label}>
                     <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
                   </li>
@@ -50,9 +46,9 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="font-headline font-semibold mb-4">Ecosystem</h3>
+              <h3 className="font-headline font-semibold mb-4">Resources</h3>
               <ul className="space-y-2">
-                {footerNavs.slice(4, 8).map(nav => (
+                 {footerNavs.slice(3, 5).map(nav => (
                   <li key={nav.label}>
                     <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
                   </li>
@@ -70,7 +66,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} nxMplisCore, Inc. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Nxmliscore, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>

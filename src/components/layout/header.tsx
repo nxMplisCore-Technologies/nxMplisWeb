@@ -10,14 +10,10 @@ import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
+  { href: '/anvaya', label: 'Anvaya™' },
+  { href: '/technology', label: 'Our Approach' },
   { href: '/about', label: 'About Us' },
-  { href: '/technology', label: 'Technology' },
-  { href: '/industries', label: 'Industries' },
-  { href: '/anvaya', label: 'Anvaya' },
-  { href: '/blog', label: 'Insights' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/pitch-deck', label: 'Pitch Deck' },
-  { href: '/careers', label: 'Careers' },
+  { href: '/blog', label: 'Blog' },
 ];
 
 export function Header() {

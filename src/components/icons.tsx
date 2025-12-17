@@ -17,9 +17,9 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         x="0"
         y="30"
       >
-        nx
-        <tspan fill="hsl(var(--primary))">M</tspan>
-        plisCore
+        Nxmlis
+        <tspan fill="hsl(var(--primary))">c</tspan>
+        ore
       </text>
     </svg>
   );
