@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, X } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
 import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
@@ -54,15 +54,13 @@ export function Header() {
                 <span className="sr-only">Toggle Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <div className="flex justify-between items-center p-4 border-b">
-                 <Link href="/" onClick={() => setIsOpen(false)}>
-                    <Logo />
-                 </Link>
-                 <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                    <X className="h-6 w-6" />
-                 </Button>
-              </div>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0">
+                <SheetHeader className="p-4 border-b">
+                   <SheetTitle className="sr-only">Main Menu</SheetTitle>
+                   <Link href="/" onClick={() => setIsOpen(false)} className="self-start">
+                      <Logo />
+                   </Link>
+                </SheetHeader>
               <div className="flex flex-col p-4 space-y-4">
                 {navLinks.map((link) => (
                   <Link
