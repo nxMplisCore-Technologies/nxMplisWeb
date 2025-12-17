@@ -57,7 +57,7 @@ export default function IndustriesPage() {
         {industriesData.map(industry => (
           <TabsContent key={industry.value} value={industry.value} className="mt-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="relative h-80 lg:h-[450px] rounded-lg overflow-hidden">
+              <div className="relative h-80 lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src={industry.imageUrl}
                   alt={`${industry.name} application`}

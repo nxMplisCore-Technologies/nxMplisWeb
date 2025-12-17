@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "Full name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  inquiryType: z.enum(["general", "investor", "partner"], { required_error: "Please select an inquiry type." }),
+  inquiryType: z.enum(["general", "investor", "partner", "careers"], { required_error: "Please select an inquiry type." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
@@ -93,6 +93,7 @@ export default function ContactPage() {
                       <SelectItem value="general">General Question</SelectItem>
                       <SelectItem value="investor">Investor Relations</SelectItem>
                       <SelectItem value="partner">Partnership Opportunities</SelectItem>
+                      <SelectItem value="careers">Careers</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

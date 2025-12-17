@@ -1,9 +1,9 @@
 'use server';
 
 /**
- * @fileOverview AI-powered content recommendation flow for suggesting related articles based on user browsing behavior.
+ * @fileOverview AI-powered content recommendation flow for suggesting related articles.
  *
- * - recommendContent - A function that takes the current article content as input and returns recommendations.
+ * - recommendContent - A function that takes the current article content and returns recommendations.
  * - RecommendContentInput - The input type for the recommendContent function.
  * - RecommendContentOutput - The return type for the recommendContent function.
  */
@@ -14,7 +14,7 @@ import {z} from 'genkit';
 const RecommendContentInputSchema = z.object({
   articleContent: z
     .string()
-    .describe('The content of the current article being viewed by the user.'),
+    .describe('The content of the current article being viewed by the user, plus a list of other available articles.'),
   currentUrl: z.string().describe('The URL of the current article'),
 });
 export type RecommendContentInput = z.infer<typeof RecommendContentInputSchema>;
@@ -22,7 +22,7 @@ export type RecommendContentInput = z.infer<typeof RecommendContentInputSchema>;
 const RecommendContentOutputSchema = z.object({
   recommendations: z
     .array(z.string())
-    .describe('A list of recommended article titles.'),
+    .describe('An array of 2-3 recommended article titles from the provided list.'),
 });
 export type RecommendContentOutput = z.infer<typeof RecommendContentOutputSchema>;
 
@@ -34,19 +34,16 @@ const prompt = ai.definePrompt({
   name: 'recommendContentPrompt',
   input: {schema: RecommendContentInputSchema},
   output: {schema: RecommendContentOutputSchema},
-  prompt: `You are an AI assistant designed to recommend related articles based on the content a user is currently viewing on the nxMplisCore blog.
+  prompt: `You are an AI assistant for a tech blog. Based on the article the user is currently reading, your job is to recommend 2-3 other highly relevant articles for them to read next.
 
-  Given the content of the current article, identify key topics and themes, and suggest other articles that would be of interest to the user.
+You will be given the title of the current article and a list of other available articles.
 
-  The recommendations should respect the user's privacy and should not include any personalized or sensitive information.
+Current context:
+{{{articleContent}}}
 
-  Current Article Content: {{{articleContent}}}
-  Current Article URL: {{{currentUrl}}}
+Analyze the current article's title and themes, and select the most relevant titles from the list of available articles.
 
-  Please provide a list of recommended article titles. Return ONLY the array of article titles, nothing else.
-  Ensure that the returned article recommendations are highly relevant to the content of the current article.
-  If the article does not contain enough content to make a recommendation, return an empty array.
-  Do not recommend the current article the user is reading.`, 
+Return ONLY the array of the recommended article titles. Do not include the current article in your recommendations.`, 
 });
 
 const recommendContentFlow = ai.defineFlow(
@@ -57,6 +54,9 @@ const recommendContentFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (!output) {
+      return { recommendations: [] };
+    }
+    return output;
   }
 );

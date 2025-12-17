@@ -4,9 +4,11 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const footerNavs = [
   { href: '/anvaya', label: 'Anvaya™' },
+  { href: '/industries', label: 'Industries' },
   { href: '/technology', label: 'Our Approach' },
   { href: '/about', label: 'About Us' },
   { href: '/blog', label: 'Blog' },
+  { href: '/careers', label: 'Careers'},
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -38,7 +40,7 @@ export function Footer() {
             <div>
               <h3 className="font-headline font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                {footerNavs.slice(0, 3).map(nav => (
+                {footerNavs.slice(0, 4).map(nav => (
                   <li key={nav.label}>
                     <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
                   </li>
@@ -48,7 +50,7 @@ export function Footer() {
             <div>
               <h3 className="font-headline font-semibold mb-4">Resources</h3>
               <ul className="space-y-2">
-                 {footerNavs.slice(3, 5).map(nav => (
+                 {footerNavs.slice(4, 7).map(nav => (
                   <li key={nav.label}>
                     <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
                   </li>

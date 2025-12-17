@@ -6,6 +6,9 @@ import { ARTICLES } from '@/lib/data';
 import { ArrowRight, Calendar, User } from 'lucide-react';
 
 export default function BlogPage() {
+  // Sort articles by date in descending order
+  const sortedArticles = ARTICLES.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
   return (
     <div className="container mx-auto px-4 py-16 sm:py-24">
       <header className="text-center max-w-4xl mx-auto mb-16">
@@ -13,13 +16,13 @@ export default function BlogPage() {
           Insights & Innovations
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground">
-          Explore our latest research, technical deep-dives, and perspectives on the future of AI and silicon.
+          Explore our latest research, technical deep-dives, and perspectives on the future of wellness technology.
         </p>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {ARTICLES.map(article => (
-          <Card key={article.slug} className="flex flex-col overflow-hidden">
+        {sortedArticles.map(article => (
+          <Card key={article.slug} className="flex flex-col overflow-hidden bg-card/50">
             <Link href={`/blog/${article.slug}`} className="block relative h-56">
                 <Image src={article.imageUrl} alt={article.title} fill className="object-cover hover:scale-105 transition-transform duration-300" data-ai-hint={article.dataAiHint} />
             </Link>
@@ -31,7 +34,7 @@ export default function BlogPage() {
                 </div>
                  <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4"/>
-                    <time dateTime={article.date}>{article.date}</time>
+                    <time dateTime={article.date}>{new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                  </div>
               </div>
               <CardTitle className="font-headline text-xl leading-tight">

@@ -11,9 +11,13 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/anvaya', label: 'Anvaya™' },
+  { href: '/industries', label: 'Industries' },
   { href: '/technology', label: 'Our Approach' },
-  { href: '/about', label: 'About Us' },
+  { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
+  { href: '/careers', label: 'Careers' },
+  { href: '/pitch-deck', label: 'Pitch Deck' },
+  { href: '/gallery', label: 'Gallery'},
 ];
 
 export function Header() {

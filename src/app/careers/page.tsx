@@ -122,13 +122,13 @@ export default function CareersPage() {
           Join Our Mission
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground">
-          We're seeking the brightest minds in hardware, software, and AI to help us invent the future. If you're passionate about solving hard problems, we want to hear from you.
+          We're seeking the brightest minds in hardware, software, and AI to help us invent the future of wellness technology. If you're passionate about solving hard problems, we want to hear from you.
         </p>
       </header>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {JOBS.map((job) => (
-          <Card key={job.title} className="flex flex-col">
+          <Card key={job.title} className="flex flex-col bg-card/50">
             <CardHeader>
               <CardTitle className="font-headline text-xl">{job.title}</CardTitle>
               <CardDescription className="flex flex-col sm:flex-row gap-x-4 gap-y-1 pt-2">
