@@ -2,7 +2,8 @@
 
 import { useState, type FormEvent } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { extractPresentationContent, type PresentationContent } from '@/ai/flows/pitch-deck-flow';
+import { extractPresentationContent } from '@/ai/flows/pitch-deck-flow';
+import { type PresentationContent } from '@/ai/schemas';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
