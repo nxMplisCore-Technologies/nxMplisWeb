@@ -11,7 +11,7 @@ export const ARTICLES = [
     title: 'The Compute-in-Memory Revolution: Beyond the Memory Wall',
     author: 'Dr. Evelyn Reed',
     date: '2024-05-15',
-    imageUrl: 'https://picsum.photos/seed/tech-revolution/800/400',
+    imageUrl: '/anvaya-product.png',
     dataAiHint: 'futuristic technology',
     excerpt: 'Traditional computing is hitting a wall—literally. The Von Neumann bottleneck, the separation of processing and memory, is limiting the potential of AI. Discover how Compute-in-Memory (CIM) is smashing that wall.',
     content: `
@@ -31,7 +31,7 @@ export const ARTICLES = [
     title: 'Brain-Inspired AI: The Power of Neuromorphic Computing',
     author: 'Kenji Tanaka',
     date: '2024-06-02',
-    imageUrl: 'https://picsum.photos/seed/brain-ai/800/400',
+    imageUrl: '/anvaya-features.png',
     dataAiHint: 'abstract brain',
     excerpt: 'What if AI could learn and process information like the human brain? Neuromorphic computing makes this possible, offering incredible efficiency for real-world applications.',
     content: `
@@ -51,7 +51,7 @@ export const ARTICLES = [
     title: 'Calm Technology: A New Philosophy for Parenting in the Digital Age',
     author: 'Aisha Khan',
     date: '2024-06-18',
-    imageUrl: 'https://picsum.photos/seed/calm-parenting/800/400',
+    imageUrl: '/anvaya-lifestyle.png',
     dataAiHint: 'peaceful home',
     excerpt: 'Parenting today is noisy. Apps, alarms, and notifications constantly demand our attention. What if technology could do the opposite? What if it could foster calm?',
     content: `

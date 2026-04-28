@@ -43,7 +43,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-md">
-              <Image src="/anvaya-brand.png" alt="Anvaya Smart — Nxmliscore team and product" fill className="object-cover object-center" />
+              <Image src="/anvaya-product.png" alt="Anvaya Smart — Nxmliscore team and product" fill className="object-cover object-center" />
             </div>
           </div>
         </div>

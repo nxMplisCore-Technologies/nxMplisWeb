@@ -87,7 +87,7 @@ export default function IndustriesPage() {
             <div className={`${i % 2 === 1 ? 'lg:order-last' : ''} rounded-2xl overflow-hidden h-72 lg:h-80 bg-gradient-to-br ${ind.bg} flex items-center justify-center`}>
               {ind.useImage ? (
                 <div className="relative w-full h-full">
-                  <Image src="/anvaya-brand.png" alt={`${ind.name} — Anvaya Smart`} fill className={`object-cover ${ind.imagePosition}`} />
+                  <Image src="/anvaya-lifestyle.png" alt={`${ind.name} — Anvaya Smart`} fill className={`object-cover ${ind.imagePosition}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
               ) : (
