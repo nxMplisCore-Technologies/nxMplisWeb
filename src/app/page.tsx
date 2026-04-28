@@ -118,9 +118,8 @@ export default function Home() {
               </div>
               <p className="text-xs text-muted-foreground">No payment now · 30-day money-back guarantee · Free shipping across India</p>
             </div>
-            <div className="relative h-80 lg:h-[480px] rounded-2xl overflow-hidden">
-              <Image src="https://picsum.photos/seed/anvaya-hero-warm/800/600" alt="Anvaya Smart baby monitor in a warm nursery setting" fill className="object-cover" priority />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+            <div className="relative h-80 lg:h-[480px] rounded-2xl overflow-hidden shadow-lg">
+              <Image src="/anvaya-brand.png" alt="Anvaya Smart baby monitor — contactless AI baby wellness pod" fill className="object-cover object-right-top" priority />
             </div>
           </div>
         </div>

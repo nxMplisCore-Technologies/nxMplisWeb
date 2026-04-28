@@ -197,7 +197,7 @@ export default function AnvayaPage() {
                     </div>
                   </div>
                   <div className="relative h-72 lg:h-full min-h-72">
-                    <Image src={p.image} alt={`${p.name} contactless baby monitor`} fill className="object-cover" />
+                    <Image src={p.id === 'core' || p.id === 'sense' ? '/anvaya-brand.png' : p.image} alt={`${p.name} contactless baby monitor`} fill className="object-cover object-right-top" />
                   </div>
                 </div>
               </div>
