@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { Menu, Sparkles } from 'lucide-react';
 import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
@@ -44,9 +44,12 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex flex-1 items-center justify-end">
-          <Button asChild className="hidden md:flex">
-            <Link href="/contact">Contact Us</Link>
+        <div className="flex flex-1 items-center justify-end gap-3">
+          <Button asChild variant="outline" className="hidden md:flex">
+            <Link href="/contact">Contact</Link>
+          </Button>
+          <Button asChild className="hidden md:flex gap-1.5">
+            <Link href="/early-access"><Sparkles className="w-3.5 h-3.5" />Get Early Access</Link>
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>

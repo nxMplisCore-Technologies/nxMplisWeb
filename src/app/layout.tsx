@@ -17,8 +17,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'nxMplisCore Digital Showcase',
-  description: 'Innovations in AI edge computing, proprietary IP, and technology for high-impact industries.',
+  title: 'Anvaya Mini™ | AI Baby Wellness Monitor | Nxmliscore',
+  description: 'Contactless AI baby monitor that tracks breathing, cry patterns, SpO2 & temperature. No wearables. No harsh lights. Just quiet intelligence. Early access open — save ₹2,000.',
 };
 
 export default function RootLayout({

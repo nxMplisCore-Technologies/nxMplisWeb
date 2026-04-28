@@ -1,14 +1,19 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Baby, User, HeartHandshake, Microscope } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { ArrowRight, Baby, User, HeartHandshake, CheckCircle, Sparkles } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const careSegments = [
   {
     icon: Baby,
     title: 'Baby Care',
-    description: 'Our journey begins here, where listening matters most. We help parents understand their baby’s needs with clarity and calm.'
+    description: 'Our journey begins here, where listening matters most. We help parents understand their baby\'s needs with clarity and calm.'
   },
   {
     icon: User,
@@ -22,28 +27,73 @@ const careSegments = [
   }
 ];
 
+const stats = [
+  { number: '6', label: 'AI-powered signals monitored' },
+  { number: '0', label: 'Things touching your baby' },
+  { number: '100%', label: 'On-device privacy' },
+  { number: '24/7', label: 'Quiet, continuous watch' },
+];
+
 export default function Home() {
+  const { toast } = useToast();
+  const [name, setName] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  function handleEarlyAccess(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !whatsapp.trim()) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+      toast({
+        title: 'You\'re on the list!',
+        description: 'We\'ll WhatsApp you your early access details within 24 hours.',
+      });
+    }, 800);
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section id="hero" className="container mx-auto px-4 py-24 sm:py-32 text-center">
         <div className="max-w-4xl mx-auto">
+          {/* Early access badge */}
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 mb-6 text-sm text-primary font-medium">
+            <Sparkles className="w-4 h-4" />
+            Early Access Open — First 100 families save ₹2,000
+          </div>
+
           <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-white">
             Wellness technology, built to listen.
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            Nxmliscore builds intelligent, non-intrusive systems that listen to subtle human signals — transforming them into meaningful insights that support care, confidence, and well-being.
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Anvaya Mini™ monitors your baby's breathing, cries, SpO2, and temperature — contactlessly, from beside the crib. So you can finally sleep.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Button asChild size="lg">
-              <Link href="/anvaya">Explore Anvaya™ <ArrowRight className="ml-2" /></Link>
+            <Button asChild size="lg" className="gap-2">
+              <Link href="/early-access">Get Early Access — Save ₹2,000 <ArrowRight className="w-4 h-4" /></Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/about">About Nxmliscore</Link>
+              <Link href="/anvaya">See How It Works</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/technology">Our Research</Link>
-            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground mt-4">No payment now · 30-day money-back guarantee · Free shipping across India</p>
+        </div>
+      </section>
+
+      {/* Stats bar */}
+      <section className="border-y border-border/50 bg-card/30 py-10">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {stats.map(s => (
+              <div key={s.label}>
+                <div className="text-3xl font-bold text-primary mb-1">{s.number}</div>
+                <div className="text-sm text-muted-foreground">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -77,35 +127,99 @@ export default function Home() {
 
       {/* Anvaya Intro Section */}
       <section id="anvaya-intro" className="py-20">
-          <div className="container mx-auto px-4">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="relative h-96 rounded-lg overflow-hidden">
-                      <Image src="https://picsum.photos/seed/anvaya-product/800/600" alt="Anvaya Mini product" fill className="object-cover" data-ai-hint="modern baby monitor" />
-                  </div>
-                   <div>
-                      <h2 className="text-sm font-bold uppercase text-primary tracking-widest mb-2">Our Baby Care Product Line</h2>
-                      <h3 className="text-3xl md:text-4xl font-bold font-headline mb-4">Anvaya™</h3>
-                      <p className="text-lg text-muted-foreground mb-6">Babies communicate long before they speak. Anvaya translates their early signals—cries, sleep patterns, breathing, and movement—into insights that support confident caregiving.</p>
-                      <p className="text-lg font-semibold text-foreground">Every cry has a story. Anvaya helps you listen.</p>
-                      <Button asChild size="lg" className="mt-8">
-                        <Link href="/anvaya">Learn about Anvaya Mini™</Link>
-                      </Button>
-                  </div>
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative h-96 rounded-lg overflow-hidden">
+              <Image src="https://picsum.photos/seed/anvaya-product/800/600" alt="Anvaya Mini product" fill className="object-cover" />
+            </div>
+            <div>
+              <h2 className="text-sm font-bold uppercase text-primary tracking-widest mb-2">Our Baby Care Product Line</h2>
+              <h3 className="text-3xl md:text-4xl font-bold font-headline mb-4">Anvaya Mini™</h3>
+              <p className="text-lg text-muted-foreground mb-4">Babies communicate long before they speak. Anvaya translates their early signals — cries, sleep patterns, breathing, and movement — into insights that support confident caregiving.</p>
+              <ul className="space-y-3 mb-8">
+                {['Contactless cry analysis — hungry, tired, or uncomfortable', 'Breathing & SpO2 monitoring without any wearable', 'Sleep analysis that learns your baby\'s unique rhythms', 'Room & body temperature tracking'].map(f => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-primary shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex gap-4 flex-wrap">
+                <Button asChild size="lg">
+                  <Link href="/early-access">Get Early Access — ₹12,999</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/anvaya">Learn More</Link>
+                </Button>
               </div>
+            </div>
           </div>
+        </div>
       </section>
-      
-      {/* CTA Section */}
+
+      {/* Early Access Lead Capture */}
+      <section id="early-access" className="py-20 bg-card/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 mb-6 text-sm text-primary font-medium">
+              <Sparkles className="w-4 h-4" />
+              47 of 100 early access spots taken
+            </div>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4">Be Among the First 100 Families</h2>
+            <p className="text-muted-foreground mb-8 text-lg">
+              Join the early access programme. Get ₹2,000 off the launch price, priority shipping, and a free 1-year app subscription.
+            </p>
+            {submitted ? (
+              <div className="bg-primary/10 border border-primary/30 rounded-lg p-8">
+                <CheckCircle className="w-10 h-10 text-primary mx-auto mb-3" />
+                <p className="text-lg font-semibold text-primary">You're on the list!</p>
+                <p className="text-muted-foreground mt-2">We'll WhatsApp you your early access details within 24 hours.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleEarlyAccess} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+                <Input
+                  placeholder="Your name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  required
+                  className="flex-1"
+                />
+                <Input
+                  placeholder="WhatsApp number"
+                  value={whatsapp}
+                  onChange={e => setWhatsapp(e.target.value)}
+                  required
+                  type="tel"
+                  className="flex-1"
+                />
+                <Button type="submit" disabled={loading} className="shrink-0">
+                  {loading ? 'Saving...' : 'Reserve Spot'}
+                </Button>
+              </form>
+            )}
+            {!submitted && (
+              <p className="text-xs text-muted-foreground mt-3">No payment now. We'll reach out with details before launch.</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
       <section id="cta" className="py-20">
         <div className="container mx-auto px-4">
           <div className="bg-gradient-to-r from-primary/80 to-primary/50 rounded-lg p-12 text-center">
-            <h2 className="font-headline text-3xl font-bold text-primary-foreground mb-4">Join Our Journey</h2>
+            <h2 className="font-headline text-3xl font-bold text-primary-foreground mb-4">Ready to sleep again?</h2>
             <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              We are a team of engineers, researchers, and human-centered designers. If you are passionate about building technology that cares, we invite you to connect with us.
+              Early access pricing ends soon. Reserve your Anvaya Mini™ today and save ₹2,000 off the regular launch price.
             </p>
-            <Button asChild size="lg" variant="secondary" className="bg-white/90 hover:bg-white text-black">
-              <Link href="/contact">Contact Us</Link>
-            </Button>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Button asChild size="lg" variant="secondary" className="bg-white/90 hover:bg-white text-black">
+                <Link href="/early-access">Reserve Now — ₹12,999</Link>
+              </Button>
+              <Button asChild size="lg" variant="ghost" className="text-white border border-white/40 hover:bg-white/10">
+                <Link href="/anvaya">Learn More First</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
