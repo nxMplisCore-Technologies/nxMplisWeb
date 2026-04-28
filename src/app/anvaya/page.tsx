@@ -77,11 +77,16 @@ export default function AnvayaPage() {
     e.preventDefault();
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      toast({ title: "You're reserved!", description: "We'll WhatsApp you your early access details within 24 hours." });
-    }, 800);
+    try {
+      await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, whatsapp, city, source: 'anvaya-page', product: 'Anvaya Mini' }),
+      });
+    } catch (_) {}
+    setLoading(false);
+    setSubmitted(true);
+    toast({ title: "You're reserved!", description: "We'll WhatsApp you your early access details within 24 hours." });
   }
 
   return (

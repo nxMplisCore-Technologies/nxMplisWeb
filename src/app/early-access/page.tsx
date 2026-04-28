@@ -41,15 +41,20 @@ export default function EarlyAccessPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      toast({ title: "You're reserved!", description: "We'll WhatsApp you your early access details within 24 hours." });
-    }, 900);
+    try {
+      await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, whatsapp, city, babyAge, source: 'early-access', product: 'Anvaya Mini' }),
+      });
+    } catch (_) {}
+    setLoading(false);
+    setSubmitted(true);
+    toast({ title: "You're reserved!", description: "We'll WhatsApp you your early access details within 24 hours." });
   }
 
   return (

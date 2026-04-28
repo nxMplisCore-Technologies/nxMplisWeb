@@ -45,14 +45,19 @@ export default function Home() {
     e.preventDefault();
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      toast({
-        title: 'You\'re on the list!',
-        description: 'We\'ll WhatsApp you your early access details within 24 hours.',
+    try {
+      await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, whatsapp, source: 'homepage', product: 'Anvaya Mini' }),
       });
-    }, 800);
+    } catch (_) {}
+    setLoading(false);
+    setSubmitted(true);
+    toast({
+      title: 'You\'re on the list!',
+      description: 'We\'ll WhatsApp you your early access details within 24 hours.',
+    });
   }
 
   return (
