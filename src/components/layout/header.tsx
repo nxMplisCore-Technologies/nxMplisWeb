@@ -10,14 +10,10 @@ import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/anvaya', label: 'Anvaya™' },
-  { href: '/industries', label: 'Industries' },
-  { href: '/technology', label: 'Our Approach' },
+  { href: '/anvaya', label: 'Products' },
+  { href: '/technology', label: 'Technology' },
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
-  { href: '/careers', label: 'Careers' },
-  { href: '/pitch-deck', label: 'Pitch Deck' },
-  { href: '/gallery', label: 'Gallery'},
 ];
 
 export function Header() {
@@ -25,7 +21,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="container mx-auto px-4 flex h-16 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2" onClick={() => setIsOpen(false)}>
           <Logo />

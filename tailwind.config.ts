@@ -17,8 +17,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-inter)'],
-        headline: ['var(--font-space-grotesk)'],
+        body: ['var(--font-poppins)', 'sans-serif'],
+        headline: ['var(--font-poppins)', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
