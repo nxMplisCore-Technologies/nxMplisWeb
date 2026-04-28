@@ -17,6 +17,7 @@ const products = [
     desc: 'The perfect everyday baby monitor for modern parents. Essential monitoring for complete peace of mind.',
     price: '₹8,999',
     image: '/anvaya-product.png',
+    imagePosition: 'object-center',
     color: 'from-amber-50 to-orange-50',
     accent: 'text-amber-700',
     badge: 'bg-amber-100 text-amber-800',
@@ -35,6 +36,7 @@ const products = [
     desc: 'Advanced monitoring for your baby\'s breathing, heart rate, and overall well-being. Bridges the gap between physical and emotional care.',
     price: '₹12,999',
     image: '/anvaya-lifestyle.png',
+    imagePosition: 'object-center',
     color: 'from-emerald-50 to-teal-50',
     accent: 'text-primary',
     badge: 'bg-primary/10 text-primary',
@@ -53,7 +55,8 @@ const products = [
     subtitle: 'Stay Connected to Every Moment.',
     desc: 'A smarter way to monitor your baby\'s environment, activity, and well-being. Real-time alerts for every change.',
     price: '₹15,999',
-    image: '/anvaya-features.png',
+    image: '/anvaya-nursery.jpg',
+    imagePosition: 'object-center',
     color: 'from-blue-50 to-sky-50',
     accent: 'text-blue-700',
     badge: 'bg-blue-100 text-blue-800',
@@ -71,11 +74,13 @@ const products = [
     subtitle: 'Total Awareness. Complete Peace of Mind.',
     desc: '360° intelligent monitoring powered by Predictive AI. The highest level of care for parents who want everything.',
     price: '₹19,999',
-    image: '/anvaya-logo.png',
+    image: '/app-trends.jpg',
+    imagePosition: 'object-top',
     color: 'from-gray-900 to-gray-800',
     accent: 'text-yellow-400',
     badge: 'bg-yellow-400/20 text-yellow-300',
     dark: true,
+    overlay: true,
     features: [
       { icon: Activity, label: 'Breathing, Heart Rate & Temp', desc: 'Continuous contactless vital monitoring' },
       { icon: BrainCircuit, label: 'Predictive Risk Alerts', desc: 'AI flags issues before they escalate' },
@@ -196,8 +201,16 @@ export default function AnvayaPage() {
                       </Button>
                     </div>
                   </div>
-                  <div className="relative h-72 lg:h-full min-h-72">
-                    <Image src={p.id === 'core' || p.id === 'sense' ? '/anvaya-brand.png' : p.image} alt={`${p.name} contactless baby monitor`} fill className="object-cover object-right-top" />
+                  <div className="relative min-h-[320px] lg:min-h-[440px] lg:h-full">
+                    <Image
+                      src={p.image}
+                      alt={`${p.name} contactless baby monitor`}
+                      fill
+                      className={`object-cover ${(p as any).imagePosition || 'object-center'}`}
+                    />
+                    {(p as any).overlay && (
+                      <div className="absolute inset-0 bg-gradient-to-l from-gray-900/60 via-gray-900/30 to-transparent" />
+                    )}
                   </div>
                 </div>
               </div>
