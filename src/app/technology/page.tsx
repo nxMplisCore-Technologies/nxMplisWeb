@@ -1,69 +1,124 @@
-import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, ShieldCheck, HeartHandshake } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 const principles = [
   {
-    icon: CheckCircle,
-    name: 'Contactless and Non-Intrusive',
-    description: 'Our technology gathers insights without ever touching the skin or disrupting natural routines. We believe wellness monitoring should be invisible and effortless.',
-    imageUrl: 'https://picsum.photos/seed/contactless/600/400',
-    dataAiHint: 'soft fabric',
+    tag: '01 — Contactless',
+    name: 'Contactless & Non-Intrusive',
+    desc: 'Our technology gathers insights without ever touching the skin or disrupting natural routines. Radar-based motion sensing, infrared thermal imaging, and AI acoustic analysis — all passive, all invisible to your baby.',
+    accent: '#4a7c6f',
+    bg: 'from-[#e8f2ee] to-[#f5ede0]',
+    illustration: `<svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <ellipse cx="160" cy="130" rx="55" ry="65" fill="#fff" stroke="#4a7c6f" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="160" cy="110" rx="28" ry="32" fill="#e8f2ee"/>
+      <circle cx="160" cy="95" r="14" fill="#4a7c6f" opacity="0.15"/>
+      <path d="M148 100 Q160 88 172 100 Q164 112 160 115 Q156 112 148 100Z" fill="#4a7c6f" opacity="0.4"/>
+      <ellipse cx="160" cy="130" rx="55" ry="65" stroke="#4a7c6f" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
+      <ellipse cx="160" cy="130" rx="80" ry="90" stroke="#4a7c6f" stroke-width="1" stroke-dasharray="4 6" opacity="0.2"/>
+      <ellipse cx="160" cy="130" rx="108" ry="118" stroke="#4a7c6f" stroke-width="0.8" stroke-dasharray="4 8" opacity="0.12"/>
+      <rect x="60" y="60" width="36" height="28" rx="8" fill="#4a7c6f" opacity="0.9"/>
+      <circle cx="78" cy="74" r="9" fill="#1a2e28"/>
+      <circle cx="78" cy="74" r="5" fill="#0d1612"/>
+      <circle cx="75" cy="71" r="2" fill="#4a7c6f" opacity="0.6"/>
+      <text x="78" y="102" text-anchor="middle" font-size="8" fill="#4a7c6f" font-family="Poppins,sans-serif" font-weight="600">ANVAYA</text>
+      <line x1="96" y1="74" x2="130" y2="90" stroke="#4a7c6f" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5"/>
+      <line x1="96" y1="74" x2="125" y2="74" stroke="#4a7c6f" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.4"/>
+      <line x1="96" y1="74" x2="128" y2="60" stroke="#4a7c6f" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.3"/>
+      <circle cx="78" cy="165" r="6" fill="#e8957a" opacity="0.8"/>
+      <text x="78" y="182" text-anchor="middle" font-size="7" fill="#e8957a" font-family="Poppins,sans-serif">Breathing ✓</text>
+      <circle cx="240" cy="80" r="6" fill="#4a7c6f" opacity="0.8"/>
+      <text x="240" y="97" text-anchor="middle" font-size="7" fill="#4a7c6f" font-family="Poppins,sans-serif">SpO2 ✓</text>
+      <circle cx="252" cy="148" r="6" fill="#4a7c6f" opacity="0.6"/>
+      <text x="252" y="165" text-anchor="middle" font-size="7" fill="#4a7c6f" font-family="Poppins,sans-serif">Temp ✓</text>
+    </svg>`,
   },
   {
-    icon: ShieldCheck,
-    name: 'Baby-Safe and Privacy-First',
-    description: 'Safety is our highest priority. We use only baby-safe materials and methods, and all data processing happens locally on the device. Your family’s data stays private, always.',
-    imageUrl: 'https://picsum.photos/seed/privacy-lock/600/400',
-    dataAiHint: 'secure lock',
+    tag: '02 — Privacy',
+    name: 'Baby-Safe & Privacy-First',
+    desc: 'Safety is our highest priority. All data processing happens locally on the device. No cloud streaming. No data ever leaves your home. Your family\'s most intimate moments stay completely private — by design.',
+    accent: '#e8957a',
+    bg: 'from-[#fdf0ea] to-[#faf8f5]',
+    illustration: `<svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <path d="M160 30 L220 58 L220 120 Q220 168 160 192 Q100 168 100 120 L100 58 Z" fill="#fff" stroke="#e8957a" stroke-width="1.5"/>
+      <path d="M160 48 L204 70 L204 118 Q204 154 160 172 Q116 154 116 118 L116 70 Z" fill="#fdf0ea" stroke="#e8957a" stroke-width="0.8"/>
+      <rect x="144" y="95" width="32" height="28" rx="5" fill="#e8957a" opacity="0.9"/>
+      <rect x="150" y="88" width="20" height="16" rx="10" fill="none" stroke="#e8957a" stroke-width="2"/>
+      <circle cx="160" cy="109" r="4" fill="#fff"/>
+      <line x1="160" y1="113" x2="160" y2="118" stroke="#fff" stroke-width="2"/>
+      <text x="160" y="148" text-anchor="middle" font-size="8" fill="#e8957a" font-family="Poppins,sans-serif" font-weight="600">On-device only</text>
+      <text x="160" y="160" text-anchor="middle" font-size="7" fill="#9aaba7" font-family="Poppins,sans-serif">No cloud · No streaming</text>
+      <line x1="60" y1="80" x2="100" y2="90" stroke="#e2dbd4" stroke-width="1" stroke-dasharray="4 4"/>
+      <rect x="30" y="68" width="30" height="24" rx="4" fill="#f0ece6" stroke="#e2dbd4" stroke-width="1"/>
+      <text x="45" y="83" text-anchor="middle" font-size="7" fill="#9aaba7" font-family="Poppins,sans-serif">Cloud</text>
+      <line x1="45" y1="78" x2="45" y2="65" stroke="#e8957a" stroke-width="1.5"/>
+      <line x1="40" y1="65" x2="50" y2="75" stroke="#e8957a" stroke-width="1.5"/>
+      <line x1="50" y1="65" x2="40" y2="75" stroke="#e8957a" stroke-width="1.5"/>
+      <text x="45" y="58" text-anchor="middle" font-size="7" fill="#e8957a" font-family="Poppins,sans-serif" font-weight="600">Blocked</text>
+    </svg>`,
   },
   {
-    icon: HeartHandshake,
+    tag: '03 — Intelligence',
     name: 'Calm by Design',
-    description: 'We believe technology should reduce anxiety, not create it. Our systems are designed to be quiet observers, providing reassurance and information without unnecessary alarms or notifications.',
-    imageUrl: 'https://picsum.photos/seed/calm-design/600/400',
-    dataAiHint: 'zen garden',
-  }
+    desc: 'We believe technology should reduce anxiety, not create it. Anvaya Smart learns your baby\'s unique patterns over time and only alerts you when something truly needs attention — not for every rustle, every pause, every sound.',
+    accent: '#4a7c6f',
+    bg: 'from-[#e8f2ee] to-[#faf8f5]',
+    illustration: `<svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <rect x="40" y="70" width="240" height="90" rx="12" fill="#fff" stroke="#e2dbd4" stroke-width="1"/>
+      <text x="160" y="95" text-anchor="middle" font-size="8" fill="#9aaba7" font-family="Poppins,sans-serif">Breathing pattern — Normal</text>
+      <polyline points="55,140 75,138 90,135 105,140 115,128 125,140 140,138 155,140 165,136 175,140 185,130 195,140 210,138 225,140 250,138 265,140" stroke="#4a7c6f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <line x1="40" y1="140" x2="280" y2="140" stroke="#e2dbd4" stroke-width="0.5"/>
+      <circle cx="190" cy="130" r="5" fill="#e8957a"/>
+      <text x="210" y="120" font-size="7" fill="#e8957a" font-family="Poppins,sans-serif" font-weight="600">Alert only here</text>
+      <rect x="95" y="170" width="130" height="30" rx="15" fill="#4a7c6f"/>
+      <text x="160" y="190" text-anchor="middle" font-size="9" fill="#fff" font-family="Poppins,sans-serif" font-weight="600">Baby is sleeping soundly ✓</text>
+      <circle cx="75" cy="48" r="16" fill="#e8f2ee" stroke="#4a7c6f" stroke-width="1"/>
+      <text x="75" y="52" text-anchor="middle" font-size="9" fill="#4a7c6f" font-family="Poppins,sans-serif" font-weight="600">AI</text>
+      <text x="160" y="52" text-anchor="middle" font-size="7" fill="#9aaba7" font-family="Poppins,sans-serif">Learning your baby since Day 1</text>
+      <circle cx="245" cy="48" r="6" fill="#e8f2ee"/>
+      <circle cx="260" cy="48" r="6" fill="#e8f2ee"/>
+      <circle cx="275" cy="48" r="6" fill="#4a7c6f" opacity="0.4"/>
+    </svg>`,
+  },
 ];
 
 export default function TechnologyPage() {
   return (
-    <div className="container mx-auto px-4 py-16 sm:py-24">
-      <header className="text-center max-w-4xl mx-auto mb-20">
-        <h1 className="font-headline text-4xl md:text-5xl font-bold mb-4">
-          Our Design Philosophy
-        </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground">
-          Nxmliscore is built on a foundation of responsible innovation. Our technology is thoughtfully engineered to be calm, respectful, and purposeful, supporting users without being intrusive.
-        </p>
-      </header>
+    <div className="bg-[#faf8f5] min-h-screen">
+      <section className="bg-gradient-to-br from-[#f5ede0] via-[#faf8f5] to-[#e8f2ee] py-20 text-center">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-4" style={{color:'#e8957a'}}>Our Approach</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Technology that cares.</h1>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Nxmliscore is built on responsible innovation. Every decision — from sensor choice to alert logic — is guided by one question: does this make parents calmer, not more anxious?
+          </p>
+        </div>
+      </section>
 
-      <div className="space-y-24">
-        {principles.map((principle, index) => (
-          <section key={principle.name} id={`principle-${index}`} className="scroll-mt-20">
-            <Card className="overflow-hidden border-border/50">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center`}>
-                <div className={`p-8 sm:p-12 ${index % 2 === 1 ? 'lg:order-last' : ''}`}>
-                  <div className="inline-flex items-center gap-3 bg-primary/10 text-primary px-4 py-2 rounded-full font-medium mb-4">
-                    <principle.icon className="w-5 h-5" />
-                    <span>{principle.name}</span>
-                  </div>
-                  <p className="text-lg text-muted-foreground">{principle.description}</p>
-                </div>
-                 <div className="relative h-64 lg:h-full min-h-[300px]">
-                  <Image
-                    src={principle.imageUrl}
-                    alt={principle.name}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={principle.dataAiHint}
-                  />
-                </div>
-              </div>
-            </Card>
+      <div className="container mx-auto px-4 py-20 space-y-16">
+        {principles.map((p, i) => (
+          <section key={p.name} className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className={`${i % 2 === 1 ? 'lg:order-last' : ''} rounded-2xl overflow-hidden bg-gradient-to-br ${p.bg} h-64 lg:h-80 flex items-center justify-center p-6`}
+              dangerouslySetInnerHTML={{ __html: p.illustration }} />
+            <div className={i % 2 === 1 ? '' : ''}>
+              <div className="inline-block text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1 rounded-full"
+                style={{background: `${p.accent}18`, color: p.accent}}>{p.tag}</div>
+              <h2 className="text-3xl font-bold mb-4">{p.name}</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">{p.desc}</p>
+            </div>
           </section>
         ))}
       </div>
+
+      <section className="bg-primary text-white py-16 text-center">
+        <div className="container mx-auto px-4 max-w-2xl">
+          <h2 className="text-3xl font-bold mb-4">Science you can trust. Care you can feel.</h2>
+          <p className="text-white/80 mb-8">Built in partnership with BITS Hyderabad and SASTRA University. Grounded in research, designed for real families.</p>
+          <Button asChild className="bg-white text-primary hover:bg-white/90 font-semibold gap-2">
+            <Link href="/about">About Nxmliscore <ArrowRight className="w-4 h-4" /></Link>
+          </Button>
+        </div>
+      </section>
     </div>
   );
 }

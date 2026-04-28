@@ -1,84 +1,135 @@
+import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Microscope, PencilRuler, HeartHandshake } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Microscope, Heart, Shield, Brain } from 'lucide-react';
 
-const partnerships = [
-    {
-        name: "BITS Hyderabad",
-        description: "Partnering on flexible sensor materials and advanced sensing technologies."
-    },
-    {
-        name: "SASTRA University, Thanjavur",
-        description: "Home to our research and development laboratory, supporting long-term research in wellness sensing and signal interpretation."
-    }
-]
+const team = [
+  { initials: 'DS', name: 'Deepak Singh', role: 'Co-founder & CEO', bg: '#4a7c6f' },
+  { initials: 'RK', name: 'Research Lead', role: 'Head of Sensing Technology', bg: '#e8957a' },
+  { initials: 'AM', name: 'AI & ML Lead', role: 'Head of AI & Signal Processing', bg: '#7aab9e' },
+  { initials: 'PV', name: 'Design Lead', role: 'Head of Product Design', bg: '#c17a5e' },
+];
+
+const partners = [
+  { name: 'BITS Hyderabad', desc: 'Partnering on flexible sensor materials and advanced biosensing technologies.', icon: Microscope },
+  { name: 'SASTRA University, Thanjavur', desc: 'Home to our R&D lab, supporting long-term research in wellness sensing and signal interpretation.', icon: Brain },
+];
+
+const values = [
+  { icon: Heart, title: 'Care first', desc: 'Every feature exists because it helps a parent care better — not because it\'s technically impressive.' },
+  { icon: Shield, title: 'Privacy by default', desc: 'On-device processing. No cloud streaming. No data ever leaves your home.' },
+  { icon: Brain, title: 'Calm intelligence', desc: 'Technology should reduce parental anxiety, never amplify it.' },
+  { icon: Microscope, title: 'Science-backed', desc: 'Built on published research, academic partnerships, and rigorous testing.' },
+];
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-16 sm:py-24">
-      {/* Who We Are */}
-      <section id="who-we-are" className="text-center max-w-4xl mx-auto mb-20">
-        <h1 className="font-headline text-4xl md:text-5xl font-bold mb-4">Who We Are</h1>
-        <p className="text-xl md:text-2xl text-muted-foreground">
-          Nxmliscore is a wellness technology company focused on understanding human signals across different stages of life. We build intelligent, non-intrusive systems that listen to subtle physiological and behavioral cues — transforming them into meaningful insights that support care, confidence, and well-being.
-        </p>
-         <p className="text-lg text-muted-foreground mt-4">
-            Founded by IIT alumni, Nxmliscore combines deep engineering expertise, applied research, and human-centered design to create technology that feels calm, respectful, and purposeful.
-        </p>
+    <div className="bg-[#faf8f5] min-h-screen">
+
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-[#f5ede0] via-[#faf8f5] to-[#e8f2ee] py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest mb-4" style={{color:'#e8957a'}}>Who We Are</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
+                Built by parents,<br />engineers, and<br />researchers.
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                Nxmliscore is a wellness technology company focused on understanding human signals across every stage of life. Founded by IIT alumni, we combine deep engineering expertise, applied research, and human-centered design.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We build intelligent, non-intrusive systems that listen to subtle physiological cues — transforming them into insights that support care, confidence, and well-being.
+              </p>
+            </div>
+            <div className="relative h-80 rounded-2xl overflow-hidden shadow-md">
+              <Image src="/anvaya-brand.png" alt="Anvaya Smart — Nxmliscore team and product" fill className="object-cover object-center" />
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Research Foundations */}
-      <section id="research" className="mb-20">
-        <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold">Built on Strong Research Foundations</h2>
-          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            Our work is grounded in active academic collaboration and applied research. These partnerships ensure our products are built on science, not assumptions.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {partnerships.map((partner) => (
-                 <Card key={partner.name} className="bg-card/50">
-                    <CardHeader>
-                        <div className="flex items-center gap-4">
-                            <div className="bg-primary/10 p-3 rounded-md">
-                               <Microscope className="w-6 h-6 text-primary"/>
-                            </div>
-                            <CardTitle className="font-headline text-xl">{partner.name}</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                       <p className="text-muted-foreground">{partner.description}</p>
-                    </CardContent>
-                 </Card>
+      {/* Values */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{color:'#e8957a'}}>What We Stand For</p>
+            <h2 className="text-3xl md:text-4xl font-bold">Values that guide everything we build.</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map(v => (
+              <div key={v.title} className="bg-[#faf8f5] rounded-2xl p-6 border border-[#e2dbd4]">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <v.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="font-bold text-base mb-2">{v.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+              </div>
             ))}
-        </div>
-      </section>
-      
-      {/* Design Philosophy */}
-      <section id="design">
-         <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold">Designed with Responsibility</h2>
-          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            Technology should reduce anxiety, not create it. Our design philosophy is centered on this belief.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="text-center p-6 bg-card/50">
-                <PencilRuler className="w-10 h-10 text-primary mx-auto mb-4"/>
-                <h3 className="font-headline text-lg font-semibold">Contactless & Non-Intrusive</h3>
-            </Card>
-            <Card className="text-center p-6 bg-card/50">
-                <HeartHandshake className="w-10 h-10 text-primary mx-auto mb-4"/>
-                <h3 className="font-headline text-lg font-semibold">Baby-Safe & Privacy-First</h3>
-            </Card>
-            <Card className="text-center p-6 bg-card/50">
-                <div className="mx-auto w-10 h-10 text-primary mb-4 text-3xl font-bold">!</div>
-                <h3 className="font-headline text-lg font-semibold">Calm By Design</h3>
-                <p className="text-sm text-muted-foreground">No unnecessary alarms.</p>
-            </Card>
+          </div>
         </div>
       </section>
 
+      {/* Team */}
+      <section className="py-20 bg-[#faf8f5]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{color:'#e8957a'}}>The Team</p>
+            <h2 className="text-3xl md:text-4xl font-bold">People who care about the problem.</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+            {team.map(t => (
+              <div key={t.initials} className="text-center">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-3" style={{background: t.bg}}>
+                  {t.initials}
+                </div>
+                <div className="font-semibold text-sm">{t.name}</div>
+                <div className="text-xs text-muted-foreground mt-1">{t.role}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Research */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{color:'#e8957a'}}>Research Partners</p>
+            <h2 className="text-3xl font-bold">Built on strong research foundations.</h2>
+            <p className="text-muted-foreground mt-3 max-w-xl mx-auto">Our products are built on science, not assumptions — backed by active academic collaboration.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {partners.map(p => (
+              <div key={p.name} className="bg-[#faf8f5] rounded-2xl p-6 border border-[#e2dbd4] flex gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <p.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-bold mb-2">{p.name}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-primary py-16 text-center text-white">
+        <div className="container mx-auto px-4 max-w-2xl">
+          <h2 className="text-3xl font-bold mb-4">Join us in building something meaningful.</h2>
+          <p className="text-white/80 mb-8">We're always looking for engineers, researchers, and designers who care about the problem as much as we do.</p>
+          <div className="flex justify-center gap-4 flex-wrap">
+            <Button asChild className="bg-white text-primary hover:bg-white/90 font-semibold gap-2">
+              <Link href="/careers">See Open Roles <ArrowRight className="w-4 h-4" /></Link>
+            </Button>
+            <Button asChild variant="ghost" className="text-white border border-white/30 hover:bg-white/10">
+              <Link href="/contact">Get in Touch</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,74 +1,90 @@
 import Link from 'next/link';
-import { Logo } from '@/components/icons';
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Instagram, Linkedin, Twitter } from 'lucide-react';
 
-const footerNavs = [
-  { href: '/anvaya', label: 'Anvaya™' },
-  { href: '/industries', label: 'Industries' },
-  { href: '/technology', label: 'Our Approach' },
-  { href: '/about', label: 'About Us' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/careers', label: 'Careers'},
-  { href: '/contact', label: 'Contact' },
-];
+const footerLinks = {
+  products: [
+    { href: '/anvaya#core', label: 'Anvaya CORE' },
+    { href: '/anvaya#sense', label: 'Anvaya SENSE' },
+    { href: '/anvaya#pulse', label: 'Anvaya PULSE' },
+    { href: '/anvaya#omni', label: 'Anvaya OMNI' },
+    { href: '/early-access', label: 'Early Access' },
+  ],
+  company: [
+    { href: '/about', label: 'About Us' },
+    { href: '/technology', label: 'Our Technology' },
+    { href: '/industries', label: 'Industries' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/careers', label: 'Careers' },
+  ],
+  support: [
+    { href: '/contact', label: 'Contact Us' },
+    { href: '/contact', label: 'WhatsApp Support' },
+    { href: '#', label: 'Privacy Policy' },
+    { href: '#', label: 'Terms of Service' },
+    { href: '#', label: 'Shipping Policy' },
+  ],
+};
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/50 bg-background">
-      <div className="container mx-auto px-4 py-10">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div className="flex flex-col gap-4 items-start">
-            <Link href="/" aria-label="Back to homepage">
-              <Logo />
-            </Link>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              Wellness technology, thoughtfully engineered.
+    <footer className="bg-[#172720] text-white">
+      <div className="container mx-auto px-4 py-14">
+        <div className="grid gap-10 md:grid-cols-4">
+          {/* Brand */}
+          <div>
+            <div className="text-xl font-bold mb-1">
+              ANVAYA <span style={{color:'#e8957a'}}>SMART</span>
+            </div>
+            <p className="text-sm font-medium mb-3" style={{color:'#7aab9e'}}>Smart Care. Gentle Beginnings.</p>
+            <p className="text-sm text-white/50 leading-relaxed mb-5">
+              Contactless AI baby monitoring. Because every breath matters.
             </p>
-            <div className="flex gap-2 mt-2">
-              <Link href="#" className="p-2 rounded-md hover:bg-secondary">
-                <Twitter className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="p-2 rounded-md hover:bg-secondary">
-                <Github className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="p-2 rounded-md hover:bg-secondary">
-                <Linkedin className="w-5 h-5" />
-              </Link>
+            <div className="flex gap-3">
+              {[Instagram, Twitter, Linkedin].map((Icon, i) => (
+                <Link key={i} href="#" className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors" style={{background:'rgba(255,255,255,0.06)'}}>
+                  <Icon className="w-4 h-4 text-white/60" />
+                </Link>
+              ))}
             </div>
           </div>
-          <div className="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-headline font-semibold mb-4">Company</h3>
-              <ul className="space-y-2">
-                {footerNavs.slice(0, 4).map(nav => (
-                  <li key={nav.label}>
-                    <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-headline font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2">
-                 {footerNavs.slice(4, 7).map(nav => (
-                  <li key={nav.label}>
-                    <Link href={nav.href} className="text-muted-foreground hover:text-primary transition-colors">{nav.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-             <div>
-              <h3 className="font-headline font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2">
-                <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
-                <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
-              </ul>
-            </div>
+
+          {/* Products */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{color:'#7aab9e'}}>Products</h3>
+            <ul className="space-y-2.5">
+              {footerLinks.products.map(l => (
+                <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{color:'#7aab9e'}}>Company</h3>
+            <ul className="space-y-2.5">
+              {footerLinks.company.map(l => (
+                <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support + CTA */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{color:'#7aab9e'}}>Support</h3>
+            <ul className="space-y-2.5 mb-6">
+              {footerLinks.support.map(l => (
+                <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
+              ))}
+            </ul>
+            <Link href="/early-access" className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-lg" style={{background:'#4a7c6f',color:'#fff'}}>
+              ✦ Get Early Access
+            </Link>
           </div>
         </div>
 
-        <div className="mt-10 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Nxmliscore, Inc. All rights reserved.</p>
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/30">
+          <p>© {new Date().getFullYear()} Nxmliscore, Inc. All rights reserved.</p>
+          <p>Anvaya Smart™ — Made with care in India 🇮🇳</p>
         </div>
       </div>
     </footer>

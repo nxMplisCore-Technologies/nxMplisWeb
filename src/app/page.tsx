@@ -143,8 +143,9 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative h-96 rounded-2xl overflow-hidden">
-              <Image src="https://picsum.photos/seed/mother-baby-trust/800/600" alt="Mother holding baby peacefully" fill className="object-cover" />
+            <div className="relative h-96 rounded-2xl overflow-hidden shadow-md">
+              <Image src="/anvaya-brand.png" alt="Mother and baby — Anvaya Smart parenting trust" fill className="object-cover object-left-bottom" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-transparent" />
             </div>
             <div>
               <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-3">Our Story</p>
