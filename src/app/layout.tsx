@@ -1,35 +1,76 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
+import { OrganizationSchema, WebsiteSchema } from '@/components/seo/JsonLd';
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-poppins',
-});
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-poppins', display: 'swap' });
+
+const BASE_URL = 'https://nxmplis.com';
+
+export const viewport: Viewport = {
+  themeColor: '#4a7c6f',
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
-  title: 'Anvaya Smart | Contactless Baby Monitor | Smart Care. Gentle Beginnings.',
-  description: 'Anvaya Smart monitors your baby\'s breathing, cry patterns, SpO2, heart rate and temperature — completely contactlessly. No wearables. No stress. Just peace of mind. Shop CORE, SENSE, PULSE & OMNI. Free shipping across India.',
-  keywords: 'baby monitor India, smart baby monitor, contactless baby monitor, baby breathing monitor, baby cry analysis, SpO2 baby monitor, AI baby monitor India, baby wellness monitor, best baby monitor India 2025',
-  openGraph: {
-    title: 'Anvaya Smart — Because Every Breath Matters',
-    description: 'Contactless AI baby monitor. Tracks breathing, cries, SpO2 & temperature. No wearables. Made for Indian parents.',
-    url: 'https://nxmplis.com',
-    siteName: 'Anvaya Smart by Nxmliscore',
-    locale: 'en_IN',
-    type: 'website',
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: 'Anvaya Smart | Best Contactless Baby Monitor India | AI Baby Wellness',
+    template: '%s | Anvaya Smart — Baby Monitor India',
   },
+  description: 'Anvaya Smart is India\'s most advanced AI baby monitor. Contactless breathing, SpO2, cry analysis & sleep tracking. No wearables. Free shipping. 30-day guarantee. Shop CORE, SENSE, PULSE & OMNI.',
+  keywords: [
+    'baby monitor India', 'smart baby monitor India', 'best baby monitor India 2025',
+    'contactless baby monitor', 'baby breathing monitor India', 'baby SpO2 monitor',
+    'AI baby monitor', 'baby cry analysis monitor', 'baby sleep monitor India',
+    'baby wellness monitor', 'Anvaya Smart', 'Anvaya baby monitor',
+    'baby monitor without wearable', 'non contact baby monitor India',
+    'baby heart rate monitor India', 'newborn monitor India',
+    'best baby camera India', 'baby monitor price India',
+  ],
+  authors: [{ name: 'Nxmliscore', url: BASE_URL }],
+  creator: 'Nxmliscore',
+  publisher: 'Nxmliscore',
+  robots: {
+    index: true, follow: true,
+    googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: BASE_URL,
+    siteName: 'Anvaya Smart by Nxmliscore',
+    title: 'Anvaya Smart — Best Contactless AI Baby Monitor India',
+    description: 'Monitor your baby\'s breathing, cries, SpO2 & sleep contactlessly. No wearables. No stress. Free shipping across India. Starting ₹8,999.',
+    images: [{ url: '/anvaya-nursery.jpg', width: 1200, height: 630, alt: 'Anvaya Smart baby monitor in nursery — AI-powered contactless monitoring' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Anvaya Smart — India\'s Best AI Baby Monitor',
+    description: 'Contactless baby monitoring. Breathing, SpO2, cries, sleep. No wearables. Free shipping India.',
+    images: ['/anvaya-nursery.jpg'],
+    creator: '@anvayasmart',
+  },
+  alternates: { canonical: BASE_URL },
+  verification: { google: 'add-your-google-verification-code' },
+  category: 'baby products',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-body antialiased", poppins.variable)}>
+    <html lang="en-IN" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+      </head>
+      <body className={cn('min-h-screen bg-background antialiased', poppins.variable)} style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+        <OrganizationSchema />
+        <WebsiteSchema />
         <div className="relative flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">{children}</main>

@@ -1,3 +1,12 @@
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Baby Care, Adult Care & Elder Care | Anvaya Smart Wellness Technology',
+  description: 'From newborn monitoring to elder care — Nxmliscore builds contactless AI wellness monitoring for every stage of life. Starting with Anvaya Smart baby monitor.',
+  keywords: ["baby wellness India", "elder care technology India", "adult health monitoring India", "contactless wellness monitor"],
+  alternates: { canonical: 'https://nxmplis.com/industries' },
+  openGraph: { title: 'Baby Care, Adult Care & Elder Care | Anvaya Smart Wellness Technology', description: 'From newborn monitoring to elder care — Nxmliscore builds contactless AI wellness monitoring for every stage of life. Starting with Anvaya Smart baby monitor.', url: 'https://nxmplis.com/industries', images: [{ url: '/anvaya-lifestyle.png' }] },
+};
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -87,7 +96,7 @@ export default function IndustriesPage() {
             <div className={`${i % 2 === 1 ? 'lg:order-last' : ''} rounded-2xl overflow-hidden h-72 lg:h-80 bg-gradient-to-br ${ind.bg} flex items-center justify-center`}>
               {ind.useImage ? (
                 <div className="relative w-full h-full">
-                  <Image src="/anvaya-lifestyle.png" alt={`${ind.name} — Anvaya Smart`} fill className={`object-cover ${ind.imagePosition}`} />
+                  <Image src="/anvaya-lifestyle.png" alt={`${ind.name} wellness monitoring — Anvaya Smart contactless AI monitor India`} fill className={`object-cover ${ind.imagePosition}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
               ) : (

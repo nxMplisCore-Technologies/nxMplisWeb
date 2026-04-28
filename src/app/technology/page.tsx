@@ -1,3 +1,12 @@
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'How Anvaya Smart Works | Contactless Baby Monitoring Technology India',
+  description: 'Discover how Anvaya Smart monitors your baby contactlessly — radar sensing, infrared imaging, AI acoustic analysis. 100% on-device privacy. No wearables ever.',
+  keywords: ['contactless baby monitoring', 'radar baby monitor India', 'how AI baby monitor works'],
+  alternates: { canonical: 'https://nxmplis.com/technology' },
+  openGraph: { title: 'How Anvaya Smart Works', url: 'https://nxmplis.com/technology', images: [{ url: '/anvaya-product.png' }] },
+};
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';

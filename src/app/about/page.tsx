@@ -1,3 +1,12 @@
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'About Nxmliscore | IIT Alumni Building India's Best Baby Monitor',
+  description: 'Nxmliscore — wellness tech founded by IIT alumni. We build Anvaya Smart, India's most advanced contactless AI baby monitor. Research-backed. Based in Hyderabad.',
+  keywords: ["Nxmliscore company", "Anvaya Smart founders", "baby monitor startup India", "IIT founders baby tech"],
+  alternates: { canonical: 'https://nxmplis.com/about' },
+  openGraph: { title: 'About Nxmliscore | IIT Alumni Building India's Best Baby Monitor', description: 'Nxmliscore — wellness tech founded by IIT alumni. We build Anvaya Smart, India's most advanced contactless AI baby monitor. Research-backed. Based in Hyderabad.', url: 'https://nxmplis.com/about', images: [{ url: '/anvaya-product.png' }] },
+};
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -43,7 +52,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-md">
-              <Image src="/anvaya-product.png" alt="Anvaya Smart — Nxmliscore team and product" fill className="object-cover object-center" />
+              <Image src="/anvaya-product.png" alt="Nxmliscore team — IIT alumni building Anvaya Smart, India's best AI baby monitor" fill className="object-cover object-center" />
             </div>
           </div>
         </div>

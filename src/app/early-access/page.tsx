@@ -78,7 +78,7 @@ export default function EarlyAccessPage() {
 
               {/* Brand image */}
               <div className="relative h-52 rounded-2xl overflow-hidden mb-8 shadow-md">
-                <Image src="/anvaya-product.png" alt="Anvaya Smart baby monitor" fill className="object-cover object-right-top" />
+                <Image src="/anvaya-product.png" alt="Anvaya Smart contactless AI baby monitor India — breathing, SpO2 and cry monitoring" fill className="object-cover object-right-top" />
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-8">

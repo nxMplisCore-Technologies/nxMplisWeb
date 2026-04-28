@@ -204,7 +204,7 @@ export default function AnvayaPage() {
                   <div className="relative min-h-[320px] lg:min-h-[440px] lg:h-full">
                     <Image
                       src={p.image}
-                      alt={`${p.name} contactless baby monitor`}
+                      alt={`${p.name} — contactless AI baby monitor India | breathing SpO2 cry sleep tracking`}
                       fill
                       className={`object-cover ${(p as any).imagePosition || 'object-center'}`}
                     />
