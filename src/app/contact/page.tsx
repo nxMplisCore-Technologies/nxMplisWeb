@@ -1,12 +1,3 @@
-import type { Metadata } from 'next';
-export const metadata: Metadata = {
-  title: 'Contact Anvaya Smart | WhatsApp Support India | Nxmliscore',
-  description: 'Get in touch with Anvaya Smart. WhatsApp support, investor relations, career opportunities. Based in Hyderabad, India. hello@nxmplis.com',
-  keywords: ["contact Anvaya Smart", "Nxmliscore support", "baby monitor support India"],
-  alternates: { canonical: 'https://nxmplis.com/contact' },
-  openGraph: { title: 'Contact Anvaya Smart | WhatsApp Support India | Nxmliscore', description: 'Get in touch with Anvaya Smart. WhatsApp support, investor relations, career opportunities. Based in Hyderabad, India. hello@nxmplis.com', url: 'https://nxmplis.com/contact', images: [{ url: '/anvaya-product.png' }] },
-};
-
 'use client';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

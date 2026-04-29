@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'About Nxmliscore | IIT Alumni Building India's Best Baby Monitor',
-  description: 'Nxmliscore — wellness tech founded by IIT alumni. We build Anvaya Smart, India's most advanced contactless AI baby monitor. Research-backed. Based in Hyderabad.',
+  title: "About Nxmliscore | IIT Alumni Building India's Best Baby Monitor",
+  description: "Nxmliscore — wellness tech founded by IIT alumni. We build Anvaya Smart, India's most advanced contactless AI baby monitor. Research-backed. Based in Hyderabad.",
   keywords: ["Nxmliscore company", "Anvaya Smart founders", "baby monitor startup India", "IIT founders baby tech"],
   alternates: { canonical: 'https://nxmplis.com/about' },
-  openGraph: { title: 'About Nxmliscore | IIT Alumni Building India's Best Baby Monitor', description: 'Nxmliscore — wellness tech founded by IIT alumni. We build Anvaya Smart, India's most advanced contactless AI baby monitor. Research-backed. Based in Hyderabad.', url: 'https://nxmplis.com/about', images: [{ url: '/anvaya-product.png' }] },
+  openGraph: { title: "About Nxmliscore | IIT Alumni Building India's Best Baby Monitor", description: "Nxmliscore — wellness tech founded by IIT alumni. We build Anvaya Smart, India's most advanced contactless AI baby monitor.", url: 'https://nxmplis.com/about', images: [{ url: '/anvaya-product.png' }] },
 };
 
 import Link from 'next/link';
