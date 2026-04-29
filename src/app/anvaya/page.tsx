@@ -175,8 +175,8 @@ export default function AnvayaPage() {
           <div className="space-y-12">
             {products.map((p, i) => (
               <div key={p.id} id={p.id} className={`rounded-3xl bg-gradient-to-br ${p.color} overflow-hidden`}>
-                <div className={`grid lg:grid-cols-2 gap-0 items-center`}>
-                  <div className={`p-10 ${i % 2 === 1 ? 'lg:order-last' : ''}`}>
+                <div className={`grid lg:grid-cols-2 gap-0 lg:items-stretch flex flex-col lg:flex-row`}>
+                  <div className={`p-8 md:p-10 flex flex-col justify-center order-2 lg:order-none ${i % 2 === 1 ? 'lg:order-last' : ''}`}>
                     <div className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${p.badge}`}>
                       {p.popular ? '⭐ Most Popular' : p.name}
                     </div>
@@ -201,12 +201,13 @@ export default function AnvayaPage() {
                       </Button>
                     </div>
                   </div>
-                  <div className="relative min-h-[320px] lg:min-h-[440px] lg:h-full">
+                  <div className="relative order-1 lg:order-none" style={{minHeight: '280px', height: '360px'}}>
                     <Image
                       src={p.image}
                       alt={`${p.name} — contactless AI baby monitor India | breathing SpO2 cry sleep tracking`}
                       fill
                       className={`object-cover ${(p as any).imagePosition || 'object-center'}`}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     {(p as any).overlay && (
                       <div className="absolute inset-0 bg-gradient-to-l from-gray-900/60 via-gray-900/30 to-transparent" />
