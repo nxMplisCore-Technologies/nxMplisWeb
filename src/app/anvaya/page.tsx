@@ -16,11 +16,8 @@ const products = [
     subtitle: 'Simple. Smart. Reliable.',
     desc: 'The perfect everyday baby monitor for modern parents. Essential monitoring for complete peace of mind.',
     price: '₹8,999',
-    image: '/anvaya-product.webp',
+    image: '/anvaya-product.webp',       // Clean white device on wood table
     imagePosition: 'object-center',
-    color: 'from-amber-50 to-orange-50',
-    accent: 'text-amber-700',
-    badge: 'bg-amber-100 text-amber-800',
     features: [
       { icon: Video, label: 'Clear HD Video', desc: 'Live view anytime, anywhere' },
       { icon: Baby, label: 'Cry Detection', desc: 'Instant alerts when baby needs you' },
@@ -35,7 +32,7 @@ const products = [
     subtitle: 'Understand More Than Just Sound.',
     desc: 'Advanced monitoring for your baby\'s breathing, heart rate, and overall well-being. Bridges the gap between physical and emotional care.',
     price: '₹12,999',
-    image: '/anvaya-lifestyle.webp',
+    image: '/anvaya-device-baby.webp',    // Device + sleeping baby lifestyle
     imagePosition: 'object-center',
     color: 'from-emerald-50 to-teal-50',
     accent: 'text-primary',
@@ -55,7 +52,7 @@ const products = [
     subtitle: 'Stay Connected to Every Moment.',
     desc: 'A smarter way to monitor your baby\'s environment, activity, and well-being. Real-time alerts for every change.',
     price: '₹15,999',
-    image: '/anvaya-nursery.jpg',
+    image: '/anvaya-room.webp',           // Full nursery room context
     imagePosition: 'object-center',
     color: 'from-blue-50 to-sky-50',
     accent: 'text-blue-700',
@@ -74,7 +71,7 @@ const products = [
     subtitle: 'Total Awareness. Complete Peace of Mind.',
     desc: '360° intelligent monitoring powered by Predictive AI. The highest level of care for parents who want everything.',
     price: '₹19,999',
-    image: '/app-trends.jpg',
+    image: '/app-trends-clean.webp',      // Health trends charts (status bar removed)
     imagePosition: 'object-top',
     color: 'from-gray-900 to-gray-800',
     accent: 'text-yellow-400',
