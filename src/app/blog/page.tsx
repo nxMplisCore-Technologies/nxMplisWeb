@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Expert guides on baby breathing patterns, cry types, sleep schedules, SpO2 monitoring and infant wellness — written by IIT engineers, updated 2025. For Indian parents.',
   keywords: ['baby wellness blog India', 'baby breathing guide', 'baby sleep tips India', 'infant monitoring guide', 'baby cry types India', 'newborn care India'],
   alternates: { canonical: 'https://nxmplis.com/blog' },
-  openGraph: { title: 'Baby Wellness Blog | Anvaya Smart', description: 'Expert baby health and wellness guides for Indian parents.', url: 'https://nxmplis.com/blog', images: [{ url: '/anvaya-lifestyle.png' }] },
+  openGraph: { title: 'Baby Wellness Blog | Anvaya Smart', description: 'Expert baby health and wellness guides for Indian parents.', url: 'https://nxmplis.com/blog', images: [{ url: '/anvaya-lifestyle.webp' }] },
 };
 
 export default function BlogPage() {
@@ -36,7 +36,7 @@ export default function BlogPage() {
         <Link href={`/blog/${featured.slug}`} className="group block mb-12">
           <div className="grid md:grid-cols-2 gap-0 bg-white rounded-2xl overflow-hidden border border-[#e2dbd4] hover:border-primary/30 hover:shadow-lg transition-all">
             <div className="relative h-56 md:h-full min-h-[220px]">
-              <Image src={featured.imageUrl} alt={featured.title} fill className="object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+              <Image src={featured.imageUrl} alt={featured.title} fill className="object-cover object-center group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
               <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5">
                 <TrendingUp className="w-3 h-3" /> Featured
               </div>
@@ -61,7 +61,7 @@ export default function BlogPage() {
           {rest.map(article => (
             <Link key={article.slug} href={`/blog/${article.slug}`} className="group bg-white rounded-2xl overflow-hidden border border-[#e2dbd4] hover:border-primary/30 hover:shadow-md transition-all flex flex-col">
               <div className="relative h-44 overflow-hidden">
-                <Image src={article.imageUrl} alt={article.title} fill className="object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+                <Image src={article.imageUrl} alt={article.title} fill className="object-cover object-center group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
               </div>
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2">

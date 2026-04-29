@@ -157,7 +157,7 @@ export default function BabyMonitoringPage() {
           <h2 id="anvaya-product" className="text-3xl font-bold mb-3">Anvaya Smart — Built for Indian Parents</h2>
           <p className="text-lg text-muted-foreground mb-6">India's only contactless AI baby monitor. Four models designed for every budget and stage of parenting.</p>
           <div className="relative h-48 rounded-2xl overflow-hidden mb-6">
-            <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby monitor in Indian nursery — contactless AI monitoring" fill className="object-cover object-center" />
+            <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby monitor in Indian nursery — contactless AI monitoring" fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
             {[

@@ -62,7 +62,7 @@ export default function BabyWellnessAppPage() {
               <div className={`flex justify-center ${i % 2 === 1 ? 'md:order-last' : ''}`}>
                 <div className="phone-frame relative" style={{width: 220}}>
                   <div className="phone-screen bg-gray-100 rounded-[30px] overflow-hidden" style={{height: 440}}>
-                    <Image src={f.img} alt={`Anvaya Smart app — ${f.screen}`} fill className="object-cover object-top" />
+                    <Image src={f.img} alt={`Anvaya Smart app — ${f.screen}`} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                   </div>
                 </div>
               </div>

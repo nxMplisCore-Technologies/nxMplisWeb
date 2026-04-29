@@ -91,7 +91,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* Hero image */}
             <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden mb-10 shadow-lg">
-              <Image src={article.imageUrl} alt={article.title} fill className="object-cover object-center" priority />
+              <Image src={article.imageUrl} alt={article.title} fill className="object-cover object-center" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
             </div>
 
             {/* Article body */}
@@ -137,7 +137,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   {related.map(r => (
                     <Link key={r.slug} href={`/blog/${r.slug}`} className="flex items-start gap-4 bg-white rounded-xl p-4 border border-[#e2dbd4] hover:border-primary/30 transition-colors group">
                       <div className="relative w-20 h-16 rounded-lg overflow-hidden shrink-0">
-                        <Image src={r.imageUrl} alt={r.title} fill className="object-cover" />
+                        <Image src={r.imageUrl} alt={r.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <span className="text-[10px] font-bold text-primary uppercase tracking-wider">{r.category}</span>

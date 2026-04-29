@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'Baby Wellness Blog | Anvaya Smart',
     description: 'Guides on baby sleep, cry analysis and infant wellness from India\'s AI baby monitor experts.',
     url: 'https://nxmplis.com/blog',
-    images: [{ url: '/anvaya-lifestyle.png', alt: 'Baby wellness blog by Anvaya Smart India' }],
+    images: [{ url: '/anvaya-lifestyle.webp', alt: 'Baby wellness blog by Anvaya Smart India' }],
   },
 };
 

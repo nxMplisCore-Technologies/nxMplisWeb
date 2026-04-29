@@ -26,8 +26,8 @@ const faqs = [
 export default function AnvayaLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <ProductSchema name="Anvaya SENSE" description="Advanced contactless baby monitor with breathing, SpO2, heart rate, cry analysis and air quality monitoring" price="₹12,999" sku="ANVAYA-SENSE-001" image="https://nxmplis.com/anvaya-lifestyle.png" />
-      <ProductSchema name="Anvaya CORE" description="Essential AI baby monitor with HD video, cry detection, lullabies and temperature monitoring" price="₹8,999" sku="ANVAYA-CORE-001" image="https://nxmplis.com/anvaya-product.png" />
+      <ProductSchema name="Anvaya SENSE" description="Advanced contactless baby monitor with breathing, SpO2, heart rate, cry analysis and air quality monitoring" price="₹12,999" sku="ANVAYA-SENSE-001" image="https://nxmplis.com/anvaya-lifestyle.webp" />
+      <ProductSchema name="Anvaya CORE" description="Essential AI baby monitor with HD video, cry detection, lullabies and temperature monitoring" price="₹8,999" sku="ANVAYA-CORE-001" image="https://nxmplis.com/anvaya-product.webp" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Products', url: 'https://nxmplis.com/anvaya' }]} />
       {children}

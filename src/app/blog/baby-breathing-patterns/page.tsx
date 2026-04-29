@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Baby Breathing Patterns: What\'s Normal and What\'s Not',
     description: 'Everything Indian parents need to know about normal — and not normal — baby breathing. Expert guide updated 2025.',
     url: 'https://nxmplis.com/blog/baby-breathing-patterns',
-    images: [{ url: '/anvaya-lifestyle.png', width: 1200, height: 630 }],
+    images: [{ url: '/anvaya-lifestyle.webp', width: 1200, height: 630 }],
   },
 };
 
@@ -29,7 +29,7 @@ const faqs = [
 export default function BabyBreathingPage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title="Baby Breathing Patterns: What's Normal and What's Not" description="Complete guide to normal baby breathing patterns for Indian parents" url="https://nxmplis.com/blog/baby-breathing-patterns" image="https://nxmplis.com/anvaya-lifestyle.png" datePublished="2025-04-28" dateModified="2025-04-28" author="Deepak Singh" />
+      <ArticleSchema title="Baby Breathing Patterns: What's Normal and What's Not" description="Complete guide to normal baby breathing patterns for Indian parents" url="https://nxmplis.com/blog/baby-breathing-patterns" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2025-04-28" author="Deepak Singh" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Blog', url: 'https://nxmplis.com/blog' }, { name: 'Baby Breathing Patterns', url: 'https://nxmplis.com/blog/baby-breathing-patterns' }]} />
 
@@ -59,7 +59,7 @@ export default function BabyBreathingPage() {
         <AISnippet question="What is a normal breathing rate for a baby in India?" answer="Healthy newborns breathe 40–60 times per minute. Infants 6–12 months breathe 25–40 times per minute. These rates are faster than adults and completely normal. Brief pauses of 5–10 seconds (periodic breathing) are also normal and not cause for concern." />
 
         <div className="relative h-56 rounded-2xl overflow-hidden my-8 shadow-md">
-          <Image src="/anvaya-lifestyle.png" alt="Baby sleeping peacefully — Anvaya Smart monitors breathing contactlessly" fill className="object-cover object-center" />
+          <Image src="/anvaya-lifestyle.webp" alt="Baby sleeping peacefully — Anvaya Smart monitors breathing contactlessly" fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
         </div>
 
         <h2 className="text-3xl font-bold mb-4 mt-10">Normal Baby Breathing Rates by Age</h2>

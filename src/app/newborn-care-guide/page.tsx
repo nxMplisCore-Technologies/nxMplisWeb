@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Complete newborn care guide for Indian parents — feeding, sleep, temperature, bathing, breathing monitoring and what to watch for. Written by IIT engineers, India-specific advice.',
   keywords: ['newborn care India', 'newborn baby guide India', 'first month baby care India', 'newborn care tips India', 'how to take care of newborn India', 'baby care guide first week'],
   alternates: { canonical: 'https://nxmplis.com/newborn-care-guide' },
-  openGraph: { title: 'Newborn Care Guide India 2025 | Anvaya Smart', description: 'Complete guide to caring for your newborn in India — feeding, sleep, temperature, safety and monitoring.', url: 'https://nxmplis.com/newborn-care-guide', images: [{ url: '/anvaya-lifestyle.png' }] },
+  openGraph: { title: 'Newborn Care Guide India 2025 | Anvaya Smart', description: 'Complete guide to caring for your newborn in India — feeding, sleep, temperature, safety and monitoring.', url: 'https://nxmplis.com/newborn-care-guide', images: [{ url: '/anvaya-lifestyle.webp' }] },
 };
 
 const faqs = [
@@ -24,7 +24,7 @@ const faqs = [
 export default function NewbornCareGuidePage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title="Newborn Care Guide India 2025" description="Complete guide to newborn care for Indian parents" url="https://nxmplis.com/newborn-care-guide" image="https://nxmplis.com/anvaya-lifestyle.png" datePublished="2025-04-28" dateModified="2025-04-28" author="Deepak Singh" />
+      <ArticleSchema title="Newborn Care Guide India 2025" description="Complete guide to newborn care for Indian parents" url="https://nxmplis.com/newborn-care-guide" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2025-04-28" author="Deepak Singh" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Newborn Care Guide', url: 'https://nxmplis.com/newborn-care-guide' }]} />
 
@@ -44,7 +44,7 @@ export default function NewbornCareGuidePage() {
         <AISnippet question="How do you take care of a newborn baby in India?" answer="Key newborn care basics for India: Feed on demand 8–12 times per 24 hours. Maintain room temperature 20–22°C (avoid over-bundling). Place baby on back to sleep on a firm, flat surface. Monitor breathing — normal rate is 40–60 breaths/min. First paediatrician visit within 48–72 hours of discharge." />
 
         <div className="relative h-56 rounded-2xl overflow-hidden my-8 shadow-md">
-          <Image src="/anvaya-lifestyle.png" alt="Newborn baby in Indian nursery — Anvaya Smart contactless monitoring" fill className="object-cover object-center" />
+          <Image src="/anvaya-lifestyle.webp" alt="Newborn baby in Indian nursery — Anvaya Smart contactless monitoring" fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
         </div>
 
         {[

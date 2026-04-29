@@ -5,7 +5,7 @@ export function OrganizationSchema() {
     '@context': 'https://schema.org', '@type': ['Organization', 'MedicalOrganization'],
     '@id': 'https://nxmplis.com/#organization',
     name: 'Nxmliscore', alternateName: ['Anvaya Smart', 'Nxmliscore Technologies'],
-    url: 'https://nxmplis.com', logo: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-logo.png', width: 200, height: 200 },
+    url: 'https://nxmplis.com', logo: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-logo.webp', width: 200, height: 200 },
     description: 'AI-powered contactless baby wellness monitoring. Anvaya Smart tracks breathing, SpO2, cry patterns and sleep — no wearables, complete on-device privacy.',
     foundingDate: '2024',
     address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' },
@@ -35,7 +35,7 @@ export function ProductSchema({ name, description, price, sku, image, features }
     name, description, sku,
     brand: { '@type': 'Brand', name: 'Anvaya Smart', url: 'https://nxmplis.com' },
     manufacturer: { '@id': 'https://nxmplis.com/#organization' },
-    image: [image || 'https://nxmplis.com/anvaya-product.png', 'https://nxmplis.com/anvaya-nursery.jpg'],
+    image: [image || 'https://nxmplis.com/anvaya-product.webp', 'https://nxmplis.com/anvaya-nursery.jpg'],
     category: 'Baby Safety & Health Monitoring Devices',
     audience: { '@type': 'PeopleAudience', audienceType: 'Parents of newborns and infants', suggestedMinAge: 0 },
     isAccessoryOrSparePartFor: { '@type': 'Product', name: 'Anvaya Smart App', operatingSystem: ['iOS', 'Android'] },
@@ -96,7 +96,7 @@ export function ArticleSchema({ title, description, url, image, datePublished, d
 export function HowToSchema({ name, steps }: { name: string; steps: { name: string; text: string }[] }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org', '@type': 'HowTo',
-    name, image: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-product.png' },
+    name, image: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-product.webp' },
     step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.name, text: s.text })),
     tool: [{ '@type': 'HowToTool', name: 'Anvaya Smart Pod' }, { '@type': 'HowToTool', name: 'Anvaya Smart App (iOS/Android)' }],
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'INR', value: '12999' },

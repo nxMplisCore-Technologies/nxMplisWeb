@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   description: 'From newborn monitoring to elder care — Nxmliscore builds contactless AI wellness monitoring for every stage of life. Starting with Anvaya Smart baby monitor.',
   keywords: ["baby wellness India", "elder care technology India", "adult health monitoring India", "contactless wellness monitor"],
   alternates: { canonical: 'https://nxmplis.com/industries' },
-  openGraph: { title: 'Baby Care, Adult Care & Elder Care | Anvaya Smart Wellness Technology', description: 'From newborn monitoring to elder care — Nxmliscore builds contactless AI wellness monitoring for every stage of life. Starting with Anvaya Smart baby monitor.', url: 'https://nxmplis.com/industries', images: [{ url: '/anvaya-lifestyle.png' }] },
+  openGraph: { title: 'Baby Care, Adult Care & Elder Care | Anvaya Smart Wellness Technology', description: 'From newborn monitoring to elder care — Nxmliscore builds contactless AI wellness monitoring for every stage of life. Starting with Anvaya Smart baby monitor.', url: 'https://nxmplis.com/industries', images: [{ url: '/anvaya-lifestyle.webp' }] },
 };
 
 import Link from 'next/link';
@@ -96,7 +96,7 @@ export default function IndustriesPage() {
             <div className={`${i % 2 === 1 ? 'lg:order-last' : ''} rounded-2xl overflow-hidden h-72 lg:h-80 bg-gradient-to-br ${ind.bg} flex items-center justify-center`}>
               {ind.useImage ? (
                 <div className="relative w-full h-full">
-                  <Image src="/anvaya-lifestyle.png" alt={`${ind.name} wellness monitoring — Anvaya Smart contactless AI monitor India`} fill className={`object-cover ${ind.imagePosition}`} />
+                  <Image src="/anvaya-lifestyle.webp" alt={`${ind.name} wellness monitoring — Anvaya Smart contactless AI monitor India`} fill className={`object-cover ${ind.imagePosition}`} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
               ) : (

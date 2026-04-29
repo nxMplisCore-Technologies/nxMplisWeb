@@ -93,7 +93,7 @@ function PhoneMockup({ src, alt, className = '' }: { src: string; alt: string; c
   return (
     <div className={`phone-frame relative select-none ${className}`} style={{ width: 220, minWidth: 220 }}>
       <div className="phone-screen bg-gray-100" style={{ height: 440 }}>
-        <Image src={src} alt={alt} fill className="object-cover object-top" />
+        <Image src={src} alt={alt} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
       </div>
     </div>
   );
@@ -203,7 +203,7 @@ export default function Home() {
                 <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
                 <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
                 <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60">
-                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby monitor in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority />
+                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby monitor in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                   {/* Overlay badge */}
                   <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
                     <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
