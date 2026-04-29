@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     creator: '@anvayasmart',
   },
   alternates: { canonical: BASE_URL },
-  verification: { google: 'add-your-google-verification-code' },
+  verification: { google: 'K3fhVMXAF3uPfhDutppwFmh3ZCDBLbeIh8lzUDIoUvw' },
   category: 'baby products',
 };
 
