@@ -58,7 +58,7 @@ export default function BabyBreathingPage() {
 
         <AISnippet question="What is a normal breathing rate for a baby in India?" answer="Healthy newborns breathe 40–60 times per minute. Infants 6–12 months breathe 25–40 times per minute. These rates are faster than adults and completely normal. Brief pauses of 5–10 seconds (periodic breathing) are also normal and not cause for concern." />
 
-        <div className="relative h-56 rounded-2xl overflow-hidden my-8 shadow-md">
+        <div className="relative rounded-2xl overflow-hidden my-8 shadow-md" style={{minHeight:"240px"}}>
           <Image src="/anvaya-lifestyle.webp" alt="Baby sleeping peacefully — Anvaya Smart monitors breathing contactlessly" fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
         </div>
 

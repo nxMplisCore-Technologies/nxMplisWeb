@@ -175,8 +175,24 @@ export default function AnvayaPage() {
           <div className="space-y-12">
             {products.map((p, i) => (
               <div key={p.id} id={p.id} className={`rounded-3xl bg-gradient-to-br ${p.color} overflow-hidden`}>
-                <div className={`grid lg:grid-cols-2 gap-0 lg:items-stretch flex flex-col lg:flex-row`}>
-                  <div className={`p-8 md:p-10 flex flex-col justify-center order-2 lg:order-none ${i % 2 === 1 ? 'lg:order-last' : ''}`}>
+                <div className={`flex flex-col ${i % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+
+                  {/* Image — full height on desktop, fixed height on mobile */}
+                  <div className="relative w-full lg:w-1/2 flex-shrink-0" style={{minHeight: '320px'}}>
+                    <Image
+                      src={p.image}
+                      alt={`${p.name} — contactless AI baby monitor India`}
+                      fill
+                      className={`object-cover ${(p as any).imagePosition || 'object-center'}`}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    {(p as any).overlay && (
+                      <div className="absolute inset-0 bg-gradient-to-l from-gray-900/60 via-gray-900/30 to-transparent" />
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-8 md:p-10 flex flex-col justify-center w-full lg:w-1/2">
                     <div className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${p.badge}`}>
                       {p.popular ? '⭐ Most Popular' : p.name}
                     </div>
@@ -201,18 +217,7 @@ export default function AnvayaPage() {
                       </Button>
                     </div>
                   </div>
-                  <div className="relative order-1 lg:order-none" style={{minHeight: '280px', height: '360px'}}>
-                    <Image
-                      src={p.image}
-                      alt={`${p.name} — contactless AI baby monitor India | breathing SpO2 cry sleep tracking`}
-                      fill
-                      className={`object-cover ${(p as any).imagePosition || 'object-center'}`}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    {(p as any).overlay && (
-                      <div className="absolute inset-0 bg-gradient-to-l from-gray-900/60 via-gray-900/30 to-transparent" />
-                    )}
-                  </div>
+
                 </div>
               </div>
             ))}

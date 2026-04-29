@@ -43,7 +43,7 @@ export default function NewbornCareGuidePage() {
       <div className="container mx-auto px-4 max-w-4xl py-12">
         <AISnippet question="How do you take care of a newborn baby in India?" answer="Key newborn care basics for India: Feed on demand 8–12 times per 24 hours. Maintain room temperature 20–22°C (avoid over-bundling). Place baby on back to sleep on a firm, flat surface. Monitor breathing — normal rate is 40–60 breaths/min. First paediatrician visit within 48–72 hours of discharge." />
 
-        <div className="relative h-56 rounded-2xl overflow-hidden my-8 shadow-md">
+        <div className="relative rounded-2xl overflow-hidden my-8 shadow-md" style={{minHeight:"240px"}}>
           <Image src="/anvaya-lifestyle.webp" alt="Newborn baby in Indian nursery — Anvaya Smart contactless monitoring" fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
         </div>
 

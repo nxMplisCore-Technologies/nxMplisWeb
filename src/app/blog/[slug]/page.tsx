@@ -90,7 +90,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <meta itemProp="author" content={article.author} />
 
             {/* Hero image */}
-            <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden mb-10 shadow-lg">
+            <div className="relative rounded-2xl overflow-hidden mb-10 shadow-lg" style={{minHeight:"280px"}}>
               <Image src={article.imageUrl} alt={article.title} fill className="object-cover object-center" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
             </div>
 

@@ -51,7 +51,7 @@ export default function AboutPage() {
                 We build intelligent, non-intrusive systems that listen to subtle physiological cues — transforming them into insights that support care, confidence, and well-being.
               </p>
             </div>
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-md">
+            <div className="relative rounded-2xl overflow-hidden shadow-md" style={{minHeight:"320px"}}>
               <Image src="/anvaya-product.webp" alt="Nxmliscore team — IIT alumni building Anvaya Smart, India's best AI baby monitor" fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
             </div>
           </div>

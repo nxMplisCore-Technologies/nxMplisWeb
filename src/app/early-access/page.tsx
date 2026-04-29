@@ -77,7 +77,7 @@ export default function EarlyAccessPage() {
               <p className="text-lg font-semibold text-foreground mb-8">So you can finally sleep, knowing.</p>
 
               {/* Brand image */}
-              <div className="relative h-52 rounded-2xl overflow-hidden mb-8 shadow-md">
+              <div className="relative rounded-2xl overflow-hidden mb-8 shadow-md" style={{minHeight:"220px"}}>
                 <Image src="/anvaya-product.webp" alt="Anvaya Smart contactless AI baby monitor India — breathing, SpO2 and cry monitoring" fill className="object-cover object-right-top" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
               </div>
 
