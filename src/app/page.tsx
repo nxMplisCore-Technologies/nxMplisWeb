@@ -578,6 +578,35 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ════════════ CONTENT HUB ════════════ */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{color:'#e8957a'}}>Knowledge Centre</p>
+            <h2 className="text-3xl font-bold">Everything you need to know.</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+            {[
+              { title: 'Baby Monitoring Guide', desc: 'Complete guide — what to monitor, how it works, which monitor to buy.', href: '/baby-monitoring', icon: '📡' },
+              { title: 'Newborn Care India', desc: 'First month essentials — feeding, sleep, temperature, breathing.', href: '/newborn-care-guide', icon: '👶' },
+              { title: 'Baby Wellness App', desc: 'All app features explained — sleep score, trends, live monitoring.', href: '/baby-wellness-app', icon: '📱' },
+              { title: 'Baby Breathing Patterns', desc: "What's normal, what's not, and when to call the doctor.", href: '/blog/baby-breathing-patterns', icon: '🫁' },
+              { title: 'Baby Cry Types', desc: 'Hungry vs tired vs uncomfortable — how to tell the difference.', href: '/blog/types-of-baby-cries', icon: '🎵' },
+              { title: 'Compare Baby Monitors', desc: 'Anvaya vs Motorola vs Owlet — honest India comparison.', href: '/compare', icon: '⚖️' },
+            ].map(item => (
+              <Link key={item.href} href={item.href} className="card-hover group flex items-start gap-4 bg-[#faf8f5] rounded-2xl p-5 border border-[#e2dbd4]">
+                <span className="text-2xl shrink-0">{item.icon}</span>
+                <div>
+                  <h3 className="font-bold text-sm mb-1 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ════════════ CLOSING CTA ════════════ */}
       <section className="py-28 bg-[#0d1f18] relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 25% 50%, #4a7c6f 0%, transparent 60%), radial-gradient(circle at 75% 50%, #e8957a 0%, transparent 60%)' }} />

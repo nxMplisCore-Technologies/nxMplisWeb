@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import { OrganizationSchema, WebsiteSchema } from '@/components/seo/JsonLd';
+import { GoogleAnalytics } from '@/components/seo/Analytics';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-poppins', display: 'swap' });
 
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-IN" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <GoogleAnalytics />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
       <body className={cn('min-h-screen bg-background antialiased', poppins.variable)} style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
