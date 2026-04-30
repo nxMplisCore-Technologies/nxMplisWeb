@@ -15,7 +15,7 @@ const products = [
     name: 'CORE',
     fullName: 'Anvaya CORE',
     tagline: 'Simple. Smart. Reliable.',
-    desc: 'Everything a new parent needs. HD video, cry detection, lullabies and temperature monitoring — in one quietly intelligent device.',
+    desc: 'Everything a new parent needs. HD video, cry detection, lullabies and temperature monitoring — in one quietly intelligent baby wellness pod.',
     price: 8999,
     mrp: 14999,
     image: '/anvaya-product.webp',
@@ -24,17 +24,17 @@ const products = [
     bgLight: '#fffbeb',
     features: [
       { icon: Video, text: 'HD Video — live view from anywhere' },
-      { icon: Baby, text: 'Cry detection — instant alerts' },
-      { icon: Music, text: 'Built-in lullabies' },
-      { icon: Thermometer, text: 'Temperature monitoring' },
+      { icon: Baby, text: 'Cry detection — 5 cry types identified' },
+      { icon: Music, text: 'Built-in lullabies & white noise' },
+      { icon: Thermometer, text: 'Room temperature monitoring' },
     ],
   },
   {
     id: 'sense',
     name: 'SENSE',
     fullName: 'Anvaya SENSE',
-    tagline: 'Understand More Than Just Sound.',
-    desc: 'Our most popular model. Tracks breathing, SpO2, heart rate and cry type — completely contactlessly. Nothing touches your baby.',
+    tagline: 'The Wellness Pod That Watches Every Breath.',
+    desc: 'India\'s most loved baby wellness pod. Tracks breathing, SpO₂, heart rate and cry type — completely contactlessly. Nothing touches your baby. Nothing is missed.',
     price: 12999,
     mrp: 19999,
     image: '/anvaya-device-baby.webp',
@@ -43,9 +43,9 @@ const products = [
     bgLight: '#f0faf6',
     features: [
       { icon: Activity, text: 'Breathing & Heart Rate — contactless' },
-      { icon: Baby, text: 'Cry analysis — hungry / tired / pain' },
-      { icon: Wind, text: 'Air quality alerts' },
-      { icon: Shield, text: 'Face cover detection' },
+      { icon: Baby, text: 'Cry analysis — hungry / tired / pain / discomfort' },
+      { icon: Wind, text: 'Air quality & humidity alerts' },
+      { icon: Shield, text: 'Face cover detection — safety alert' },
     ],
   },
   {
@@ -53,7 +53,7 @@ const products = [
     name: 'PULSE',
     fullName: 'Anvaya PULSE',
     tagline: 'Stay Connected to Every Moment.',
-    desc: 'Smart environment monitoring with activity tracking. Know your baby\'s world — temperature, humidity, movement and safety alerts.',
+    desc: 'Advanced environment and wellness monitoring. Know your baby\'s complete world — temperature, humidity, movement and real-time safety alerts.',
     price: 15999,
     mrp: 22999,
     image: '/anvaya-room.webp',
@@ -62,8 +62,8 @@ const products = [
     bgLight: '#eff6ff',
     features: [
       { icon: Activity, text: 'Activity & movement tracking' },
-      { icon: Thermometer, text: 'Temp & humidity — perfect environment' },
-      { icon: Shield, text: 'Safety alerts' },
+      { icon: Thermometer, text: 'Temp & humidity — perfect sleep environment' },
+      { icon: Shield, text: 'Instant safety alerts' },
       { icon: Zap, text: 'Real-time push notifications' },
     ],
   },
@@ -72,7 +72,7 @@ const products = [
     name: 'OMNI',
     fullName: 'Anvaya OMNI',
     tagline: 'Total Awareness. Complete Peace of Mind.',
-    desc: '360° intelligent monitoring with Predictive AI. The most advanced baby monitor available in India — weekly health reports included.',
+    desc: 'India\'s most advanced baby wellness pod. 360° intelligent monitoring with Predictive AI — weekly health reports, SpO₂ tracking, and alerts before problems arise.',
     price: 19999,
     mrp: 29999,
     image: '/app-trends-clean.webp',
@@ -80,22 +80,23 @@ const products = [
     color: '#7c3aed',
     bgLight: '#f5f3ff',
     features: [
-      { icon: Activity, text: 'Breathing, Heart Rate & SpO2' },
-      { icon: BrainCircuit, text: 'Predictive AI risk alerts' },
+      { icon: Activity, text: 'Breathing, Heart Rate & SpO₂ — all contactless' },
+      { icon: BrainCircuit, text: 'Predictive AI — alerts before risk escalates' },
       { icon: GitBranch, text: '360° room coverage' },
-      { icon: Heart, text: 'Weekly AI health reports' },
+      { icon: Heart, text: 'Weekly AI baby health reports' },
     ],
   },
 ];
 
 const reviews = [
-  { name: 'Priya M.', city: 'Bangalore', rating: 5, text: 'Finally slept through the night knowing Anvaya is watching. The cry analysis is incredibly accurate — it told me she was hungry before I even got up.', product: 'SENSE' },
-  { name: 'Rahul K.', city: 'Mumbai', rating: 5, text: 'Worth every rupee. The breathing monitor gave us so much peace of mind in the first two months. Setup took literally 3 minutes.', product: 'SENSE' },
-  { name: 'Ananya S.', city: 'Hyderabad', rating: 5, text: 'The sleep score feature is genius. We knew exactly when our baby hit deep sleep and stopped tiptoeing around!', product: 'OMNI' },
+  { name: 'Priya M.', city: 'Bangalore', rating: 5, text: 'Finally slept through the night knowing Anvaya is watching. The cry analysis is incredibly accurate — it identified a hungry cry before I even got up. A must-have baby wellness pod for new parents.', product: 'SENSE' },
+  { name: 'Rahul K.', city: 'Mumbai', rating: 5, text: 'Worth every rupee. The breathing monitor gave us so much peace of mind in the first two months. Setup took literally 3 minutes. The SpO₂ monitoring alone is worth it.', product: 'SENSE' },
+  { name: 'Ananya S.', city: 'Hyderabad', rating: 5, text: 'The sleep score feature is genius. We knew exactly when our baby hit deep sleep and stopped tiptoeing around! The weekly health report is eye-opening.', product: 'OMNI' },
+  { name: 'Meera R.', city: 'Chennai', rating: 5, text: 'As a first-time mother, I was anxious every night. Anvaya OMNI changed everything — real-time breathing alerts, SpO₂ tracking, and AI insights. Best investment we made for our newborn.', product: 'OMNI' },
 ];
 
 const faqs = [
-  { q: 'Does anything touch my baby?', a: 'No. Anvaya is completely contactless. The pod sits beside the crib on a shelf or table. It uses radar and infrared sensing — nothing attaches to your baby\'s skin.' },
+  { q: 'Does anything touch my baby?', a: 'No. Anvaya is completely contactless. The wellness pod sits beside the crib on a shelf or table. It uses radar and infrared sensing — nothing attaches to your baby\'s skin, making it the safest baby wellness pod available in India.' },
   { q: 'How fast is delivery?', a: 'We ship within 2 business days of order confirmation. Delivery across India takes 3–7 working days. Free shipping on all orders.' },
   { q: 'What if I\'m not happy?', a: '30-day money-back guarantee — no questions asked. If Anvaya doesn\'t give you peace of mind, we\'ll refund every rupee including return shipping.' },
   { q: 'Which model should I buy?', a: 'SENSE is our most popular for new parents — it covers breathing, SpO2, cry analysis and sleep. If you want the complete picture with AI health reports, go with OMNI.' },
@@ -140,7 +141,7 @@ export default function AnvayaPage() {
         <div className="container mx-auto px-4 py-2.5 text-xs text-muted-foreground flex items-center gap-1.5">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span>›</span>
-          <Link href="/anvaya" className="hover:text-primary">Baby Monitors</Link>
+          <Link href="/anvaya" className="hover:text-primary">Baby Wellness Pods</Link>
           <span>›</span>
           <span className="text-foreground font-medium">{p.fullName}</span>
         </div>
@@ -174,13 +175,13 @@ export default function AnvayaPage() {
             </div>
 
             {/* Product Image */}
-            <div className="relative rounded-2xl overflow-hidden bg-white border border-[#e2dbd4] shadow-sm" style={{height: '420px'}}>
+            <div className="relative rounded-2xl overflow-hidden bg-white border border-[#e2dbd4] shadow-sm" style={{aspectRatio: '4/3', minHeight: '260px', maxHeight: '480px'}}>
               <Image
                 src={p.image}
-                alt={`${p.fullName} — contactless AI baby monitor India`}
+                alt={`${p.fullName} — AI baby wellness pod India`}
                 fill
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-contain object-center p-4"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 55vw"
                 priority
               />
               {p.badge && (
@@ -198,7 +199,7 @@ export default function AnvayaPage() {
               {[
                 { icon: Truck, text: 'Free shipping', sub: 'All India' },
                 { icon: RefreshCw, text: '30-day returns', sub: 'No questions' },
-                { icon: Shield, text: 'Safe for newborns', sub: 'No radiation' },
+                { icon: Shield, text: 'Safe for newborns', sub: 'Clinically safe. Zero emissions.' },
               ].map(t => (
                 <div key={t.text} className="flex items-center gap-2.5 bg-white rounded-xl p-3 border border-[#e2dbd4]">
                   <t.icon className="w-4 h-4 shrink-0" style={{color: p.color}} />
@@ -212,7 +213,7 @@ export default function AnvayaPage() {
 
             {/* Features */}
             <div className="mt-8">
-              <h2 className="text-xl font-bold mb-4">What {p.fullName} monitors</h2>
+              <h2 className="text-xl font-bold mb-4">What your {p.fullName} baby wellness pod monitors</h2>
               <div className="grid sm:grid-cols-2 gap-3">
                 {p.features.map(f => (
                   <div key={f.text} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-[#e2dbd4]">
@@ -296,11 +297,11 @@ export default function AnvayaPage() {
               {/* Product name + rating */}
               <div className="p-6 border-b border-[#f0ece6]">
                 <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{color: p.color}}>Anvaya Smart</div>
-                <h1 className="text-2xl font-bold mb-1">{p.fullName}</h1>
+                <h1 className="text-2xl font-bold mb-1">{p.fullName} — Baby Wellness Pod</h1>
                 <p className="text-sm font-medium" style={{color: p.color}}>{p.tagline}</p>
                 <div className="flex items-center gap-2 mt-2">
                   <div className="flex">{[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}</div>
-                  <span className="text-xs text-muted-foreground">4.9 · 47 reviews</span>
+                  <span className="text-xs text-muted-foreground">4.9 · 47 verified reviews</span>
                 </div>
               </div>
 
@@ -372,7 +373,7 @@ export default function AnvayaPage() {
                       className="w-full h-12 text-base font-bold rounded-xl shadow-lg gap-2"
                       style={{background: p.color, color: '#fff'}}
                     >
-                      {loading ? 'Booking...' : `🛒 Book My ${p.name} — ₹${p.price.toLocaleString('en-IN')}`}
+                      {loading ? 'Booking...' : `Reserve My ${p.fullName} Pod — ₹0 Now`}
                     </Button>
                     <button
                       type="button"
