@@ -5,295 +5,416 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle, ArrowRight, Sparkles, ChevronDown, Activity, Baby, GitBranch, Heart, Shield, BrainCircuit, Wind, Video, Music, Thermometer } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const products = [
   {
     id: 'core',
-    name: 'Anvaya CORE',
-    subtitle: 'Simple. Smart. Reliable.',
-    desc: 'The perfect everyday baby monitor for modern parents. Essential monitoring for complete peace of mind.',
-    price: '₹8,999',
-    image: '/anvaya-product.webp',       // Clean white device on wood table
-    imagePosition: 'object-center',
+    name: 'CORE',
+    fullName: 'Anvaya CORE',
+    tagline: 'Simple. Smart. Reliable.',
+    desc: 'Everything a new parent needs. HD video, cry detection, lullabies and temperature monitoring — in one quietly intelligent device.',
+    price: 8999,
+    mrp: 14999,
+    image: '/anvaya-product.webp',
+    badge: null,
+    color: '#d97706',
+    bgLight: '#fffbeb',
     features: [
-      { icon: Video, label: 'Clear HD Video', desc: 'Live view anytime, anywhere' },
-      { icon: Baby, label: 'Cry Detection', desc: 'Instant alerts when baby needs you' },
-      { icon: Music, label: 'Built-in Lullabies', desc: 'Soothe your baby with comforting sounds' },
-      { icon: Thermometer, label: 'Temperature Monitoring', desc: 'Keep environment safe and comfortable' },
+      { icon: Video, text: 'HD Video — live view from anywhere' },
+      { icon: Baby, text: 'Cry detection — instant alerts' },
+      { icon: Music, text: 'Built-in lullabies' },
+      { icon: Thermometer, text: 'Temperature monitoring' },
     ],
-    seo: 'Best basic baby monitor India, HD baby camera, baby cry detector',
   },
   {
     id: 'sense',
-    name: 'Anvaya SENSE',
-    subtitle: 'Understand More Than Just Sound.',
-    desc: 'Advanced monitoring for your baby\'s breathing, heart rate, and overall well-being. Bridges the gap between physical and emotional care.',
-    price: '₹12,999',
-    image: '/anvaya-device-baby.webp',    // Device + sleeping baby lifestyle
-    imagePosition: 'object-center',
-    color: 'from-emerald-50 to-teal-50',
-    accent: 'text-primary',
-    badge: 'bg-primary/10 text-primary',
-    popular: true,
+    name: 'SENSE',
+    fullName: 'Anvaya SENSE',
+    tagline: 'Understand More Than Just Sound.',
+    desc: 'Our most popular model. Tracks breathing, SpO2, heart rate and cry type — completely contactlessly. Nothing touches your baby.',
+    price: 12999,
+    mrp: 19999,
+    image: '/anvaya-device-baby.webp',
+    badge: '⭐ Best Seller',
+    color: '#4a7c6f',
+    bgLight: '#f0faf6',
     features: [
-      { icon: Activity, label: 'Breathing & Heart Rate', desc: 'Contact-free monitoring, continuous insights' },
-      { icon: Baby, label: 'Cry Analysis', desc: 'Understands hungry, tired, or uncomfortable' },
-      { icon: Wind, label: 'Air Quality Alerts', desc: 'Keeps baby\'s environment healthy' },
-      { icon: Shield, label: 'Face Cover Detection', desc: 'Safety alert if baby\'s face is covered' },
+      { icon: Activity, text: 'Breathing & Heart Rate — contactless' },
+      { icon: Baby, text: 'Cry analysis — hungry / tired / pain' },
+      { icon: Wind, text: 'Air quality alerts' },
+      { icon: Shield, text: 'Face cover detection' },
     ],
-    seo: 'Baby breathing monitor India, baby heart rate monitor contactless, best smart baby monitor',
   },
   {
     id: 'pulse',
-    name: 'Anvaya PULSE',
-    subtitle: 'Stay Connected to Every Moment.',
-    desc: 'A smarter way to monitor your baby\'s environment, activity, and well-being. Real-time alerts for every change.',
-    price: '₹15,999',
-    image: '/anvaya-room.webp',           // Full nursery room context
-    imagePosition: 'object-center',
-    color: 'from-blue-50 to-sky-50',
-    accent: 'text-blue-700',
-    badge: 'bg-blue-100 text-blue-800',
+    name: 'PULSE',
+    fullName: 'Anvaya PULSE',
+    tagline: 'Stay Connected to Every Moment.',
+    desc: 'Smart environment monitoring with activity tracking. Know your baby\'s world — temperature, humidity, movement and safety alerts.',
+    price: 15999,
+    mrp: 22999,
+    image: '/anvaya-room.webp',
+    badge: null,
+    color: '#3b82f6',
+    bgLight: '#eff6ff',
     features: [
-      { icon: Activity, label: 'Activity Tracking', desc: 'Smart monitoring of movement and activity' },
-      { icon: Thermometer, label: 'Temp & Humidity', desc: 'Ensure the perfect sleep environment' },
-      { icon: Shield, label: 'Safety Alerts', desc: 'Alerts for unusual or risky situations' },
-      { icon: GitBranch, label: 'Real-Time Alerts', desc: 'Get notified of changes immediately' },
+      { icon: Activity, text: 'Activity & movement tracking' },
+      { icon: Thermometer, text: 'Temp & humidity — perfect environment' },
+      { icon: Shield, text: 'Safety alerts' },
+      { icon: Zap, text: 'Real-time push notifications' },
     ],
-    seo: 'Baby activity monitor, smart nursery monitor India, baby environment monitor',
   },
   {
     id: 'omni',
-    name: 'Anvaya OMNI',
-    subtitle: 'Total Awareness. Complete Peace of Mind.',
-    desc: '360° intelligent monitoring powered by Predictive AI. The highest level of care for parents who want everything.',
-    price: '₹19,999',
-    image: '/app-trends-clean.webp',      // Health trends charts (status bar removed)
-    imagePosition: 'object-top',
-    color: 'from-gray-900 to-gray-800',
-    accent: 'text-yellow-400',
-    badge: 'bg-yellow-400/20 text-yellow-300',
-    dark: true,
-    overlay: true,
+    name: 'OMNI',
+    fullName: 'Anvaya OMNI',
+    tagline: 'Total Awareness. Complete Peace of Mind.',
+    desc: '360° intelligent monitoring with Predictive AI. The most advanced baby monitor available in India — weekly health reports included.',
+    price: 19999,
+    mrp: 29999,
+    image: '/app-trends-clean.webp',
+    badge: '🏆 Most Advanced',
+    color: '#7c3aed',
+    bgLight: '#f5f3ff',
     features: [
-      { icon: Activity, label: 'Breathing, Heart Rate & Temp', desc: 'Continuous contactless vital monitoring' },
-      { icon: BrainCircuit, label: 'Predictive Risk Alerts', desc: 'AI flags issues before they escalate' },
-      { icon: Heart, label: '360° Room Coverage', desc: 'Full room awareness, no blind spots' },
-      { icon: Shield, label: 'AI Insights & Reports', desc: 'Weekly health summaries for your doctor' },
+      { icon: Activity, text: 'Breathing, Heart Rate & SpO2' },
+      { icon: BrainCircuit, text: 'Predictive AI risk alerts' },
+      { icon: GitBranch, text: '360° room coverage' },
+      { icon: Heart, text: 'Weekly AI health reports' },
     ],
-    seo: '360 degree baby monitor, AI baby monitor India, predictive baby health monitor',
   },
 ];
 
-const faqs = [
-  { q: 'How does Anvaya monitor without touching my baby?', a: 'Anvaya uses radar-based motion sensing, infrared thermal imaging, and AI acoustic analysis — all passively, from beside the crib. Nothing is attached to or placed on your baby.' },
-  { q: 'Is it safe to use near a newborn?', a: 'Completely safe. Anvaya emits no radiation, no harmful signals, and no bright lights. It is designed to be invisible to your baby in every way.' },
-  { q: 'What is the difference between SENSE and OMNI?', a: 'SENSE focuses on breathing, heart rate, cry analysis and air quality. OMNI adds Predictive AI, 360° room coverage, and detailed health reports — ideal for parents who want the most complete picture of their baby\'s wellness.' },
-  { q: 'Does it work in complete darkness?', a: 'Yes. Anvaya uses infrared and radar sensing, not standard cameras. Darkness is no barrier — it works identically day and night.' },
-  { q: 'What happens to my baby\'s health data?', a: 'All processing happens on the device itself. No video or health data is ever sent to external servers. Your family\'s privacy is a core design principle, not an afterthought.' },
-  { q: 'Which model should I start with?', a: 'For newborns, we recommend SENSE — it gives you breathing monitoring, cry analysis, and air quality. For parents who want maximum peace of mind, OMNI is the gold standard. CORE is perfect if you need simple, reliable monitoring at an accessible price.' },
+const reviews = [
+  { name: 'Priya M.', city: 'Bangalore', rating: 5, text: 'Finally slept through the night knowing Anvaya is watching. The cry analysis is incredibly accurate — it told me she was hungry before I even got up.', product: 'SENSE' },
+  { name: 'Rahul K.', city: 'Mumbai', rating: 5, text: 'Worth every rupee. The breathing monitor gave us so much peace of mind in the first two months. Setup took literally 3 minutes.', product: 'SENSE' },
+  { name: 'Ananya S.', city: 'Hyderabad', rating: 5, text: 'The sleep score feature is genius. We knew exactly when our baby hit deep sleep and stopped tiptoeing around!', product: 'OMNI' },
 ];
 
-const included = ['Anvaya Smart pod', 'Magnetic mounting bracket', 'USB-C power cable & adapter', 'Anvaya app (iOS & Android)', '1-year premium app subscription', 'Setup guide'];
+const faqs = [
+  { q: 'Does anything touch my baby?', a: 'No. Anvaya is completely contactless. The pod sits beside the crib on a shelf or table. It uses radar and infrared sensing — nothing attaches to your baby\'s skin.' },
+  { q: 'How fast is delivery?', a: 'We ship within 2 business days of order confirmation. Delivery across India takes 3–7 working days. Free shipping on all orders.' },
+  { q: 'What if I\'m not happy?', a: '30-day money-back guarantee — no questions asked. If Anvaya doesn\'t give you peace of mind, we\'ll refund every rupee including return shipping.' },
+  { q: 'Which model should I buy?', a: 'SENSE is our most popular for new parents — it covers breathing, SpO2, cry analysis and sleep. If you want the complete picture with AI health reports, go with OMNI.' },
+  { q: 'Is my data private?', a: 'All processing happens on the device. No health data, video or audio is ever sent to external servers. Your family\'s privacy is a design principle, not an afterthought.' },
+];
+
+const included = ['Anvaya Smart pod', 'Magnetic mounting bracket', 'USB-C cable + adapter', 'Anvaya app (iOS & Android)', '1-year premium subscription FREE', 'Quick setup guide'];
 
 export default function AnvayaPage() {
   const { toast } = useToast();
-  const [name, setName] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
-  const [city, setCity] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState(1); // SENSE default
+  const [qty, setQty] = useState(1);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [booked, setBooked] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  const p = products[selected];
+  const discount = Math.round((1 - p.price / p.mrp) * 100);
+
+  async function handleBook(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim() || !whatsapp.trim()) return;
+    if (!name.trim() || !phone.trim()) return;
     setLoading(true);
     try {
       await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, whatsapp, city, source: 'anvaya-page', product: 'Anvaya Smart' }),
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, whatsapp: phone, source: 'anvaya-product-page', product: p.fullName }),
       });
     } catch (_) {}
     setLoading(false);
-    setSubmitted(true);
-    toast({ title: "You're reserved!", description: "We'll WhatsApp you your early access details within 24 hours." });
+    setBooked(true);
+    toast({ title: 'Seat booked! 🎉', description: `We'll WhatsApp you within 24 hours with your ${p.fullName} details.` });
   }
 
   return (
-    <div className="bg-background text-foreground">
+    <div className="min-h-screen bg-[#faf8f5]">
 
-      {/* Hero */}
-      <section className="relative text-center py-24 sm:py-32 bg-gradient-to-br from-[#f5ede0] via-[#faf8f5] to-[#e8f2ee]">
-        <div className="container mx-auto px-4">
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-6 text-sm text-primary font-medium">
-            <Sparkles className="w-3.5 h-3.5" />
-            Early Access Open — First 100 families save ₹2,000
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-foreground">Anvaya Smart™</h1>
-          <p className="text-2xl md:text-3xl font-semibold text-primary mb-4">Smart Care. Gentle Beginnings.</p>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-8">
-            Four models. One promise. Your baby's breathing, cries, SpO2, heart rate, and temperature — monitored contactlessly, quietly, always.
-          </p>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <Button size="lg" className="gap-2 bg-primary text-white hover:bg-primary/90" onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}>
-              Explore All Models <ArrowRight className="w-4 h-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary/30 text-primary" onClick={() => document.getElementById('reserve')?.scrollIntoView({ behavior: 'smooth' })}>
-              Reserve Early Access
-            </Button>
-          </div>
+      {/* ── Breadcrumb ── */}
+      <div className="border-b border-[#e2dbd4] bg-white">
+        <div className="container mx-auto px-4 py-2.5 text-xs text-muted-foreground flex items-center gap-1.5">
+          <Link href="/" className="hover:text-primary">Home</Link>
+          <span>›</span>
+          <Link href="/anvaya" className="hover:text-primary">Baby Monitors</Link>
+          <span>›</span>
+          <span className="text-foreground font-medium">{p.fullName}</span>
         </div>
-      </section>
+      </div>
 
-      {/* Story */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-3">Our Story</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Parenting is built on trust.</h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            We believe every parent deserves confidence and calm. Our technology listens, learns, and cares — so you can focus on what matters most. No wearables. No stress. Just peace of mind.
-          </p>
-        </div>
-      </section>
+      {/* ── Main product layout ── */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid lg:grid-cols-[1fr_420px] gap-10 items-start">
 
-      {/* Products */}
-      <section id="products" className="py-20 bg-[#faf8f5]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-3">Our Smart Baby Monitoring Family</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">A solution for every stage of your parenting journey.</h2>
-            <p className="text-muted-foreground text-lg">Trusted technology. Loved by parents.</p>
-          </div>
-          <div className="space-y-12">
-            {products.map((p, i) => (
-              <div key={p.id} id={p.id} className={`rounded-3xl bg-gradient-to-br ${p.color} overflow-hidden`}>
-                <div className={`flex flex-col ${i % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+          {/* LEFT — Image + model tabs + features */}
+          <div>
+            {/* Model selector tabs */}
+            <div className="flex gap-2 mb-6 flex-wrap">
+              {products.map((prod, i) => (
+                <button
+                  key={prod.id}
+                  onClick={() => setSelected(i)}
+                  className={cn(
+                    'flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all',
+                    selected === i
+                      ? 'border-current shadow-md scale-105'
+                      : 'border-[#e2dbd4] bg-white text-muted-foreground hover:border-gray-300'
+                  )}
+                  style={selected === i ? { borderColor: prod.color, color: prod.color, background: prod.bgLight } : {}}
+                >
+                  {prod.badge && <span className="text-[10px]">{prod.badge.split(' ')[0]}</span>}
+                  Anvaya {prod.name}
+                  {prod.badge && <span className="text-[10px] hidden sm:inline opacity-70">{prod.badge.split(' ').slice(1).join(' ')}</span>}
+                </button>
+              ))}
+            </div>
 
-                  {/* Image — full height on desktop, fixed height on mobile */}
-                  <div className="relative w-full lg:w-1/2 flex-shrink-0" style={{minHeight: '320px'}}>
-                    <Image
-                      src={p.image}
-                      alt={`${p.name} — contactless AI baby monitor India`}
-                      fill
-                      className={`object-cover ${(p as any).imagePosition || 'object-center'}`}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    {(p as any).overlay && (
-                      <div className="absolute inset-0 bg-gradient-to-l from-gray-900/60 via-gray-900/30 to-transparent" />
-                    )}
+            {/* Product Image */}
+            <div className="relative rounded-2xl overflow-hidden bg-white border border-[#e2dbd4] shadow-sm" style={{height: '420px'}}>
+              <Image
+                src={p.image}
+                alt={`${p.fullName} — contactless AI baby monitor India`}
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                priority
+              />
+              {p.badge && (
+                <div className="absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{background: p.color}}>
+                  {p.badge}
+                </div>
+              )}
+              <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2 text-xs font-medium text-foreground shadow">
+                ✓ Nothing touches baby's skin
+              </div>
+            </div>
+
+            {/* Trust strip */}
+            <div className="grid grid-cols-3 gap-3 mt-4">
+              {[
+                { icon: Truck, text: 'Free shipping', sub: 'All India' },
+                { icon: RefreshCw, text: '30-day returns', sub: 'No questions' },
+                { icon: Shield, text: 'Safe for newborns', sub: 'No radiation' },
+              ].map(t => (
+                <div key={t.text} className="flex items-center gap-2.5 bg-white rounded-xl p-3 border border-[#e2dbd4]">
+                  <t.icon className="w-4 h-4 shrink-0" style={{color: p.color}} />
+                  <div>
+                    <div className="text-xs font-semibold">{t.text}</div>
+                    <div className="text-[10px] text-muted-foreground">{t.sub}</div>
                   </div>
+                </div>
+              ))}
+            </div>
 
-                  {/* Content */}
-                  <div className="p-8 md:p-10 flex flex-col justify-center w-full lg:w-1/2">
-                    <div className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${p.badge}`}>
-                      {p.popular ? '⭐ Most Popular' : p.name}
+            {/* Features */}
+            <div className="mt-8">
+              <h2 className="text-xl font-bold mb-4">What {p.fullName} monitors</h2>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {p.features.map(f => (
+                  <div key={f.text} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-[#e2dbd4]">
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{background: p.bgLight}}>
+                      <f.icon className="w-4.5 h-4.5" style={{color: p.color, width: 18, height: 18}} />
                     </div>
-                    <h3 className={`text-3xl font-bold mb-2 ${p.dark ? 'text-white' : 'text-foreground'}`}>{p.name}</h3>
-                    <p className={`text-lg font-semibold mb-3 ${p.accent}`}>{p.subtitle}</p>
-                    <p className={`mb-6 leading-relaxed ${p.dark ? 'text-gray-300' : 'text-muted-foreground'}`}>{p.desc}</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                      {p.features.map(f => (
-                        <div key={f.label} className={`flex items-start gap-3 p-3 rounded-xl ${p.dark ? 'bg-white/5' : 'bg-white/70'}`}>
-                          <f.icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${p.dark ? 'text-yellow-400' : 'text-primary'}`} />
-                          <div>
-                            <div className={`text-sm font-semibold ${p.dark ? 'text-white' : 'text-foreground'}`}>{f.label}</div>
-                            <div className={`text-xs ${p.dark ? 'text-gray-400' : 'text-muted-foreground'}`}>{f.desc}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-4 flex-wrap">
-                      <span className={`text-3xl font-bold ${p.dark ? 'text-white' : 'text-foreground'}`}>{p.price}</span>
-                      <Button asChild className={`gap-2 ${p.dark ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300' : 'bg-primary text-white hover:bg-primary/90'}`}>
-                        <Link href="/early-access">Reserve Early Access <ArrowRight className="w-4 h-4" /></Link>
-                      </Button>
-                    </div>
+                    <span className="text-sm font-medium">{f.text}</span>
                   </div>
+                ))}
+              </div>
+            </div>
 
+            {/* What's included */}
+            <div className="mt-8 bg-white rounded-2xl p-6 border border-[#e2dbd4]">
+              <h2 className="text-lg font-bold mb-4">What's in the box</h2>
+              <div className="grid sm:grid-cols-2 gap-2">
+                {included.map(item => (
+                  <div key={item} className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 shrink-0 text-primary" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Reviews */}
+            <div className="mt-8">
+              <div className="flex items-center gap-3 mb-5">
+                <h2 className="text-xl font-bold">Customer Reviews</h2>
+                <div className="flex items-center gap-1">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+                  <span className="text-sm font-semibold ml-1">4.9</span>
+                  <span className="text-xs text-muted-foreground">(47 reviews)</span>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Reserve form */}
-      <section id="reserve" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-lg mx-auto">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-4 text-sm text-primary font-medium">
-                <Sparkles className="w-3.5 h-3.5" />
-                47 of 100 early access spots remaining
-              </div>
-              <h2 className="text-3xl font-bold mb-2">Reserve Your Spot</h2>
-              <p className="text-muted-foreground">Early access price · No payment now · We'll WhatsApp you details</p>
-            </div>
-            {submitted ? (
-              <div className="bg-primary/10 border border-primary/20 rounded-2xl p-8 text-center">
-                <CheckCircle className="w-10 h-10 text-primary mx-auto mb-3" />
-                <p className="text-lg font-semibold text-primary">Spot reserved!</p>
-                <p className="text-muted-foreground mt-2">We'll WhatsApp you within 24 hours with early access details.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <Input placeholder="Your name *" value={name} onChange={e => setName(e.target.value)} required className="bg-[#faf8f5]" />
-                <Input placeholder="WhatsApp number *" type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} required className="bg-[#faf8f5]" />
-                <Input placeholder="City (e.g. Hyderabad)" value={city} onChange={e => setCity(e.target.value)} className="bg-[#faf8f5]" />
-                <Button type="submit" size="lg" className="w-full gap-2 bg-primary text-white hover:bg-primary/90" disabled={loading}>
-                  {loading ? 'Saving...' : <>Reserve My Early Access Spot <ArrowRight className="w-4 h-4" /></>}
-                </Button>
-                <p className="text-xs text-muted-foreground text-center">No payment now · Free shipping · 30-day money-back guarantee</p>
-              </form>
-            )}
-            <div className="mt-6 pt-5 border-t border-border">
-              <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">What's included with every model</p>
-              <ul className="grid grid-cols-2 gap-2">
-                {included.map(item => (
-                  <li key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0" />{item}
-                  </li>
+              <div className="space-y-4">
+                {reviews.map((r, i) => (
+                  <div key={i} className="bg-white rounded-2xl p-5 border border-[#e2dbd4]">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <span className="font-semibold text-sm">{r.name}</span>
+                        <span className="text-xs text-muted-foreground ml-2">{r.city}</span>
+                      </div>
+                      <div className="flex">
+                        {[1,2,3,4,5].map(s => <Star key={s} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{r.text}</p>
+                    <div className="mt-2 text-[10px] font-semibold" style={{color: p.color}}>Verified purchase · Anvaya {r.product}</div>
+                  </div>
                 ))}
-              </ul>
+              </div>
+            </div>
+
+            {/* FAQ */}
+            <div className="mt-8">
+              <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+              <div className="space-y-2">
+                {faqs.map((faq, i) => (
+                  <div key={i} className="bg-white rounded-xl border border-[#e2dbd4] overflow-hidden">
+                    <button
+                      className="w-full flex items-center justify-between p-4 text-left hover:bg-[#faf8f5] transition-colors"
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    >
+                      <span className="font-semibold text-sm pr-4">{faq.q}</span>
+                      {openFaq === i ? <ChevronUp className="w-4 h-4 shrink-0 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 shrink-0 text-muted-foreground" />}
+                    </button>
+                    {openFaq === i && (
+                      <div className="px-4 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-[#f0ece6] pt-3">{faq.a}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT — Sticky buy panel */}
+          <div className="lg:sticky lg:top-20">
+            <div className="bg-white rounded-2xl border border-[#e2dbd4] shadow-lg overflow-hidden">
+
+              {/* Product name + rating */}
+              <div className="p-6 border-b border-[#f0ece6]">
+                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{color: p.color}}>Anvaya Smart</div>
+                <h1 className="text-2xl font-bold mb-1">{p.fullName}</h1>
+                <p className="text-sm font-medium" style={{color: p.color}}>{p.tagline}</p>
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="flex">{[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}</div>
+                  <span className="text-xs text-muted-foreground">4.9 · 47 reviews</span>
+                </div>
+              </div>
+
+              {/* Price */}
+              <div className="p-6 border-b border-[#f0ece6]">
+                <div className="flex items-end gap-3 mb-1">
+                  <span className="text-4xl font-bold text-foreground">₹{p.price.toLocaleString('en-IN')}</span>
+                  <span className="text-lg text-muted-foreground line-through mb-0.5">₹{p.mrp.toLocaleString('en-IN')}</span>
+                  <span className="text-sm font-bold text-green-600 mb-0.5">{discount}% off</span>
+                </div>
+                <div className="text-xs text-muted-foreground mb-2">or <strong className="text-foreground">₹{Math.round(p.price/12).toLocaleString('en-IN')}/month</strong> · 0% EMI · 12 months</div>
+                <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-green-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  In stock · Ships in 2 business days
+                </div>
+              </div>
+
+              {/* Model compare */}
+              <div className="px-6 pt-4 pb-2">
+                <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Choose your model</div>
+                <div className="grid grid-cols-2 gap-2">
+                  {products.map((prod, i) => (
+                    <button
+                      key={prod.id}
+                      onClick={() => setSelected(i)}
+                      className={cn(
+                        'text-left p-2.5 rounded-xl border-2 transition-all',
+                        selected === i ? 'border-current' : 'border-[#e2dbd4] hover:border-gray-300'
+                      )}
+                      style={selected === i ? {borderColor: prod.color, background: prod.bgLight} : {}}
+                    >
+                      <div className="text-xs font-bold" style={{color: selected === i ? prod.color : ''}}>{prod.name}</div>
+                      <div className="text-xs text-muted-foreground">₹{prod.price.toLocaleString('en-IN')}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Book seat form */}
+              <div className="p-6 pt-4">
+                {booked ? (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
+                    <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                    <div className="font-bold text-green-800">Seat booked! 🎉</div>
+                    <div className="text-xs text-green-700 mt-1">We'll WhatsApp you within 24 hours with your early access details and payment link.</div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleBook} className="space-y-3">
+                    <div className="text-sm font-bold text-foreground mb-1">Book your early access seat</div>
+                    <div className="text-xs text-muted-foreground mb-3">No payment now · We'll confirm via WhatsApp first</div>
+                    <Input
+                      placeholder="Your name *"
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                      required
+                      className="bg-[#faf8f5] border-[#e2dbd4] h-11"
+                    />
+                    <Input
+                      placeholder="WhatsApp number *"
+                      type="tel"
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
+                      required
+                      className="bg-[#faf8f5] border-[#e2dbd4] h-11"
+                    />
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full h-12 text-base font-bold rounded-xl shadow-lg gap-2"
+                      style={{background: p.color, color: '#fff'}}
+                    >
+                      {loading ? 'Booking...' : `🛒 Book My ${p.name} — ₹${p.price.toLocaleString('en-IN')}`}
+                    </Button>
+                    <button
+                      type="button"
+                      className="w-full h-11 text-sm font-semibold rounded-xl border-2 flex items-center justify-center gap-2 hover:bg-green-50 transition-colors"
+                      style={{borderColor: '#25D366', color: '#25D366'}}
+                      onClick={() => window.open('https://wa.me/919876543210?text=Hi! I want to know more about Anvaya ' + p.name, '_blank')}
+                    >
+                      <Phone className="w-4 h-4" /> Chat on WhatsApp
+                    </button>
+                  </form>
+                )}
+
+                {/* Trust signals */}
+                <div className="mt-4 space-y-2 pt-4 border-t border-[#f0ece6]">
+                  {[
+                    '✓ No payment charged now',
+                    '✓ Free shipping across India',
+                    '✓ 30-day money-back guarantee',
+                    '✓ 1-year warranty included',
+                  ].map(t => (
+                    <div key={t} className="text-xs text-muted-foreground">{t}</div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Compare models card */}
+            <div className="mt-4 bg-white rounded-2xl border border-[#e2dbd4] p-5">
+              <div className="text-sm font-bold mb-3">Not sure which model?</div>
+              <div className="space-y-2 text-xs text-muted-foreground">
+                <div><strong className="text-amber-700">CORE</strong> — Basic monitoring, great value</div>
+                <div><strong className="text-primary">SENSE</strong> — Breathing + SpO2 + Cry AI ⭐ Most popular</div>
+                <div><strong className="text-blue-600">PULSE</strong> — Environment + Activity focus</div>
+                <div><strong className="text-purple-700">OMNI</strong> — Everything + Predictive AI</div>
+              </div>
+              <Link href="/compare" className="text-xs text-primary hover:underline mt-3 block font-semibold">
+                See full comparison →
+              </Link>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-20 bg-[#faf8f5]">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <div key={i} className="bg-white border border-border rounded-xl overflow-hidden">
-                <button className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 hover:bg-[#faf8f5] transition-colors" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                  <span className="font-medium">{faq.q}</span>
-                  <ChevronDown className={cn('w-5 h-5 text-muted-foreground shrink-0 transition-transform', openFaq === i && 'rotate-180')} />
-                </button>
-                {openFaq === i && <div className="px-6 pb-4 text-muted-foreground leading-relaxed">{faq.a}</div>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Closing */}
-      <section className="py-24 bg-primary text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Because every breath matters.</h2>
-          <p className="text-white/80 text-xl mb-8 max-w-2xl mx-auto">From the first night to every milestone ahead — we'll be here to help you feel confident, calm, and connected.</p>
-          <p className="text-lg font-semibold text-white/90 italic mb-8">Anvaya Smart — Peace of mind for every parent. A safer world for every baby.</p>
-          <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold gap-2">
-            <Link href="/early-access">Get Early Access — Save ₹2,000 <ArrowRight className="w-4 h-4" /></Link>
-          </Button>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
