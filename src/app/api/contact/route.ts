@@ -1,0 +1,64 @@
+import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+
+export async function POST(req: NextRequest) {
+  try {
+    const { fullName, email, inquiryType, message, phone } = await req.json();
+
+    if (!fullName || !email || !message) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    });
+
+    const inquiryLabels: Record<string, string> = {
+      'early-access': 'Early Access / Product',
+      'investor': 'Investor Relations',
+      'partner': 'Partnership',
+      'careers': 'Careers',
+      'general': 'General Question',
+    };
+
+    const html = `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#fff;border:1px solid #e2dbd4;border-radius:12px;overflow:hidden">
+        <div style="background:#4a7c6f;padding:24px 32px">
+          <h2 style="color:#fff;margin:0;font-size:20px">New Contact Form Submission</h2>
+          <p style="color:#c8ede7;margin:4px 0 0;font-size:14px">Anvaya Smart — nxmplis.com</p>
+        </div>
+        <div style="padding:32px">
+          <table style="width:100%;border-collapse:collapse">
+            <tr><td style="padding:8px 0;color:#888;font-size:13px;width:140px">Name</td><td style="padding:8px 0;font-weight:600">${fullName}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;font-size:13px">Email</td><td style="padding:8px 0"><a href="mailto:${email}" style="color:#4a7c6f">${email}</a></td></tr>
+            ${phone ? `<tr><td style="padding:8px 0;color:#888;font-size:13px">Phone</td><td style="padding:8px 0">${phone}</td></tr>` : ''}
+            <tr><td style="padding:8px 0;color:#888;font-size:13px">Inquiry Type</td><td style="padding:8px 0">${inquiryLabels[inquiryType] || inquiryType}</td></tr>
+          </table>
+          <hr style="border:none;border-top:1px solid #e2dbd4;margin:20px 0" />
+          <p style="color:#888;font-size:13px;margin:0 0 8px">Message</p>
+          <p style="background:#faf8f5;padding:16px;border-radius:8px;line-height:1.6;margin:0">${message.replace(/\n/g, '<br/>')}</p>
+        </div>
+        <div style="padding:16px 32px;background:#faf8f5;font-size:12px;color:#aaa;text-align:center">
+          Sent via nxmplis.com contact form
+        </div>
+      </div>
+    `;
+
+    await transporter.sendMail({
+      from: `"Anvaya Smart Website" <${process.env.GMAIL_USER}>`,
+      to: ['nxmpliscore@gmail.com', 'admin@nxmlis.com'],
+      replyTo: email,
+      subject: `[${inquiryLabels[inquiryType] || 'Contact'}] from ${fullName}`,
+      html,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error('Contact form error:', err);
+    return NextResponse.json({ error: 'Failed to send message' }, { status: 500 });
+  }
+}

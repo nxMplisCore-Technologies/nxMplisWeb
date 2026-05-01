@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import { TopBar } from '@/components/layout/top-bar';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import { OrganizationSchema, WebsiteSchema } from '@/components/seo/JsonLd';
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <OrganizationSchema />
         <WebsiteSchema />
         <div className="relative flex min-h-screen flex-col">
+          <TopBar />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
