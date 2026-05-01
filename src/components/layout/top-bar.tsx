@@ -10,9 +10,9 @@ export function TopBar() {
             <Phone className="w-3.5 h-3.5 shrink-0" />
             <span>+91 79874 49366</span>
           </a>
-          <a href="mailto:admin@nxmlis.com" className="hidden sm:flex items-center gap-1.5 hover:text-white/80 transition-colors">
+          <a href="mailto:admin@nxmplis.com" className="hidden sm:flex items-center gap-1.5 hover:text-white/80 transition-colors">
             <Mail className="w-3.5 h-3.5 shrink-0" />
-            <span>admin@nxmlis.com</span>
+            <span>admin@nxmplis.com</span>
           </a>
           <a
             href="https://wa.me/917987449366"

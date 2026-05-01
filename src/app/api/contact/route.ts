@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const inquiryLabels: Record<string, string> = {
+  'early-access': 'Early Access / Product',
+  'investor': 'Investor Relations',
+  'partner': 'Partnership',
+  'careers': 'Careers',
+  'general': 'General Question',
+};
 
 export async function POST(req: NextRequest) {
   try {
@@ -8,22 +18,6 @@ export async function POST(req: NextRequest) {
     if (!fullName || !email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    });
-
-    const inquiryLabels: Record<string, string> = {
-      'early-access': 'Early Access / Product',
-      'investor': 'Investor Relations',
-      'partner': 'Partnership',
-      'careers': 'Careers',
-      'general': 'General Question',
-    };
 
     const html = `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#fff;border:1px solid #e2dbd4;border-radius:12px;overflow:hidden">
@@ -48,9 +42,9 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await transporter.sendMail({
-      from: `"Anvaya Smart Website" <${process.env.GMAIL_USER}>`,
-      to: ['nxmpliscore@gmail.com', 'admin@nxmlis.com'],
+    await resend.emails.send({
+      from: 'Anvaya Smart <onboarding@resend.dev>',
+      to: ['nxmpliscore@gmail.com', 'admin@nxmplis.com'],
       replyTo: email,
       subject: `[${inquiryLabels[inquiryType] || 'Contact'}] from ${fullName}`,
       html,

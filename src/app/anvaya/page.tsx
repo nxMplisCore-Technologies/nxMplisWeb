@@ -175,12 +175,12 @@ export default function AnvayaPage() {
             </div>
 
             {/* Product Image */}
-            <div className="relative rounded-2xl overflow-hidden bg-white border border-[#e2dbd4] shadow-sm" style={{aspectRatio: '4/3', minHeight: '260px', maxHeight: '480px'}}>
+            <div className="relative rounded-2xl overflow-hidden bg-[#f5f0e8] border border-[#e2dbd4] shadow-sm" style={{aspectRatio: '16/9', minHeight: '260px'}}>
               <Image
                 src={p.image}
                 alt={`${p.fullName} — AI baby wellness pod India`}
                 fill
-                className="object-cover object-center"
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 55vw"
                 priority
               />

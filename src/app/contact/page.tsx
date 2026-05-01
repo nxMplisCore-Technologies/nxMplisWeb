@@ -22,7 +22,7 @@ const formSchema = z.object({
 const contacts = [
   { icon: Phone, label: 'Call / WhatsApp', value: '+91 79874 49366', href: 'tel:+917987449366' },
   { icon: MessageCircle, label: 'WhatsApp', value: 'Chat on WhatsApp →', href: 'https://wa.me/917987449366' },
-  { icon: Mail, label: 'Email', value: 'admin@nxmlis.com', href: 'mailto:admin@nxmlis.com' },
+  { icon: Mail, label: 'Email', value: 'admin@nxmplis.com', href: 'mailto:admin@nxmplis.com' },
   { icon: MapPin, label: 'Based in', value: 'Hyderabad, India', href: null },
 ];
 
@@ -47,7 +47,7 @@ export default function ContactPage() {
       if (!res.ok) throw new Error('Failed');
       setSubmitted(true);
     } catch {
-      toast({ title: "Something went wrong", description: "Please try emailing admin@nxmlis.com directly.", variant: "destructive" });
+      toast({ title: "Something went wrong", description: "Please try emailing admin@nxmplis.com directly.", variant: "destructive" });
     } finally {
       setLoading(false);
     }
