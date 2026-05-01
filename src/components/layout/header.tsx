@@ -41,10 +41,10 @@ export function Header() {
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end gap-3">
-          <Button asChild variant="outline" className="hidden md:flex">
-            <Link href="/contact">Contact</Link>
+          <Button asChild variant="outline" className="hidden md:flex border-primary text-primary hover:bg-primary hover:text-white font-semibold transition-all">
+            <Link href="/contact">📋 Contact & Survey</Link>
           </Button>
-          <Button asChild className="hidden md:flex gap-1.5">
+          <Button asChild className="hidden md:flex gap-1.5 bg-primary text-white font-bold shadow-lg shadow-primary/30 hover:bg-primary/90 animate-pulse-halo px-5">
             <Link href="/early-access"><Sparkles className="w-3.5 h-3.5" />Get Early Access</Link>
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -75,8 +75,11 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                 <Button asChild size="lg" className="mt-4">
-                  <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
+                <Button asChild size="lg" className="mt-2 w-full bg-primary text-white font-bold">
+                  <Link href="/early-access" onClick={() => setIsOpen(false)}><Sparkles className="w-4 h-4 mr-1" />Get Early Access</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="w-full border-primary text-primary font-semibold">
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>📋 Contact & Survey</Link>
                 </Button>
               </div>
             </SheetContent>

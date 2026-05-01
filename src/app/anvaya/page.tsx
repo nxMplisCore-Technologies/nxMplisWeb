@@ -75,7 +75,7 @@ const products = [
     desc: 'India\'s most advanced baby wellness pod. 360° intelligent monitoring with Predictive AI — weekly health reports, SpO₂ tracking, and alerts before problems arise.',
     price: 19999,
     mrp: 29999,
-    image: '/app-trends-clean.webp',
+    image: '/anvaya-features.webp',
     badge: '🏆 Most Advanced',
     color: '#7c3aed',
     bgLight: '#f5f3ff',
@@ -180,7 +180,7 @@ export default function AnvayaPage() {
                 src={p.image}
                 alt={`${p.fullName} — AI baby wellness pod India`}
                 fill
-                className="object-contain object-center p-4"
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 55vw"
                 priority
               />
