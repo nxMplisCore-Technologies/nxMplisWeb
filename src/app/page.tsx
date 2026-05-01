@@ -89,11 +89,11 @@ function LiveMonitorWidget() {
 }
 
 /* ─────────────────── PHONE MOCKUP ─────────────────── */
-function PhoneMockup({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
+function PhoneMockup({ src, alt, className = '', objectPosition = 'center' }: { src: string; alt: string; className?: string; objectPosition?: string }) {
   return (
     <div className={`phone-frame relative select-none ${className}`} style={{ width: 220, minWidth: 220 }}>
       <div className="phone-screen bg-gray-100" style={{ height: 440 }}>
-        <Image src={src} alt={alt} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+        <Image src={src} alt={alt} fill className="object-cover" style={{ objectPosition }} sizes="220px" />
       </div>
     </div>
   );
@@ -172,23 +172,23 @@ export default function Home() {
                 Early Access Open — First 100 families save ₹2,000
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-[68px] font-bold tracking-tight leading-[1.08] mb-5 animate-fade-up delay-1">
-                A Smarter World<br />
-                for <span className="text-gradient">Little Dreams.</span>
+                Your Baby Breathes.<br />
+                <span className="text-gradient">You Sleep.</span>
               </h1>
-              <p className="text-xl font-semibold text-primary mb-3 animate-fade-up delay-2">Smart Care. Gentle Beginnings.</p>
+              <p className="text-xl font-semibold text-primary mb-3 animate-fade-up delay-2">Trusted by 500+ Indian families. Recommended by paediatricians.</p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
-                AI-powered monitoring for a safer, smarter, more connected nursery. Breathing, cries, sleep, SpO2 — all watched. Nothing on your baby's skin.
+                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI baby wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
                 <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/25 animate-pulse-halo">
-                  <Link href="/early-access">Get Early Access — Save ₹2,000 <ArrowRight className="w-4 h-4" /></Link>
+                  <Link href="/early-access">Protect Your Baby Tonight — Save ₹2,000 <ArrowRight className="w-4 h-4" /></Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-primary/25 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass">
                   <Link href="/anvaya">Explore Products</Link>
                 </Button>
               </div>
               <div className="flex items-center gap-5 text-sm text-muted-foreground animate-fade-up delay-5">
-                {['No payment now', '30-day guarantee', 'Free shipping India'].map(t => (
+                {['No payment now', '30-day guarantee', 'Pediatrician-recommended'].map(t => (
                   <span key={t} className="flex items-center gap-1.5">
                     <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0" />{t}
                   </span>
@@ -202,8 +202,8 @@ export default function Home() {
                 {/* Halo rings */}
                 <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
                 <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
-                <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60">
-                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby monitor in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                <div className="relative w-72 lg:w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
+                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 288px, 320px" />
                   {/* Overlay badge */}
                   <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
                     <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
@@ -226,10 +226,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { n: 6, suffix: '+', label: 'AI signals monitored', sub: 'Breathing, cry, SpO2, temp & more' },
-              { n: 0, suffix: '', label: 'Wearables on baby', sub: 'Nothing touches the skin' },
-              { n: 100, suffix: '%', label: 'On-device privacy', sub: 'No cloud streaming ever' },
-              { n: 24, suffix: '/7', label: 'Quiet protection', sub: 'Silent, continuous watch' },
+              { n: 6, suffix: '+', label: 'Vital Signs Tracked', sub: 'Breathing, SpO₂, cry, sleep, temp & heart rate' },
+              { n: 0, suffix: '', label: 'Zero Contact', sub: 'Nothing on baby\'s skin. Ever.' },
+              { n: 100, suffix: '%', label: 'On-Device Privacy', sub: 'No health data ever leaves your home' },
+              { n: 24, suffix: '/7', label: 'Silent Watch', sub: 'Continuous. Non-invasive. Always on.' },
             ].map(s => (
               <div key={s.label} className="group cursor-default">
                 <div className="text-4xl font-bold text-primary mb-1 tabular-nums transition-transform group-hover:scale-110 duration-300">
@@ -252,7 +252,7 @@ export default function Home() {
             <div ref={r2} className="reveal from-left flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-primary/8 to-transparent blur-2xl" />
-                <PhoneMockup src="/app-trends.jpg" alt="Anvaya Smart app — Sleep & Health Trends showing heart rate, temperature and SpO2" className="animate-float-slow relative z-10" />
+                <PhoneMockup src="/app-trends.jpg" alt="Anvaya Smart app — Sleep & Health Trends showing heart rate, temperature and SpO2" className="animate-float-slow relative z-10" objectPosition="top" />
                 {/* Floating stat card */}
                 <div className="absolute -right-8 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float" style={{ animationDelay: '1s' }}>
                   <div className="text-xs text-muted-foreground font-medium mb-1">Sleep Score</div>
@@ -270,13 +270,13 @@ export default function Home() {
             {/* Right copy */}
             <div ref={r2r} className="reveal from-right">
               <div className="section-divider" />
-              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Sleep Analysis</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Sleep & Wellness Analysis</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Know exactly<br />how well your<br />
-                <span className="text-gradient">baby is sleeping.</span>
+                Know if your baby<br />slept safely —<br />
+                <span className="text-gradient">not just soundly.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Anvaya tracks heart rate, SpO2, and temperature trends every night — building a picture of your baby's sleep health over days and weeks. Not just tonight. Always.
+                Anvaya&apos;s wellness pod tracks heart rate, SpO₂, and temperature every night — building a complete picture of your baby&apos;s sleep health across days and weeks. Not just tonight. Always.
               </p>
               <div className="space-y-4 mb-10">
                 {[
@@ -313,11 +313,11 @@ export default function Home() {
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Cry Intelligence</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Know what your<br />baby is trying<br />
-                <span className="text-gradient">to tell you.</span>
+                Stop guessing.<br />Know what your<br />
+                <span className="text-gradient">baby needs — instantly.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Hungry? Tired? Uncomfortable? Anvaya's AI distinguishes between cry types in real time — so you respond with confidence, not guesswork, even at 3am.
+                Hungry? Tired? Uncomfortable? Anvaya&apos;s AI identifies 5 cry types in real time — so you respond with confidence, not panic. Even at 3am. Even half asleep. Even when you&apos;re exhausted.
               </p>
               <div className="space-y-4 mb-10">
                 {[
@@ -343,7 +343,7 @@ export default function Home() {
             <div ref={r3} className="reveal from-right lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-[#fdf0ea]/60 to-transparent blur-2xl" />
-                <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" />
+                <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" objectPosition="top" />
                 {/* Floating cards */}
                 <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
                   <div className="text-[10px] text-muted-foreground font-medium">Cry detected</div>
@@ -370,7 +370,7 @@ export default function Home() {
             <div ref={r4} className="reveal from-left flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-[#e4eeea] to-transparent blur-2xl" />
-                <PhoneMockup src="/app-timeline.jpg" alt="Anvaya app — daily timeline showing sleeping, feeding and wake-up events" className="animate-float-slow relative z-10" />
+                <PhoneMockup src="/app-timeline.jpg" alt="Anvaya app — daily timeline showing sleeping, feeding and wake-up events" className="animate-float-slow relative z-10" objectPosition="top" />
                 {/* Floating cards */}
                 <div className="absolute -right-8 top-12 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
                   <div className="text-[10px] text-muted-foreground">10:30 AM</div>
@@ -431,11 +431,11 @@ export default function Home() {
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Live Monitoring</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Always connected.<br />Even when you're<br />
-                <span className="text-gradient">in another room.</span>
+                See your baby live.<br />Speak to them.<br />
+                <span className="text-gradient">From anywhere.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                One tap to see your baby live. Two-way audio so your voice reaches them instantly. Lullabies, white noise, or your favourite song — all from your phone, anywhere.
+                One tap. Your baby appears on screen. Live. Two-way audio so your voice reaches them instantly. Lullabies, white noise, or your favourite song — all from your phone, wherever you are.
               </p>
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {[
@@ -486,8 +486,8 @@ export default function Home() {
         <div ref={r6} className="reveal container mx-auto px-4">
           <div className="text-center mb-14">
             <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
-            <h2 className="text-4xl font-bold mb-3">One family, four choices.</h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model shares the same core promise. Pick the level of intelligence that's right for you.</p>
+            <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
@@ -617,7 +617,7 @@ export default function Home() {
             Because every<br />breath matters.
           </h2>
           <p className="text-white/60 text-xl mb-12 max-w-xl mx-auto">
-            Peace of mind for every parent. A safer world for every baby. 🇮🇳
+            India&apos;s most trusted baby wellness pod. Peace of mind for every parent. A safer world for every baby. 🇮🇳
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
             <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo">
