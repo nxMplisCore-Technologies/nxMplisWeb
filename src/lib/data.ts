@@ -45,21 +45,22 @@ export const ARTICLES = [
         <li><strong>Rate consistently above 60 or below 20</strong> — call your paediatrician immediately</li>
         <li><strong>Nostrils flaring with each breath</strong> — sign of respiratory distress</li>
         <li><strong>Ribs visible during breathing (retractions)</strong> — severe breathing difficulty</li>
-        <li><strong>SpO2 below 94%</strong> — call paediatrician immediately</li>
+        <li><strong>SpO2 below 94%</strong> — see our full guide on <a href="/blog/baby-spo2-monitoring-india">baby SpO2 monitoring</a> to understand what this means</li>
         <li><strong>Blue or pale lips (cyanosis)</strong> — call 112 immediately</li>
       </ul>
 
       <h2>How Contactless Baby Breathing Monitors Work</h2>
-      <p>Traditional baby monitors only offer video and audio. Anvaya Smart uses low-power radar sensing to detect the micro-movements caused by breathing — from 90cm away, without touching your baby. It tracks breathing rate, patterns, and SpO2 continuously, alerting you only when values deviate meaningfully from your baby's personal baseline.</p>
+      <p>Traditional baby monitors only offer video and audio. Anvaya Smart uses low-power radar sensing to detect the micro-movements caused by breathing — from 90cm away, without touching your baby. It tracks breathing rate, patterns, and SpO2 continuously, alerting you only when values deviate meaningfully from your baby's personal baseline. Read our complete guide on <a href="/blog/baby-breathing-monitor-without-wearable">baby breathing monitors without wearables</a> to understand how contactless technology works.</p>
 
       <h2>Common Questions from Indian Parents</h2>
       <h3>My newborn breathes very fast — is this normal?</h3>
       <p>Yes. 40–60 breaths per minute is completely normal for a newborn. Only worry if it is consistently above 60 or if you see the warning signs listed above.</p>
       <h3>My baby makes snoring sounds — should I worry?</h3>
-      <p>Mild snuffling or snoring is usually caused by narrow nasal passages (common in newborns) or minor congestion. If breathing is otherwise normal and SpO2 is above 95%, this is not a concern.</p>
+      <p>Mild snuffling or snoring is usually caused by narrow nasal passages (common in newborns) or minor congestion. If breathing is otherwise normal and <a href="/blog/baby-spo2-monitoring-india">SpO2 is above 95%</a>, this is not a concern.</p>
       <h3>Should I buy a baby breathing monitor in India?</h3>
-      <p>For the first 6 months especially, a contactless baby breathing monitor like Anvaya Smart provides significant peace of mind — particularly for parents of premature babies or those with a family history of SIDS.</p>
+      <p>For the first 6 months especially, a <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby breathing monitor</a> like Anvaya Smart provides significant peace of mind — particularly for parents of premature babies or those with a family history of SIDS. See our <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026</a> guide for a full comparison.</p>
     `,
+  related: ['baby-spo2-monitoring-india', 'baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026'],
   },
   {
     slug: 'types-of-baby-cries',
@@ -108,9 +109,10 @@ export const ARTICLES = [
 
       <h2>How AI Cry Analysis Works in Anvaya Smart</h2>
       <p>Anvaya Smart records and analyses your baby's cry using machine learning models trained on thousands of infant cry recordings. It identifies the acoustic signature of each cry type and delivers an alert to your phone: "Hungry cry — last fed 3 hours ago" or "Tired cry — awake for 90 minutes."</p>
-      <p>After 3 days of learning, Anvaya personalises its cry analysis to your baby's unique patterns — because no two babies cry exactly the same way.</p>
+      <p>After 3 days of learning, Anvaya personalises its cry analysis to your baby's unique patterns — because no two babies cry exactly the same way. Learn more about <a href="/blog/ai-baby-monitor-india-2026">how AI baby monitors work</a> and the technology behind cry detection.</p>
+      <p>Crying is also closely linked to breathing distress. If your baby's cry is accompanied by unusual breathing patterns, see our guide on <a href="/blog/baby-breathing-patterns">normal and abnormal baby breathing patterns</a>.</p>
     `,
-  },
+  related: ['baby-breathing-patterns', 'newborn-care-india', 'ai-baby-monitor-india-2026'],
   {
     slug: 'best-baby-monitor-india-2026',
     title: 'Best Baby Monitor India 2026: Anvaya Smart vs Motorola vs Owlet (Honest Review)',
@@ -149,11 +151,9 @@ export const ARTICLES = [
       <p>Owlet is not officially available in India. It must be imported from the USA, costing ₹35,000–₹45,000 with import duties and no India warranty. It also requires a fabric sock on your baby's foot — which can be uncomfortable in India's warm climate and falls off during sleep. Anvaya Smart offers comparable SpO2 monitoring contactlessly at ₹12,999 with full India support.</p>
 
       <h2>Our Recommendation</h2>
-      <p>For Indian parents who want genuine wellness monitoring — not just a camera — <strong>Anvaya Smart SENSE at ₹12,999</strong> is the clear winner in 2026. It is the only device offering the complete picture: breathing, SpO2, cry analysis, and sleep — all contactlessly, all on-device, all with Indian support.</p>
+      <p>For Indian parents who want genuine wellness monitoring — not just a camera — <strong>Anvaya Smart SENSE at ₹12,999</strong> is the clear winner in 2026. It is the only device offering the complete picture: <a href="/blog/baby-breathing-monitor-without-wearable">contactless breathing monitoring</a>, <a href="/blog/baby-spo2-monitoring-india">SpO2 tracking</a>, <a href="/blog/types-of-baby-cries">AI cry analysis</a>, and sleep — all on-device, all with Indian support. Explore the full technology behind it in our <a href="/blog/ai-baby-monitor-india-2026">AI baby monitor India guide</a>.</p>
     `,
-  },
-  {
-    slug: 'baby-sleep-guide-india',
+  related: ['baby-breathing-monitor-without-wearable', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'],
     title: 'Baby Sleep Guide India: Month-by-Month Schedule for 0–12 Months',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -204,10 +204,9 @@ export const ARTICLES = [
         <li><strong>White noise:</strong> Mimics the womb environment, very effective for newborns</li>
         <li><strong>Temperature:</strong> 20–22°C is optimal — Anvaya monitors this automatically</li>
       </ul>
+      <p>During sleep, monitoring your baby's breathing and <a href="/blog/baby-spo2-monitoring-india">SpO2 levels</a> is especially important. A <a href="/blog/baby-breathing-monitor-without-wearable">contactless breathing monitor</a> can watch over your baby through every sleep cycle without disturbing them. See our <a href="/blog/best-baby-monitor-india-2026">best baby monitor India guide</a> to choose the right device for your family.</p>
     `,
-  },
-  {
-    slug: 'baby-spo2-monitoring-india',
+  related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'best-baby-monitor-india-2026'],
     title: 'Baby SpO2 Monitoring: What It Is, Normal Ranges, and Why It Matters',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -242,15 +241,14 @@ export const ARTICLES = [
       <p>SpO2 monitoring is particularly important for:</p>
       <ul>
         <li>Premature babies (before 37 weeks gestation)</li>
-        <li>Babies with a history of breathing issues or apnea</li>
+        <li>Babies with a history of <a href="/blog/baby-breathing-patterns">breathing issues or apnea</a></li>
         <li>Any baby during the first 6 months — the highest SIDS risk window</li>
         <li>Babies recovering from respiratory illness</li>
         <li>Parents with a family history of SIDS or infant breathing disorders</li>
       </ul>
+      <p>The safest and most comfortable way to monitor SpO2 in India is with a <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby monitor</a> — no socks, clips, or patches on your baby's skin. See how <a href="/blog/ai-baby-monitor-india-2026">AI baby monitors</a> combine SpO2 monitoring with breathing detection and cry analysis in one device.</p>
     `,
-  },
-  {
-    slug: 'newborn-care-india',
+  related: ['baby-breathing-patterns', 'baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026'],
     title: 'Newborn Care India: Complete First-Week Guide for New Parents',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -292,9 +290,9 @@ export const ARTICLES = [
         <li>Room temperature 20–22°C</li>
         <li>No smoking in the home</li>
       </ul>
+      <p>Once safe sleep is set up, a <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby breathing monitor</a> gives you continuous overnight peace of mind — watching <a href="/blog/baby-breathing-patterns">breathing patterns</a>, <a href="/blog/baby-spo2-monitoring-india">SpO2</a>, temperature, and <a href="/blog/types-of-baby-cries">cry type</a> without anything on your baby's skin. See our <a href="/blog/baby-sleep-guide-india">complete baby sleep guide India</a> for month-by-month sleep schedules.</p>
     `,
-  },
-];
+  related: ['baby-breathing-patterns', 'types-of-baby-cries', 'baby-sleep-guide-india'],
 
   {
     slug: 'ai-baby-monitor-india-2026',
@@ -380,11 +378,9 @@ export const ARTICLES = [
       <p>No — and they are not designed to. AI monitors provide continuous home monitoring between visits and can generate health reports to share with your paediatrician. They are a complement to, not a replacement for, medical care.</p>
 
       <h3>Which is the best AI baby monitor in India in 2026?</h3>
-      <p>Anvaya Smart SENSE (₹12,999) is the most advanced AI baby monitor available in India in 2026. It is the only device offering contactless AI breathing monitoring, SpO₂ detection, personalised cry analysis, and on-device privacy — all with a full India warranty and free shipping.</p>
+      <p>Anvaya Smart SENSE (₹12,999) is the most advanced AI baby monitor available in India in 2026. It is the only device offering <a href="/blog/baby-breathing-monitor-without-wearable">contactless AI breathing monitoring</a>, <a href="/blog/baby-spo2-monitoring-india">SpO₂ detection</a>, personalised <a href="/blog/types-of-baby-cries">cry analysis</a>, and on-device privacy — all with a full India warranty and free shipping. See the full <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026 comparison</a>.</p>
     `,
-  },
-  {
-    slug: 'baby-breathing-monitor-without-wearable',
+  related: ['baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026', 'types-of-baby-cries'],
     title: 'Baby Breathing Monitor Without Wearable: Complete Guide for Indian Parents (2026)',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -482,11 +478,9 @@ export const ARTICLES = [
 
       <h3>Is radar safe for newborns?</h3>
       <p>Yes. The radar sensing used in Anvaya Smart operates at power levels measured in microwatts — thousands of times lower than a Wi-Fi router, and far below any established safety threshold for infants. It has been tested to international EMF safety standards.</p>
+      <p>For a full picture of what to monitor and why, read our guides on <a href="/blog/baby-breathing-patterns">normal baby breathing patterns</a>, <a href="/blog/baby-spo2-monitoring-india">baby SpO2 monitoring</a>, and <a href="/blog/ai-baby-monitor-india-2026">how AI baby monitors work</a>. Ready to buy? See the <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026 comparison</a>.</p>
     `,
-  },
-];
-
-// ── BLOG CATEGORIES ──────────────────────────────────────────────────────────
+  related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'], ──────────────────────────────────────────────────────────
 export const CATEGORIES = [
   'All', 'Baby Health', 'Baby Wellness', 'Baby Sleep', 'Buying Guide', 'Newborn Care', 'Baby Technology'
 ];

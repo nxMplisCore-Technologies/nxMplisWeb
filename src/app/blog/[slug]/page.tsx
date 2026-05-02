@@ -46,7 +46,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const article = ARTICLES.find(a => a.slug === params.slug);
   if (!article) notFound();
 
-  const related = ARTICLES.filter(a => a.slug !== article.slug && (a.category === article.category || a.keywords.some(k => article.keywords.includes(k)))).slice(0, 3);
+  const explicitRelated = (article as any).related as string[] | undefined;
+  const related = explicitRelated
+    ? explicitRelated.map(s => ARTICLES.find(a => a.slug === s)).filter(Boolean).slice(0, 3) as typeof ARTICLES
+    : ARTICLES.filter(a => a.slug !== article.slug && (a.category === article.category || a.keywords.some(k => article.keywords.includes(k)))).slice(0, 3);
   const headings = extractHeadings(article.content);
   const BASE = 'https://nxmplis.com';
 
