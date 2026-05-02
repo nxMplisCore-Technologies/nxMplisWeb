@@ -14,7 +14,7 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
     date: '2025-04-28',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-05-02',
     category: 'Baby Health',
     readTime: '8 min read',
     imageUrl: '/anvaya-sense.jpg',
@@ -67,7 +67,7 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
     date: '2025-04-25',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-05-02',
     category: 'Baby Wellness',
     readTime: '7 min read',
     imageUrl: '/anvaya-core.jpg',
@@ -112,21 +112,21 @@ export const ARTICLES = [
     `,
   },
   {
-    slug: 'best-baby-monitor-india-2025',
-    title: 'Best Baby Monitor India 2025: Anvaya Smart vs Motorola vs Owlet (Honest Review)',
+    slug: 'best-baby-monitor-india-2026',
+    title: 'Best Baby Monitor India 2026: Anvaya Smart vs Motorola vs Owlet (Honest Review)',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
     date: '2025-04-20',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-05-02',
     category: 'Buying Guide',
     readTime: '12 min read',
     imageUrl: '/anvaya-nursery.jpg',
     dataAiHint: 'baby monitor comparison review',
-    excerpt: 'We compared every baby monitor available to Indian parents in 2025 — Anvaya Smart, Motorola, Owlet, and Infant Optics. Here is our honest verdict on features, price, and India suitability.',
-    keywords: ['best baby monitor India 2025', 'Motorola baby monitor India', 'baby monitor comparison India', 'Owlet alternative India'],
+    excerpt: 'We compared every baby monitor available to Indian parents in 2026 — Anvaya Smart, Motorola, Owlet, and Infant Optics. Here is our honest verdict on features, price, and India suitability.',
+    keywords: ['best baby monitor India 2026', 'Motorola baby monitor India', 'baby monitor comparison India 2026', 'Owlet alternative India'],
     content: `
       <h2>How We Evaluated Baby Monitors for Indian Parents</h2>
-      <p>We assessed every baby monitor based on: India availability, price, India warranty, wellness monitoring features (breathing, SpO2, cry), privacy, and suitability for Indian climate and living conditions.</p>
+      <p>We assessed every baby monitor based on: India availability, price, India warranty, wellness monitoring features (breathing, SpO2, cry), privacy, and suitability for Indian climate and living conditions. Updated May 2026.</p>
 
       <h2>Our Top Pick: Anvaya Smart SENSE (₹12,999)</h2>
       <p><strong>Why it wins:</strong> The only monitor in this price range offering contactless breathing monitoring, SpO2 tracking, AI cry analysis, and sleep analytics — built by an Indian team with full India warranty, free shipping, and 0% EMI. Nothing is attached to your baby's skin.</p>
@@ -149,7 +149,7 @@ export const ARTICLES = [
       <p>Owlet is not officially available in India. It must be imported from the USA, costing ₹35,000–₹45,000 with import duties and no India warranty. It also requires a fabric sock on your baby's foot — which can be uncomfortable in India's warm climate and falls off during sleep. Anvaya Smart offers comparable SpO2 monitoring contactlessly at ₹12,999 with full India support.</p>
 
       <h2>Our Recommendation</h2>
-      <p>For Indian parents who want genuine wellness monitoring — not just a camera — <strong>Anvaya Smart SENSE at ₹12,999</strong> is the clear winner. It is the only device offering the complete picture: breathing, SpO2, cry analysis, and sleep — all contactlessly, all on-device, all with Indian support.</p>
+      <p>For Indian parents who want genuine wellness monitoring — not just a camera — <strong>Anvaya Smart SENSE at ₹12,999</strong> is the clear winner in 2026. It is the only device offering the complete picture: breathing, SpO2, cry analysis, and sleep — all contactlessly, all on-device, all with Indian support.</p>
     `,
   },
   {
@@ -158,7 +158,7 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
     date: '2025-04-15',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-05-02',
     category: 'Baby Sleep',
     readTime: '10 min read',
     imageUrl: '/anvaya-omni.jpg',
@@ -212,7 +212,7 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
     date: '2025-04-10',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-05-02',
     category: 'Baby Health',
     readTime: '6 min read',
     imageUrl: '/anvaya-pulse.jpg',
@@ -255,7 +255,7 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
     date: '2025-04-05',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-05-02',
     category: 'Newborn Care',
     readTime: '11 min read',
     imageUrl: '/anvaya-nursery.jpg',

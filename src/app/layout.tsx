@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   keywords: [
     'baby wellness pod', 'baby wellness pod India', 'baby wellness pod monitor',
     'infant wellness pod', 'newborn wellness pod', 'baby wellness monitoring system India',
-    'contactless baby wellness pod India 2025', 'AI baby wellness monitoring',
-    'baby monitor India', 'smart baby monitor India', 'best baby monitor India 2025',
+    'contactless baby wellness pod India 2026', 'AI baby wellness monitoring',
+    'baby monitor India', 'smart baby monitor India', 'best baby monitor India 2026',
     'contactless baby monitor', 'baby breathing monitor India', 'baby SpO2 monitor',
     'AI baby monitor', 'baby cry analysis monitor', 'baby sleep monitor India',
     'baby wellness monitor', 'Anvaya Smart', 'Anvaya baby monitor',

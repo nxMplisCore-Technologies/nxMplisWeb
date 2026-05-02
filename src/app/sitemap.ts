@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/newborn-care-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
     { url: `${base}/compare`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${base}/blog/best-baby-monitor-india-2026`, lastModified: now, changeFrequency: 'monthly', priority: 0.82 },
     { url: `${base}/technology`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${base}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${base}/industries`, lastModified: now, changeFrequency: 'monthly', priority: 0.70 },

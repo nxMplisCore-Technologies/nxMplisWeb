@@ -7,7 +7,7 @@ import { Clock, Tag, ArrowRight, TrendingUp } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Baby Wellness Blog | Sleep, Breathing, Cry Analysis | Anvaya Smart India',
-  description: 'Expert guides on baby breathing patterns, cry types, sleep schedules, SpO2 monitoring and infant wellness — written by IIT engineers, updated 2025. For Indian parents.',
+  description: 'Expert guides on baby breathing patterns, cry types, sleep schedules, SpO2 monitoring and infant wellness — written by IIT engineers, updated 2026. For Indian parents.',
   keywords: ['baby wellness blog India', 'baby breathing guide', 'baby sleep tips India', 'infant monitoring guide', 'baby cry types India', 'newborn care India'],
   alternates: { canonical: 'https://nxmplis.com/blog' },
   openGraph: { title: 'Baby Wellness Blog | Anvaya Smart', description: 'Expert baby health and wellness guides for Indian parents.', url: 'https://nxmplis.com/blog', images: [{ url: '/anvaya-lifestyle.webp' }] },
@@ -89,7 +89,7 @@ export default function BlogPage() {
               { topic: 'Cry Analysis', href: '/blog/types-of-baby-cries', desc: 'Hungry vs tired vs pain' },
               { topic: 'Baby SpO2', href: '/blog/baby-spo2-monitoring-india', desc: 'What it is, normal ranges' },
               { topic: 'Newborn Care', href: '/blog/newborn-care-india', desc: 'First week, feeding, safety' },
-              { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india-2025', desc: 'Compare all India options 2025' },
+              { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india-2026', desc: 'Compare all India options 2026' },
             ].map(t => (
               <Link key={t.topic} href={t.href} className="flex items-start gap-3 p-4 rounded-xl border border-[#e2dbd4] hover:border-primary/30 hover:bg-[#faf8f5] transition-all group">
                 <ArrowRight className="w-4 h-4 text-primary shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />
