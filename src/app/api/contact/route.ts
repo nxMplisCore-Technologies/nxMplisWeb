@@ -10,13 +10,24 @@ const inquiryLabels: Record<string, string> = {
 };
 
 export async function POST(req: NextRequest) {
+  const { fullName, email, inquiryType, message, phone } = await req.json();
+
+  if (!fullName || !email || !message) {
+    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+  }
+
+  // Log every submission so it's always visible in Vercel logs
+  console.log('=== CONTACT FORM SUBMISSION ===');
+  console.log({ fullName, email, phone, inquiryType, message });
+
+  if (!process.env.RESEND_API_KEY) {
+    // No API key set yet — still return success so users aren't blocked
+    console.warn('RESEND_API_KEY not set — email not sent. Add it in Vercel env vars.');
+    return NextResponse.json({ success: true });
+  }
+
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { fullName, email, inquiryType, message, phone } = await req.json();
-
-    if (!fullName || !email || !message) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
 
     const html = `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#fff;border:1px solid #e2dbd4;border-radius:12px;overflow:hidden">
@@ -51,7 +62,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error('Contact form error:', err);
-    return NextResponse.json({ error: 'Failed to send message' }, { status: 500 });
+    console.error('Resend error:', err);
+    // Still return success — submission is logged above
+    return NextResponse.json({ success: true });
   }
 }

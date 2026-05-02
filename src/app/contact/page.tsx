@@ -16,7 +16,7 @@ const formSchema = z.object({
   email: z.string().email('Please enter a valid email'),
   phone: z.string().optional(),
   inquiryType: z.enum(["early-access", "investor", "partner", "careers", "general"]),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  message: z.string().min(2, 'Please enter a message'),
 });
 
 const contacts = [

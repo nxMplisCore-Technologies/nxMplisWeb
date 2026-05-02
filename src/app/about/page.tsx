@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Microscope, Heart, Shield, Brain } from 'lucide-react';
 
 const team = [
-  { initials: 'DS', name: 'Deepak Singh', role: 'Co-founder & CEO', bg: '#4a7c6f' },
+  { initials: 'DS', name: 'Deepak Singh', role: 'Founder & CEO', bg: '#4a7c6f' },
   { initials: 'RK', name: 'Research Lead', role: 'Head of Sensing Technology', bg: '#e8957a' },
   { initials: 'AM', name: 'AI & ML Lead', role: 'Head of AI & Signal Processing', bg: '#7aab9e' },
   { initials: 'PV', name: 'Design Lead', role: 'Head of Product Design', bg: '#c17a5e' },

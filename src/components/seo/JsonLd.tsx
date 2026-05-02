@@ -9,7 +9,7 @@ export function OrganizationSchema() {
     description: 'AI-powered contactless baby wellness pod monitoring. Anvaya Smart tracks breathing, SpO₂, cry patterns and sleep — no wearables, complete on-device privacy.',
     foundingDate: '2024',
     address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' },
-    founder: [{ '@type': 'Person', name: 'Deepak Singh', alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad' }, jobTitle: 'CEO & Co-founder' }],
+    founder: [{ '@type': 'Person', name: 'Deepak Singh', alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad' }, jobTitle: 'Founder' }],
     sameAs: ['https://www.instagram.com/anvayasmart', 'https://www.linkedin.com/company/nxmliscore', 'https://twitter.com/anvayasmart'],
     contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['English', 'Hindi', 'Telugu'], areaServed: 'IN', contactOption: 'TollFree' },
     knowsAbout: ['Baby Monitoring', 'Baby Wellness Pod Monitoring', 'Infant Health', 'Infant Vital Signs Monitoring', 'Contactless Sensing', 'AI Health Technology', 'Baby Sleep Analysis', 'Newborn Wellness Technology', 'Baby SpO2 Monitoring'],
