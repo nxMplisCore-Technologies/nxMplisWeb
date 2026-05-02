@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, ChevronDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { FAQSchema } from '@/components/seo/JsonLd';
 
 /* ─────────────────── HOOKS ─────────────────── */
 function useReveal(options?: { from?: 'left' | 'right' | 'scale' }) {
@@ -121,6 +122,57 @@ function AnimatedNumber({ target, suffix = '' }: { target: number; suffix?: stri
   return <strong ref={ref}>{val}{suffix}</strong>;
 }
 
+/* ─────────────────── FAQ ─────────────────── */
+const HOME_FAQS = [
+  { q: 'What is Anvaya Smart baby wellness pod?', a: 'Anvaya Smart is India\'s most advanced AI baby wellness pod. It monitors your baby\'s breathing, SpO₂, cry patterns, heart rate, temperature, and sleep — contactlessly, without anything on your baby\'s skin. It uses low-power radar, infrared sensing, and AI acoustic analysis to watch over your baby 24/7.' },
+  { q: 'Is the Anvaya baby monitor safe for newborns?', a: 'Yes. Anvaya Smart is completely contactless — nothing is attached to your baby. The radar sensing uses power levels thousands of times lower than a Wi-Fi router. It is safe for premature babies and newborns from day one.' },
+  { q: 'How does contactless baby breathing monitoring work?', a: 'Anvaya uses low-power radar to detect the micro-movements of your baby\'s chest caused by breathing — from up to 90cm away. No wearable, no skin contact. The AI identifies breathing rate, pattern, and alerts you if anything deviates from your baby\'s personal baseline.' },
+  { q: 'What is the price of Anvaya baby wellness pod in India?', a: 'Anvaya Smart is available in four models: CORE (₹8,999), SENSE (₹12,999), PULSE (₹15,999), and OMNI (₹19,999). Early access pricing includes ₹2,000 off, free shipping across India, and a 30-day money-back guarantee.' },
+  { q: 'Does Anvaya work without Wi-Fi?', a: 'Anvaya processes all data on-device. Core monitoring functions (breathing detection, cry alerts, temperature) work without Wi-Fi. Wi-Fi is required for live video streaming and app sync.' },
+  { q: 'What is the difference between Anvaya CORE, SENSE, PULSE, and OMNI?', a: 'CORE covers HD video, cry detection, lullabies, and temperature. SENSE adds contactless breathing, SpO₂, heart rate, and air quality monitoring. PULSE adds activity tracking, real-time alerts, and humidity sensing. OMNI includes predictive AI, 360° coverage, health reports, and all SENSE+ features.' },
+  { q: 'Is Anvaya Smart available across India?', a: 'Yes. Anvaya Smart ships free across India. EMI is available at 0% through major cards and UPI platforms. Our team is based in Hyderabad with pan-India customer support in English, Hindi, and Telugu.' },
+];
+
+function FAQSection() {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-24 bg-white">
+      <FAQSchema faqs={HOME_FAQS.map(f => ({ q: f.q, a: f.a }))} />
+      <div className="container mx-auto px-4 max-w-3xl">
+        <div className="text-center mb-12">
+          <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3" style={{ color: '#e8957a' }}>Common Questions</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">Everything parents ask about<br />Anvaya baby wellness monitoring</h2>
+          <p className="text-muted-foreground">Answers to the most common questions from Indian parents about contactless baby monitoring.</p>
+        </div>
+        <div className="space-y-3">
+          {HOME_FAQS.map((faq, i) => (
+            <div key={i} className="border border-[#e2dbd4] rounded-2xl overflow-hidden bg-[#faf8f5]">
+              <button
+                className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left font-semibold text-sm hover:bg-[#f2ece0] transition-colors"
+                onClick={() => setOpen(open === i ? null : i)}
+                aria-expanded={open === i}
+              >
+                <span>{faq.q}</span>
+                <ChevronDown className={`w-4 h-4 text-primary shrink-0 transition-transform duration-200 ${open === i ? 'rotate-180' : ''}`} />
+              </button>
+              {open === i && (
+                <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-[#e2dbd4] pt-4">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link href="/contact" className="text-sm font-semibold text-primary hover:underline">
+            Have more questions? Contact us →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────────── PAGE ─────────────────── */
 export default function Home() {
   const { toast } = useToast();
@@ -172,12 +224,12 @@ export default function Home() {
                 Early Access Open — First 100 families save ₹2,000
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-[68px] font-bold tracking-tight leading-[1.08] mb-5 animate-fade-up delay-1">
-                Your Baby Breathes.<br />
-                <span className="text-gradient">You Sleep.</span>
+                India&apos;s #1 AI<br />Baby Wellness Pod.<br />
+                <span className="text-gradient">Zero Contact.</span>
               </h1>
               <p className="text-xl font-semibold text-primary mb-3 animate-fade-up delay-2">Trusted by 500+ Indian families. Recommended by paediatricians.</p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
-                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI baby wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI baby wellness monitoring pod watches breathing, SpO₂, cry type and sleep quality contactlessly. No wearables. Nothing on baby&apos;s skin. Nothing missed.
               </p>
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
                 <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/25 animate-pulse-halo">
@@ -542,6 +594,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ════════════ FAQ ════════════ */}
+      <FAQSection />
+
       {/* ════════════ LEAD CAPTURE ════════════ */}
       <section className="py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] relative overflow-hidden">
         <div className="absolute inset-0 noise pointer-events-none opacity-40" />
@@ -593,7 +648,9 @@ export default function Home() {
               { title: 'Baby Wellness App', desc: 'All app features explained — sleep score, trends, live monitoring.', href: '/baby-wellness-app', icon: '📱' },
               { title: 'Baby Breathing Patterns', desc: "What's normal, what's not, and when to call the doctor.", href: '/blog/baby-breathing-patterns', icon: '🫁' },
               { title: 'Baby Cry Types', desc: 'Hungry vs tired vs uncomfortable — how to tell the difference.', href: '/blog/types-of-baby-cries', icon: '🎵' },
-              { title: 'Compare Baby Monitors', desc: 'Anvaya vs Motorola vs Owlet — honest India comparison.', href: '/compare', icon: '⚖️' },
+              { title: 'AI Baby Monitor India 2026', desc: 'How AI is changing infant safety — cry analysis, radar breathing & more.', href: '/blog/ai-baby-monitor-india-2026', icon: '🤖' },
+              { title: 'Monitor Without Wearable', desc: 'Why contactless beats wearable in India\'s heat — complete guide.', href: '/blog/baby-breathing-monitor-without-wearable', icon: '📡' },
+              { title: 'Compare Baby Monitors 2026', desc: 'Anvaya vs Motorola vs Owlet — honest India comparison 2026.', href: '/compare', icon: '⚖️' },
             ].map(item => (
               <Link key={item.href} href={item.href} className="card-hover group flex items-start gap-4 bg-[#faf8f5] rounded-2xl p-5 border border-[#e2dbd4]">
                 <span className="text-2xl shrink-0">{item.icon}</span>

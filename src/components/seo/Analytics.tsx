@@ -1,6 +1,6 @@
 // GA4 + Performance analytics component
 // Replace GA_MEASUREMENT_ID with your actual G-XXXXXXXXXX code
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // TODO: Replace with real ID
+export const GA_MEASUREMENT_ID = 'G-CSW2FEKTDB';
 
 export function GoogleAnalytics() {
   if (process.env.NODE_ENV !== 'production') return null;

@@ -3,13 +3,13 @@ export const seoConfig = {
   home: {
     title: 'Anvaya Smart | Baby Wellness Pod India | AI Contactless Baby Monitor',
     description: 'India\'s most advanced baby wellness pod. AI-powered contactless breathing, cry analysis, SpO₂ & sleep tracking. No wearables. CORE from ₹8,999. Free shipping. 30-day guarantee.',
-    keywords: 'baby wellness pod, baby wellness pod India, best baby monitor India, AI baby monitor, contactless baby monitor India, smart baby monitor 2025, infant wellness monitoring, newborn wellness pod',
+    keywords: 'baby wellness pod, baby wellness pod India, best baby monitor India, AI baby monitor, contactless baby monitor India, smart baby monitor 2026, infant wellness monitoring, newborn wellness pod',
     canonical: 'https://nxmplis.com',
   },
   anvaya: {
     title: 'Anvaya Baby Wellness Pod | CORE SENSE PULSE OMNI | Buy India',
     description: 'Compare Anvaya baby wellness pods — CORE (₹8,999), SENSE (₹12,999), PULSE (₹15,999), OMNI (₹19,999). Contactless AI monitoring for breathing, SpO₂, cry & sleep analysis.',
-    keywords: 'Anvaya baby wellness pod, Anvaya CORE baby monitor, Anvaya SENSE, buy baby wellness pod India, baby wellness monitoring system India, best baby monitor price India',
+    keywords: 'Anvaya baby wellness pod, Anvaya CORE baby monitor, Anvaya SENSE, buy baby wellness pod India, baby wellness monitoring system India, best baby monitor price India 2026',
     canonical: 'https://nxmplis.com/anvaya',
   },
   earlyAccess: {
