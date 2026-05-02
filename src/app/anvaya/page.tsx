@@ -18,7 +18,7 @@ const products = [
     desc: 'Everything a new parent needs. HD video, cry detection, lullabies and temperature monitoring — in one quietly intelligent baby wellness pod.',
     price: 8999,
     mrp: 14999,
-    image: '/anvaya-core.jpg',
+    image: '/anvaya-core-1.jpg',
     badge: null,
     color: '#d97706',
     bgLight: '#fffbeb',
