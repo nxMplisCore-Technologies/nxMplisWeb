@@ -648,6 +648,8 @@ export default function Home() {
               { title: 'Baby Wellness App', desc: 'All app features explained — sleep score, trends, live monitoring.', href: '/baby-wellness-app', icon: '📱' },
               { title: 'Baby Breathing Patterns', desc: "What's normal, what's not, and when to call the doctor.", href: '/blog/baby-breathing-patterns', icon: '🫁' },
               { title: 'Baby Cry Types', desc: 'Hungry vs tired vs uncomfortable — how to tell the difference.', href: '/blog/types-of-baby-cries', icon: '🎵' },
+              { title: 'AI Baby Monitor India 2026', desc: 'How AI is changing infant safety — cry analysis, radar breathing & more.', href: '/blog/ai-baby-monitor-india-2026', icon: '🤖' },
+              { title: 'Monitor Without Wearable', desc: 'Why contactless beats wearable in India\'s heat — complete guide.', href: '/blog/baby-breathing-monitor-without-wearable', icon: '📡' },
               { title: 'Compare Baby Monitors 2026', desc: 'Anvaya vs Motorola vs Owlet — honest India comparison 2026.', href: '/compare', icon: '⚖️' },
             ].map(item => (
               <Link key={item.href} href={item.href} className="card-hover group flex items-start gap-4 bg-[#faf8f5] rounded-2xl p-5 border border-[#e2dbd4]">
