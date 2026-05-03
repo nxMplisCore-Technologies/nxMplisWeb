@@ -123,6 +123,7 @@ export const ARTICLES = [
     { q: 'How does AI cry analysis identify baby cry types?', a: 'AI cry analysis records the baby\'s cry and runs it through a machine learning model trained on thousands of infant recordings. It analyses rhythm, pitch, duration, and acoustic pattern to classify the cry type — hungry, tired, pain, discomfort, or bored — within seconds.' },
   ],
   related: ['baby-breathing-patterns', 'newborn-care-india', 'ai-baby-monitor-india-2026'],
+  },
   {
     slug: 'best-baby-monitor-india-2026',
     title: 'Best Baby Monitor India 2026: Anvaya Smart vs Motorola vs Owlet (Honest Review)',
@@ -169,6 +170,9 @@ export const ARTICLES = [
     { q: 'Is it worth buying a contactless baby breathing monitor in India?', a: 'Yes, especially for the first 6 months — the highest-risk window. A contactless breathing monitor provides continuous overnight monitoring without attaching anything to your baby\'s skin, giving parents significant peace of mind and early warning of breathing irregularities.' },
   ],
   related: ['baby-breathing-monitor-without-wearable', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'],
+  },
+  {
+    slug: 'baby-sleep-guide-india',
     title: 'Baby Sleep Guide India: Month-by-Month Schedule for 0–12 Months',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -227,6 +231,9 @@ export const ARTICLES = [
     { q: 'What is the ideal room temperature for a sleeping baby in India?', a: 'The ideal room temperature for a sleeping baby is 20–22°C. Indian parents often over-bundle newborns, but overheating is a risk factor. If air conditioning is unavailable, a fan circulating air without blowing directly on the baby helps maintain a safe sleep environment.' },
   ],
   related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'best-baby-monitor-india-2026'],
+  },
+  {
+    slug: 'baby-spo2-monitoring-india',
     title: 'Baby SpO2 Monitoring: What It Is, Normal Ranges, and Why It Matters',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -274,6 +281,9 @@ export const ARTICLES = [
     { q: 'When is SpO2 monitoring most important for babies in India?', a: 'SpO2 monitoring is most important for premature babies, babies with breathing history or NICU stays, all babies during the first 6 months (the highest SIDS risk window), babies recovering from respiratory illness, and families with a history of infant breathing disorders.' },
   ],
   related: ['baby-breathing-patterns', 'baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026'],
+  },
+  {
+    slug: 'newborn-care-india',
     title: 'Newborn Care India: Complete First-Week Guide for New Parents',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -323,7 +333,7 @@ export const ARTICLES = [
     { q: 'What are the safe sleep guidelines for newborns in India?', a: 'Safe sleep means: always place the baby on their back on a firm flat mattress, use no soft bedding or pillows, avoid co-sleeping on adult beds with blankets, keep room temperature at 20–22°C, and maintain a smoke-free home. These align with AAP and Indian paediatric guidelines.' },
   ],
   related: ['baby-breathing-patterns', 'types-of-baby-cries', 'baby-sleep-guide-india'],
-
+  },
   {
     slug: 'ai-baby-monitor-india-2026',
     title: 'AI Baby Monitor India 2026: How Artificial Intelligence Is Changing Infant Safety',
@@ -416,6 +426,9 @@ export const ARTICLES = [
     { q: 'How accurate is AI cry analysis for babies?', a: 'Modern AI cry analysis achieves 85–92% accuracy across trained cry types. Accuracy improves after the first week as the model learns your specific baby\'s patterns. After personalisation, it is significantly more reliable than guessing at 3am — and improves the longer you use it.' },
   ],
   related: ['baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026', 'types-of-baby-cries'],
+  },
+  {
+    slug: 'baby-breathing-monitor-without-wearable',
     title: 'Baby Breathing Monitor Without Wearable: Complete Guide for Indian Parents (2026)',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
@@ -521,6 +534,9 @@ export const ARTICLES = [
     { q: 'Is radar sensing safe for newborns?', a: 'Yes. Baby monitor radar operates at power levels measured in microwatts — thousands of times lower than a Wi-Fi router and far below any established safety threshold for infants. It is non-ionising, does not heat tissue, and has been tested to international EMF safety standards.' },
   ],
   related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'],
+  },
+];
+
 // ──────────────────────────────────────────────────────────
 export const CATEGORIES = [
   'All', 'Baby Health', 'Baby Wellness', 'Baby Sleep', 'Buying Guide', 'Newborn Care', 'Baby Technology'
