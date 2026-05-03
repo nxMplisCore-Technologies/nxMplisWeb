@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ProductSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
 
 const products = [
   {
@@ -135,6 +136,24 @@ export default function AnvayaPage() {
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
+
+      {/* JSON-LD schemas — rendered once, not tied to selected state */}
+      {products.map(prod => (
+        <ProductSchema
+          key={prod.id}
+          name={`${prod.fullName} — AI Baby Wellness Pod`}
+          description={prod.desc}
+          price={prod.price.toString()}
+          sku={prod.id.toUpperCase()}
+          image={`https://nxmplis.com${prod.image}`}
+          features={prod.features.map(f => f.text)}
+        />
+      ))}
+      <FAQSchema faqs={faqs} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://nxmplis.com' },
+        { name: 'Baby Wellness Pods', url: 'https://nxmplis.com/anvaya' },
+      ]} />
 
       {/* ── Breadcrumb ── */}
       <div className="border-b border-[#e2dbd4] bg-white">

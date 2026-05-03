@@ -10,7 +10,7 @@ export const JOBS = [
 export const ARTICLES = [
   {
     slug: 'baby-breathing-patterns',
-    title: "Baby Breathing Patterns: What's Normal and What's Not (India Guide 2025)",
+    title: "Baby Breathing Patterns: What's Normal and What's Not (India Guide 2026)",
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmliscore · IIT Alumni',
     date: '2025-04-28',
@@ -60,6 +60,11 @@ export const ARTICLES = [
       <h3>Should I buy a baby breathing monitor in India?</h3>
       <p>For the first 6 months especially, a <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby breathing monitor</a> like Anvaya Smart provides significant peace of mind — particularly for parents of premature babies or those with a family history of SIDS. See our <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026</a> guide for a full comparison.</p>
     `,
+  faqs: [
+    { q: 'What is a normal breathing rate for a newborn?', a: 'A normal breathing rate for a newborn is 40–60 breaths per minute — much faster than adults. Occasional pauses of 5–10 seconds known as periodic breathing are also completely normal in babies under 3 months and resolve on their own.' },
+    { q: 'What is periodic breathing in babies?', a: 'Periodic breathing is when a baby pauses breathing for 5–10 seconds then resumes normally. It is caused by immaturity in the brainstem\'s breathing control centre, is completely normal in newborns, and typically resolves by 3 months of age without any intervention.' },
+    { q: 'When should I be concerned about my baby\'s breathing?', a: 'Seek immediate help if breathing pauses exceed 20 seconds, the rate is consistently above 60 or below 20, nostrils flare with each breath, ribs are visible during breathing, lips turn blue, or SpO2 drops below 94%. These are signs of respiratory distress.' },
+  ],
   related: ['baby-spo2-monitoring-india', 'baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026'],
   },
   {
@@ -112,6 +117,11 @@ export const ARTICLES = [
       <p>After 3 days of learning, Anvaya personalises its cry analysis to your baby's unique patterns — because no two babies cry exactly the same way. Learn more about <a href="/blog/ai-baby-monitor-india-2026">how AI baby monitors work</a> and the technology behind cry detection.</p>
       <p>Crying is also closely linked to breathing distress. If your baby's cry is accompanied by unusual breathing patterns, see our guide on <a href="/blog/baby-breathing-patterns">normal and abnormal baby breathing patterns</a>.</p>
     `,
+  faqs: [
+    { q: 'How can I tell if my baby is hungry or just tired?', a: 'A hungry cry is rhythmic and low-pitched, building from a whimper with regular pause intervals. A tired cry is whiny and nasal, often with eye rubbing and yawning. Respond to tired babies by reducing stimulation and beginning the sleep routine immediately.' },
+    { q: 'What does a baby pain cry sound like?', a: 'A pain cry is sudden, high-pitched, and sharp — with a brief silent pause as the baby gasps, followed by intense screaming. It comes without warning and is very distinct from other cry types. If it continues more than 20 minutes with no obvious cause, call your paediatrician.' },
+    { q: 'How does AI cry analysis identify baby cry types?', a: 'AI cry analysis records the baby\'s cry and runs it through a machine learning model trained on thousands of infant recordings. It analyses rhythm, pitch, duration, and acoustic pattern to classify the cry type — hungry, tired, pain, discomfort, or bored — within seconds.' },
+  ],
   related: ['baby-breathing-patterns', 'newborn-care-india', 'ai-baby-monitor-india-2026'],
   {
     slug: 'best-baby-monitor-india-2026',
@@ -153,6 +163,11 @@ export const ARTICLES = [
       <h2>Our Recommendation</h2>
       <p>For Indian parents who want genuine wellness monitoring — not just a camera — <strong>Anvaya Smart SENSE at ₹12,999</strong> is the clear winner in 2026. It is the only device offering the complete picture: <a href="/blog/baby-breathing-monitor-without-wearable">contactless breathing monitoring</a>, <a href="/blog/baby-spo2-monitoring-india">SpO2 tracking</a>, <a href="/blog/types-of-baby-cries">AI cry analysis</a>, and sleep — all on-device, all with Indian support. Explore the full technology behind it in our <a href="/blog/ai-baby-monitor-india-2026">AI baby monitor India guide</a>.</p>
     `,
+  faqs: [
+    { q: 'What is the best baby monitor in India in 2026?', a: 'For Indian parents wanting wellness monitoring beyond a basic camera, Anvaya Smart SENSE at ₹12,999 is the top choice in 2026. It offers contactless breathing monitoring, SpO2 tracking, AI cry analysis, and sleep insights with a full 1-year India warranty and free shipping.' },
+    { q: 'Which baby monitors are officially available in India with local warranty?', a: 'Anvaya Smart is the primary option with full 1-year India warranty, free shipping, and 0% EMI. Most global brands like Owlet and Infant Optics are not officially sold in India and must be imported without any local support, at significantly higher cost.' },
+    { q: 'Is it worth buying a contactless baby breathing monitor in India?', a: 'Yes, especially for the first 6 months — the highest-risk window. A contactless breathing monitor provides continuous overnight monitoring without attaching anything to your baby\'s skin, giving parents significant peace of mind and early warning of breathing irregularities.' },
+  ],
   related: ['baby-breathing-monitor-without-wearable', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'],
     title: 'Baby Sleep Guide India: Month-by-Month Schedule for 0–12 Months',
     author: 'Deepak Singh',
@@ -206,6 +221,11 @@ export const ARTICLES = [
       </ul>
       <p>During sleep, monitoring your baby's breathing and <a href="/blog/baby-spo2-monitoring-india">SpO2 levels</a> is especially important. A <a href="/blog/baby-breathing-monitor-without-wearable">contactless breathing monitor</a> can watch over your baby through every sleep cycle without disturbing them. See our <a href="/blog/best-baby-monitor-india-2026">best baby monitor India guide</a> to choose the right device for your family.</p>
     `,
+  faqs: [
+    { q: 'How many hours should a newborn sleep each day?', a: 'Newborns aged 0–1 month need 16–18 hours of total daily sleep, spread across 6–7 short naps. By 3–6 months, total sleep reduces to 13–15 hours with 3–4 naps. By 9–12 months, most babies settle into 11 hours of night sleep plus 2 daytime naps.' },
+    { q: 'What is a baby sleep regression and when does it happen?', a: 'Sleep regression is when a previously good sleeper suddenly wakes frequently again. It happens at predictable developmental stages — 4 months, 8–10 months, and 12 months. It is caused by cognitive leaps, lasts 2–6 weeks, and is a phase to support rather than a problem to fix.' },
+    { q: 'What is the ideal room temperature for a sleeping baby in India?', a: 'The ideal room temperature for a sleeping baby is 20–22°C. Indian parents often over-bundle newborns, but overheating is a risk factor. If air conditioning is unavailable, a fan circulating air without blowing directly on the baby helps maintain a safe sleep environment.' },
+  ],
   related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'best-baby-monitor-india-2026'],
     title: 'Baby SpO2 Monitoring: What It Is, Normal Ranges, and Why It Matters',
     author: 'Deepak Singh',
@@ -248,6 +268,11 @@ export const ARTICLES = [
       </ul>
       <p>The safest and most comfortable way to monitor SpO2 in India is with a <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby monitor</a> — no socks, clips, or patches on your baby's skin. See how <a href="/blog/ai-baby-monitor-india-2026">AI baby monitors</a> combine SpO2 monitoring with breathing detection and cry analysis in one device.</p>
     `,
+  faqs: [
+    { q: 'What is a normal SpO2 level for a baby?', a: 'A healthy baby\'s SpO2 should be between 95–100%. For babies aged 1–12 months, 97–100% is normal. Sustained SpO2 levels below 94% indicate insufficient oxygen and require immediate medical attention — contact your paediatrician or emergency services right away.' },
+    { q: 'Can I monitor my baby\'s SpO2 without a wearable device?', a: 'Yes. Contactless baby monitors use advanced optical or radar sensing to estimate SpO2 from beside the crib without any clip, band, or sock on the baby\'s skin. This is more comfortable and maintains continuous monitoring even as the baby moves during sleep.' },
+    { q: 'When is SpO2 monitoring most important for babies in India?', a: 'SpO2 monitoring is most important for premature babies, babies with breathing history or NICU stays, all babies during the first 6 months (the highest SIDS risk window), babies recovering from respiratory illness, and families with a history of infant breathing disorders.' },
+  ],
   related: ['baby-breathing-patterns', 'baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026'],
     title: 'Newborn Care India: Complete First-Week Guide for New Parents',
     author: 'Deepak Singh',
@@ -292,6 +317,11 @@ export const ARTICLES = [
       </ul>
       <p>Once safe sleep is set up, a <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby breathing monitor</a> gives you continuous overnight peace of mind — watching <a href="/blog/baby-breathing-patterns">breathing patterns</a>, <a href="/blog/baby-spo2-monitoring-india">SpO2</a>, temperature, and <a href="/blog/types-of-baby-cries">cry type</a> without anything on your baby's skin. See our <a href="/blog/baby-sleep-guide-india">complete baby sleep guide India</a> for month-by-month sleep schedules.</p>
     `,
+  faqs: [
+    { q: 'How often should a newborn be fed?', a: 'Newborns need to feed 8–12 times per 24 hours — roughly every 2–3 hours. Watch for early hunger cues like rooting, sucking fists, and increased alertness before crying starts. Crying is a late hunger signal; responding earlier makes feeding calmer for both baby and parent.' },
+    { q: 'What is a safe room temperature for a newborn in India?', a: 'The ideal room temperature for a newborn is 20–22°C. Indian parents often over-bundle babies, but overheating is a genuine risk. A newborn\'s body temperature should stay between 36.5°C and 37.5°C. Anvaya Smart monitors room temperature continuously.' },
+    { q: 'What are the safe sleep guidelines for newborns in India?', a: 'Safe sleep means: always place the baby on their back on a firm flat mattress, use no soft bedding or pillows, avoid co-sleeping on adult beds with blankets, keep room temperature at 20–22°C, and maintain a smoke-free home. These align with AAP and Indian paediatric guidelines.' },
+  ],
   related: ['baby-breathing-patterns', 'types-of-baby-cries', 'baby-sleep-guide-india'],
 
   {
@@ -380,6 +410,11 @@ export const ARTICLES = [
       <h3>Which is the best AI baby monitor in India in 2026?</h3>
       <p>Anvaya Smart SENSE (₹12,999) is the most advanced AI baby monitor available in India in 2026. It is the only device offering <a href="/blog/baby-breathing-monitor-without-wearable">contactless AI breathing monitoring</a>, <a href="/blog/baby-spo2-monitoring-india">SpO₂ detection</a>, personalised <a href="/blog/types-of-baby-cries">cry analysis</a>, and on-device privacy — all with a full India warranty and free shipping. See the full <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026 comparison</a>.</p>
     `,
+  faqs: [
+    { q: 'What does an AI baby monitor actually do?', a: 'An AI baby monitor uses artificial intelligence to analyse what it sees and hears — detecting breathing patterns, identifying cry types, tracking sleep quality, and alerting parents when something needs attention. It goes far beyond basic video and audio monitoring.' },
+    { q: 'Is on-device AI processing important in a baby monitor?', a: 'Yes — critically. On-device AI processes your baby\'s video and audio locally without sending data to remote servers. Cloud-based AI raises serious privacy concerns. On-device AI also works during internet or power outages, which is essential in India\'s infrastructure context.' },
+    { q: 'How accurate is AI cry analysis for babies?', a: 'Modern AI cry analysis achieves 85–92% accuracy across trained cry types. Accuracy improves after the first week as the model learns your specific baby\'s patterns. After personalisation, it is significantly more reliable than guessing at 3am — and improves the longer you use it.' },
+  ],
   related: ['baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026', 'types-of-baby-cries'],
     title: 'Baby Breathing Monitor Without Wearable: Complete Guide for Indian Parents (2026)',
     author: 'Deepak Singh',
@@ -480,7 +515,13 @@ export const ARTICLES = [
       <p>Yes. The radar sensing used in Anvaya Smart operates at power levels measured in microwatts — thousands of times lower than a Wi-Fi router, and far below any established safety threshold for infants. It has been tested to international EMF safety standards.</p>
       <p>For a full picture of what to monitor and why, read our guides on <a href="/blog/baby-breathing-patterns">normal baby breathing patterns</a>, <a href="/blog/baby-spo2-monitoring-india">baby SpO2 monitoring</a>, and <a href="/blog/ai-baby-monitor-india-2026">how AI baby monitors work</a>. Ready to buy? See the <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026 comparison</a>.</p>
     `,
-  related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'], ──────────────────────────────────────────────────────────
+  faqs: [
+    { q: 'How does a contactless baby breathing monitor work?', a: 'Contactless baby breathing monitors use low-power radar to detect the micro-movements caused by the chest rising and falling with each breath. The radar signal bounces off the baby\'s body and AI calculates breathing rate and pattern from up to 90cm away — nothing touches the baby.' },
+    { q: 'Why are wearable baby monitors problematic for Indian conditions?', a: 'Wearable monitors cause rashes and irritation in India\'s heat and humidity, frequently fall off during sleep triggering false alarms, disturb baby sleep with physical sensation on skin, and are mostly not officially available in India — requiring expensive imports above ₹35,000 with no local support.' },
+    { q: 'Is radar sensing safe for newborns?', a: 'Yes. Baby monitor radar operates at power levels measured in microwatts — thousands of times lower than a Wi-Fi router and far below any established safety threshold for infants. It is non-ionising, does not heat tissue, and has been tested to international EMF safety standards.' },
+  ],
+  related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'],
+// ──────────────────────────────────────────────────────────
 export const CATEGORIES = [
   'All', 'Baby Health', 'Baby Wellness', 'Baby Sleep', 'Buying Guide', 'Newborn Care', 'Baby Technology'
 ];

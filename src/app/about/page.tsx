@@ -31,9 +31,28 @@ const values = [
   { icon: Microscope, title: 'Science-backed', desc: 'Built on published research, academic partnerships, and rigorous testing.' },
 ];
 
+function PersonSchema() {
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': 'https://nxmplis.com/about#deepak-singh',
+      name: 'Deepak Singh',
+      url: 'https://nxmplis.com/about',
+      jobTitle: 'Founder & CEO',
+      description: 'Engineer and parent. Built Anvaya Smart after experiencing first-hand the anxiety of monitoring a newborn. 7+ years in AI sensing systems. IIT Hyderabad alumni.',
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad', url: 'https://iith.ac.in' },
+      worksFor: { '@id': 'https://nxmplis.com/#organization' },
+      knowsAbout: ['Radar Sensing', 'AI Signal Processing', 'Infant Wellness Monitoring', 'Baby Health Technology', 'Contactless Vital Sign Detection'],
+      sameAs: ['https://www.linkedin.com/company/nxmliscore'],
+    })}} />
+  );
+}
+
 export default function AboutPage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
+      <PersonSchema />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-[#f5ede0] via-[#faf8f5] to-[#e8f2ee] py-20">

@@ -63,6 +63,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     <div className="bg-[#faf8f5] min-h-screen">
       <ArticleSchema title={article.title} description={article.excerpt} url={`${BASE}/blog/${article.slug}`} image={`${BASE}${article.imageUrl}`} datePublished={article.date} dateModified={article.updatedDate} author={article.author} />
       <BreadcrumbSchema items={[{ name: 'Home', url: BASE }, { name: 'Blog', url: `${BASE}/blog` }, { name: article.title, url: `${BASE}/blog/${article.slug}` }]} />
+      {(article as any).faqs && <FAQSchema faqs={(article as any).faqs} />}
 
       {/* Hero */}
       <header className="bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] py-14">
