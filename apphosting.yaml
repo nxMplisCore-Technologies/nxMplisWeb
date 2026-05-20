@@ -3,3 +3,10 @@
 
 runConfig:
   maxInstances: 1
+
+env:
+  - variable: CRY_API_URL
+    value: https://cry-classifier-1007232493479.asia-south1.run.app
+    availability:
+      - BUILD
+      - RUNTIME
