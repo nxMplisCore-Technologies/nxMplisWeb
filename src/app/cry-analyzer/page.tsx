@@ -59,42 +59,53 @@ const RELIABILITY_BADGE: Record<string, { bg: string; text: string; label: strin
   LOW:    { bg: 'bg-red-100',    text: 'text-red-700',    label: 'LOW' },
 };
 
-// ─── Background scenes ────────────────────────────────────────────────────────
-// Uses curated Unsplash photos (free, no key needed via direct URLs)
-const BG_SCENES: Record<AppState, { images: string[]; overlay: string }> = {
+// ─── Background scenes — local images from public/cry-analyzer/ ───────────────
+// sad baby    → idle + uploading  (baby crying, needs help)
+// pacifying   → processing        (parent soothing while AI works)
+// happy baby  → result            (baby is happy after advice)
+const BG_SCENES: Record<AppState, { images: string[]; opacity: number }> = {
   idle: {
     images: [
-      'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=1920&q=80', // cute baby
-      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1920&q=80', // baby close-up
+      '/cry-analyzer/sad/1.jpg',
+      '/cry-analyzer/sad/2.jpg',
+      '/cry-analyzer/sad/3.jpg',
+      '/cry-analyzer/sad/4.jpg',
     ],
-    overlay: 'bg-black/50',
+    opacity: 0.35,
   },
   uploading: {
     images: [
-      'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1920&q=80', // baby crying
-      'https://images.unsplash.com/photo-1567863351483-5b09b48c7b12?w=1920&q=80', // crying baby
+      '/cry-analyzer/sad/1.jpg',
+      '/cry-analyzer/sad/2.jpg',
+      '/cry-analyzer/sad/3.jpg',
+      '/cry-analyzer/sad/4.jpg',
     ],
-    overlay: 'bg-black/55',
+    opacity: 0.30,
   },
   processing: {
     images: [
-      'https://images.unsplash.com/photo-1578307990134-a8d3e3b35e0e?w=1920&q=80', // parent soothing baby
-      'https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?w=1920&q=80', // parent holding baby
+      '/cry-analyzer/pacifying/1.jpg',
+      '/cry-analyzer/pacifying/2.jpg',
+      '/cry-analyzer/pacifying/3.jpg',
+      '/cry-analyzer/pacifying/4.jpg',
     ],
-    overlay: 'bg-black/55',
+    opacity: 0.30,
   },
   result: {
     images: [
-      'https://images.unsplash.com/photo-1519689373023-dd07c7988603?w=1920&q=80', // happy baby
-      'https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=1920&q=80', // laughing baby
+      '/cry-analyzer/happy/1.jpg',
+      '/cry-analyzer/happy/2.jpg',
+      '/cry-analyzer/happy/3.jpg',
+      '/cry-analyzer/happy/4.jpg',
     ],
-    overlay: 'bg-black/45',
+    opacity: 0.35,
   },
   error: {
     images: [
-      'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=1920&q=80',
+      '/cry-analyzer/sad/1.jpg',
+      '/cry-analyzer/sad/2.jpg',
     ],
-    overlay: 'bg-black/60',
+    opacity: 0.25,
   },
 };
 
@@ -126,11 +137,17 @@ export default function CryAnalyzerPage() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Cycle background images
+  // Cycle background images — randomly pick next index
   useEffect(() => {
     const images = BG_SCENES[state].images;
     if (images.length <= 1) return;
-    const id = setInterval(() => setBgIndex(i => (i + 1) % images.length), 5000);
+    const id = setInterval(() => {
+      setBgIndex(prev => {
+        let next = Math.floor(Math.random() * images.length);
+        if (next === prev) next = (next + 1) % images.length;
+        return next;
+      });
+    }, 5000);
     return () => clearInterval(id);
   }, [state]);
 
@@ -218,21 +235,20 @@ export default function CryAnalyzerPage() {
     setRecording(false);
   };
 
-  // ── Background ─────────────────────────────────────────────────────────────
   const scene = BG_SCENES[state];
   const bgUrl = scene.images[bgIndex % scene.images.length];
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col">
 
-      {/* Background image with smooth crossfade */}
+      {/* Background image — semi-transparent so content stays readable */}
       <div
         key={bgUrl}
         className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-        style={{ backgroundImage: `url(${bgUrl})` }}
+        style={{ backgroundImage: `url(${bgUrl})`, opacity: scene.opacity }}
       />
-      {/* Dark overlay */}
-      <div className={`absolute inset-0 ${scene.overlay} transition-all duration-1000`} />
+      {/* Dark base so text is always readable regardless of image brightness */}
+      <div className="absolute inset-0 bg-[#0a0a0f]" style={{ zIndex: -1 }} />
 
       {/* Nav bar */}
       <nav className="relative z-10 flex items-center justify-between px-6 py-5">
