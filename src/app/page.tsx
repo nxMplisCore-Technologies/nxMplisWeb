@@ -386,6 +386,17 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              {/* Cry Analyzer CTA */}
+              <div className="mb-6 p-4 bg-[#faf8f5] border border-[#e8ddd4] rounded-2xl flex items-center justify-between gap-4">
+                <div>
+                  <p className="font-bold text-sm text-foreground">🎙 Try it yourself — free demo</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">Upload a baby cry recording and see the AI in action.</p>
+                </div>
+                <Button asChild size="sm" className="bg-accent text-black hover:bg-accent/90 gap-1.5 rounded-xl shrink-0 font-bold px-4">
+                  <Link href="/cry-analyzer">Analyze Now <ArrowRight className="w-3.5 h-3.5" /></Link>
+                </Button>
+              </div>
+
               <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
                 <Link href="/early-access">Get Early Access <ArrowRight className="w-4 h-4" /></Link>
               </Button>
