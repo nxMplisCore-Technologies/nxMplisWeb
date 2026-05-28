@@ -6,7 +6,7 @@ runConfig:
 
 env:
   - variable: CRY_API_URL
-    value: https://cry-classifier-1007232493479.asia-south1.run.app
+    value: https://cry-classifier-832843143406.asia-south1.run.app
     availability:
       - BUILD
       - RUNTIME

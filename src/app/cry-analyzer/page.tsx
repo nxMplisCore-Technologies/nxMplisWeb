@@ -244,8 +244,8 @@ export default function CryAnalyzerPage() {
       {/* Background image — semi-transparent so content stays readable */}
       <div
         key={bgUrl}
-        className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-        style={{ backgroundImage: `url(${bgUrl})`, opacity: scene.opacity }}
+        className="absolute inset-0 bg-center bg-no-repeat transition-opacity duration-1000"
+        style={{ backgroundImage: `url(${bgUrl})`, backgroundSize: '100% 100%', opacity: scene.opacity }}
       />
       {/* Dark base so text is always readable regardless of image brightness */}
       <div className="absolute inset-0 bg-[#0a0a0f]" style={{ zIndex: -1 }} />
