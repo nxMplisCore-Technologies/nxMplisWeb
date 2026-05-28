@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, ChevronDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { FAQSchema } from '@/components/seo/JsonLd';
+import CryAnalyzerWidget from '@/components/cry-analyzer/CryAnalyzerWidget';
 
 /* ─────────────────── HOOKS ─────────────────── */
 function useReveal(options?: { from?: 'left' | 'right' | 'scale' }) {
@@ -214,8 +215,8 @@ export default function Home() {
         <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/8 pointer-events-none" />
         <div className="absolute right-20 top-20 w-[280px] h-[280px] rounded-full bg-primary/4 blur-3xl pointer-events-none" />
 
-        <div className="container mx-auto px-4 py-28 lg:py-0">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="container mx-auto px-4 py-28 lg:py-16">
+          <div className="grid lg:grid-cols-[1fr_300px_1fr] gap-10 xl:gap-14 items-center">
 
             {/* LEFT copy */}
             <div ref={heroRef}>
@@ -223,7 +224,7 @@ export default function Home() {
                 <Sparkles className="w-3 h-3 animate-spin-slow" />
                 Early Access Open — First 100 families save ₹2,000
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-[68px] font-bold tracking-tight leading-[1.08] mb-5 animate-fade-up delay-1">
+              <h1 className="text-5xl md:text-6xl lg:text-[58px] font-bold tracking-tight leading-[1.08] mb-5 animate-fade-up delay-1">
                 India&apos;s #1 AI<br />Baby Wellness Pod.<br />
                 <span className="text-gradient">Zero Contact.</span>
               </h1>
@@ -248,14 +249,29 @@ export default function Home() {
               </div>
             </div>
 
+            {/* MIDDLE — Purple Cry Analyzer Widget */}
+            <div className="animate-fade-up delay-3 flex flex-col items-center gap-3 order-3 lg:order-2">
+              {/* Eye-catching label */}
+              <div className="flex flex-col items-center gap-1.5">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
+                  style={{ background: 'linear-gradient(90deg,#5b21b6,#7c3aed,#a855f7)', color: '#fff', boxShadow: '0 0 20px rgba(124,58,237,0.45)' }}>
+                  🧠 Try AI Live — Free
+                </div>
+                <p className="text-[11px] text-slate-500 font-medium text-center">Upload a cry recording or record live</p>
+              </div>
+              <div className="w-full">
+                <CryAnalyzerWidget variant="purple" />
+              </div>
+            </div>
+
             {/* RIGHT — product + live widget */}
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-6 order-2 lg:order-3">
               <div className="relative">
                 {/* Halo rings */}
                 <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
                 <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
-                <div className="relative w-72 lg:w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
-                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 288px, 320px" />
+                <div className="relative w-64 lg:w-72 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
+                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 256px, 288px" />
                   {/* Overlay badge */}
                   <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
                     <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
@@ -386,6 +402,17 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              {/* Cry Analyzer CTA */}
+              <div className="mb-6 p-4 bg-[#faf8f5] border border-[#e8ddd4] rounded-2xl flex items-center justify-between gap-4">
+                <div>
+                  <p className="font-bold text-sm text-foreground">🎙 Try it yourself — free demo</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">Upload a baby cry recording and see the AI in action.</p>
+                </div>
+                <Button asChild size="sm" className="bg-accent text-black hover:bg-accent/90 gap-1.5 rounded-xl shrink-0 font-bold px-4">
+                  <Link href="/cry-analyzer">Analyze Now <ArrowRight className="w-3.5 h-3.5" /></Link>
+                </Button>
+              </div>
+
               <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
                 <Link href="/early-access">Get Early Access <ArrowRight className="w-4 h-4" /></Link>
               </Button>
