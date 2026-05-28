@@ -110,12 +110,16 @@ const BG_SCENES: Record<AppState, { images: string[]; opacity: number }> = {
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-function formatConfidence(v: number) {
-  return `${(v * 100).toFixed(1)}%`;
+// Normalize probabilities to always sum to 100, regardless of API scale (0-1 or 0-100)
+function normToHundred(probs: Record<string, number>): Array<[string, number]> {
+  const entries = Object.entries(probs).map(([k, v]) => [k, Number(v) || 0] as [string, number]);
+  const sum = entries.reduce((a, [, v]) => a + v, 0);
+  const scale = sum > 0 ? 100 / sum : 1;
+  return entries.map(([k, v]) => [k, v * scale] as [string, number]).sort((a, b) => b[1] - a[1]);
 }
 
 function sortedProbs(probs: Record<string, number>) {
-  return Object.entries(probs).sort((a, b) => b[1] - a[1]);
+  return normToHundred(probs);
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -412,7 +416,7 @@ export default function CryAnalyzerPage() {
                             </span>
                           </div>
                           <p className="text-white/60 text-sm mt-0.5">
-                            {formatConfidence(result.confidence)} confidence
+                            {(result.confidence * 100).toFixed(1)}% confidence
                           </p>
                         </div>
                       </div>
@@ -435,12 +439,12 @@ export default function CryAnalyzerPage() {
                             <span className="text-white/80 text-xs font-medium">
                               {meta?.emoji} {meta?.label ?? cls}
                             </span>
-                            <span className="text-white/60 text-xs">{formatConfidence(prob)}</span>
+                            <span className="text-white/60 text-xs">{prob.toFixed(1)}%</span>
                           </div>
                           <div className="w-full bg-white/10 rounded-full h-1.5">
                             <div
                               className="h-1.5 rounded-full transition-all duration-700"
-                              style={{ width: `${prob * 100}%`, backgroundColor: meta?.color ?? '#7DF9FF' }}
+                              style={{ width: `${Math.min(100, prob)}%`, backgroundColor: meta?.color ?? '#7DF9FF' }}
                             />
                           </div>
                         </div>
