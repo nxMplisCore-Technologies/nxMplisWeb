@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Upload, Mic, MicOff, Loader2, RotateCcw, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { processRecordedAudio } from '@/lib/audioProcessor';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type AppState = 'idle' | 'uploading' | 'processing' | 'result' | 'error';
@@ -197,15 +198,28 @@ export default function CryAnalyzerPage() {
   // ── Microphone recording ───────────────────────────────────────────────────
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+          channelCount: 1,
+        },
+      });
       const mr = new MediaRecorder(stream);
       chunksRef.current = [];
       mr.ondataavailable = e => chunksRef.current.push(e.data);
-      mr.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
-        const file = new File([blob], 'recording.webm', { type: 'audio/webm' });
+      mr.onstop = async () => {
         stream.getTracks().forEach(t => t.stop());
-        analyze(file);
+        setState('processing');
+        const rawBlob = new Blob(chunksRef.current);
+        const result = await processRecordedAudio(rawBlob);
+        if (!result.ok) {
+          setError(result.error.message);
+          setState('error');
+          return;
+        }
+        analyze(result.file);
       };
       mr.start();
       mediaRecorderRef.current = mr;
