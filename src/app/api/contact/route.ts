@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
+const MAKE_WEBHOOK = 'https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b';
+
 const inquiryLabels: Record<string, string> = {
   'early-access': 'Early Access / Product',
   'investor': 'Investor Relations',
@@ -19,6 +21,19 @@ export async function POST(req: NextRequest) {
   // Log every submission so it's always visible in Vercel logs
   console.log('=== CONTACT FORM SUBMISSION ===');
   console.log({ fullName, email, phone, inquiryType, message });
+
+  // Fire-and-forget: forward to Make.com webhook so it appears in the same sheet
+  fetch(MAKE_WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: fullName,
+      whatsapp: phone || '',
+      source: 'contact-form',
+      product: inquiryType,
+      message,
+    }),
+  }).catch((err) => console.error('[contact] Make.com webhook error:', err));
 
   if (!process.env.RESEND_API_KEY) {
     // No API key set yet — still return success so users aren't blocked
@@ -55,7 +70,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: 'Anvaya Smart <onboarding@resend.dev>',
       to: ['nxmpliscore@gmail.com', 'admin@nxmplis.com'],
-      replyTo: email,
+      replyTo: [email],
       subject: `[${inquiryLabels[inquiryType] || 'Contact'}] from ${fullName}`,
       html,
     });

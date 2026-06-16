@@ -141,8 +141,9 @@ export default function Home() {
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
     try {
-      await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, whatsapp, source: 'homepage', product: 'Anvaya Smart' }),
       });
     } catch (_) { }
