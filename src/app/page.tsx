@@ -2,27 +2,46 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, Quote, Shield, Zap, Lock } from 'lucide-react';
+import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Moon, Heart, Star, Quote, Shield, Zap, Lock, Wifi, Camera, Music, Bell } from 'lucide-react';
 import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { useToast } from '@/hooks/use-toast';
 
-/* ─────────────────── HOOKS ─────────────────── */
-function useReveal(options?: { from?: 'left' | 'right' | 'scale' }) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (options?.from) el.classList.add(`from-${options.from}`);
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect(); }
-    }, { threshold: 0.12 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [options?.from]);
-  return ref;
+/* ─────────────────── ANIMATION VARIANTS ─────────────────── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, delay: i * 0.1, ease: [0.22, 0.68, 0, 1.2] } }),
+};
+const fadeLeft = {
+  hidden: { opacity: 0, x: -36 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.68, 0, 1.2] } },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 36 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.68, 0, 1.2] } },
+};
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.92 },
+  visible: (i = 0) => ({ opacity: 1, scale: 1, transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 0.68, 0, 1.2] } }),
+};
+
+/* ─────────────────── SECTION WRAPPER ─────────────────── */
+function Reveal({ children, variant = fadeUp, custom = 0, className = '' }: {
+  children: React.ReactNode;
+  variant?: typeof fadeUp;
+  custom?: number;
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  return (
+    <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={variant} custom={custom} className={className}>
+      {children}
+    </motion.div>
+  );
 }
 
 /* ─────────────────── LIVE MONITOR ─────────────────── */
@@ -131,11 +150,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const r1 = useReveal(), r2 = useReveal({ from: 'left' }), r2r = useReveal({ from: 'right' });
-  const r3 = useReveal({ from: 'right' }), r3l = useReveal({ from: 'left' });
-  const r4 = useReveal({ from: 'left' }), r4r = useReveal({ from: 'right' });
-  const r5 = useReveal({ from: 'right' }), r5l = useReveal({ from: 'left' });
-  const r6 = useReveal(), r6b = useReveal(), r7 = useReveal();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -267,30 +281,62 @@ export default function Home() {
               { n: 0, suffix: '', label: 'Zero Contact', sub: 'Nothing on baby\'s skin. Ever.' },
               { n: 100, suffix: '%', label: 'On-Device Privacy', sub: 'No health data ever leaves your home' },
               { n: 24, suffix: '/7', label: 'Silent Watch', sub: 'Continuous. Non-invasive. Always on.' },
-            ].map(s => (
-              <div key={s.label} className="group cursor-default">
-                <div className="text-4xl font-bold text-primary mb-1 tabular-nums transition-transform group-hover:scale-110 duration-300">
-                  <AnimatedNumber target={s.n} suffix={s.suffix} />
+            ].map((s, i) => (
+              <Reveal key={s.label} variant={scaleIn} custom={i}>
+                <div className="group cursor-default">
+                  <div className="text-4xl font-bold text-primary mb-1 tabular-nums transition-transform group-hover:scale-110 duration-300">
+                    <AnimatedNumber target={s.n} suffix={s.suffix} />
+                  </div>
+                  <div className="font-semibold text-sm">{s.label}</div>
+                  <div className="text-xs text-muted-foreground mt-1">{s.sub}</div>
                 </div>
-                <div className="font-semibold text-sm">{s.label}</div>
-                <div className="text-xs text-muted-foreground mt-1">{s.sub}</div>
-              </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════ HOW IT WORKS ════════════ */}
+      <section className="py-24 bg-[#faf8f5] overflow-hidden">
+        <div className="container mx-auto px-4">
+          <Reveal variant={fadeUp}>
+            <div className="text-center mb-16">
+              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">How It Works</p>
+              <h2 className="text-4xl font-bold mb-3">Setup in 2 minutes. Peace of mind forever.</h2>
+              <p className="text-muted-foreground text-lg max-w-lg mx-auto">No wearables. No wires on baby. Just place Anvaya in the nursery and it starts watching.</p>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {/* connector line desktop */}
+            <div className="hidden md:block absolute top-10 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
+            {[
+              { step: '01', icon: Wifi, title: 'Place & Connect', desc: 'Set Anvaya on a shelf, table, or wall bracket — point it at your baby. Connect to your home Wi-Fi in the app. Done.' },
+              { step: '02', icon: Activity, title: 'AI Starts Watching', desc: 'Anvaya\'s sensors begin tracking breathing, SpO₂, temperature, sound and movement. Instantly. Contactlessly.' },
+              { step: '03', icon: Bell, title: 'You Sleep. Anvaya Watches', desc: 'Get real-time alerts only when needed. See live vitals, cry analysis, and a full daily timeline — all in the app.' },
+            ].map((s, i) => (
+              <Reveal key={s.step} variant={fadeUp} custom={i} className="relative">
+                <div className="bg-white rounded-2xl p-7 border border-border shadow-sm hover:shadow-md transition-shadow group">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+                    <s.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">{s.step}</div>
+                  <h3 className="text-lg font-bold mb-2">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* ════════════ FEATURE 1 — SLEEP ANALYSIS ════════════ */}
-      <section className="py-28 bg-[#faf8f5] overflow-hidden">
+      <section className="py-28 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Phone mockup — left */}
-            <div ref={r2} className="reveal from-left flex justify-center lg:justify-start">
+            <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-primary/8 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-trends.jpg" alt="Anvaya Smart app — Sleep & Health Trends showing heart rate, temperature and SpO2" className="animate-float-slow relative z-10" objectPosition="top" />
-                {/* Floating stat card */}
                 <div className="absolute -right-8 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float" style={{ animationDelay: '1s' }}>
                   <div className="text-xs text-muted-foreground font-medium mb-1">Sleep Score</div>
                   <div className="text-3xl font-bold text-primary leading-none">85</div>
@@ -302,10 +348,8 @@ export default function Home() {
                   <div className="text-[10px] text-green-600 font-semibold">Normal range ✓</div>
                 </div>
               </div>
-            </div>
-
-            {/* Right copy */}
-            <div ref={r2r} className="reveal from-right">
+            </Reveal>
+            <Reveal variant={fadeRight}>
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Sleep & Wellness Analysis</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -320,16 +364,16 @@ export default function Home() {
                   { icon: Moon, title: 'Deep sleep detection', desc: 'Know when your baby enters and exits each sleep cycle.' },
                   { icon: Heart, title: 'Heart rate trends', desc: 'Weekly averages, highs and lows — all tracked automatically.' },
                   { icon: Activity, title: 'SpO2 monitoring', desc: 'Blood oxygen tracked contactlessly. Alerts when it matters.' },
-                ].map(f => (
-                  <div key={f.title} className="flex items-start gap-4">
+                ].map((f, i) => (
+                  <motion.div key={f.title} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.5 }} className="flex items-start gap-4">
                     <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <f.icon className="w-4.5 h-4.5 text-primary" style={{ width: 18, height: 18 }} />
+                      <f.icon className="text-primary" style={{ width: 18, height: 18 }} />
                     </div>
                     <div>
                       <div className="font-bold text-sm mb-0.5">{f.title}</div>
                       <div className="text-sm text-muted-foreground leading-relaxed">{f.desc}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <LeadModalTrigger source="homepage-feature-sleep" product="Anvaya Smart">
@@ -337,18 +381,16 @@ export default function Home() {
                   Reserve Anvaya Smart <ArrowRight className="w-4 h-4" />
                 </Button>
               </LeadModalTrigger>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ════════════ FEATURE 2 — CRY ANALYSIS ════════════ */}
-      <section className="py-28 bg-white overflow-hidden">
+      <section className="py-28 bg-[#faf8f5] overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Left copy */}
-            <div ref={r3l} className="reveal from-left lg:order-1 order-2">
+            <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Cry Intelligence</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -363,14 +405,14 @@ export default function Home() {
                   { emoji: '🍼', title: 'Hungry cry', desc: 'Rhythmic and repetitive. Anvaya flags it before it escalates.' },
                   { emoji: '😴', title: 'Tired cry', desc: 'Whiny and intermittent. Know when to soothe vs. wait.' },
                   { emoji: '😣', title: 'Discomfort cry', desc: 'High-pitched and continuous. Alerts you immediately.' },
-                ].map(f => (
-                  <div key={f.title} className="flex items-start gap-4 bg-[#faf8f5] rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
+                ].map((f, i) => (
+                  <motion.div key={f.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="flex items-start gap-4 bg-white rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
                     <span className="text-2xl shrink-0">{f.emoji}</span>
                     <div>
                       <div className="font-bold text-sm mb-0.5">{f.title}</div>
                       <div className="text-sm text-muted-foreground">{f.desc}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
@@ -378,14 +420,11 @@ export default function Home() {
                   Get Early Access <ArrowRight className="w-4 h-4" />
                 </Button>
               </LeadModalTrigger>
-            </div>
-
-            {/* Phone mockup — right */}
-            <div ref={r3} className="reveal from-right lg:order-2 order-1 flex justify-center lg:justify-end">
+            </Reveal>
+            <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-[#fdf0ea]/60 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" objectPosition="top" />
-                {/* Floating cards */}
                 <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
                   <div className="text-[10px] text-muted-foreground font-medium">Cry detected</div>
                   <div className="text-sm font-bold text-[#e8957a] mt-0.5">Hungry cry 🍼</div>
@@ -397,7 +436,7 @@ export default function Home() {
                   <div className="text-[10px] text-green-600 font-semibold">Quiet room ✓</div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -406,13 +445,10 @@ export default function Home() {
       <section className="py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Phone — left */}
-            <div ref={r4} className="reveal from-left flex justify-center lg:justify-start">
+            <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-[#e4eeea] to-transparent blur-2xl" />
                 <PhoneMockup src="/app-timeline.jpg" alt="Anvaya app — daily timeline showing sleeping, feeding and wake-up events" className="animate-float-slow relative z-10" objectPosition="top" />
-                {/* Floating cards */}
                 <div className="absolute -right-8 top-12 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
                   <div className="text-[10px] text-muted-foreground">10:30 AM</div>
                   <div className="text-sm font-bold text-primary mt-0.5">Sleeping 😴</div>
@@ -423,10 +459,8 @@ export default function Home() {
                   <div className="text-sm font-bold text-[#4a7c6f]">3 new updates ✨</div>
                 </div>
               </div>
-            </div>
-
-            {/* Right copy */}
-            <div ref={r4r} className="reveal from-right">
+            </Reveal>
+            <Reveal variant={fadeRight}>
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Daily Timeline</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -434,15 +468,15 @@ export default function Home() {
                 <span className="text-gradient">understood.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                From the first wake-up to the last sleep cycle — Anvaya builds a complete picture of your baby's day. Sleep patterns, feeding, activity, moods — all in one timeline.
+                From the first wake-up to the last sleep cycle — Anvaya builds a complete picture of your baby&apos;s day. Sleep patterns, feeding, activity, moods — all in one timeline.
               </p>
               <div className="space-y-3 mb-10">
                 {[
                   { time: '10:30 AM', event: 'Sleeping', detail: 'Detected deep sleep cycle', dot: '#4a7c6f' },
                   { time: '08:15 AM', event: 'Feeding 🍼', detail: 'Bottle, 150ml', dot: '#e8957a' },
                   { time: '07:00 AM', event: 'Woke Up ☀️', detail: 'Good mood detected', dot: '#f59e0b' },
-                ].map(t => (
-                  <div key={t.time} className="flex items-start gap-4 bg-white/80 rounded-xl p-4 border border-white/60 shadow-sm">
+                ].map((t, i) => (
+                  <motion.div key={t.time} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="flex items-start gap-4 bg-white/80 rounded-xl p-4 border border-white/60 shadow-sm">
                     <div className="w-2 h-2 rounded-full mt-2 shrink-0" style={{ background: t.dot }} />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
@@ -451,7 +485,7 @@ export default function Home() {
                       </div>
                       <div className="text-xs text-muted-foreground mt-0.5">{t.detail}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <LeadModalTrigger source="homepage-feature-timeline" product="Anvaya Smart">
@@ -459,7 +493,7 @@ export default function Home() {
                   Reserve Your Anvaya <ArrowRight className="w-4 h-4" />
                 </Button>
               </LeadModalTrigger>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -468,9 +502,7 @@ export default function Home() {
       <section className="py-28 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Left copy */}
-            <div ref={r5l} className="reveal from-left lg:order-1 order-2">
+            <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Live Monitoring</p>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -482,16 +514,16 @@ export default function Home() {
               </p>
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {[
-                  { icon: '📹', title: 'HD Video call', desc: 'See and speak to your baby live' },
-                  { icon: '🎵', title: 'Remote lullabies', desc: 'Play music from anywhere' },
-                  { icon: '🔔', title: 'Instant alerts', desc: 'Motion, cry, or unusual sound' },
-                  { icon: '📸', title: 'Capture moments', desc: 'Auto-save precious memories' },
-                ].map(f => (
-                  <div key={f.title} className="bg-[#faf8f5] rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
-                    <div className="text-2xl mb-2">{f.icon}</div>
+                  { icon: Camera, title: 'HD Video call', desc: 'See and speak to your baby live' },
+                  { icon: Music, title: 'Remote lullabies', desc: 'Play music from anywhere' },
+                  { icon: Bell, title: 'Instant alerts', desc: 'Motion, cry, or unusual sound' },
+                  { icon: Heart, title: 'Capture moments', desc: 'Auto-save precious memories' },
+                ].map((f, i) => (
+                  <motion.div key={f.title} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.4 }} className="bg-[#faf8f5] rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
+                    <f.icon className="w-5 h-5 text-primary mb-2" />
                     <div className="font-bold text-sm mb-0.5">{f.title}</div>
                     <div className="text-xs text-muted-foreground leading-relaxed">{f.desc}</div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <LeadModalTrigger source="homepage-feature-live" product="Anvaya Smart">
@@ -499,14 +531,11 @@ export default function Home() {
                   Get Early Access <ArrowRight className="w-4 h-4" />
                 </Button>
               </LeadModalTrigger>
-            </div>
-
-            {/* Phone — right */}
-            <div ref={r5} className="reveal from-right lg:order-2 order-1 flex justify-center lg:justify-end">
+            </Reveal>
+            <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-primary/8 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-home.jpg" alt="Anvaya app — live monitoring dashboard with temperature, humidity and video stream" className="animate-float-slow relative z-10" />
-                {/* Floating cards */}
                 <div className="absolute -left-10 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="live-dot" />
@@ -521,19 +550,21 @@ export default function Home() {
                   <div className="text-[10px] text-green-600 font-semibold">Perfect ✓</div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ════════════ PRODUCT LINEUP ════════════ */}
       <section className="py-24 bg-[#faf8f5]">
-        <div ref={r6b} className="reveal container mx-auto px-4">
-          <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
-            <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
-          </div>
+        <div className="container mx-auto px-4">
+          <Reveal variant={fadeUp}>
+            <div className="text-center mb-14">
+              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
+              <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
+            </div>
+          </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               { name: 'CORE', tagline: 'Simple. Smart. Reliable.', price: '₹8,999', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
@@ -541,8 +572,9 @@ export default function Home() {
               { name: 'PULSE', tagline: 'Stay connected always.', price: '₹15,999', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#3b82f6', features: ['Activity Tracking', 'Temp & Humidity', 'Safety Alerts', 'Real-Time Alerts'] },
               { name: 'OMNI', tagline: 'Total awareness.', price: '₹19,999', bg: '', border: '#2d4a3e', color: '#fbbf24', features: ['Predictive AI', '360° Coverage', 'Health Reports', 'All SENSE+'], dark: true },
             ].map((p, i) => (
-              <Link key={p.name} href={`/anvaya#${p.name.toLowerCase()}`}
-                className={`card-hover group block rounded-2xl border p-6 relative overflow-hidden ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
+              <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
+              <Link href={`/anvaya#${p.name.toLowerCase()}`}
+                className={`card-hover group block rounded-2xl border p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
                 style={{ borderColor: p.border }}>
                 {p.popular && (
                   <div className="absolute top-3 right-3 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Best Seller</div>
@@ -562,6 +594,7 @@ export default function Home() {
                   Explore <ArrowRight className="w-3 h-3" />
                 </div>
               </Link>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -569,7 +602,8 @@ export default function Home() {
 
       {/* ════════════ TESTIMONIALS ════════════ */}
       <section className="py-24 bg-gradient-to-b from-white to-[#faf8f5] overflow-hidden">
-        <div ref={r6} className="reveal container mx-auto px-4">
+        <div className="container mx-auto px-4">
+          <Reveal variant={fadeUp}>
           <div className="text-center mb-14">
             <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Parent Stories</p>
             <h2 className="text-4xl font-bold mb-3">500+ families sleep better every night.</h2>
@@ -579,6 +613,7 @@ export default function Home() {
               <span className="text-muted-foreground text-sm">· 500+ verified reviews</span>
             </div>
           </div>
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
@@ -606,8 +641,8 @@ export default function Home() {
                 rating: 5,
                 avatar: '👩🏾‍⚕️',
               },
-            ].map((t) => (
-              <div key={t.name} className={`testimonial-card p-6 relative ${t.featured ? 'ring-2 ring-primary/30' : ''}`}>
+            ].map((t, i) => (
+              <motion.div key={t.name} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6, ease: [0.22, 0.68, 0, 1.2] }} className={`testimonial-card p-6 relative ${t.featured ? 'ring-2 ring-primary/30' : ''}`}>
                 {t.featured && (
                   <div className="absolute -top-3 left-6 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full">Most Helpful</div>
                 )}
@@ -623,7 +658,7 @@ export default function Home() {
                     <div className="text-xs text-muted-foreground">{t.role} · {t.location}</div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -678,7 +713,7 @@ export default function Home() {
       {/* ════════════ LEAD CAPTURE ════════════ */}
       <section className="py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] relative overflow-hidden">
         <div className="absolute inset-0 noise pointer-events-none opacity-40" />
-        <div ref={r7} className="reveal container mx-auto px-4 relative">
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/80 border border-primary/20 rounded-full px-4 py-1.5 mb-7 text-xs text-primary font-bold shadow-sm">
               <Sparkles className="w-3 h-3 animate-spin-slow" />
