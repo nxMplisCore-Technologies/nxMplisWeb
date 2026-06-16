@@ -6,7 +6,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone, MessageCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone, MessageCircle, Quote } from 'lucide-react';
 import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { cn } from '@/lib/utils';
 
@@ -155,14 +156,14 @@ export default function AnvayaPage() {
 
           {/* LEFT — Image + model tabs + features */}
           <div>
-            {/* Model selector tabs */}
-            <div className="flex gap-2 mb-6 flex-wrap">
+            {/* Model selector tabs — horizontally scrollable on mobile */}
+            <div className="flex gap-2 mb-6 overflow-x-auto pb-1 snap-x scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
               {products.map((prod, i) => (
                 <button
                   key={prod.id}
                   onClick={() => setSelected(i)}
                   className={cn(
-                    'flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all',
+                    'flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all snap-start shrink-0 min-h-[44px]',
                     selected === i
                       ? 'border-current shadow-md scale-105'
                       : 'border-[#e2dbd4] bg-white text-muted-foreground hover:border-gray-300'
@@ -217,13 +218,13 @@ export default function AnvayaPage() {
             <div className="mt-8">
               <h2 className="text-xl font-bold mb-4">What your {p.fullName} baby wellness pod monitors</h2>
               <div className="grid sm:grid-cols-2 gap-3">
-                {p.features.map(f => (
-                  <div key={f.text} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-[#e2dbd4]">
+                {p.features.map((f, i) => (
+                  <motion.div key={f.text} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08, duration: 0.4 }} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-[#e2dbd4] hover:shadow-sm transition-shadow">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{background: p.bgLight}}>
-                      <f.icon className="w-4.5 h-4.5" style={{color: p.color, width: 18, height: 18}} />
+                      <f.icon style={{color: p.color, width: 18, height: 18}} />
                     </div>
                     <span className="text-sm font-medium">{f.text}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -244,28 +245,29 @@ export default function AnvayaPage() {
             {/* Reviews */}
             <div className="mt-8">
               <div className="flex items-center gap-3 mb-5">
-                <h2 className="text-xl font-bold">Customer Reviews</h2>
+                <h2 className="text-xl font-bold">Pilot Family Feedback</h2>
                 <div className="flex items-center gap-1">
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
                   <span className="text-sm font-semibold ml-1">4.9</span>
-                  <span className="text-xs text-muted-foreground">(47 reviews)</span>
+                  <span className="text-xs text-muted-foreground">· Beta testers</span>
                 </div>
               </div>
               <div className="space-y-4">
                 {reviews.map((r, i) => (
-                  <div key={i} className="bg-white rounded-2xl p-5 border border-[#e2dbd4]">
-                    <div className="flex items-start justify-between mb-2">
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="bg-white rounded-2xl p-5 border border-[#e2dbd4] hover:shadow-md transition-shadow">
+                    <Quote className="w-5 h-5 mb-2 opacity-20" style={{color: p.color}} />
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">&ldquo;{r.text}&rdquo;</p>
+                    <div className="flex items-center justify-between">
                       <div>
                         <span className="font-semibold text-sm">{r.name}</span>
                         <span className="text-xs text-muted-foreground ml-2">{r.city}</span>
                       </div>
-                      <div className="flex">
-                        {[1,2,3,4,5].map(s => <Star key={s} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                      <div className="flex items-center gap-1">
+                        {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{r.text}</p>
-                    <div className="mt-2 text-[10px] font-semibold" style={{color: p.color}}>Verified purchase · Anvaya {r.product}</div>
-                  </div>
+                    <div className="mt-1 text-[10px] font-semibold" style={{color: p.color}}>Beta tester · Anvaya {r.product}</div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -303,7 +305,7 @@ export default function AnvayaPage() {
                 <p className="text-sm font-medium" style={{color: p.color}}>{p.tagline}</p>
                 <div className="flex items-center gap-2 mt-2">
                   <div className="flex">{[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}</div>
-                  <span className="text-xs text-muted-foreground">4.9 · 47 verified reviews</span>
+                  <span className="text-xs text-muted-foreground">4.9 · Pilot family feedback</span>
                 </div>
               </div>
 

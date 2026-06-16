@@ -330,3 +330,7 @@
 .stagger-children > *:nth-child(4) { animation-delay:.3s; }
 .stagger-children > *:nth-child(5) { animation-delay:.4s; }
 .stagger-children > *:nth-child(6) { animation-delay:.5s; }
+
+/* ─── Hide scrollbar (for snap carousels) ─────── */
+.scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
+.scrollbar-hide::-webkit-scrollbar { display:none; }
