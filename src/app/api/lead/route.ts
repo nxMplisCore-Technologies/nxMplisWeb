@@ -39,7 +39,12 @@ export async function POST(req: NextRequest) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, whatsapp, city, product, source, babyAge, message, timestamp: new Date().toISOString() }),
-  }).catch((err) => console.error('[lead] Google Sheets webhook error:', err));
+  })
+    .then(async (r) => {
+      const text = await r.text();
+      console.log('[lead] Sheets response:', r.status, text);
+    })
+    .catch((err) => console.error('[lead] Sheets network error:', err.message));
 
   // ── Send email via Resend ──────────────────────────────────────────────────
   if (!process.env.RESEND_API_KEY) {
