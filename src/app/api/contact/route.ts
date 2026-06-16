@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const MAKE_WEBHOOK = 'https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b';
+const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwoxczVCNakv-nhvBHlnELO31jDd3hQ4nTaW063Wq1s/exec';
 
 const inquiryLabels: Record<string, string> = {
   'early-access': 'Early Access / Product',
@@ -21,6 +22,13 @@ export async function POST(req: NextRequest) {
   // Log every submission so it's always visible in Vercel logs
   console.log('=== CONTACT FORM SUBMISSION ===');
   console.log({ fullName, email, phone, inquiryType, message });
+
+  // Fire-and-forget: Google Sheets
+  fetch(GOOGLE_SHEET_WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: fullName, whatsapp: phone || '', city: '', product: inquiryType, source: 'contact-form', message, timestamp: new Date().toISOString() }),
+  }).catch((err) => console.error('[contact] Sheets error:', err));
 
   // Fire-and-forget: forward to Make.com webhook so it appears in the same sheet
   fetch(MAKE_WEBHOOK, {
