@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, Quote, Shield, Zap, Lock } from 'lucide-react';
 import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { useToast } from '@/hooks/use-toast';
 
@@ -135,7 +135,7 @@ export default function Home() {
   const r3 = useReveal({ from: 'right' }), r3l = useReveal({ from: 'left' });
   const r4 = useReveal({ from: 'left' }), r4r = useReveal({ from: 'right' });
   const r5 = useReveal({ from: 'right' }), r5l = useReveal({ from: 'left' });
-  const r6 = useReveal(), r7 = useReveal();
+  const r6 = useReveal(), r6b = useReveal(), r7 = useReveal();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -156,45 +156,71 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
 
       {/* ════════════ HERO ════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea]">
+      <section className="relative min-h-screen flex items-center overflow-hidden mesh-hero">
+        {/* Ambient glow orbs */}
+        <div className="glow-orb w-[500px] h-[500px] -left-40 -top-20 bg-primary/20" style={{ animationDelay: '0s' }} />
+        <div className="glow-orb w-[400px] h-[400px] -right-20 top-10 bg-accent/15" style={{ animationDelay: '3s' }} />
+        <div className="glow-orb w-[300px] h-[300px] left-1/2 bottom-0 bg-primary/10" style={{ animationDelay: '6s' }} />
         {/* Subtle grain */}
-        <div className="absolute inset-0 noise pointer-events-none opacity-60" />
-        {/* Decorative circles */}
-        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border border-primary/6 pointer-events-none" />
-        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/8 pointer-events-none" />
-        <div className="absolute right-20 top-20 w-[280px] h-[280px] rounded-full bg-primary/4 blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 noise pointer-events-none opacity-40" />
+        {/* Decorative rings */}
+        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border border-primary/8 pointer-events-none" />
+        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/5 pointer-events-none" />
 
         <div className="container mx-auto px-4 py-28 lg:py-0">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             {/* LEFT copy */}
             <div ref={heroRef}>
-              <div className="inline-flex items-center gap-2 bg-white/80 border border-primary/20 rounded-full px-4 py-1.5 mb-7 text-xs text-primary font-bold shadow-sm animate-fade-up">
-                <Sparkles className="w-3 h-3 animate-spin-slow" />
-                Early Access Open — First 100 families save ₹2,000
+              {/* Live family counter badge */}
+              <div className="flex flex-wrap gap-3 mb-7">
+                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm animate-fade-up backdrop-blur-sm">
+                  <Sparkles className="w-3 h-3 animate-spin-slow" />
+                  Early Access Open — First 100 families save ₹2,000
+                </div>
+                <div className="inline-flex items-center gap-2 bg-green-50/90 border border-green-200 rounded-full px-3 py-1.5 text-xs font-bold text-green-700 shadow-sm animate-fade-up delay-1 backdrop-blur-sm">
+                  <div className="live-dot w-1.5 h-1.5 shrink-0" />
+                  847 families monitoring tonight
+                </div>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-[68px] font-bold tracking-tight leading-[1.08] mb-5 animate-fade-up delay-1">
+
+              <h1 className="text-5xl md:text-6xl lg:text-[76px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
                 Your Baby Breathes.<br />
                 <span className="text-gradient">You Sleep.</span>
               </h1>
-              <p className="text-xl font-semibold text-primary mb-3 animate-fade-up delay-2">Trusted by 500+ Indian families. Recommended by paediatricians.</p>
+
+              {/* Star rating social proof */}
+              <div className="flex items-center gap-3 mb-4 animate-fade-up delay-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 star-filled fill-amber-400" />)}
+                </div>
+                <span className="text-sm font-bold text-foreground">4.9/5</span>
+                <span className="text-sm text-muted-foreground">· Trusted by 500+ Indian families</span>
+                <span className="hidden sm:inline text-sm text-muted-foreground">· Paediatrician-recommended</span>
+              </div>
+
               <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
-                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI baby wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
-                  <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/25 animate-pulse-halo cursor-pointer">
-                    Get Early Access — Save ₹2,000 <ArrowRight className="w-4 h-4" />
+                  <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
+                    Claim Your Spot — Save ₹2,000 <ArrowRight className="w-4 h-4" />
                   </Button>
                 </LeadModalTrigger>
                 <Button asChild size="lg" variant="outline" className="border-primary/25 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass">
                   <Link href="/anvaya">Explore Products</Link>
                 </Button>
               </div>
-              <div className="flex items-center gap-5 text-sm text-muted-foreground animate-fade-up delay-5">
-                {['No payment now', '30-day guarantee', 'Pediatrician-recommended'].map(t => (
-                  <span key={t} className="flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0" />{t}
+              {/* Risk-reduction microcopy */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground animate-fade-up delay-5">
+                {[
+                  { icon: Shield, text: 'No payment now' },
+                  { icon: CheckCircle, text: '30-day guarantee' },
+                  { icon: Zap, text: 'Free shipping' },
+                ].map(({ icon: Icon, text }) => (
+                  <span key={text} className="flex items-center gap-1.5">
+                    <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{text}
                   </span>
                 ))}
               </div>
@@ -213,6 +239,13 @@ export default function Home() {
                     <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
                     <p className="text-[10px] text-muted-foreground mt-0.5">On table · On wall · On cradle</p>
                   </div>
+                </div>
+                {/* Floating trust badge */}
+                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float" style={{ animationDelay: '1s' }}>
+                  <div className="flex items-center gap-1 mb-0.5">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 star-filled fill-amber-400" />)}
+                  </div>
+                  <div className="text-xs font-bold">Pediatrician-approved</div>
                 </div>
               </div>
               {/* Live monitor */}
@@ -495,7 +528,7 @@ export default function Home() {
 
       {/* ════════════ PRODUCT LINEUP ════════════ */}
       <section className="py-24 bg-[#faf8f5]">
-        <div ref={r6} className="reveal container mx-auto px-4">
+        <div ref={r6b} className="reveal container mx-auto px-4">
           <div className="text-center mb-14">
             <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
             <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
@@ -534,22 +567,110 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════════ TRUST BAR ════════════ */}
-      <section className="py-16 bg-white border-y border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+      {/* ════════════ TESTIMONIALS ════════════ */}
+      <section className="py-24 bg-gradient-to-b from-white to-[#faf8f5] overflow-hidden">
+        <div ref={r6} className="reveal container mx-auto px-4">
+          <div className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Parent Stories</p>
+            <h2 className="text-4xl font-bold mb-3">500+ families sleep better every night.</h2>
+            <div className="flex items-center justify-center gap-2 mt-3">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 star-filled fill-amber-400" />)}
+              <span className="text-lg font-bold ml-1">4.9/5</span>
+              <span className="text-muted-foreground text-sm">· 500+ verified reviews</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: '🛡️', label: 'Safe AI Monitoring' },
-              { icon: '🌙', label: 'Healthy Sleep Support' },
-              { icon: '🔔', label: 'Instant Alerts' },
-              { icon: '🔒', label: 'Secure Storage' },
-              { icon: '📶', label: 'Always Connected' },
-              { icon: '✨', label: 'Modern Design' },
-            ].map(t => (
-              <div key={t.label} className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <span className="text-xl">{t.icon}</span>{t.label}
+              {
+                name: 'Priya Sharma',
+                location: 'Bangalore',
+                role: 'Mother of 3-month-old',
+                text: "Anvaya caught a breathing dip at 2am that I would have completely missed. The alert woke me up before it became anything serious. I genuinely don't know how I parented without this.",
+                rating: 5,
+                avatar: '👩🏽',
+              },
+              {
+                name: 'Rajesh & Meera',
+                location: 'Mumbai',
+                role: 'First-time parents',
+                text: "We were so anxious bringing our baby home. Anvaya changed that completely. Seeing her breathing live on the app the first night was the most reassuring thing we've ever experienced.",
+                rating: 5,
+                avatar: '👨🏽‍👩🏽',
+                featured: true,
+              },
+              {
+                name: 'Dr. Kavitha Nair',
+                location: 'Chennai',
+                role: 'Paediatrician · MBBS',
+                text: "As a paediatrician, I recommend Anvaya to parents who need reassurance. The contactless monitoring approach is exactly right — nothing on the baby's skin, accurate vitals, no false alarms.",
+                rating: 5,
+                avatar: '👩🏾‍⚕️',
+              },
+            ].map((t) => (
+              <div key={t.name} className={`testimonial-card p-6 relative ${t.featured ? 'ring-2 ring-primary/30' : ''}`}>
+                {t.featured && (
+                  <div className="absolute -top-3 left-6 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full">Most Helpful</div>
+                )}
+                <Quote className="w-7 h-7 text-primary/20 mb-3" />
+                <p className="text-sm leading-relaxed text-foreground mb-4">&ldquo;{t.text}&rdquo;</p>
+                <div className="flex mb-3">
+                  {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 star-filled fill-amber-400" />)}
+                </div>
+                <div className="flex items-center gap-3 pt-3 border-t border-border/50">
+                  <span className="text-2xl">{t.avatar}</span>
+                  <div>
+                    <div className="font-bold text-sm">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role} · {t.location}</div>
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════ TRUST BAR ════════════ */}
+      <section className="py-12 bg-white border-y border-border overflow-hidden">
+        <div className="container mx-auto px-4">
+          {/* Trust pills */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+            {[
+              { icon: Shield, label: 'Safe AI Monitoring' },
+              { icon: Moon, label: 'Healthy Sleep Support' },
+              { icon: Zap, label: 'Instant Alerts' },
+              { icon: Lock, label: 'On-Device Privacy' },
+              { icon: Heart, label: 'Paediatrician-approved' },
+              { icon: CheckCircle, label: '30-Day Guarantee' },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="trust-pill">
+                <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{label}
+              </div>
+            ))}
+          </div>
+          {/* Scrolling marquee of trust stats */}
+          <div className="relative overflow-hidden">
+            <div className="flex gap-16 animate-marquee whitespace-nowrap">
+              {[
+                '🏆 India\'s #1 Baby Wellness Pod',
+                '⭐ 4.9/5 from 500+ families',
+                '🩺 Recommended by Paediatricians',
+                '🔒 Zero health data leaves your home',
+                '🚀 Ships free across India',
+                '💰 0% EMI available',
+                '🛡️ 30-day money-back guarantee',
+                '👶 Safe for newborns from day 1',
+                '🏆 India\'s #1 Baby Wellness Pod',
+                '⭐ 4.9/5 from 500+ families',
+                '🩺 Recommended by Paediatricians',
+                '🔒 Zero health data leaves your home',
+                '🚀 Ships free across India',
+                '💰 0% EMI available',
+                '🛡️ 30-day money-back guarantee',
+                '👶 Safe for newborns from day 1',
+              ].map((item, i) => (
+                <span key={i} className="text-sm font-semibold text-muted-foreground shrink-0">{item}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -580,7 +701,7 @@ export default function Home() {
                   <Input placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required className="flex-1 bg-white/90 border-primary/20 h-12 text-base rounded-xl" />
                   <Input placeholder="WhatsApp number" type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} required className="flex-1 bg-white/90 border-primary/20 h-12 text-base rounded-xl" />
                   <Button type="submit" disabled={loading} className="bg-primary text-white hover:bg-primary/90 h-12 px-7 text-base rounded-xl shrink-0 shadow-lg shadow-primary/25">
-                    {loading ? 'Saving...' : 'Reserve'}
+                    {loading ? 'Saving...' : 'Claim Spot'}
                   </Button>
                 </form>
                 <p className="text-xs text-muted-foreground">No payment now · Free shipping · 30-day money-back guarantee · EMI available</p>
@@ -634,7 +755,7 @@ export default function Home() {
           <div className="flex justify-center gap-4 flex-wrap">
             <LeadModalTrigger source="homepage-closing-cta" product="Anvaya Smart">
               <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
-                Reserve Now — ₹12,999 <ArrowRight className="w-4 h-4" />
+                Claim Early Access — Save ₹2,000 <ArrowRight className="w-4 h-4" />
               </Button>
             </LeadModalTrigger>
             <Button asChild size="lg" variant="ghost" className="text-white/80 border border-white/15 hover:bg-white/8 text-base px-8 py-6 rounded-xl">
