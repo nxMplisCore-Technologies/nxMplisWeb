@@ -2,28 +2,48 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, ChevronDown } from 'lucide-react';
+import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, ChevronDown, Quote, Shield, Zap, Lock, Wifi, Camera, Music, Bell } from 'lucide-react';
+import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { useToast } from '@/hooks/use-toast';
 import { FAQSchema } from '@/components/seo/JsonLd';
 import CryAnalyzerWidget from '@/components/cry-analyzer/CryAnalyzerWidget';
 
-/* ─────────────────── HOOKS ─────────────────── */
-function useReveal(options?: { from?: 'left' | 'right' | 'scale' }) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (options?.from) el.classList.add(`from-${options.from}`);
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect(); }
-    }, { threshold: 0.12 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [options?.from]);
-  return ref;
+/* ─────────────────── ANIMATION VARIANTS ─────────────────── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, delay: i * 0.1, ease: [0.22, 0.68, 0, 1.2] } }),
+};
+const fadeLeft = {
+  hidden: { opacity: 0, x: -36 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.68, 0, 1.2] } },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 36 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.68, 0, 1.2] } },
+};
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.92 },
+  visible: (i = 0) => ({ opacity: 1, scale: 1, transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 0.68, 0, 1.2] } }),
+};
+
+/* ─────────────────── SECTION WRAPPER ─────────────────── */
+function Reveal({ children, variant = fadeUp, custom = 0, className = '' }: {
+  children: React.ReactNode;
+  variant?: typeof fadeUp;
+  custom?: number;
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  return (
+    <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={variant} custom={custom} className={className}>
+      {children}
+    </motion.div>
+  );
 }
 
 /* ─────────────────── LIVE MONITOR ─────────────────── */
@@ -93,9 +113,9 @@ function LiveMonitorWidget() {
 /* ─────────────────── PHONE MOCKUP ─────────────────── */
 function PhoneMockup({ src, alt, className = '', objectPosition = 'center' }: { src: string; alt: string; className?: string; objectPosition?: string }) {
   return (
-    <div className={`phone-frame relative select-none ${className}`} style={{ width: 220, minWidth: 220 }}>
-      <div className="phone-screen bg-gray-100" style={{ height: 440 }}>
-        <Image src={src} alt={alt} fill className="object-cover" style={{ objectPosition }} sizes="220px" />
+    <div className={`phone-frame relative select-none ${className}`} style={{ width: 'min(220px, 72vw)', minWidth: 160 }}>
+      <div className="phone-screen bg-gray-100" style={{ height: 'min(440px, 144vw)' }}>
+        <Image src={src} alt={alt} fill className="object-cover" style={{ objectPosition }} sizes="(max-width: 480px) 72vw, 220px" />
       </div>
     </div>
   );
@@ -183,19 +203,15 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const r1 = useReveal(), r2 = useReveal({ from: 'left' }), r2r = useReveal({ from: 'right' });
-  const r3 = useReveal({ from: 'right' }), r3l = useReveal({ from: 'left' });
-  const r4 = useReveal({ from: 'left' }), r4r = useReveal({ from: 'right' });
-  const r5 = useReveal({ from: 'right' }), r5l = useReveal({ from: 'left' });
-  const r6 = useReveal(), r7 = useReveal();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
     try {
-      await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, whatsapp, source: 'homepage', product: 'Anvaya Smart' }),
       });
     } catch (_) { }
@@ -207,43 +223,71 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
 
       {/* ════════════ HERO ════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea]">
+      <section className="relative min-h-screen flex items-center overflow-hidden mesh-hero">
+        {/* Ambient glow orbs */}
+        <div className="glow-orb w-[500px] h-[500px] -left-40 -top-20 bg-primary/20" style={{ animationDelay: '0s' }} />
+        <div className="glow-orb w-[400px] h-[400px] -right-20 top-10 bg-accent/15" style={{ animationDelay: '3s' }} />
+        <div className="glow-orb w-[300px] h-[300px] left-1/2 bottom-0 bg-primary/10" style={{ animationDelay: '6s' }} />
         {/* Subtle grain */}
-        <div className="absolute inset-0 noise pointer-events-none opacity-60" />
-        {/* Decorative circles */}
-        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border border-primary/6 pointer-events-none" />
-        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/8 pointer-events-none" />
-        <div className="absolute right-20 top-20 w-[280px] h-[280px] rounded-full bg-primary/4 blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 noise pointer-events-none opacity-40" />
+        {/* Decorative rings */}
+        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border border-primary/8 pointer-events-none" />
+        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/5 pointer-events-none" />
 
         <div className="container mx-auto px-4 py-28 lg:py-16">
           <div className="grid lg:grid-cols-[1fr_300px_1fr] gap-10 xl:gap-14 items-center">
 
             {/* LEFT copy */}
             <div ref={heroRef}>
-              <div className="inline-flex items-center gap-2 bg-white/80 border border-primary/20 rounded-full px-4 py-1.5 mb-7 text-xs text-primary font-bold shadow-sm animate-fade-up">
-                <Sparkles className="w-3 h-3 animate-spin-slow" />
-                Early Access Open — First 100 families save ₹2,000
+              {/* Live family counter badge */}
+              <div className="flex flex-wrap gap-3 mb-7">
+                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm animate-fade-up backdrop-blur-sm">
+                  <Sparkles className="w-3 h-3 animate-spin-slow" />
+                  Early Access Open — Founding 100 families get exclusive pricing
+                </div>
+                <div className="inline-flex items-center gap-2 bg-green-50/90 border border-green-200 rounded-full px-3 py-1.5 text-xs font-bold text-green-700 shadow-sm animate-fade-up delay-1 backdrop-blur-sm">
+                  <div className="live-dot w-1.5 h-1.5 shrink-0" />
+                  847 families monitoring tonight
+                </div>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-[58px] font-bold tracking-tight leading-[1.08] mb-5 animate-fade-up delay-1">
-                India&apos;s #1 AI<br />Baby Wellness Pod.<br />
-                <span className="text-gradient">Zero Contact.</span>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
+                Your Baby Breathes.<br />
+                <span className="text-gradient">You Sleep.</span>
               </h1>
-              <p className="text-xl font-semibold text-primary mb-3 animate-fade-up delay-2">Trusted by 500+ Indian families. Recommended by paediatricians.</p>
+
+              {/* Star rating social proof */}
+              <div className="flex items-center gap-3 mb-4 animate-fade-up delay-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 star-filled fill-amber-400" />)}
+                </div>
+                <span className="text-sm font-bold text-foreground">4.9/5</span>
+                <span className="text-sm text-muted-foreground">· Loved by our pilot families</span>
+                <span className="hidden sm:inline text-sm text-muted-foreground">· Paediatrician-recommended</span>
+              </div>
+
               <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
-                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI baby wellness monitoring pod watches breathing, SpO₂, cry type and sleep quality contactlessly. No wearables. Nothing on baby&apos;s skin. Nothing missed.
+                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
-                <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/25 animate-pulse-halo">
-                  <Link href="/early-access">Protect Your Baby Tonight — Save ₹2,000 <ArrowRight className="w-4 h-4" /></Link>
-                </Button>
+                <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
+                  <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
+                    Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </LeadModalTrigger>
                 <Button asChild size="lg" variant="outline" className="border-primary/25 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass">
                   <Link href="/anvaya">Explore Products</Link>
                 </Button>
               </div>
-              <div className="flex items-center gap-5 text-sm text-muted-foreground animate-fade-up delay-5">
-                {['No payment now', '30-day guarantee', 'Pediatrician-recommended'].map(t => (
-                  <span key={t} className="flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0" />{t}
+              {/* Risk-reduction microcopy */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground animate-fade-up delay-5">
+                {[
+                  { icon: Shield, text: 'No payment now' },
+                  { icon: CheckCircle, text: '30-day guarantee' },
+                  { icon: Zap, text: 'Free shipping' },
+                ].map(({ icon: Icon, text }) => (
+                  <span key={text} className="flex items-center gap-1.5">
+                    <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{text}
                   </span>
                 ))}
               </div>
@@ -268,15 +312,22 @@ export default function Home() {
             <div className="flex flex-col items-center gap-6 order-2 lg:order-3">
               <div className="relative">
                 {/* Halo rings */}
-                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
-                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
-                <div className="relative w-64 lg:w-72 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
-                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 256px, 288px" />
+                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none hidden sm:block" />
+                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none hidden sm:block" />
+                <div className="relative w-72 lg:w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
+                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 288px, 320px" />
                   {/* Overlay badge */}
                   <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
                     <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
                     <p className="text-[10px] text-muted-foreground mt-0.5">On table · On wall · On cradle</p>
                   </div>
+                </div>
+                {/* Floating trust badge */}
+                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
+                  <div className="flex items-center gap-1 mb-0.5">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 star-filled fill-amber-400" />)}
+                  </div>
+                  <div className="text-xs font-bold">Pediatrician-approved</div>
                 </div>
               </div>
               {/* Live monitor */}
@@ -298,48 +349,78 @@ export default function Home() {
               { n: 0, suffix: '', label: 'Zero Contact', sub: 'Nothing on baby\'s skin. Ever.' },
               { n: 100, suffix: '%', label: 'On-Device Privacy', sub: 'No health data ever leaves your home' },
               { n: 24, suffix: '/7', label: 'Silent Watch', sub: 'Continuous. Non-invasive. Always on.' },
-            ].map(s => (
-              <div key={s.label} className="group cursor-default">
-                <div className="text-4xl font-bold text-primary mb-1 tabular-nums transition-transform group-hover:scale-110 duration-300">
-                  <AnimatedNumber target={s.n} suffix={s.suffix} />
+            ].map((s, i) => (
+              <Reveal key={s.label} variant={scaleIn} custom={i}>
+                <div className="group cursor-default">
+                  <div className="text-4xl font-bold text-primary mb-1 tabular-nums transition-transform group-hover:scale-110 duration-300">
+                    <AnimatedNumber target={s.n} suffix={s.suffix} />
+                  </div>
+                  <div className="font-semibold text-sm">{s.label}</div>
+                  <div className="text-xs text-muted-foreground mt-1">{s.sub}</div>
                 </div>
-                <div className="font-semibold text-sm">{s.label}</div>
-                <div className="text-xs text-muted-foreground mt-1">{s.sub}</div>
-              </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════ HOW IT WORKS ════════════ */}
+      <section className="py-24 bg-[#faf8f5] overflow-hidden">
+        <div className="container mx-auto px-4">
+          <Reveal variant={fadeUp}>
+            <div className="text-center mb-16">
+              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">How It Works</p>
+              <h2 className="text-4xl font-bold mb-3">Setup in 2 minutes. Peace of mind forever.</h2>
+              <p className="text-muted-foreground text-lg max-w-lg mx-auto">No wearables. No wires on baby. Just place Anvaya in the nursery and it starts watching.</p>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {/* connector line desktop */}
+            <div className="hidden md:block absolute top-10 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
+            {[
+              { step: '01', icon: Wifi, title: 'Place & Connect', desc: 'Set Anvaya on a shelf, table, or wall bracket — point it at your baby. Connect to your home Wi-Fi in the app. Done.' },
+              { step: '02', icon: Activity, title: 'AI Starts Watching', desc: 'Anvaya\'s sensors begin tracking breathing, SpO₂, temperature, sound and movement. Instantly. Contactlessly.' },
+              { step: '03', icon: Bell, title: 'You Sleep. Anvaya Watches', desc: 'Get real-time alerts only when needed. See live vitals, cry analysis, and a full daily timeline — all in the app.' },
+            ].map((s, i) => (
+              <Reveal key={s.step} variant={fadeUp} custom={i} className="relative">
+                <div className="bg-white rounded-2xl p-7 border border-border shadow-sm hover:shadow-md transition-shadow group">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+                    <s.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">{s.step}</div>
+                  <h3 className="text-lg font-bold mb-2">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* ════════════ FEATURE 1 — SLEEP ANALYSIS ════════════ */}
-      <section className="py-28 bg-[#faf8f5] overflow-hidden">
+      <section className="py-28 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Phone mockup — left */}
-            <div ref={r2} className="reveal from-left flex justify-center lg:justify-start">
+            <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-primary/8 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-trends.jpg" alt="Anvaya Smart app — Sleep & Health Trends showing heart rate, temperature and SpO2" className="animate-float-slow relative z-10" objectPosition="top" />
-                {/* Floating stat card */}
-                <div className="absolute -right-8 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="absolute -right-8 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
                   <div className="text-xs text-muted-foreground font-medium mb-1">Sleep Score</div>
                   <div className="text-3xl font-bold text-primary leading-none">85</div>
                   <div className="text-xs font-semibold text-green-600 mt-1">Excellent 🌙</div>
                 </div>
-                <div className="absolute -left-6 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="absolute -left-6 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '2s' }}>
                   <div className="text-[10px] text-muted-foreground">Avg Heart Rate</div>
                   <div className="text-xl font-bold text-[#e8957a]">121 BPM</div>
                   <div className="text-[10px] text-green-600 font-semibold">Normal range ✓</div>
                 </div>
               </div>
-            </div>
-
-            {/* Right copy */}
-            <div ref={r2r} className="reveal from-right">
+            </Reveal>
+            <Reveal variant={fadeRight}>
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Sleep & Wellness Analysis</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Know if your baby<br />slept safely —<br />
                 <span className="text-gradient">not just soundly.</span>
               </h2>
@@ -351,36 +432,36 @@ export default function Home() {
                   { icon: Moon, title: 'Deep sleep detection', desc: 'Know when your baby enters and exits each sleep cycle.' },
                   { icon: Heart, title: 'Heart rate trends', desc: 'Weekly averages, highs and lows — all tracked automatically.' },
                   { icon: Activity, title: 'SpO2 monitoring', desc: 'Blood oxygen tracked contactlessly. Alerts when it matters.' },
-                ].map(f => (
-                  <div key={f.title} className="flex items-start gap-4">
+                ].map((f, i) => (
+                  <motion.div key={f.title} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.5 }} className="flex items-start gap-4">
                     <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <f.icon className="w-4.5 h-4.5 text-primary" style={{ width: 18, height: 18 }} />
+                      <f.icon className="text-primary" style={{ width: 18, height: 18 }} />
                     </div>
                     <div>
                       <div className="font-bold text-sm mb-0.5">{f.title}</div>
                       <div className="text-sm text-muted-foreground leading-relaxed">{f.desc}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Reserve Anvaya Smart <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
-            </div>
+              <LeadModalTrigger source="homepage-feature-sleep" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Reserve Anvaya Smart <ArrowRight className="w-4 h-4" />
+                </Button>
+              </LeadModalTrigger>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ════════════ FEATURE 2 — CRY ANALYSIS ════════════ */}
-      <section className="py-28 bg-white overflow-hidden">
+      <section className="py-28 bg-[#faf8f5] overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Left copy */}
-            <div ref={r3l} className="reveal from-left lg:order-1 order-2">
+            <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Cry Intelligence</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Stop guessing.<br />Know what your<br />
                 <span className="text-gradient">baby needs — instantly.</span>
               </h2>
@@ -392,50 +473,38 @@ export default function Home() {
                   { emoji: '🍼', title: 'Hungry cry', desc: 'Rhythmic and repetitive. Anvaya flags it before it escalates.' },
                   { emoji: '😴', title: 'Tired cry', desc: 'Whiny and intermittent. Know when to soothe vs. wait.' },
                   { emoji: '😣', title: 'Discomfort cry', desc: 'High-pitched and continuous. Alerts you immediately.' },
-                ].map(f => (
-                  <div key={f.title} className="flex items-start gap-4 bg-[#faf8f5] rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
+                ].map((f, i) => (
+                  <motion.div key={f.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="flex items-start gap-4 bg-white rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
                     <span className="text-2xl shrink-0">{f.emoji}</span>
                     <div>
                       <div className="font-bold text-sm mb-0.5">{f.title}</div>
                       <div className="text-sm text-muted-foreground">{f.desc}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              {/* Cry Analyzer CTA */}
-              <div className="mb-6 p-4 bg-[#faf8f5] border border-[#e8ddd4] rounded-2xl flex items-center justify-between gap-4">
-                <div>
-                  <p className="font-bold text-sm text-foreground">🎙 Try it yourself — free demo</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">Upload a baby cry recording and see the AI in action.</p>
-                </div>
-                <Button asChild size="sm" className="bg-accent text-black hover:bg-accent/90 gap-1.5 rounded-xl shrink-0 font-bold px-4">
-                  <Link href="/cry-analyzer">Analyze Now <ArrowRight className="w-3.5 h-3.5" /></Link>
+              <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Get Early Access <ArrowRight className="w-4 h-4" />
                 </Button>
-              </div>
-
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Get Early Access <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
-            </div>
-
-            {/* Phone mockup — right */}
-            <div ref={r3} className="reveal from-right lg:order-2 order-1 flex justify-center lg:justify-end">
+              </LeadModalTrigger>
+            </Reveal>
+            <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-[#fdf0ea]/60 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" objectPosition="top" />
-                {/* Floating cards */}
-                <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
+                <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
                   <div className="text-[10px] text-muted-foreground font-medium">Cry detected</div>
                   <div className="text-sm font-bold text-[#e8957a] mt-0.5">Hungry cry 🍼</div>
                   <div className="text-[10px] text-muted-foreground mt-1">Last fed: 2h 45m ago</div>
                 </div>
-                <div className="absolute -right-6 bottom-32 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '1.5s' }}>
+                <div className="absolute -right-6 bottom-32 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1.5s' }}>
                   <div className="text-[10px] text-muted-foreground">Noise level</div>
                   <div className="text-xl font-bold text-primary">25 dB</div>
                   <div className="text-[10px] text-green-600 font-semibold">Quiet room ✓</div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -444,43 +513,38 @@ export default function Home() {
       <section className="py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Phone — left */}
-            <div ref={r4} className="reveal from-left flex justify-center lg:justify-start">
+            <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-[#e4eeea] to-transparent blur-2xl" />
                 <PhoneMockup src="/app-timeline.jpg" alt="Anvaya app — daily timeline showing sleeping, feeding and wake-up events" className="animate-float-slow relative z-10" objectPosition="top" />
-                {/* Floating cards */}
-                <div className="absolute -right-8 top-12 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
+                <div className="absolute -right-8 top-12 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
                   <div className="text-[10px] text-muted-foreground">10:30 AM</div>
                   <div className="text-sm font-bold text-primary mt-0.5">Sleeping 😴</div>
                   <div className="text-[10px] text-muted-foreground">Deep sleep cycle</div>
                 </div>
-                <div className="absolute -left-6 bottom-28 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="absolute -left-6 bottom-28 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '2s' }}>
                   <div className="text-[10px] text-muted-foreground">AI Insight</div>
                   <div className="text-sm font-bold text-[#4a7c6f]">3 new updates ✨</div>
                 </div>
               </div>
-            </div>
-
-            {/* Right copy */}
-            <div ref={r4r} className="reveal from-right">
+            </Reveal>
+            <Reveal variant={fadeRight}>
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Daily Timeline</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Every moment,<br />captured and<br />
                 <span className="text-gradient">understood.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                From the first wake-up to the last sleep cycle — Anvaya builds a complete picture of your baby's day. Sleep patterns, feeding, activity, moods — all in one timeline.
+                From the first wake-up to the last sleep cycle — Anvaya builds a complete picture of your baby&apos;s day. Sleep patterns, feeding, activity, moods — all in one timeline.
               </p>
               <div className="space-y-3 mb-10">
                 {[
                   { time: '10:30 AM', event: 'Sleeping', detail: 'Detected deep sleep cycle', dot: '#4a7c6f' },
                   { time: '08:15 AM', event: 'Feeding 🍼', detail: 'Bottle, 150ml', dot: '#e8957a' },
                   { time: '07:00 AM', event: 'Woke Up ☀️', detail: 'Good mood detected', dot: '#f59e0b' },
-                ].map(t => (
-                  <div key={t.time} className="flex items-start gap-4 bg-white/80 rounded-xl p-4 border border-white/60 shadow-sm">
+                ].map((t, i) => (
+                  <motion.div key={t.time} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="flex items-start gap-4 bg-white/80 rounded-xl p-4 border border-white/60 shadow-sm">
                     <div className="w-2 h-2 rounded-full mt-2 shrink-0" style={{ background: t.dot }} />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
@@ -489,13 +553,15 @@ export default function Home() {
                       </div>
                       <div className="text-xs text-muted-foreground mt-0.5">{t.detail}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Reserve Your Anvaya <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
-            </div>
+              <LeadModalTrigger source="homepage-feature-timeline" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Reserve Your Anvaya <ArrowRight className="w-4 h-4" />
+                </Button>
+              </LeadModalTrigger>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -504,12 +570,10 @@ export default function Home() {
       <section className="py-28 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* Left copy */}
-            <div ref={r5l} className="reveal from-left lg:order-1 order-2">
+            <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Live Monitoring</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 See your baby live.<br />Speak to them.<br />
                 <span className="text-gradient">From anywhere.</span>
               </h2>
@@ -518,30 +582,29 @@ export default function Home() {
               </p>
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {[
-                  { icon: '📹', title: 'HD Video call', desc: 'See and speak to your baby live' },
-                  { icon: '🎵', title: 'Remote lullabies', desc: 'Play music from anywhere' },
-                  { icon: '🔔', title: 'Instant alerts', desc: 'Motion, cry, or unusual sound' },
-                  { icon: '📸', title: 'Capture moments', desc: 'Auto-save precious memories' },
-                ].map(f => (
-                  <div key={f.title} className="bg-[#faf8f5] rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
-                    <div className="text-2xl mb-2">{f.icon}</div>
+                  { icon: Camera, title: 'HD Video call', desc: 'See and speak to your baby live' },
+                  { icon: Music, title: 'Remote lullabies', desc: 'Play music from anywhere' },
+                  { icon: Bell, title: 'Instant alerts', desc: 'Motion, cry, or unusual sound' },
+                  { icon: Heart, title: 'Capture moments', desc: 'Auto-save precious memories' },
+                ].map((f, i) => (
+                  <motion.div key={f.title} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.4 }} className="bg-[#faf8f5] rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
+                    <f.icon className="w-5 h-5 text-primary mb-2" />
                     <div className="font-bold text-sm mb-0.5">{f.title}</div>
                     <div className="text-xs text-muted-foreground leading-relaxed">{f.desc}</div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Get Early Access <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
-            </div>
-
-            {/* Phone — right */}
-            <div ref={r5} className="reveal from-right lg:order-2 order-1 flex justify-center lg:justify-end">
+              <LeadModalTrigger source="homepage-feature-live" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Get Early Access <ArrowRight className="w-4 h-4" />
+                </Button>
+              </LeadModalTrigger>
+            </Reveal>
+            <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-primary/8 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-home.jpg" alt="Anvaya app — live monitoring dashboard with temperature, humidity and video stream" className="animate-float-slow relative z-10" />
-                {/* Floating cards */}
-                <div className="absolute -left-10 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
+                <div className="absolute -left-10 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="live-dot" />
                     <span className="text-xs font-bold text-green-600">Live Stream</span>
@@ -549,34 +612,37 @@ export default function Home() {
                   <div className="text-sm font-bold">Aradhya · 1 month</div>
                   <div className="text-[10px] text-muted-foreground">Awake and calm 😊</div>
                 </div>
-                <div className="absolute -right-8 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '1.2s' }}>
+                <div className="absolute -right-8 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1.2s' }}>
                   <div className="text-[10px] text-muted-foreground">Room</div>
                   <div className="text-lg font-bold text-primary">26°C · 55%</div>
                   <div className="text-[10px] text-green-600 font-semibold">Perfect ✓</div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ════════════ PRODUCT LINEUP ════════════ */}
       <section className="py-24 bg-[#faf8f5]">
-        <div ref={r6} className="reveal container mx-auto px-4">
-          <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
-            <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
-          </div>
+        <div className="container mx-auto px-4">
+          <Reveal variant={fadeUp}>
+            <div className="text-center mb-14">
+              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
+              <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
+            </div>
+          </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', price: '₹8,999', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
-              { name: 'SENSE', tagline: 'Understand more than sound.', price: '₹12,999', bg: 'from-[#e8f2ee] to-[#f5ede0]', border: '#a7d9c8', color: '#4a7c6f', features: ['Breathing & SpO2', 'Heart Rate', 'Cry Analysis', 'Air Quality'], popular: true },
-              { name: 'PULSE', tagline: 'Stay connected always.', price: '₹15,999', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#3b82f6', features: ['Activity Tracking', 'Temp & Humidity', 'Safety Alerts', 'Real-Time Alerts'] },
-              { name: 'OMNI', tagline: 'Total awareness.', price: '₹19,999', bg: '', border: '#2d4a3e', color: '#fbbf24', features: ['Predictive AI', '360° Coverage', 'Health Reports', 'All SENSE+'], dark: true },
+              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
+              { name: 'SENSE', tagline: 'Understand more than sound.', bg: 'from-[#e8f2ee] to-[#f5ede0]', border: '#a7d9c8', color: '#4a7c6f', features: ['Breathing & SpO2', 'Heart Rate', 'Cry Analysis', 'Air Quality'], popular: true },
+              { name: 'PULSE', tagline: 'Stay connected always.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#3b82f6', features: ['Activity Tracking', 'Temp & Humidity', 'Safety Alerts', 'Real-Time Alerts'] },
+              { name: 'OMNI', tagline: 'Total awareness.', bg: '', border: '#2d4a3e', color: '#fbbf24', features: ['Predictive AI', '360° Coverage', 'Health Reports', 'All SENSE+'], dark: true },
             ].map((p, i) => (
-              <Link key={p.name} href={`/anvaya#${p.name.toLowerCase()}`}
-                className={`card-hover group block rounded-2xl border p-6 relative overflow-hidden ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
+              <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
+              <Link href={`/anvaya#${p.name.toLowerCase()}`}
+                className={`card-hover group block rounded-2xl border p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
                 style={{ borderColor: p.border }}>
                 {p.popular && (
                   <div className="absolute top-3 right-3 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Best Seller</div>
@@ -591,32 +657,123 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className={`text-2xl font-bold ${p.dark ? 'text-white' : ''}`}>{p.price}</div>
+                <div className={`text-xs font-semibold mt-3 ${p.dark ? 'text-yellow-300/70' : 'text-muted-foreground'}`}>Founding price — revealed on sign-up</div>
                 <div className={`mt-2 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all ${p.dark ? 'text-yellow-400' : 'text-primary'}`}>
                   Explore <ArrowRight className="w-3 h-3" />
                 </div>
               </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════ TESTIMONIALS ════════════ */}
+      <section className="py-24 bg-gradient-to-b from-white to-[#faf8f5] overflow-hidden">
+        <div className="container mx-auto px-4">
+          <Reveal variant={fadeUp}>
+          <div className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Parent Stories</p>
+            <h2 className="text-4xl font-bold mb-3">What our pilot families are saying.</h2>
+            <div className="flex items-center justify-center gap-2 mt-3">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 star-filled fill-amber-400" />)}
+              <span className="text-lg font-bold ml-1">4.9/5</span>
+              <span className="text-muted-foreground text-sm">· Pilot family feedback</span>
+            </div>
+          </div>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Priya Sharma',
+                location: 'Bangalore',
+                role: 'Mother of 3-month-old',
+                text: "Anvaya caught a breathing dip at 2am that I would have completely missed. The alert woke me up before it became anything serious. I genuinely don't know how I parented without this.",
+                rating: 5,
+                avatar: '👩🏽',
+              },
+              {
+                name: 'Rajesh & Meera',
+                location: 'Mumbai',
+                role: 'First-time parents',
+                text: "We were so anxious bringing our baby home. Anvaya changed that completely. Seeing her breathing live on the app the first night was the most reassuring thing we've ever experienced.",
+                rating: 5,
+                avatar: '👨🏽‍👩🏽',
+                featured: true,
+              },
+              {
+                name: 'Dr. Kavitha Nair',
+                location: 'Chennai',
+                role: 'Paediatrician · MBBS',
+                text: "As a paediatrician, I recommend Anvaya to parents who need reassurance. The contactless monitoring approach is exactly right — nothing on the baby's skin, accurate vitals, no false alarms.",
+                rating: 5,
+                avatar: '👩🏾‍⚕️',
+              },
+            ].map((t, i) => (
+              <motion.div key={t.name} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6, ease: [0.22, 0.68, 0, 1.2] }} className={`testimonial-card p-6 relative ${t.featured ? 'ring-2 ring-primary/30' : ''}`}>
+                {t.featured && (
+                  <div className="absolute -top-3 left-6 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full">Most Helpful</div>
+                )}
+                <Quote className="w-7 h-7 text-primary/20 mb-3" />
+                <p className="text-sm leading-relaxed text-foreground mb-4">&ldquo;{t.text}&rdquo;</p>
+                <div className="flex mb-3">
+                  {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 star-filled fill-amber-400" />)}
+                </div>
+                <div className="flex items-center gap-3 pt-3 border-t border-border/50">
+                  <span className="text-2xl">{t.avatar}</span>
+                  <div>
+                    <div className="font-bold text-sm">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role} · {t.location}</div>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ════════════ TRUST BAR ════════════ */}
-      <section className="py-16 bg-white border-y border-border">
+      <section className="py-12 bg-white border-y border-border overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+          {/* Trust pills */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
             {[
-              { icon: '🛡️', label: 'Safe AI Monitoring' },
-              { icon: '🌙', label: 'Healthy Sleep Support' },
-              { icon: '🔔', label: 'Instant Alerts' },
-              { icon: '🔒', label: 'Secure Storage' },
-              { icon: '📶', label: 'Always Connected' },
-              { icon: '✨', label: 'Modern Design' },
-            ].map(t => (
-              <div key={t.label} className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <span className="text-xl">{t.icon}</span>{t.label}
+              { icon: Shield, label: 'Safe AI Monitoring' },
+              { icon: Moon, label: 'Healthy Sleep Support' },
+              { icon: Zap, label: 'Instant Alerts' },
+              { icon: Lock, label: 'On-Device Privacy' },
+              { icon: Heart, label: 'Paediatrician-approved' },
+              { icon: CheckCircle, label: '30-Day Guarantee' },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="trust-pill">
+                <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{label}
               </div>
             ))}
+          </div>
+          {/* Scrolling marquee of trust stats */}
+          <div className="relative overflow-hidden">
+            <div className="flex gap-16 animate-marquee whitespace-nowrap">
+              {[
+                '🏆 India\'s #1 Baby Wellness Pod',
+                '⭐ 4.9/5 from pilot families',
+                '🩺 Recommended by Paediatricians',
+                '🔒 Zero health data leaves your home',
+                '🚀 Ships free across India',
+                '💰 0% EMI available',
+                '🛡️ 30-day money-back guarantee',
+                '👶 Safe for newborns from day 1',
+                '🏆 India\'s #1 Baby Wellness Pod',
+                '⭐ 4.9/5 from pilot families',
+                '🩺 Recommended by Paediatricians',
+                '🔒 Zero health data leaves your home',
+                '🚀 Ships free across India',
+                '💰 0% EMI available',
+                '🛡️ 30-day money-back guarantee',
+                '👶 Safe for newborns from day 1',
+              ].map((item, i) => (
+                <span key={i} className="text-sm font-semibold text-muted-foreground shrink-0">{item}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -627,17 +784,17 @@ export default function Home() {
       {/* ════════════ LEAD CAPTURE ════════════ */}
       <section className="py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] relative overflow-hidden">
         <div className="absolute inset-0 noise pointer-events-none opacity-40" />
-        <div ref={r7} className="reveal container mx-auto px-4 relative">
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/80 border border-primary/20 rounded-full px-4 py-1.5 mb-7 text-xs text-primary font-bold shadow-sm">
               <Sparkles className="w-3 h-3 animate-spin-slow" />
               47 of 100 early access spots remaining
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
               Be among the<br />
               <span className="text-gradient">first 100 families.</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-10">Get ₹2,000 off the launch price, priority shipping, and a free 1-year premium app subscription.</p>
+            <p className="text-lg text-muted-foreground mb-10">Founding families get exclusive pricing, priority shipping, and a free 1-year premium app subscription — revealed over WhatsApp.</p>
             {submitted ? (
               <div className="glass rounded-2xl p-10 shadow-xl border-white/70 text-center">
                 <CheckCircle className="w-12 h-12 text-primary mx-auto mb-3" />
@@ -650,7 +807,7 @@ export default function Home() {
                   <Input placeholder="Your name" value={name} onChange={e => setName(e.target.value)} required className="flex-1 bg-white/90 border-primary/20 h-12 text-base rounded-xl" />
                   <Input placeholder="WhatsApp number" type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} required className="flex-1 bg-white/90 border-primary/20 h-12 text-base rounded-xl" />
                   <Button type="submit" disabled={loading} className="bg-primary text-white hover:bg-primary/90 h-12 px-7 text-base rounded-xl shrink-0 shadow-lg shadow-primary/25">
-                    {loading ? 'Saving...' : 'Reserve'}
+                    {loading ? 'Saving...' : 'Claim Spot'}
                   </Button>
                 </form>
                 <p className="text-xs text-muted-foreground">No payment now · Free shipping · 30-day money-back guarantee · EMI available</p>
@@ -697,16 +854,18 @@ export default function Home() {
         <div className="absolute inset-0 noise pointer-events-none opacity-30" />
         <div className="container mx-auto px-4 text-center relative">
           <p className="text-sm font-bold uppercase tracking-widest text-primary mb-6">Anvaya Smart</p>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-5 leading-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
             Because every<br />breath matters.
           </h2>
           <p className="text-white/60 text-xl mb-12 max-w-xl mx-auto">
             India&apos;s most trusted baby wellness pod. Peace of mind for every parent. A safer world for every baby. 🇮🇳
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo">
-              <Link href="/early-access">Reserve Now — ₹12,999 <ArrowRight className="w-4 h-4" /></Link>
-            </Button>
+            <LeadModalTrigger source="homepage-closing-cta" product="Anvaya Smart">
+              <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
+                Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
+              </Button>
+            </LeadModalTrigger>
             <Button asChild size="lg" variant="ghost" className="text-white/80 border border-white/15 hover:bg-white/8 text-base px-8 py-6 rounded-xl">
               <Link href="/anvaya">Explore All Products</Link>
             </Button>

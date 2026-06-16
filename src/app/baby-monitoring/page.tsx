@@ -173,7 +173,7 @@ export default function BabyMonitoringPage() {
               </div>
             ))}
           </div>
-          <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
+          <Button asChild className="text-white font-bold gap-2 w-full sm:w-auto" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
             <Link href="/early-access">Reserve Early Access — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
           </Button>
         </section>

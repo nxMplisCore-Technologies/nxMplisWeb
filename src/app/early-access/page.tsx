@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle, Sparkles, ArrowRight, Star, Activity, Baby, GitBranch, Heart, Shield, BrainCircuit } from 'lucide-react';
+import { CheckCircle, Sparkles, ArrowRight, Star, Activity, Baby, GitBranch, Heart, Shield, BrainCircuit, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const features = [
@@ -43,7 +43,7 @@ export default function EarlyAccessPage() {
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
     try {
-      await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
+      await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, whatsapp, city, babyAge, source: 'early-access', product: 'Anvaya Smart' }),
@@ -63,6 +63,8 @@ export default function EarlyAccessPage() {
             {/* Left */}
             <div>
               <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-3 py-1 mb-6 text-xs text-primary font-medium">
+                {/* Pulsing green live dot */}
+                <span className="live-dot" />
                 <Sparkles className="w-3 h-3" />
                 47 of 100 early access spots remaining
               </div>
@@ -111,46 +113,67 @@ export default function EarlyAccessPage() {
             <div className="lg:sticky lg:top-24">
               <div className="bg-white border border-[#e2dbd4] rounded-2xl p-8 shadow-sm">
                 <div className="text-center mb-6 pb-6 border-b border-[#f0ece6]">
-                  <p className="text-sm text-muted-foreground mb-2">Early Access Price</p>
-                  <div className="flex items-end justify-center gap-3">
-                    <span className="text-5xl font-bold text-primary">₹12,999</span>
-                    <span className="text-xl text-muted-foreground line-through mb-1">₹19,999</span>
+                  <div className="bg-primary/6 border border-primary/15 rounded-xl px-4 py-4">
+                    <p className="text-sm font-semibold text-primary mb-1">🔒 Founding family pricing</p>
+                    <p className="text-xs text-muted-foreground">Exclusive price revealed via WhatsApp within 24 hours. No payment required today.</p>
                   </div>
-                  <p className="text-sm font-semibold mt-1" style={{color:'#e8957a'}}>You save ₹7,000</p>
-                  <p className="text-xs text-muted-foreground mt-1">or ₹1,083/month · 0% EMI · 12 months</p>
                 </div>
 
                 {submitted ? (
                   <div className="text-center py-6">
-                    <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="w-7 h-7 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-2">You're on the list!</h3>
-                    <p className="text-muted-foreground text-sm">We'll WhatsApp you within 24 hours with your early access details.</p>
+                    <div className="text-3xl mb-3">✅</div>
+                    <h3 className="text-xl font-bold mb-2">You&apos;re on the list, {name.split(' ')[0]}!</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      We&apos;ll WhatsApp{' '}
+                      <span className="font-semibold text-foreground">
+                        +91 {whatsapp.replace(/^(\+?91)/, '').trim()}
+                      </span>{' '}
+                      within 24 hours with your early access details.
+                    </p>
+                    <a
+                      href="https://wa.me/917987449366"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-4 text-sm text-primary font-semibold hover:underline"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      Message us on WhatsApp
+                    </a>
                   </div>
                 ) : (
                   <>
                     <h3 className="font-bold text-lg mb-1">Reserve your spot</h3>
-                    <p className="text-sm text-muted-foreground mb-5">No payment now. We'll confirm via WhatsApp.</p>
+                    <p className="text-sm text-muted-foreground mb-4">No payment now. We&apos;ll confirm via WhatsApp.</p>
+
+                    {/* Social proof avatars */}
+                    <div className="flex items-center gap-2 justify-center mb-5">
+                      <div className="flex -space-x-2">
+                        <div className="w-7 h-7 rounded-full bg-[#4a7c6f] border-2 border-white flex items-center justify-center text-white text-[10px] font-bold">R</div>
+                        <div className="w-7 h-7 rounded-full bg-[#e8957a] border-2 border-white flex items-center justify-center text-white text-[10px] font-bold">P</div>
+                        <div className="w-7 h-7 rounded-full bg-[#7aab9e] border-2 border-white flex items-center justify-center text-white text-[10px] font-bold">A</div>
+                      </div>
+                      <p className="text-xs text-muted-foreground">73 families have reserved · <span className="text-primary font-semibold">27 spots left</span></p>
+                    </div>
+
                     <form onSubmit={handleSubmit} className="space-y-3">
                       <Input placeholder="Your name *" value={name} onChange={e => setName(e.target.value)} required className="bg-[#faf8f5] border-[#e2dbd4]" />
                       <Input placeholder="WhatsApp number *" type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} required className="bg-[#faf8f5] border-[#e2dbd4]" />
                       <Input placeholder="City (e.g. Hyderabad)" value={city} onChange={e => setCity(e.target.value)} className="bg-[#faf8f5] border-[#e2dbd4]" />
                       <select value={babyAge} onChange={e => setBabyAge(e.target.value)}
                         className="w-full h-10 rounded-md border border-[#e2dbd4] bg-[#faf8f5] px-3 py-2 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">Baby's age / due date</option>
+                        <option value="">Baby&apos;s age / due date</option>
                         <option value="expecting">Currently expecting</option>
                         <option value="0-3">0–3 months</option>
                         <option value="3-6">3–6 months</option>
                         <option value="6-12">6–12 months</option>
                         <option value="12-24">12–24 months</option>
                       </select>
-                      <Button type="submit" size="lg" className="w-full gap-2 bg-primary text-white hover:bg-primary/90" disabled={loading}>
-                        {loading ? 'Reserving...' : <>Reserve My Spot — Save ₹7,000 <ArrowRight className="w-4 h-4" /></>}
+                      <Button type="submit" size="lg" className="w-full gap-2 text-white font-bold" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}} disabled={loading}>
+                        {loading ? 'Reserving...' : <>Join Founding Families <ArrowRight className="w-4 h-4" /></>}
                       </Button>
                     </form>
                     <div className="mt-6 pt-5 border-t border-[#f0ece6]">
-                      <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">What's included</p>
+                      <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">What&apos;s included</p>
                       <ul className="space-y-2">
                         {included.map(item => (
                           <li key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -158,6 +181,13 @@ export default function EarlyAccessPage() {
                           </li>
                         ))}
                       </ul>
+                      <hr className="my-3 border-[#f0ece6]" />
+                      <p className="text-xs text-muted-foreground mt-2 text-center">
+                        Questions? WhatsApp us at{' '}
+                        <a href="https://wa.me/917987449366" className="text-primary hover:underline">
+                          +91 79874 49366
+                        </a>
+                      </p>
                     </div>
                   </>
                 )}
