@@ -6,7 +6,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone } from 'lucide-react';
+import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone, MessageCircle } from 'lucide-react';
+import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { cn } from '@/lib/utils';
 
 const products = [
@@ -343,6 +344,17 @@ export default function AnvayaPage() {
 
               {/* Book seat form */}
               <div className="p-6 pt-4">
+                {/* Quick WhatsApp reserve */}
+                <LeadModalTrigger source="anvaya-product" product={p.fullName}>
+                  <Button size="lg" className="w-full gap-2 bg-primary text-white hover:bg-primary/90 mb-4 cursor-pointer">
+                    <MessageCircle className="w-4 h-4" /> Quick Reserve via WhatsApp
+                  </Button>
+                </LeadModalTrigger>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex-1 h-px bg-[#e2dbd4]" />
+                  <span className="text-xs text-muted-foreground">or fill the full form below</span>
+                  <div className="flex-1 h-px bg-[#e2dbd4]" />
+                </div>
                 {booked ? (
                   <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
                     <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu, Sparkles, Brain } from 'lucide-react';
 import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
@@ -41,11 +41,11 @@ export function Header() {
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end gap-3">
-          <Button asChild variant="outline" className="hidden md:flex border-primary text-primary hover:bg-primary hover:text-white font-semibold transition-all">
-            <Link href="/contact">📋 Contact & Survey</Link>
+          <Button asChild variant="outline" className="hidden md:flex gap-1.5 border-primary text-primary hover:bg-primary hover:text-white font-semibold transition-all">
+            <Link href="/quiz"><Brain className="w-3.5 h-3.5" />Find My Pod</Link>
           </Button>
-          <Button asChild className="hidden md:flex gap-1.5 bg-primary text-white font-bold shadow-lg shadow-primary/30 hover:bg-primary/90 animate-pulse-halo px-5">
-            <Link href="/early-access"><Sparkles className="w-3.5 h-3.5" />Get Early Access</Link>
+          <Button asChild className="hidden md:flex gap-1.5 font-bold shadow-lg px-5 text-white" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.45)'}}>
+            <Link href="/preorder"><Sparkles className="w-3.5 h-3.5" />Reserve — Save ₹5,000</Link>
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -75,11 +75,11 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                <Button asChild size="lg" className="mt-2 w-full bg-primary text-white font-bold">
-                  <Link href="/early-access" onClick={() => setIsOpen(false)}><Sparkles className="w-4 h-4 mr-1" />Get Early Access</Link>
+                <Button asChild size="lg" className="mt-2 w-full font-bold text-white" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)'}}>
+                  <Link href="/preorder" onClick={() => setIsOpen(false)}><Sparkles className="w-4 h-4 mr-1" />Reserve — Save ₹5,000</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="w-full border-primary text-primary font-semibold">
-                  <Link href="/contact" onClick={() => setIsOpen(false)}>📋 Contact & Survey</Link>
+                  <Link href="/quiz" onClick={() => setIsOpen(false)}><Brain className="w-4 h-4 mr-1" />Find My Pod — Take Quiz</Link>
                 </Button>
               </div>
             </SheetContent>

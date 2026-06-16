@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star } from 'lucide-react';
+import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { useToast } from '@/hooks/use-toast';
 
 /* ─────────────────── HOOKS ─────────────────── */
@@ -181,9 +182,11 @@ export default function Home() {
                 Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI baby wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
-                <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/25 animate-pulse-halo">
-                  <Link href="/early-access">Protect Your Baby Tonight — Save ₹2,000 <ArrowRight className="w-4 h-4" /></Link>
-                </Button>
+                <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
+                  <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/25 animate-pulse-halo cursor-pointer">
+                    Get Early Access — Save ₹2,000 <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </LeadModalTrigger>
                 <Button asChild size="lg" variant="outline" className="border-primary/25 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass">
                   <Link href="/anvaya">Explore Products</Link>
                 </Button>
@@ -296,9 +299,11 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Reserve Anvaya Smart <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
+              <LeadModalTrigger source="homepage-feature-sleep" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Reserve Anvaya Smart <ArrowRight className="w-4 h-4" />
+                </Button>
+              </LeadModalTrigger>
             </div>
           </div>
         </div>
@@ -335,9 +340,11 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Get Early Access <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
+              <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Get Early Access <ArrowRight className="w-4 h-4" />
+                </Button>
+              </LeadModalTrigger>
             </div>
 
             {/* Phone mockup — right */}
@@ -414,9 +421,11 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Reserve Your Anvaya <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
+              <LeadModalTrigger source="homepage-feature-timeline" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Reserve Your Anvaya <ArrowRight className="w-4 h-4" />
+                </Button>
+              </LeadModalTrigger>
             </div>
           </div>
         </div>
@@ -452,9 +461,11 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
-                <Link href="/early-access">Get Early Access <ArrowRight className="w-4 h-4" /></Link>
-              </Button>
+              <LeadModalTrigger source="homepage-feature-live" product="Anvaya Smart">
+                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                  Get Early Access <ArrowRight className="w-4 h-4" />
+                </Button>
+              </LeadModalTrigger>
             </div>
 
             {/* Phone — right */}
@@ -621,9 +632,11 @@ export default function Home() {
             India&apos;s most trusted baby wellness pod. Peace of mind for every parent. A safer world for every baby. 🇮🇳
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo">
-              <Link href="/early-access">Reserve Now — ₹12,999 <ArrowRight className="w-4 h-4" /></Link>
-            </Button>
+            <LeadModalTrigger source="homepage-closing-cta" product="Anvaya Smart">
+              <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
+                Reserve Now — ₹12,999 <ArrowRight className="w-4 h-4" />
+              </Button>
+            </LeadModalTrigger>
             <Button asChild size="lg" variant="ghost" className="text-white/80 border border-white/15 hover:bg-white/8 text-base px-8 py-6 rounded-xl">
               <Link href="/anvaya">Explore All Products</Link>
             </Button>
