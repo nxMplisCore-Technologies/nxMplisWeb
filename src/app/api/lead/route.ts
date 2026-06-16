@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const MAKE_WEBHOOK = 'https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b';
-const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyeInQLe7Zd4evZvd3Uci5YYeWCNSLjZSRnis_78VoLrvxLuEAgbmv6_bssw7ngD5nG_Q/exec';
+const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwoxczVCNakv-nhvBHlnELO31jDd3hQ4nTaW063Wq1s/exec';
 
 export async function POST(req: NextRequest) {
   let body: {
