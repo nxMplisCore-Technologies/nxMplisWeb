@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const MAKE_WEBHOOK = 'https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b';
+const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyeInQLe7Zd4evZvd3Uci5YYeWCNSLjZSRnis_78VoLrvxLuEAgbmv6_bssw7ngD5nG_Q/exec';
 
 export async function POST(req: NextRequest) {
   let body: {
@@ -34,13 +35,11 @@ export async function POST(req: NextRequest) {
   }).catch((err) => console.error('[lead] Make.com webhook error:', err));
 
   // ── Fire-and-forget: Google Sheets via Apps Script ─────────────────────────
-  if (process.env.GOOGLE_SHEET_WEBHOOK) {
-    fetch(process.env.GOOGLE_SHEET_WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, whatsapp, city, product, source, babyAge, message }),
-    }).catch((err) => console.error('[lead] Google Sheets webhook error:', err));
-  }
+  fetch(GOOGLE_SHEET_WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, whatsapp, city, product, source, babyAge, message, timestamp: new Date().toISOString() }),
+  }).catch((err) => console.error('[lead] Google Sheets webhook error:', err));
 
   // ── Send email via Resend ──────────────────────────────────────────────────
   if (!process.env.RESEND_API_KEY) {
