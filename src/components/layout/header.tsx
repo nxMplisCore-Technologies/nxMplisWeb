@@ -63,7 +63,7 @@ export function Header() {
             <Link href="/quiz"><Brain className="w-3.5 h-3.5" />Find My Pod</Link>
           </Button>
           <Button asChild className="hidden md:flex gap-1.5 font-bold shadow-lg px-5 text-white" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.45)'}}>
-            <Link href="/preorder"><Sparkles className="w-3.5 h-3.5" />Reserve — Save ₹5,000</Link>
+            <Link href="/preorder"><Sparkles className="w-3.5 h-3.5" />Join Founding Families</Link>
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -94,7 +94,7 @@ export function Header() {
                   </Link>
                 ))}
                 <Button asChild size="lg" className="mt-2 w-full font-bold text-white" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)'}}>
-                  <Link href="/preorder" onClick={() => setIsOpen(false)}><Sparkles className="w-4 h-4 mr-1" />Reserve — Save ₹5,000</Link>
+                  <Link href="/preorder" onClick={() => setIsOpen(false)}><Sparkles className="w-4 h-4 mr-1" />Join Founding Families</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="w-full border-primary text-primary font-semibold">
                   <Link href="/quiz" onClick={() => setIsOpen(false)}><Brain className="w-4 h-4 mr-1" />Find My Pod — Take Quiz</Link>

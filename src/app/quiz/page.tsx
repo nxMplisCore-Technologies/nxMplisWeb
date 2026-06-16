@@ -283,17 +283,10 @@ export default function QuizPage() {
               </ul>
 
               <div className="mt-5 pt-5 border-t border-[#f0ece6] text-center">
-                <div className="flex items-end justify-center gap-3">
-                  <span className="text-4xl font-bold text-primary">
-                    ₹{product.price.toLocaleString('en-IN')}
-                  </span>
-                  <span className="text-lg text-muted-foreground line-through mb-1">
-                    ₹{originalPrice.toLocaleString('en-IN')}
-                  </span>
+                <div className="bg-primary/6 border border-primary/15 rounded-xl px-4 py-3">
+                  <p className="text-sm font-semibold text-primary mb-0.5">🔒 Founding family pricing</p>
+                  <p className="text-xs text-muted-foreground">Exclusive price shared via WhatsApp — no payment today</p>
                 </div>
-                <p className="text-sm font-semibold mt-1" style={{ color: '#e8957a' }}>
-                  You save ₹5,000 · Early bird
-                </p>
               </div>
             </div>
 
@@ -341,7 +334,7 @@ export default function QuizPage() {
                     'Reserving...'
                   ) : (
                     <>
-                      Reserve {product.name} — ₹0 Now{' '}
+                      Join Founding Families — {product.name}{' '}
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}

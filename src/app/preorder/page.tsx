@@ -97,7 +97,7 @@ export default function PreorderPage() {
           {/* H1 */}
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-center text-foreground mb-3 leading-tight">
             Reserve your Anvaya pod.{' '}
-            <span className="text-primary">Pay ₹0 today.</span>
+            <span className="text-primary">No payment today.</span>
           </h1>
 
           {/* Subtext */}
@@ -149,7 +149,7 @@ export default function PreorderPage() {
                   </div>
 
                   <div className="text-sm font-semibold text-primary mb-1">
-                    ₹{pod.price.toLocaleString('en-IN')}
+                    Founding price — on confirmation
                   </div>
 
                   {/* Feature chips */}
@@ -168,19 +168,10 @@ export default function PreorderPage() {
             })}
           </div>
 
-          {/* Price display */}
-          <div className="text-center mb-6">
-            <div className="flex items-end justify-center gap-3">
-              <span className="text-4xl sm:text-5xl font-bold text-primary">
-                ₹{selectedPod.price.toLocaleString('en-IN')}
-              </span>
-              <span className="text-lg text-muted-foreground line-through mb-1">
-                ₹{originalPrice.toLocaleString('en-IN')}
-              </span>
-            </div>
-            <p className="text-sm font-semibold mt-1" style={{ color: '#e8957a' }}>
-              You save ₹5,000 · Early bird
-            </p>
+          {/* Founding price teaser */}
+          <div className="text-center mb-6 bg-primary/6 border border-primary/15 rounded-xl px-5 py-4">
+            <p className="text-sm font-semibold text-primary mb-1">🔒 Founding family pricing</p>
+            <p className="text-xs text-muted-foreground">Exclusive price revealed over WhatsApp within 24 hours of sign-up. No payment required today.</p>
           </div>
 
           {/* Social proof avatars */}
@@ -255,7 +246,7 @@ export default function PreorderPage() {
 
               {/* Zero risk */}
               <p className="text-center text-xs text-muted-foreground pt-1">
-                ₹0 now · Pay on delivery · 30-day guarantee
+                No payment now · Pay on delivery · 30-day guarantee
               </p>
             </form>
           )}

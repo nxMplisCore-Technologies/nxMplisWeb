@@ -113,13 +113,10 @@ export default function EarlyAccessPage() {
             <div className="lg:sticky lg:top-24">
               <div className="bg-white border border-[#e2dbd4] rounded-2xl p-8 shadow-sm">
                 <div className="text-center mb-6 pb-6 border-b border-[#f0ece6]">
-                  <p className="text-sm text-muted-foreground mb-2">Early Access Price</p>
-                  <div className="flex items-end justify-center gap-3">
-                    <span className="text-5xl font-bold text-primary">₹12,999</span>
-                    <span className="text-xl text-muted-foreground line-through mb-1">₹19,999</span>
+                  <div className="bg-primary/6 border border-primary/15 rounded-xl px-4 py-4">
+                    <p className="text-sm font-semibold text-primary mb-1">🔒 Founding family pricing</p>
+                    <p className="text-xs text-muted-foreground">Exclusive price revealed via WhatsApp within 24 hours. No payment required today.</p>
                   </div>
-                  <p className="text-sm font-semibold mt-1" style={{color:'#e8957a'}}>You save ₹7,000</p>
-                  <p className="text-xs text-muted-foreground mt-1">or ₹1,083/month · 0% EMI · 12 months</p>
                 </div>
 
                 {submitted ? (
@@ -172,7 +169,7 @@ export default function EarlyAccessPage() {
                         <option value="12-24">12–24 months</option>
                       </select>
                       <Button type="submit" size="lg" className="w-full gap-2 text-white font-bold" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}} disabled={loading}>
-                        {loading ? 'Reserving...' : <>Reserve — Save ₹7,000 <ArrowRight className="w-4 h-4" /></>}
+                        {loading ? 'Reserving...' : <>Join Founding Families <ArrowRight className="w-4 h-4" /></>}
                       </Button>
                     </form>
                     <div className="mt-6 pt-5 border-t border-[#f0ece6]">

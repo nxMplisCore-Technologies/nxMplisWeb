@@ -118,7 +118,7 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
           {/* Header */}
           <div className="mb-4">
             <h2 className="text-xl font-bold text-foreground leading-snug pr-8">{title}</h2>
-            <p className="text-sm text-muted-foreground mt-1">₹0 now · We&apos;ll confirm on WhatsApp</p>
+            <p className="text-sm text-muted-foreground mt-1">No payment now · We&apos;ll confirm on WhatsApp</p>
           </div>
 
           {/* Social proof */}
@@ -193,7 +193,7 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
                 className="w-full h-12 text-base font-bold rounded-xl shadow-lg shadow-[#4a7c6f]/25 gap-2 bg-[#4a7c6f] text-white hover:bg-[#4a7c6f]/90"
               >
                 <MessageCircle className="w-4 h-4" />
-                {loading ? 'Reserving...' : 'Reserve — Pay ₹0 Now →'}
+                {loading ? 'Reserving...' : 'Join Founding Families →'}
               </Button>
 
               <p className="text-center text-xs text-muted-foreground pt-1">

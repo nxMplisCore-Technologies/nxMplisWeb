@@ -307,17 +307,15 @@ export default function AnvayaPage() {
                 </div>
               </div>
 
-              {/* Price */}
+              {/* Founding price panel */}
               <div className="p-6 border-b border-[#f0ece6]">
-                <div className="flex items-end gap-3 mb-1">
-                  <span className="text-4xl font-bold text-foreground">₹{p.price.toLocaleString('en-IN')}</span>
-                  <span className="text-lg text-muted-foreground line-through mb-0.5">₹{p.mrp.toLocaleString('en-IN')}</span>
-                  <span className="text-sm font-bold text-green-600 mb-0.5">{discount}% off</span>
+                <div className="bg-primary/6 border border-primary/15 rounded-xl px-4 py-4 mb-3">
+                  <p className="text-sm font-semibold text-primary mb-1">🔒 Founding family pricing</p>
+                  <p className="text-xs text-muted-foreground">Exclusive price revealed via WhatsApp within 24 hours. No payment required today.</p>
                 </div>
-                <div className="text-xs text-muted-foreground mb-2">or <strong className="text-foreground">₹{Math.round(p.price/12).toLocaleString('en-IN')}/month</strong> · 0% EMI · 12 months</div>
                 <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-green-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  In stock · Ships in 2 business days
+                  Accepting reservations now
                 </div>
               </div>
 
@@ -336,7 +334,7 @@ export default function AnvayaPage() {
                       style={selected === i ? {borderColor: prod.color, background: prod.bgLight} : {}}
                     >
                       <div className="text-xs font-bold" style={{color: selected === i ? prod.color : ''}}>{prod.name}</div>
-                      <div className="text-xs text-muted-foreground">₹{prod.price.toLocaleString('en-IN')}</div>
+                      <div className="text-xs text-muted-foreground">Founding price on sign-up</div>
                     </button>
                   ))}
                 </div>

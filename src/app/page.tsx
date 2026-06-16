@@ -190,7 +190,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-3 mb-7">
                 <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm animate-fade-up backdrop-blur-sm">
                   <Sparkles className="w-3 h-3 animate-spin-slow" />
-                  Early Access Open — First 100 families save ₹2,000
+                  Early Access Open — Founding 100 families get exclusive pricing
                 </div>
                 <div className="inline-flex items-center gap-2 bg-green-50/90 border border-green-200 rounded-full px-3 py-1.5 text-xs font-bold text-green-700 shadow-sm animate-fade-up delay-1 backdrop-blur-sm">
                   <div className="live-dot w-1.5 h-1.5 shrink-0" />
@@ -209,7 +209,7 @@ export default function Home() {
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 star-filled fill-amber-400" />)}
                 </div>
                 <span className="text-sm font-bold text-foreground">4.9/5</span>
-                <span className="text-sm text-muted-foreground">· Trusted by 500+ Indian families</span>
+                <span className="text-sm text-muted-foreground">· Loved by our pilot families</span>
                 <span className="hidden sm:inline text-sm text-muted-foreground">· Paediatrician-recommended</span>
               </div>
 
@@ -219,7 +219,7 @@ export default function Home() {
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
                   <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
-                    Claim Your Spot — Save ₹2,000 <ArrowRight className="w-4 h-4" />
+                    Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
                   </Button>
                 </LeadModalTrigger>
                 <Button asChild size="lg" variant="outline" className="border-primary/25 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass">
@@ -567,10 +567,10 @@ export default function Home() {
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', price: '₹8,999', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
-              { name: 'SENSE', tagline: 'Understand more than sound.', price: '₹12,999', bg: 'from-[#e8f2ee] to-[#f5ede0]', border: '#a7d9c8', color: '#4a7c6f', features: ['Breathing & SpO2', 'Heart Rate', 'Cry Analysis', 'Air Quality'], popular: true },
-              { name: 'PULSE', tagline: 'Stay connected always.', price: '₹15,999', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#3b82f6', features: ['Activity Tracking', 'Temp & Humidity', 'Safety Alerts', 'Real-Time Alerts'] },
-              { name: 'OMNI', tagline: 'Total awareness.', price: '₹19,999', bg: '', border: '#2d4a3e', color: '#fbbf24', features: ['Predictive AI', '360° Coverage', 'Health Reports', 'All SENSE+'], dark: true },
+              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
+              { name: 'SENSE', tagline: 'Understand more than sound.', bg: 'from-[#e8f2ee] to-[#f5ede0]', border: '#a7d9c8', color: '#4a7c6f', features: ['Breathing & SpO2', 'Heart Rate', 'Cry Analysis', 'Air Quality'], popular: true },
+              { name: 'PULSE', tagline: 'Stay connected always.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#3b82f6', features: ['Activity Tracking', 'Temp & Humidity', 'Safety Alerts', 'Real-Time Alerts'] },
+              { name: 'OMNI', tagline: 'Total awareness.', bg: '', border: '#2d4a3e', color: '#fbbf24', features: ['Predictive AI', '360° Coverage', 'Health Reports', 'All SENSE+'], dark: true },
             ].map((p, i) => (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
               <Link href={`/anvaya#${p.name.toLowerCase()}`}
@@ -589,7 +589,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className={`text-2xl font-bold ${p.dark ? 'text-white' : ''}`}>{p.price}</div>
+                <div className={`text-xs font-semibold mt-3 ${p.dark ? 'text-yellow-300/70' : 'text-muted-foreground'}`}>Founding price — revealed on sign-up</div>
                 <div className={`mt-2 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all ${p.dark ? 'text-yellow-400' : 'text-primary'}`}>
                   Explore <ArrowRight className="w-3 h-3" />
                 </div>
@@ -606,11 +606,11 @@ export default function Home() {
           <Reveal variant={fadeUp}>
           <div className="text-center mb-14">
             <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Parent Stories</p>
-            <h2 className="text-4xl font-bold mb-3">500+ families sleep better every night.</h2>
+            <h2 className="text-4xl font-bold mb-3">What our pilot families are saying.</h2>
             <div className="flex items-center justify-center gap-2 mt-3">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 star-filled fill-amber-400" />)}
               <span className="text-lg font-bold ml-1">4.9/5</span>
-              <span className="text-muted-foreground text-sm">· 500+ verified reviews</span>
+              <span className="text-muted-foreground text-sm">· Pilot family feedback</span>
             </div>
           </div>
           </Reveal>
@@ -687,7 +687,7 @@ export default function Home() {
             <div className="flex gap-16 animate-marquee whitespace-nowrap">
               {[
                 '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from 500+ families',
+                '⭐ 4.9/5 from pilot families',
                 '🩺 Recommended by Paediatricians',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
@@ -695,7 +695,7 @@ export default function Home() {
                 '🛡️ 30-day money-back guarantee',
                 '👶 Safe for newborns from day 1',
                 '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from 500+ families',
+                '⭐ 4.9/5 from pilot families',
                 '🩺 Recommended by Paediatricians',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
@@ -723,7 +723,7 @@ export default function Home() {
               Be among the<br />
               <span className="text-gradient">first 100 families.</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-10">Get ₹2,000 off the launch price, priority shipping, and a free 1-year premium app subscription.</p>
+            <p className="text-lg text-muted-foreground mb-10">Founding families get exclusive pricing, priority shipping, and a free 1-year premium app subscription — revealed over WhatsApp.</p>
             {submitted ? (
               <div className="glass rounded-2xl p-10 shadow-xl border-white/70 text-center">
                 <CheckCircle className="w-12 h-12 text-primary mx-auto mb-3" />
@@ -790,7 +790,7 @@ export default function Home() {
           <div className="flex justify-center gap-4 flex-wrap">
             <LeadModalTrigger source="homepage-closing-cta" product="Anvaya Smart">
               <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
-                Claim Early Access — Save ₹2,000 <ArrowRight className="w-4 h-4" />
+                Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
               </Button>
             </LeadModalTrigger>
             <Button asChild size="lg" variant="ghost" className="text-white/80 border border-white/15 hover:bg-white/8 text-base px-8 py-6 rounded-xl">
