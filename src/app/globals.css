@@ -285,7 +285,8 @@
   display:inline-flex;
   align-items:center;
   gap:6px;
-  padding:6px 14px;
+  padding:10px 16px;
+  min-height:44px;
   border-radius:999px;
   background:rgba(255,255,255,0.7);
   border:1px solid rgba(74,124,111,0.15);

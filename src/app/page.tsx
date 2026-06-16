@@ -111,9 +111,9 @@ function LiveMonitorWidget() {
 /* ─────────────────── PHONE MOCKUP ─────────────────── */
 function PhoneMockup({ src, alt, className = '', objectPosition = 'center' }: { src: string; alt: string; className?: string; objectPosition?: string }) {
   return (
-    <div className={`phone-frame relative select-none ${className}`} style={{ width: 220, minWidth: 220 }}>
-      <div className="phone-screen bg-gray-100" style={{ height: 440 }}>
-        <Image src={src} alt={alt} fill className="object-cover" style={{ objectPosition }} sizes="220px" />
+    <div className={`phone-frame relative select-none ${className}`} style={{ width: 'min(220px, 72vw)', minWidth: 160 }}>
+      <div className="phone-screen bg-gray-100" style={{ height: 'min(440px, 144vw)' }}>
+        <Image src={src} alt={alt} fill className="object-cover" style={{ objectPosition }} sizes="(max-width: 480px) 72vw, 220px" />
       </div>
     </div>
   );
@@ -198,7 +198,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-[76px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
                 Your Baby Breathes.<br />
                 <span className="text-gradient">You Sleep.</span>
               </h1>
@@ -244,8 +244,8 @@ export default function Home() {
             <div className="flex flex-col items-center gap-6">
               <div className="relative">
                 {/* Halo rings */}
-                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
-                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
+                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none hidden sm:block" />
+                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none hidden sm:block" />
                 <div className="relative w-72 lg:w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
                   <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 288px, 320px" />
                   {/* Overlay badge */}
@@ -255,7 +255,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Floating trust badge */}
-                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
                   <div className="flex items-center gap-1 mb-0.5">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 star-filled fill-amber-400" />)}
                   </div>
@@ -337,12 +337,12 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-primary/8 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-trends.jpg" alt="Anvaya Smart app — Sleep & Health Trends showing heart rate, temperature and SpO2" className="animate-float-slow relative z-10" objectPosition="top" />
-                <div className="absolute -right-8 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="absolute -right-8 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
                   <div className="text-xs text-muted-foreground font-medium mb-1">Sleep Score</div>
                   <div className="text-3xl font-bold text-primary leading-none">85</div>
                   <div className="text-xs font-semibold text-green-600 mt-1">Excellent 🌙</div>
                 </div>
-                <div className="absolute -left-6 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="absolute -left-6 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '2s' }}>
                   <div className="text-[10px] text-muted-foreground">Avg Heart Rate</div>
                   <div className="text-xl font-bold text-[#e8957a]">121 BPM</div>
                   <div className="text-[10px] text-green-600 font-semibold">Normal range ✓</div>
@@ -352,7 +352,7 @@ export default function Home() {
             <Reveal variant={fadeRight}>
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Sleep & Wellness Analysis</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Know if your baby<br />slept safely —<br />
                 <span className="text-gradient">not just soundly.</span>
               </h2>
@@ -393,7 +393,7 @@ export default function Home() {
             <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Cry Intelligence</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Stop guessing.<br />Know what your<br />
                 <span className="text-gradient">baby needs — instantly.</span>
               </h2>
@@ -425,12 +425,12 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-[#fdf0ea]/60 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" objectPosition="top" />
-                <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
+                <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
                   <div className="text-[10px] text-muted-foreground font-medium">Cry detected</div>
                   <div className="text-sm font-bold text-[#e8957a] mt-0.5">Hungry cry 🍼</div>
                   <div className="text-[10px] text-muted-foreground mt-1">Last fed: 2h 45m ago</div>
                 </div>
-                <div className="absolute -right-6 bottom-32 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '1.5s' }}>
+                <div className="absolute -right-6 bottom-32 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1.5s' }}>
                   <div className="text-[10px] text-muted-foreground">Noise level</div>
                   <div className="text-xl font-bold text-primary">25 dB</div>
                   <div className="text-[10px] text-green-600 font-semibold">Quiet room ✓</div>
@@ -449,12 +449,12 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-[#e4eeea] to-transparent blur-2xl" />
                 <PhoneMockup src="/app-timeline.jpg" alt="Anvaya app — daily timeline showing sleeping, feeding and wake-up events" className="animate-float-slow relative z-10" objectPosition="top" />
-                <div className="absolute -right-8 top-12 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
+                <div className="absolute -right-8 top-12 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
                   <div className="text-[10px] text-muted-foreground">10:30 AM</div>
                   <div className="text-sm font-bold text-primary mt-0.5">Sleeping 😴</div>
                   <div className="text-[10px] text-muted-foreground">Deep sleep cycle</div>
                 </div>
-                <div className="absolute -left-6 bottom-28 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="absolute -left-6 bottom-28 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '2s' }}>
                   <div className="text-[10px] text-muted-foreground">AI Insight</div>
                   <div className="text-sm font-bold text-[#4a7c6f]">3 new updates ✨</div>
                 </div>
@@ -463,7 +463,7 @@ export default function Home() {
             <Reveal variant={fadeRight}>
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Daily Timeline</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Every moment,<br />captured and<br />
                 <span className="text-gradient">understood.</span>
               </h2>
@@ -505,7 +505,7 @@ export default function Home() {
             <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Live Monitoring</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 See your baby live.<br />Speak to them.<br />
                 <span className="text-gradient">From anywhere.</span>
               </h2>
@@ -536,7 +536,7 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-primary/8 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-home.jpg" alt="Anvaya app — live monitoring dashboard with temperature, humidity and video stream" className="animate-float-slow relative z-10" />
-                <div className="absolute -left-10 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float">
+                <div className="absolute -left-10 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="live-dot" />
                     <span className="text-xs font-bold text-green-600">Live Stream</span>
@@ -544,7 +544,7 @@ export default function Home() {
                   <div className="text-sm font-bold">Aradhya · 1 month</div>
                   <div className="text-[10px] text-muted-foreground">Awake and calm 😊</div>
                 </div>
-                <div className="absolute -right-8 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float" style={{ animationDelay: '1.2s' }}>
+                <div className="absolute -right-8 bottom-24 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1.2s' }}>
                   <div className="text-[10px] text-muted-foreground">Room</div>
                   <div className="text-lg font-bold text-primary">26°C · 55%</div>
                   <div className="text-[10px] text-green-600 font-semibold">Perfect ✓</div>
@@ -719,7 +719,7 @@ export default function Home() {
               <Sparkles className="w-3 h-3 animate-spin-slow" />
               47 of 100 early access spots remaining
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
               Be among the<br />
               <span className="text-gradient">first 100 families.</span>
             </h2>
@@ -781,7 +781,7 @@ export default function Home() {
         <div className="absolute inset-0 noise pointer-events-none opacity-30" />
         <div className="container mx-auto px-4 text-center relative">
           <p className="text-sm font-bold uppercase tracking-widest text-primary mb-6">Anvaya Smart</p>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-5 leading-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
             Because every<br />breath matters.
           </h2>
           <p className="text-white/60 text-xl mb-12 max-w-xl mx-auto">

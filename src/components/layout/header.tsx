@@ -44,13 +44,13 @@ export function Header() {
         <Link href="/" className="mr-6 flex items-center space-x-2" onClick={() => setIsOpen(false)}>
           <Logo />
         </Link>
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+        <nav className="hidden md:flex items-center space-x-1 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                'transition-colors hover:text-primary',
+                'px-3 py-2.5 rounded-lg transition-colors hover:text-primary hover:bg-primary/5',
                 pathname?.startsWith(link.href) ? 'text-primary' : 'text-muted-foreground'
               )}
             >
@@ -67,7 +67,7 @@ export function Header() {
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" className="md:hidden">
+              <Button variant="ghost" className="md:hidden h-11 w-11 p-0">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle Menu</span>
               </Button>
@@ -79,15 +79,15 @@ export function Header() {
                       <Logo />
                    </Link>
                 </SheetHeader>
-              <div className="flex flex-col p-4 space-y-4">
+              <div className="flex flex-col p-4 space-y-1">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      'text-lg font-medium transition-colors hover:text-primary',
-                       pathname?.startsWith(link.href) ? 'text-primary' : 'text-foreground'
+                      'text-lg font-medium transition-colors hover:text-primary py-3 px-2 rounded-xl min-h-[52px] flex items-center hover:bg-primary/5',
+                       pathname?.startsWith(link.href) ? 'text-primary bg-primary/5' : 'text-foreground'
                     )}
                   >
                     {link.label}
