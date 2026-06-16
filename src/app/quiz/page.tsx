@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { CheckCircle, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -127,32 +127,75 @@ export default function QuizPage() {
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [result, setResult] = useState<ProductKey | null>(null);
+  const [finding, setFinding] = useState(false);
   const [name, setName] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // Animation state: 'idle' | 'exit' | 'enter'
+  const [animState, setAnimState] = useState<'idle' | 'exit' | 'enter'>('idle');
+  const [displayQ, setDisplayQ] = useState(0);
 
-  const question = QUESTIONS[currentQ];
+  const question = QUESTIONS[displayQ];
   const selectedAnswer = answers[question?.id ?? ''];
   const isLast = currentQ === QUESTIONS.length - 1;
   const progress = ((currentQ + 1) / QUESTIONS.length) * 100;
 
   function selectOption(value: string) {
-    setAnswers((prev) => ({ ...prev, [question.id]: value }));
+    const qId = QUESTIONS[currentQ].id;
+    const newAnswers = { ...answers, [qId]: value };
+    setAnswers(newAnswers);
+
+    // Auto-advance after 300ms
+    setTimeout(() => {
+      if (currentQ === QUESTIONS.length - 1) {
+        // Last question — show finding state
+        setFinding(true);
+        setTimeout(() => {
+          setFinding(false);
+          setResult(recommend(newAnswers));
+        }, 800);
+      } else {
+        // Animate out then advance
+        setAnimState('exit');
+        setTimeout(() => {
+          setCurrentQ((q) => q + 1);
+          setDisplayQ((q) => q + 1);
+          setAnimState('enter');
+          setTimeout(() => setAnimState('idle'), 300);
+        }, 200);
+      }
+    }, 300);
   }
 
   function handleNext() {
     if (!selectedAnswer) return;
     if (isLast) {
-      setResult(recommend(answers));
+      setFinding(true);
+      setTimeout(() => {
+        setFinding(false);
+        setResult(recommend(answers));
+      }, 800);
     } else {
-      setCurrentQ((q) => q + 1);
+      setAnimState('exit');
+      setTimeout(() => {
+        setCurrentQ((q) => q + 1);
+        setDisplayQ((q) => q + 1);
+        setAnimState('enter');
+        setTimeout(() => setAnimState('idle'), 300);
+      }, 200);
     }
   }
 
   function handleBack() {
     if (currentQ === 0) return;
-    setCurrentQ((q) => q - 1);
+    setAnimState('exit');
+    setTimeout(() => {
+      setCurrentQ((q) => q - 1);
+      setDisplayQ((q) => q - 1);
+      setAnimState('enter');
+      setTimeout(() => setAnimState('idle'), 300);
+    }, 200);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -175,6 +218,20 @@ export default function QuizPage() {
     setSubmitted(true);
   }
 
+  // ── Finding state ──────────────────────────────────────────────────────────
+
+  if (finding) {
+    return (
+      <div className="min-h-screen bg-[#faf8f5] flex items-center justify-center">
+        <div className="text-center px-4">
+          <div className="text-4xl mb-4 animate-bounce">✨</div>
+          <p className="text-lg font-semibold text-foreground">Finding your perfect match...</p>
+          <p className="text-sm text-muted-foreground mt-2">Analysing your answers</p>
+        </div>
+      </div>
+    );
+  }
+
   // ── Result screen ──────────────────────────────────────────────────────────
 
   if (result) {
@@ -186,11 +243,24 @@ export default function QuizPage() {
         <div className="container mx-auto px-4 py-12 sm:py-16">
           <div className="max-w-lg mx-auto">
 
+            {/* Animated match text */}
+            <p className="text-center text-lg font-bold mb-3 animate-fade-in" style={{ color: '#4a7c6f' }}>
+              🎉 Perfect match found!
+            </p>
+
             {/* Header */}
             <div
-              className="rounded-2xl p-8 text-center mb-6 text-white"
+              className="rounded-2xl p-8 text-center mb-6 text-white relative overflow-hidden"
               style={{ background: 'linear-gradient(135deg, #2d5c52 0%, #4a7c6f 100%)' }}
             >
+              {/* Subtle animated shimmer */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%)',
+                  animation: 'shimmer-slide 3s ease-in-out infinite',
+                }}
+              />
               <span className="inline-block bg-white/20 rounded-full px-3 py-1 text-xs font-semibold tracking-widest uppercase mb-4">
                 ✦ Your Perfect Match
               </span>
@@ -205,7 +275,7 @@ export default function QuizPage() {
               </h2>
               <ul className="space-y-3">
                 {product.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-3">
+                  <li key={b} className="flex items-start gap-3 border-l-4 border-primary pl-3 py-0.5">
                     <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <span className="text-sm text-foreground">{b}</span>
                   </li>
@@ -233,9 +303,11 @@ export default function QuizPage() {
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-7 h-7 text-primary" />
                 </div>
-                <h2 className="text-xl font-bold mb-2">You&apos;re on the list!</h2>
+                <h2 className="text-xl font-bold mb-2">✅ You&apos;re reserved!</h2>
                 <p className="text-muted-foreground text-sm">
-                  We&apos;ll confirm on WhatsApp within 1 hour.
+                  We&apos;ll WhatsApp{' '}
+                  <span className="font-semibold text-foreground">+91 {whatsapp.replace(/^(\+?91)/, '').trim()}</span>{' '}
+                  within 1 hour with your <span className="font-semibold text-primary">{product.name}</span> pod details.
                 </p>
               </div>
             ) : (
@@ -281,11 +353,12 @@ export default function QuizPage() {
 
             <button
               type="button"
-              onClick={() => { setResult(null); setCurrentQ(0); setAnswers({}); }}
+              onClick={() => { setResult(null); setCurrentQ(0); setDisplayQ(0); setAnswers({}); setAnimState('idle'); }}
               className="mt-4 text-xs text-muted-foreground underline-offset-4 hover:underline mx-auto block"
             >
               Retake quiz
             </button>
+            <p className="text-xs text-muted-foreground text-center mt-2">Taken by 500+ Indian parents</p>
           </div>
         </div>
       </div>
@@ -294,13 +367,20 @@ export default function QuizPage() {
 
   // ── Quiz screen ────────────────────────────────────────────────────────────
 
+  const animClass =
+    animState === 'exit'
+      ? 'opacity-0 -translate-x-8'
+      : animState === 'enter'
+      ? 'opacity-0 translate-x-8'
+      : 'opacity-100 translate-x-0';
+
   return (
     <div className="min-h-screen bg-[#faf8f5]">
       {/* Header with progress bar */}
       <div style={{ background: 'linear-gradient(135deg, #2d5c52 0%, #4a7c6f 100%)' }}>
         <div className="container mx-auto px-4 pt-6 pb-8">
           <div className="max-w-lg mx-auto">
-            {/* Back + label row */}
+            {/* Back + dots row */}
             <div className="flex items-center justify-between mb-4">
               <button
                 type="button"
@@ -311,9 +391,25 @@ export default function QuizPage() {
                 <ArrowLeft className="w-4 h-4" />
                 Back
               </button>
-              <span className="text-white/70 text-xs font-medium">
-                Question {currentQ + 1} of {QUESTIONS.length}
-              </span>
+              {/* Question counter dots */}
+              <div className="flex items-center gap-1.5">
+                {QUESTIONS.map((_, i) => (
+                  <div
+                    key={i}
+                    className="rounded-full transition-all duration-300"
+                    style={{
+                      width: i === currentQ ? '20px' : '8px',
+                      height: '8px',
+                      backgroundColor:
+                        i < currentQ
+                          ? 'rgba(255,255,255,0.9)'
+                          : i === currentQ
+                          ? '#ffffff'
+                          : 'rgba(255,255,255,0.25)',
+                    }}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* Progress bar */}
@@ -335,7 +431,10 @@ export default function QuizPage() {
       {/* Options */}
       <div className="container mx-auto px-4 py-6">
         <div className="max-w-lg mx-auto">
-          <div className="space-y-3 mb-6">
+          <div
+            key={displayQ}
+            className={`space-y-3 mb-6 transition-all duration-200 ${animClass}`}
+          >
             {question.options.map((opt) => {
               const selected = selectedAnswer === opt.value;
               return (
@@ -352,7 +451,7 @@ export default function QuizPage() {
                   style={selected ? { backgroundColor: 'rgba(74,124,111,0.08)' } : {}}
                 >
                   <span className="text-2xl shrink-0">{opt.emoji}</span>
-                  <div>
+                  <div className="flex-1">
                     <span className="font-semibold text-sm sm:text-base text-foreground">
                       {opt.label}
                     </span>
@@ -360,12 +459,15 @@ export default function QuizPage() {
                       <p className="text-xs text-muted-foreground mt-0.5">{opt.sub}</p>
                     )}
                   </div>
+                  {selected && (
+                    <CheckCircle className="w-4 h-4 text-primary shrink-0" />
+                  )}
                 </button>
               );
             })}
           </div>
 
-          {/* Next button */}
+          {/* Next button — visual confirmation, auto-triggers */}
           <Button
             type="button"
             size="lg"
@@ -385,6 +487,13 @@ export default function QuizPage() {
           </Button>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes shimmer-slide {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(200%); }
+        }
+      `}</style>
     </div>
   );
 }

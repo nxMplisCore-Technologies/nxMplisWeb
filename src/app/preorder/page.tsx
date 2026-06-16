@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, MessageCircle } from 'lucide-react';
 
 const PODS = [
   {
@@ -11,24 +11,33 @@ const PODS = [
     name: 'CORE',
     price: 8999,
     tag: 'Breathing + Cry analysis',
+    dotColor: '#7aab9e',
+    chips: ['🫁 Breathing', '😢 Cry'],
   },
   {
     key: 'SENSE',
     name: 'SENSE',
     price: 11999,
     tag: '+ SpO₂ + Temperature',
+    dotColor: '#4a7c6f',
+    popular: true,
+    chips: ['🫁 Breathing', '😢 Cry', '💉 SpO₂', '🌡️ Temp'],
   },
   {
     key: 'PULSE',
     name: 'PULSE',
     price: 14999,
     tag: '+ Heart Rate',
+    dotColor: '#e8957a',
+    chips: ['🫁 Breathing', '😢 Cry', '💉 SpO₂', '🌡️ Temp', '❤️ Heart Rate'],
   },
   {
     key: 'OMNI',
     name: 'OMNI',
     price: 19999,
     tag: 'All sensors + Video',
+    dotColor: '#c0674f',
+    chips: ['🫁 Breathing', '😢 Cry', '💉 SpO₂', '🌡️ Temp', '❤️ Heart Rate', '📹 Video'],
   },
 ] as const;
 
@@ -106,18 +115,54 @@ export default function PreorderPage() {
                   type="button"
                   onClick={() => setSelectedKey(pod.key)}
                   className={[
-                    'rounded-xl border-2 p-4 text-left transition-all duration-200 cursor-pointer',
+                    'rounded-xl border-2 p-4 text-left transition-all duration-200 cursor-pointer relative',
                     selected
                       ? 'border-primary bg-primary/8'
                       : 'border-[#e2dbd4] bg-white hover:border-primary/40',
                   ].join(' ')}
                   style={selected ? { backgroundColor: 'rgba(74,124,111,0.08)' } : {}}
                 >
-                  <div className="font-bold text-base text-foreground mb-0.5">{pod.name}</div>
+                  {/* Most Popular badge */}
+                  {'popular' in pod && pod.popular && (
+                    <span
+                      className="absolute -top-2 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full text-white"
+                      style={{ backgroundColor: '#e8957a' }}
+                    >
+                      Most Popular
+                    </span>
+                  )}
+
+                  {/* Selected checkmark */}
+                  {selected && (
+                    <span className="absolute top-2 right-2">
+                      <CheckCircle className="w-4 h-4 text-primary" />
+                    </span>
+                  )}
+
+                  {/* Tier dot + name */}
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <span
+                      className="w-2 h-2 rounded-full shrink-0"
+                      style={{ backgroundColor: pod.dotColor }}
+                    />
+                    <div className="font-bold text-base text-foreground">{pod.name}</div>
+                  </div>
+
                   <div className="text-sm font-semibold text-primary mb-1">
                     ₹{pod.price.toLocaleString('en-IN')}
                   </div>
-                  <div className="text-xs text-muted-foreground leading-snug">{pod.tag}</div>
+
+                  {/* Feature chips */}
+                  <div className="flex flex-wrap gap-1 mt-1.5">
+                    {pod.chips.map((chip) => (
+                      <span
+                        key={chip}
+                        className="text-[10px] bg-[#f0ece6] text-muted-foreground rounded px-1 py-0.5 leading-tight"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
                 </button>
               );
             })}
@@ -138,15 +183,28 @@ export default function PreorderPage() {
             </p>
           </div>
 
+          {/* Social proof avatars */}
+          <div className="flex items-center gap-2 justify-center mb-4">
+            <div className="flex -space-x-2">
+              <div className="w-7 h-7 rounded-full bg-[#4a7c6f] border-2 border-white flex items-center justify-center text-white text-[10px] font-bold">R</div>
+              <div className="w-7 h-7 rounded-full bg-[#e8957a] border-2 border-white flex items-center justify-center text-white text-[10px] font-bold">P</div>
+              <div className="w-7 h-7 rounded-full bg-[#7aab9e] border-2 border-white flex items-center justify-center text-white text-[10px] font-bold">A</div>
+            </div>
+            <p className="text-xs text-muted-foreground">73 families have reserved · <span className="text-primary font-semibold">27 spots left</span></p>
+          </div>
+
           {/* Form / Success */}
           {submitted ? (
-            <div className="bg-white border border-[#e2dbd4] rounded-2xl p-10 text-center shadow-sm mb-6">
-              <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-7 h-7 text-primary" />
-              </div>
+            <div className="bg-white border border-[#e2dbd4] rounded-2xl p-8 text-center shadow-sm mb-6">
+              <div className="text-3xl mb-3">✅</div>
               <h2 className="text-xl font-bold mb-2">You&apos;re reserved!</h2>
-              <p className="text-muted-foreground text-sm">
-                We&apos;ll WhatsApp you within 1 hour.
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                We&apos;ll WhatsApp{' '}
+                <span className="font-semibold text-foreground">
+                  +91 {whatsapp.replace(/^(\+?91)/, '').trim()}
+                </span>{' '}
+                within 1 hour with your{' '}
+                <span className="font-semibold text-primary">{selectedPod.name}</span> pod details.
               </p>
             </div>
           ) : (
@@ -187,6 +245,7 @@ export default function PreorderPage() {
                   'Reserving...'
                 ) : (
                   <>
+                    <MessageCircle className="w-4 h-4" />
                     Reserve My {selectedPod.name} Pod{' '}
                     <ArrowRight className="w-4 h-4" />
                   </>
