@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const MAKE_WEBHOOK = 'https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b';
-const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwoxczVCNakv-nhvBHlnELO31jDd3hQ4nTaW063Wq1s/exec';
+const GOOGLE_SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyrgffT3o26K8A_CT_4_sACRqY_82KYAVRrvdm4zPzaEDhb3us8_zpkhETOsYp6aswkjw/exec';
 
 const inquiryLabels: Record<string, string> = {
   'early-access': 'Early Access / Product',
