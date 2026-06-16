@@ -167,8 +167,8 @@ export default function ContactPage() {
               <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{color:'#e8957a'}}>Interested in early access?</p>
               <h3 className="text-xl font-bold mb-2">Reserve your Anvaya Smart</h3>
               <p className="text-sm text-muted-foreground mb-4">Join 47 Indian families who've already reserved. First 100 save ₹2,000 off launch price.</p>
-              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 w-full">
-                <a href="/quiz">Take the Quiz — Find Your Pod → <ArrowRight className="w-4 h-4" /></a>
+              <Button asChild className="text-white font-bold gap-2 w-full" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
+                <a href="/quiz">Take the Quiz — Find Your Pod <ArrowRight className="w-4 h-4" /></a>
               </Button>
             </div>
           </div>

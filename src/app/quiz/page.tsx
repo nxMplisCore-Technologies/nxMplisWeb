@@ -333,14 +333,15 @@ export default function QuizPage() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full gap-2 bg-primary text-white hover:bg-primary/90"
+                  className="w-full gap-2 text-white font-bold"
+                  style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}
                   disabled={loading}
                 >
                   {loading ? (
                     'Reserving...'
                   ) : (
                     <>
-                      Reserve My {product.name} — ₹0 Now{' '}
+                      Reserve {product.name} — ₹0 Now{' '}
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}

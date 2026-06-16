@@ -346,7 +346,7 @@ export default function AnvayaPage() {
               <div className="p-6 pt-4">
                 {/* Quick WhatsApp reserve */}
                 <LeadModalTrigger source="anvaya-product" product={p.fullName}>
-                  <Button size="lg" className="w-full gap-2 bg-primary text-white hover:bg-primary/90 mb-4 cursor-pointer">
+                  <Button size="lg" className="w-full gap-2 text-white font-bold mb-4 cursor-pointer" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
                     <MessageCircle className="w-4 h-4" /> Quick Reserve via WhatsApp
                   </Button>
                 </LeadModalTrigger>
@@ -383,10 +383,10 @@ export default function AnvayaPage() {
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-12 text-base font-bold rounded-xl shadow-lg gap-2"
-                      style={{background: p.color, color: '#fff'}}
+                      className="w-full h-12 text-base font-bold rounded-xl gap-2"
+                      style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)', color: '#fff'}}
                     >
-                      {loading ? 'Booking...' : `Reserve My ${p.fullName} Pod — ₹0 Now`}
+                      {loading ? 'Booking...' : `Reserve ${p.name} Pod — ₹0 Now`}
                     </Button>
                     <button
                       type="button"

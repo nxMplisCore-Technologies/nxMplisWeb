@@ -88,7 +88,7 @@ export default function ComparePage() {
           <div className="text-sm font-bold text-primary uppercase tracking-widest mb-2">Our Recommendation</div>
           <h2 className="text-3xl font-bold mb-3">Anvaya Smart SENSE</h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">India's only contactless AI baby monitor. Built in India. Supported in India. The only option offering breathing + SpO2 + cry analysis + sleep tracking — without attaching anything to your baby.</p>
-          <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2">
+          <Button asChild size="lg" className="text-white font-bold gap-2 w-full sm:w-auto" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
             <Link href="/early-access">Reserve Early Access — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
           </Button>
           <p className="text-xs text-muted-foreground mt-3">Free shipping · 30-day guarantee · 0% EMI · No payment now</p>

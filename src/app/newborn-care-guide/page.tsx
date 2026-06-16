@@ -83,7 +83,7 @@ export default function NewbornCareGuidePage() {
         <div className="bg-gradient-to-br from-[#e8f2ee] to-[#f5ede0] rounded-2xl p-7 border border-primary/20 text-center">
           <h2 className="text-2xl font-bold mb-2">Monitor your newborn with confidence</h2>
           <p className="text-muted-foreground mb-5 max-w-xl mx-auto">Anvaya Smart tracks breathing, temperature, cries and sleep contactlessly — giving you the data to respond confidently, not anxiously.</p>
-          <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
+          <Button asChild className="text-white font-bold gap-2 w-full sm:w-auto" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
             <Link href="/early-access">Get Anvaya Smart — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
           </Button>
         </div>

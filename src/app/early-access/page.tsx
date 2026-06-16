@@ -171,8 +171,8 @@ export default function EarlyAccessPage() {
                         <option value="6-12">6–12 months</option>
                         <option value="12-24">12–24 months</option>
                       </select>
-                      <Button type="submit" size="lg" className="w-full gap-2 bg-primary text-white hover:bg-primary/90" disabled={loading}>
-                        {loading ? 'Reserving...' : <>Reserve My Spot — Save ₹7,000 <ArrowRight className="w-4 h-4" /></>}
+                      <Button type="submit" size="lg" className="w-full gap-2 text-white font-bold" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}} disabled={loading}>
+                        {loading ? 'Reserving...' : <>Reserve — Save ₹7,000 <ArrowRight className="w-4 h-4" /></>}
                       </Button>
                     </form>
                     <div className="mt-6 pt-5 border-t border-[#f0ece6]">

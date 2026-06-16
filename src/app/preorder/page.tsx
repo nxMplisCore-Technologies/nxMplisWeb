@@ -238,7 +238,8 @@ export default function PreorderPage() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full gap-2 bg-primary text-white hover:bg-primary/90 mt-1"
+                className="w-full gap-2 text-white font-bold mt-1"
+                style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}
                 disabled={loading}
               >
                 {loading ? (
@@ -246,7 +247,7 @@ export default function PreorderPage() {
                 ) : (
                   <>
                     <MessageCircle className="w-4 h-4" />
-                    Reserve My {selectedPod.name} Pod{' '}
+                    Reserve {selectedPod.name} Pod{' '}
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
