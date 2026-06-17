@@ -548,7 +548,7 @@ export default function Home() {
               {/* India-first badge */}
               <div className="flex flex-wrap gap-2 mb-6 animate-fade-up">
                 <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm backdrop-blur-sm">
-                  🇮🇳 India&apos;s First AI Baby Wellness Pod
+                  🇮🇳 India&apos;s First AI That Truly Cares For Your Baby
                 </div>
                 <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-full px-3 py-1.5 text-xs text-amber-700 font-semibold shadow-sm">
                   <Sparkles className="w-3 h-3" /> Founding 100 families · Early access open
