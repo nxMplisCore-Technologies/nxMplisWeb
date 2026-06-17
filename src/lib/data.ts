@@ -22,43 +22,93 @@ export const ARTICLES = [
     excerpt: 'New parents in India are often alarmed by their newborn\'s breathing patterns. This expert guide covers normal rates, periodic breathing, and exactly when to call a doctor.',
     keywords: ['baby breathing patterns India', 'normal baby breathing rate', 'newborn breathing', 'baby breathing monitor India'],
     content: `
-      <h2>What Is a Normal Breathing Rate for a Baby?</h2>
-      <p>One of the most common fears for new Indian parents is not knowing whether their baby is breathing normally. Newborns breathe significantly faster than adults — and the pattern is often irregular. This is completely normal.</p>
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;line-height:1;margin-top:2px;">💡</div>
+        <div>
+          <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">Reading this at 2am because your baby's chest just stopped moving?</div>
+          <div style="color:#4b6a63;font-size:13px;line-height:1.6;">Breathe. A 5–10 second pause is called <strong>periodic breathing</strong> and is completely normal in newborns. Scroll to the 🚨 section if you need the warning signs right now.</div>
+        </div>
+      </div>
+
+      <h2>🫁 Your newborn breathes like nobody taught them how — and that's okay</h2>
+      <p>Picture this: it's 2am. You're watching your baby's chest. It rises… rises… then nothing. Five seconds. Six seconds. Your hand is already reaching for the phone.</p>
+      <p>Then it starts again. Baby sleeps on, completely unbothered.</p>
+      <p>You, however, are now wide awake with a racing heart.</p>
+      <p>Here's the thing: <strong>newborn breathing is supposed to look chaotic.</strong> It's fast, it's irregular, it pauses, it grunts. None of that means something is wrong. Your baby's brain is still learning to control breathing — it takes a few months to get the hang of it.</p>
+
+      <h2>📊 How fast is normal? (Quick reference)</h2>
+      <p>Adults breathe 12–20 times per minute. Babies breathe much faster — and slower counts as a warning sign, not a good thing.</p>
 
       <table>
-        <thead><tr><th>Age</th><th>Normal Rate</th><th>What to Expect</th></tr></thead>
+        <thead><tr><th>Age</th><th>Normal rate</th><th>What it looks like</th><th>Should you worry?</th></tr></thead>
         <tbody>
-          <tr><td>Newborn (0–4 weeks)</td><td>40–60 breaths/min</td><td>Fast and irregular — completely normal</td></tr>
-          <tr><td>1–3 months</td><td>35–55 breaths/min</td><td>Periodic pauses of 5–10 seconds are normal</td></tr>
-          <tr><td>3–6 months</td><td>30–45 breaths/min</td><td>More regular, smoother pattern</td></tr>
-          <tr><td>6–12 months</td><td>25–40 breaths/min</td><td>Closer to toddler breathing</td></tr>
+          <tr><td>0–4 weeks</td><td>40–60 / min</td><td>Fast, uneven, sometimes grunty</td><td>✅ Nope — totally normal</td></tr>
+          <tr><td>1–3 months</td><td>35–55 / min</td><td>Occasional 5–10 sec pauses</td><td>✅ Still normal</td></tr>
+          <tr><td>3–6 months</td><td>30–45 / min</td><td>Getting smoother and steadier</td><td>✅ Normal</td></tr>
+          <tr><td>6–12 months</td><td>25–40 / min</td><td>More like a toddler now</td><td>✅ Normal</td></tr>
         </tbody>
       </table>
+      <p>A quick way to count: watch the belly rise and fall for 30 seconds, then double it. Above 60 consistently = call your doctor. Below 20 = call your doctor.</p>
 
-      <h2>What Is Periodic Breathing?</h2>
-      <p>Periodic breathing is when your baby briefly pauses breathing for 5–10 seconds, then resumes normally. This is <strong>completely normal</strong> in newborns and is caused by immaturity in the brainstem's breathing control centre. It typically resolves by 3 months.</p>
-      <p>Anvaya Smart's radar-based monitoring distinguishes normal periodic breathing from genuinely concerning pauses — alerting you only when intervention may be needed.</p>
+      <h2>⏸️ Why does my baby's breathing keep stopping?</h2>
+      <p>Those 5–10 second pauses have a name: <strong>periodic breathing.</strong> It sounds alarming but it's basically your baby's brain practising.</p>
+      <p>Think of it like a child learning to ride a bike. They wobble, stop, start again. The breathing control centre in the brain (the brainstem) works the same way in the first few months. It sends the signal to breathe, then checks itself, then sends it again.</p>
+      <p>By around 3 months, it figures it out. The pauses get shorter and less frequent. Most parents stop noticing them entirely.</p>
+      <p><strong>The key number: 20 seconds.</strong> A pause under 20 seconds that the baby recovers from on their own = periodic breathing = normal. A pause over 20 seconds = call 112 immediately.</p>
 
-      <h2>Warning Signs That Need Immediate Attention</h2>
+      <h2>😮 The sounds that make new parents panic (but are actually fine)</h2>
+      <p>Newborn breathing comes with a whole sound effects package that nobody warns you about:</p>
       <ul>
-        <li><strong>Breathing pauses longer than 20 seconds</strong> — call emergency services immediately</li>
-        <li><strong>Rate consistently above 60 or below 20</strong> — call your paediatrician immediately</li>
-        <li><strong>Nostrils flaring with each breath</strong> — sign of respiratory distress</li>
-        <li><strong>Ribs visible during breathing (retractions)</strong> — severe breathing difficulty</li>
-        <li><strong>SpO2 below 94%</strong> — see our full guide on <a href="/blog/baby-spo2-monitoring-india">baby SpO2 monitoring</a> to understand what this means</li>
-        <li><strong>Blue or pale lips (cyanosis)</strong> — call 112 immediately</li>
+        <li><strong>Grunting 😤</strong> — sounds like effort, but it's usually just the baby adjusting pressure in the lungs. Normal in the first few weeks.</li>
+        <li><strong>Snuffling / snoring 🐷</strong> — newborns have tiny nasal passages. Any bit of mucus makes noise. Not the same as sleep apnea.</li>
+        <li><strong>Squeaking 🐭</strong> — the throat and vocal cords are still soft. Squeaky breathing that comes and goes = usually fine.</li>
+        <li><strong>Fast breathing during sleep 💨</strong> — babies breathe faster in active (REM) sleep. Completely normal.</li>
+        <li><strong>Irregular rhythm 〰️</strong> — no, your baby is not broken. Irregular is literally the definition of normal newborn breathing.</li>
       </ul>
 
-      <h2>How Contactless Baby Breathing Monitors Work</h2>
-      <p>Traditional baby monitors only offer video and audio. Anvaya Smart uses low-power radar sensing to detect the micro-movements caused by breathing — from 90cm away, without touching your baby. It tracks breathing rate, patterns, and SpO2 continuously, alerting you only when values deviate meaningfully from your baby's personal baseline. Read our complete guide on <a href="/blog/baby-breathing-monitor-without-wearable">baby breathing monitors without wearables</a> to understand how contactless technology works.</p>
+      <div style="background:#fff8f0;border:1.5px solid #e8957a44;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#8b4513;margin-bottom:8px;font-size:15px;">⚠️ Sounds that DO need a doctor's attention</div>
+        <ul style="margin:0;padding-left:20px;color:#5a3010;font-size:13px;line-height:1.9;">
+          <li><strong>Whistling or high-pitched wheeze</strong> — could be a narrowed airway</li>
+          <li><strong>Stridor</strong> (a harsh crowing sound when breathing in) — needs evaluation</li>
+          <li><strong>Breathing that is consistently fast even at rest</strong> — above 60 for newborns</li>
+          <li><strong>Grunting on EVERY breath</strong> (not just occasionally) — can signal distress</li>
+        </ul>
+      </div>
 
-      <h2>Common Questions from Indian Parents</h2>
-      <h3>My newborn breathes very fast — is this normal?</h3>
-      <p>Yes. 40–60 breaths per minute is completely normal for a newborn. Only worry if it is consistently above 60 or if you see the warning signs listed above.</p>
-      <h3>My baby makes snoring sounds — should I worry?</h3>
-      <p>Mild snuffling or snoring is usually caused by narrow nasal passages (common in newborns) or minor congestion. If breathing is otherwise normal and <a href="/blog/baby-spo2-monitoring-india">SpO2 is above 95%</a>, this is not a concern.</p>
-      <h3>Should I buy a baby breathing monitor in India?</h3>
-      <p>For the first 6 months especially, a <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby breathing monitor</a> like Anvaya Smart provides significant peace of mind — particularly for parents of premature babies or those with a family history of SIDS. See our <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026</a> guide for a full comparison.</p>
+      <h2>🚨 Stop reading and call 112 if you see any of these</h2>
+
+      <div style="background:#fff5f5;border:1.5px solid #e8574433;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#c0392b;margin-bottom:8px;font-size:15px;">🚨 Emergency signs — act immediately</div>
+        <ul style="margin:0;padding-left:20px;color:#5a2a27;font-size:13px;line-height:1.9;">
+          <li><strong>Breathing stops for more than 20 seconds</strong> — call 112 now</li>
+          <li><strong>Lips, tongue or fingernails turn blue or grey</strong> — call 112 now</li>
+          <li><strong>Ribs are visible with every breath</strong> (chest is "caving in") — call 112 now</li>
+          <li><strong>Nostrils flaring wide with each breath</strong> — sign of significant effort, call doctor</li>
+          <li><strong>Head bobbing with each breath</strong> — the baby is using neck muscles to breathe, call doctor</li>
+          <li><strong>SpO2 below 94% sustained</strong> — see our <a href="/blog/baby-spo2-monitoring-india">guide to baby SpO2 levels</a></li>
+        </ul>
+      </div>
+
+      <h2>🤔 Questions we hear all the time from Indian parents</h2>
+
+      <h3>My mother-in-law says my baby is breathing too fast. Who's right?</h3>
+      <p>Count it. If it's under 60 per minute and baby is calm, you're both fine. Our reference table above gives you the exact numbers. Numbers don't argue.</p>
+
+      <h3>My baby was in the NICU. Should I be more worried?</h3>
+      <p>NICU babies can have a higher risk of apnea after discharge. Your paediatrician will tell you if your baby needs extra monitoring. If they haven't said anything specific, follow the same guidelines above.</p>
+
+      <h3>My baby was snoring — is that sleep apnea?</h3>
+      <p>Probably not. Infant sleep apnea is rare and is usually diagnosed in the NICU. Snuffling and snoring in a healthy newborn is almost always just tiny nasal passages + a bit of mucus. If the snoring is very loud, constant, and your baby seems to struggle, mention it at your next paediatrician visit.</p>
+
+      <h3>How do I monitor breathing without stressing myself out all night?</h3>
+      <p>This is the real question. Watching your baby breathe manually all night is exhausting and unsustainable. See our guide on <a href="/blog/baby-breathing-monitor-without-wearable">baby breathing monitors that don't require wearables</a> — or read the <a href="/blog/best-baby-monitor-india-2026">best baby monitor India guide</a> to understand your options.</p>
+
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">🛏️ Want to sleep instead of watching your baby breathe?</div>
+        <div style="color:#4b6a63;font-size:13px;margin-bottom:12px;line-height:1.6;">Anvaya Smart's radar sensor watches your baby's breathing from beside the crib — no wearables, no clips, nothing on baby's skin. It alerts you when something actually needs attention. You sleep. Baby sleeps. Everyone wins.</div>
+        <a href="/anvaya" style="display:inline-flex;align-items:center;gap:8px;background:#4a7c6f;color:#fff;padding:9px 20px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;">See Anvaya Smart →</a>
+      </div>
     `,
   faqs: [
     { q: 'What is a normal breathing rate for a newborn?', a: 'A normal breathing rate for a newborn is 40–60 breaths per minute — much faster than adults. Occasional pauses of 5–10 seconds known as periodic breathing are also completely normal in babies under 3 months and resolve on their own.' },
@@ -138,32 +188,104 @@ export const ARTICLES = [
     excerpt: 'We compared every baby monitor available to Indian parents in 2026 — Anvaya Smart, Motorola, Owlet, and Infant Optics. Here is our honest verdict on features, price, and India suitability.',
     keywords: ['best baby monitor India 2026', 'Motorola baby monitor India', 'baby monitor comparison India 2026', 'Owlet alternative India'],
     content: `
-      <h2>How We Evaluated Baby Monitors for Indian Parents</h2>
-      <p>We assessed every baby monitor based on: India availability, price, India warranty, wellness monitoring features (breathing, SpO2, cry), privacy, and suitability for Indian climate and living conditions. Updated May 2026.</p>
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;line-height:1;margin-top:2px;">💡</div>
+        <div>
+          <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">Short on time? Start here.</div>
+          <div style="color:#4b6a63;font-size:13px;line-height:1.6;">The best baby monitor is the one that solves <em>your</em> specific fear. Answer: what am I actually scared of? That answer points to the right type of monitor. This guide helps you figure that out in 5 minutes.</div>
+        </div>
+      </div>
 
-      <h2>Our Top Pick: Anvaya Smart SENSE (₹12,999)</h2>
-      <p><strong>Why it wins:</strong> The only monitor in this price range offering contactless breathing monitoring, SpO2 tracking, AI cry analysis, and sleep analytics — built by an Indian team with full India warranty, free shipping, and 0% EMI. Nothing is attached to your baby's skin.</p>
-
-      <h3>Anvaya Smart SENSE — Full Review</h3>
+      <h2>❓ Before anything else: what are you actually scared of?</h2>
+      <p>Before you spend ₹8,000–₹45,000 on a baby monitor, be honest with yourself about one question:</p>
+      <p><strong>"When I imagine something going wrong while my baby sleeps — what am I picturing?"</strong></p>
+      <p>Your answer decides everything:</p>
       <ul>
-        <li><strong>Breathing monitoring:</strong> ✓ Radar-based, contactless</li>
-        <li><strong>SpO2 monitoring:</strong> ✓ No wearable required</li>
-        <li><strong>Cry analysis AI:</strong> ✓ Hungry/tired/uncomfortable/pain</li>
-        <li><strong>Sleep tracking:</strong> ✓ Cycle analysis, daily reports</li>
-        <li><strong>Privacy:</strong> ✓ On-device only, no cloud streaming</li>
-        <li><strong>India warranty:</strong> ✓ 1 year full warranty</li>
-        <li><strong>Price:</strong> ₹12,999 (early access) / ₹19,999 launch</li>
+        <li>🎥 <strong>"I just want to see my baby is there"</strong> → You need a video monitor. Simple, affordable, job done.</li>
+        <li>🫁 <strong>"I'm scared my baby will stop breathing and I won't know"</strong> → You need a breathing monitor.</li>
+        <li>😢 <strong>"I can't tell what my baby needs at 3am"</strong> → You need cry analysis.</li>
+        <li>🩸 <strong>"My baby was premature / had a NICU stay"</strong> → You need SpO2 monitoring.</li>
+        <li>😴 <strong>"I want to understand my baby's sleep patterns"</strong> → You need a sleep tracker.</li>
+      </ul>
+      <p>Most parents have more than one of these fears. That's fine — there are monitors that cover several at once. But knowing which fear is loudest helps you choose without being dazzled by spec sheets.</p>
+
+      <h2>📹 Option 1: "I just want to see my baby" — Video monitors</h2>
+      <p><strong>Best for:</strong> Parents who mainly want visual reassurance and audio alerts. No medical monitoring needed.</p>
+      <p><strong>How they work:</strong> Camera + microphone in the baby's room, live feed to your phone or a handheld parent unit.</p>
+      <p><strong>The honest truth:</strong> A video monitor tells you your baby is in the crib. It does not tell you your baby is breathing. For parents of healthy term babies who just want to check in, that's enough. For parents who lie awake worrying about breathing — it won't actually solve the anxiety.</p>
+
+      <table>
+        <thead><tr><th>Brand</th><th>Price (India)</th><th>India warranty</th><th>Breathing monitor?</th><th>Cry analysis?</th></tr></thead>
+        <tbody>
+          <tr><td>Motorola MBP series</td><td>₹8,000–₹12,000</td><td>✅ 1 year</td><td>❌ No</td><td>❌ No</td></tr>
+          <tr><td>VTech DM series</td><td>₹6,000–₹10,000</td><td>⚠️ Grey import</td><td>❌ No</td><td>❌ No</td></tr>
+        </tbody>
+      </table>
+
+      <h2>🧦 Option 2: "I want to track breathing or SpO2 with a wearable" — Wearable monitors</h2>
+      <p><strong>Best for:</strong> Parents who want vital sign data and are comfortable with something on the baby's body.</p>
+      <p><strong>How they work:</strong> A small sensor (usually a sock or clip) on the baby's foot or finger measures heart rate and/or SpO2 via light sensors. Data goes to your phone.</p>
+      <p><strong>What to know before you buy:</strong></p>
+      <ul>
+        <li>🇮🇳 <strong>India availability:</strong> Most wearable health monitors (Owlet, Nanit) are not officially sold in India. Imports cost ₹35,000–₹45,000 with no India warranty.</li>
+        <li>🥵 <strong>India's heat:</strong> Fabric sensors on skin in 30–40°C heat cause rashes. Socks and clips fall off sweaty feet, triggering false alarms at 2am.</li>
+        <li>💳 <strong>Subscriptions:</strong> Several wearable monitors require a monthly subscription (₹2,000–₹3,500/month) for full features after purchase.</li>
+        <li>✅ <strong>When they make sense:</strong> If your baby needs medical-grade SpO2 tracking post-NICU, your paediatrician will recommend a specific clinical device — not a consumer monitor.</li>
       </ul>
 
-      <h2>Motorola Baby Monitor India (₹8,000–₹12,000)</h2>
-      <p>Motorola offers reliable HD video and audio monitoring, available on Amazon India. However, it offers <strong>no breathing monitoring, no SpO2, no cry analysis, and no sleep tracking</strong>. It is a camera, not a wellness monitor. Good for parents who only need visual monitoring.</p>
+      <h2>🚫 Option 3: "I want nothing on my baby" — Contactless monitors</h2>
+      <p><strong>Best for:</strong> Parents who want breathing monitoring, SpO2 tracking, or cry analysis without anything touching the baby.</p>
+      <p><strong>How they work:</strong> A device sits beside the crib. It uses radar to detect breathing and optical sensing to estimate SpO2 — from across the room, through clothing, in complete darkness.</p>
+      <p><strong>Why this category is growing fast:</strong> It solves the three big problems with wearables in India — heat comfort, staying on during sleep, and being available locally with warranty.</p>
 
-      <h2>Owlet Dream Sock — India Import (₹35,000–₹45,000)</h2>
-      <p>Owlet is not officially available in India. It must be imported from the USA, costing ₹35,000–₹45,000 with import duties and no India warranty. It also requires a fabric sock on your baby's foot — which can be uncomfortable in India's warm climate and falls off during sleep. Anvaya Smart offers comparable SpO2 monitoring contactlessly at ₹12,999 with full India support.</p>
+      <h2>📊 Side-by-side: the questions that actually matter</h2>
 
-      <h2>Our Recommendation</h2>
-      <p>For Indian parents who want genuine wellness monitoring — not just a camera — <strong>Anvaya Smart SENSE at ₹12,999</strong> is the clear winner in 2026. It is the only device offering the complete picture: <a href="/blog/baby-breathing-monitor-without-wearable">contactless breathing monitoring</a>, <a href="/blog/baby-spo2-monitoring-india">SpO2 tracking</a>, <a href="/blog/types-of-baby-cries">AI cry analysis</a>, and sleep — all on-device, all with Indian support. Explore the full technology behind it in our <a href="/blog/ai-baby-monitor-india-2026">AI baby monitor India guide</a>.</p>
-    `,
+      <table>
+        <thead><tr><th>Question</th><th>Video monitor</th><th>Wearable (import)</th><th>Contactless (Anvaya)</th></tr></thead>
+        <tbody>
+          <tr><td>Will it work in 40°C heat?</td><td>✅ Yes</td><td>⚠️ Rashes, falls off</td><td>✅ Yes — nothing on skin</td></tr>
+          <tr><td>Does it fall off at 2am?</td><td>✅ Stays put</td><td>❌ Very common</td><td>✅ Can't fall off</td></tr>
+          <tr><td>Do I pay monthly?</td><td>✅ No</td><td>⚠️ Often yes, ₹2,000–₹3,500</td><td>✅ No</td></tr>
+          <tr><td>India warranty?</td><td>✅ 1 year (Motorola)</td><td>❌ Usually no</td><td>✅ 1 year</td></tr>
+          <tr><td>Breathing monitoring?</td><td>❌ No</td><td>✅ Yes (movement-based)</td><td>✅ Yes (radar)</td></tr>
+          <tr><td>SpO2 monitoring?</td><td>❌ No</td><td>✅ Yes (wearable)</td><td>✅ Yes (contactless)</td></tr>
+          <tr><td>Cry analysis?</td><td>❌ No</td><td>❌ No</td><td>✅ Yes (5 cry types)</td></tr>
+          <tr><td>Works during power cut?</td><td>❌ Offline</td><td>❌ Offline</td><td>✅ On-device AI</td></tr>
+          <tr><td>Starting price in India</td><td>₹6,000</td><td>₹35,000+ (import)</td><td>₹8,999</td></tr>
+        </tbody>
+      </table>
+
+      <h2>✅ "Which one should I actually get?" — Decision guide</h2>
+
+      <div style="background:#f9f7f4;border:1.5px solid #e2dbd4;border-radius:16px;padding:20px 24px;margin:24px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:14px;font-size:15px;">Find your match:</div>
+        <div style="font-size:13px;color:#3a4a45;line-height:2;">
+          <div style="margin-bottom:10px;">📹 <strong>Just want to see your baby + basic audio</strong> → Motorola MBP (₹8,000–12,000, India warranty, simple)</div>
+          <div style="margin-bottom:10px;">🫁 <strong>Worried about breathing, want nothing on baby, stay in India budget</strong> → Anvaya Smart CORE (₹8,999)</div>
+          <div style="margin-bottom:10px;">🩸 <strong>Want breathing + SpO2 + cry analysis in one device</strong> → Anvaya Smart SENSE (₹12,999)</div>
+          <div style="margin-bottom:10px;">❤️ <strong>Premature baby or highest-level monitoring</strong> → Anvaya Smart PULSE (₹14,999) + consult your paediatrician</div>
+          <div>📹❤️ <strong>Want video + all wellness sensors</strong> → Anvaya Smart OMNI (₹19,999)</div>
+        </div>
+      </div>
+
+      <h2>🤔 Honest questions we get asked</h2>
+
+      <h3>What about second-hand monitors from Facebook Marketplace?</h3>
+      <p>For video monitors, fine — it's just a camera. For health monitoring devices, we'd avoid it. You don't know the calibration history, and there's no warranty if something doesn't work right.</p>
+
+      <h3>My friend uses Owlet — should I just import it?</h3>
+      <p>If budget isn't a concern and you're prepared for no India warranty or local support, Owlet is a well-regarded product with a long track record. Just go in knowing the total cost (hardware + subscription + customs = often ₹60,000+ in year one) and that it uses a sock, which can be uncomfortable in India's heat.</p>
+
+      <h3>Do I actually need a baby monitor at all?</h3>
+      <p>Depends on your home setup. If you're in the same room as your baby, a monitor adds limited value. If your baby sleeps in a different room, especially in the first 6 months, having at minimum a video monitor is worth it. For parents with premature babies or any breathing history, a monitor with health sensing is worth serious consideration.</p>
+
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">🌟 Anvaya Smart — India's only contactless AI baby monitor</div>
+        <div style="color:#4b6a63;font-size:13px;margin-bottom:12px;line-height:1.6;">Breathing monitoring, SpO2, cry analysis, sleep tracking — nothing on your baby's skin. Made for India: works offline, free shipping, 1-year India warranty, 0% EMI. Starting at ₹8,999.</div>
+        <a href="/anvaya" style="display:inline-flex;align-items:center;gap:8px;background:#4a7c6f;color:#fff;padding:9px 20px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;">See all Anvaya models →</a>
+      </div>
+
+      <p>Want to go deeper? Read <a href="/blog/baby-breathing-monitor-without-wearable">why contactless breathing monitors work better in India's heat</a>, or understand <a href="/blog/baby-spo2-monitoring-india">what SpO2 is and why it matters</a>.</p>`,
   faqs: [
     { q: 'What is the best baby monitor in India in 2026?', a: 'For Indian parents wanting wellness monitoring beyond a basic camera, Anvaya Smart SENSE at ₹12,999 is the top choice in 2026. It offers contactless breathing monitoring, SpO2 tracking, AI cry analysis, and sleep insights with a full 1-year India warranty and free shipping.' },
     { q: 'Which baby monitors are officially available in India with local warranty?', a: 'Anvaya Smart is the primary option with full 1-year India warranty, free shipping, and 0% EMI. Most global brands like Owlet and Infant Optics are not officially sold in India and must be imported without any local support, at significantly higher cost.' },
@@ -287,85 +409,81 @@ export const ARTICLES = [
     excerpt: 'SpO2 is one of the most important infant health indicators most Indian parents have never heard of. This guide explains what it is, what\'s normal, and how contactless monitoring works.',
     keywords: ['baby SpO2 India', 'infant oxygen saturation', 'baby oxygen monitor India', 'contactless SpO2 baby monitor'],
     content: `
-      <h2>What Is SpO2 and Why Does It Matter for Your Baby?</h2>
-      <p>SpO2 stands for peripheral oxygen saturation — the percentage of haemoglobin in your baby's blood that is carrying oxygen. It is one of the most critical health indicators for infants, especially during sleep, when breathing naturally becomes shallower and more irregular.</p>
-      <p>In a healthy baby, SpO2 should stay between <strong>95–100%</strong> during sleep. A single dip below this is not always dangerous — brief fluctuations are normal. What matters is <em>sustained</em> low SpO2: if levels stay below 94% for 10+ seconds repeatedly, it signals the baby is not getting enough oxygen and needs immediate medical attention.</p>
-      <p>Most Indian parents have never had SpO2 explained to them — yet it is routinely monitored in every NICU in the country. The difference is that NICU babies are connected to wired equipment. The challenge for home monitoring has always been: how do you track SpO2 on a moving, sleeping baby without wires, clips, and a cot full of medical equipment?</p>
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;line-height:1;margin-top:2px;">💡</div>
+        <div>
+          <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">Quick answer: what number should I look for?</div>
+          <div style="color:#4b6a63;font-size:13px;line-height:1.6;">Your baby's SpO2 should stay between <strong>95–100%</strong>. Below 94% for more than a few seconds = call your doctor. Below 90% = call 112. That's the whole thing in two sentences.</div>
+        </div>
+      </div>
 
-      <h2>Normal SpO2 Ranges for Babies — Age by Age</h2>
+      <h2>🩸 What is SpO2 — and why should you care?</h2>
+      <p>There's one number that every NICU nurse watches more closely than your baby's weight, temperature, or heart rate.</p>
+      <p>Most parents never hear about it — until something goes wrong.</p>
+      <p>It's called <strong>SpO2</strong> (say it: "S-P-O-2"). It stands for how much oxygen is in your baby's blood right now. Think of it like this: imagine tiny delivery trucks (red blood cells) carrying oxygen around your baby's body. SpO2 tells you what percentage of those trucks are actually loaded with oxygen.</p>
+      <p>100% = every truck is full. 95% = most trucks are full, still great. 90% = too many trucks are empty. Baby isn't getting enough oxygen.</p>
+      <p>In a hospital, nurses check this with a clip on your baby's finger. At home, most parents have no way to know — they just watch and hope.</p>
+
+      <h2>📊 The numbers you need to know</h2>
+
       <table>
-        <thead><tr><th>Age</th><th>Normal SpO2</th><th>Concerning Level</th><th>Emergency Level</th></tr></thead>
+        <thead><tr><th>Age</th><th>SpO2 reading</th><th>What it means</th><th>What to do</th></tr></thead>
         <tbody>
-          <tr><td>Newborn (first 24 hours)</td><td>95–100%</td><td>Below 94%</td><td>Below 90%</td></tr>
-          <tr><td>1 week – 1 month</td><td>96–100%</td><td>Below 95%</td><td>Below 90%</td></tr>
-          <tr><td>1 month – 6 months</td><td>97–100%</td><td>Below 95%</td><td>Below 91%</td></tr>
-          <tr><td>6 months – 12 months</td><td>97–100%</td><td>Below 95%</td><td>Below 92%</td></tr>
-          <tr><td>Healthy adults (for reference)</td><td>95–100%</td><td>Below 92%</td><td>Below 88%</td></tr>
-        </tbody>
-      </table>
-      <p><strong>Important:</strong> These are general guidelines. Your paediatrician may set different thresholds for premature babies or babies with specific medical conditions. Always follow your doctor's advice over any general guide.</p>
-
-      <h2>What Causes Low SpO2 in Babies?</h2>
-      <p>Brief, isolated SpO2 dips are common in newborns and usually harmless. Sustained low SpO2 is a different story. Common causes include:</p>
-      <ul>
-        <li><strong>Apnea of prematurity:</strong> Premature babies (before 37 weeks) often have immature respiratory control, causing breathing pauses that drop SpO2. This is the most common reason NICU babies are monitored.</li>
-        <li><strong>Respiratory infections:</strong> RSV, bronchiolitis, and pneumonia reduce the lungs' ability to oxygenate blood. SpO2 drops during these illnesses often before visible breathing distress appears.</li>
-        <li><strong>Positional airway obstruction:</strong> In young babies, the neck position can temporarily obstruct the airway. This is why safe sleep guidance recommends firm, flat surfaces — a wedge or soft mattress can allow the head to fall forward, reducing airflow.</li>
-        <li><strong>Congenital heart defects:</strong> Some structural heart conditions reduce blood oxygen levels. These are often identified at birth but may not always be obvious immediately.</li>
-        <li><strong>Periodic breathing:</strong> Normal irregular breathing in newborns can cause brief SpO2 dips. These are usually self-resolving and are not a cause for alarm unless they are prolonged or frequent.</li>
-      </ul>
-
-      <h2>The India-Specific SpO2 Challenge</h2>
-      <p>Indian parents face a unique problem when it comes to SpO2 monitoring that most international guides don't address:</p>
-      <ul>
-        <li><strong>Air quality and pollution:</strong> Poor air quality in Indian cities (Delhi, Mumbai, Hyderabad) means more babies are born with or develop mild respiratory issues. These babies benefit most from SpO2 monitoring.</li>
-        <li><strong>Altitude:</strong> Families in high-altitude regions (Shimla, Manali, Ladakh, parts of Uttarakhand) should note that normal SpO2 reference values are based on sea-level populations. At altitude, SpO2 readings of 93–94% may be normal — consult your paediatrician for appropriate thresholds in high-altitude settings.</li>
-        <li><strong>Heat and wearable monitors:</strong> The clip-on pulse oximeters available in India are designed for hospital spot-checks, not continuous overnight monitoring. In India's heat, they cause skin irritation, fall off during sleep, and have no alerting capability when you're asleep in another room.</li>
-        <li><strong>No locally available alternatives:</strong> Owlet (the leading consumer SpO2 monitor) is not sold in India. Importing it costs ₹35,000–₹45,000 with no India warranty or support — and it still uses a sock that can fall off in the heat.</li>
-      </ul>
-
-      <h2>Wearable vs Contactless SpO2 Monitoring — Full Comparison</h2>
-      <table>
-        <thead><tr><th>Feature</th><th>Contactless SpO2 (Anvaya)</th><th>Wearable SpO2 (Owlet, clip-ons)</th></tr></thead>
-        <tbody>
-          <tr><td>Contact with baby's skin</td><td>✓ Zero contact</td><td>✗ Clip/sock required</td></tr>
-          <tr><td>Stays on during sleep</td><td>✓ Fixed beside crib</td><td>✗ Falls off, frequent false alarms</td></tr>
-          <tr><td>Rash risk in Indian heat</td><td>✓ None</td><td>✗ Significant — sweat trapping</td></tr>
-          <tr><td>Disturbs baby sleep</td><td>✓ No disturbance</td><td>✗ Sensation can wake baby</td></tr>
-          <tr><td>Available in India with warranty</td><td>✓ Anvaya from ₹12,999</td><td>✗ Import only, ₹35,000+</td></tr>
-          <tr><td>Continuous monitoring</td><td>✓ All night, every night</td><td>⚠️ Only while worn correctly</td></tr>
-          <tr><td>Works with any sleep clothing</td><td>✓ Through any fabric</td><td>✗ Must be on skin directly</td></tr>
-          <tr><td>Combines with breathing monitoring</td><td>✓ Breathing + SpO2 together</td><td>✗ SpO2 only</td></tr>
+          <tr><td>Newborn (first 24h)</td><td>95–100%</td><td>✅ All good</td><td>Nothing — relax</td></tr>
+          <tr><td>Newborn (first 24h)</td><td>90–94%</td><td>⚠️ Watch closely</td><td>Call your doctor</td></tr>
+          <tr><td>Newborn (first 24h)</td><td>Below 90%</td><td>🚨 Emergency</td><td>Call 112 now</td></tr>
+          <tr><td>1 month – 12 months</td><td>97–100%</td><td>✅ Perfect</td><td>Nothing</td></tr>
+          <tr><td>1 month – 12 months</td><td>95–96%</td><td>⚠️ Monitor</td><td>Note the time, watch for 10 min</td></tr>
+          <tr><td>1 month – 12 months</td><td>Below 95%</td><td>🚨 Call doctor</td><td>Call paediatrician now</td></tr>
         </tbody>
       </table>
 
-      <h2>Warning Signs: When Low SpO2 Becomes an Emergency</h2>
-      <p>Contact your paediatrician immediately or call 112 if you observe any of these alongside low SpO2 readings:</p>
-      <ul>
-        <li><strong>Blue or grey lips, tongue, or fingernails (cyanosis)</strong> — indicates critical oxygen deprivation</li>
-        <li><strong>Laboured breathing</strong> — nostrils flaring with each breath, ribs visible during breathing, "sucking in" around the throat</li>
-        <li><strong>Sustained SpO2 below 90%</strong> — even briefly, this is a medical emergency in any baby</li>
-        <li><strong>Breathing pauses longer than 20 seconds</strong> — combined with SpO2 drop, this indicates apnea requiring immediate evaluation</li>
-        <li><strong>Unusual colour change alongside feeding difficulty</strong> — especially in the first weeks of life</li>
-      </ul>
-      <p>A contactless SpO2 monitor like Anvaya Smart is designed to alert you to these patterns before they become visible — because by the time you can see cyanosis, the situation is already serious.</p>
+      <p><strong>One important thing:</strong> a single dip is not always dangerous. Babies dip briefly during active sleep. What matters is <em>sustained</em> low SpO2 — meaning it stays low for 10+ seconds, happens repeatedly, or keeps dropping.</p>
 
-      <h2>When Should Indian Parents Use SpO2 Monitoring?</h2>
-      <p>SpO2 monitoring is most valuable for:</p>
+      <h2>🤔 Why does oxygen level matter more than I thought?</h2>
+      <p>Every organ in your baby's body needs oxygen — especially the brain. Low oxygen for even a few minutes can cause problems. That's why it's the first thing doctors check in an emergency.</p>
+      <p>The sneaky thing about low SpO2: <strong>you usually can't see it.</strong></p>
+      <p>By the time you notice blue lips (cyanosis), the situation is already serious. A monitor catches the drop well before it becomes visible. That's the whole point.</p>
+      <p>The good news: for most healthy babies in normal conditions, SpO2 stays perfectly fine all night. But for some babies — especially premature babies, babies who've had any breathing issues, or babies recovering from illness — knowing that number gives you real peace of mind.</p>
+
+      <h2>🌡️ Why this is a bigger deal in India than most guides admit</h2>
+      <p>Most SpO2 guides are written for Western parents. Here's what they don't mention:</p>
       <ul>
-        <li><strong>Premature babies</strong> — born before 37 weeks gestation, at highest risk of apnea</li>
-        <li><strong>Babies with a history of <a href="/blog/baby-breathing-patterns">breathing issues or NICU stays</a></strong></li>
-        <li><strong>All babies during the first 6 months</strong> — the highest-risk window for SIDS and respiratory emergencies</li>
-        <li><strong>Babies recovering from respiratory illness</strong> — RSV, bronchiolitis, pneumonia, or even severe colds</li>
-        <li><strong>Babies in high-pollution cities</strong> — where respiratory vulnerability is elevated</li>
-        <li><strong>Families with a history of SIDS or infant breathing disorders</strong></li>
-        <li><strong>First-time parents</strong> — monitoring provides peace of mind and confidence</li>
+        <li><strong>Air quality 🌫️</strong> — Parents in Delhi, Mumbai, and other high-pollution cities are right to think about respiratory health. Babies exposed to poor air quality are more likely to develop mild breathing issues, making SpO2 monitoring more relevant than it would be in cleaner air.</li>
+        <li><strong>Altitude 🏔️</strong> — If you live in Shimla, Manali, or anywhere above 2,000m, normal SpO2 is naturally a little lower. The 95–100% table above is for sea level. Ask your paediatrician for the right threshold for your location.</li>
+        <li><strong>Heat and wearables 🥵</strong> — Clip-on pulse oximeters (the kind you can buy for ₹500 at a medical shop) are designed for spot-checks, not overnight monitoring. In India's heat, they cause rashes, fall off during sleep, and can't alert you when you're asleep in another room.</li>
+        <li><strong>No official Owlet in India 📦</strong> — The most popular SpO2 baby monitor internationally (Owlet) is not sold in India. Importing it costs ₹40,000+ with no local support. Indian parents deserve a better option.</li>
       </ul>
 
-      <h2>How Anvaya Smart Monitors SpO2 Without Touching Your Baby</h2>
-      <p>Anvaya Smart SENSE and above use advanced optical sensing from beside the crib — no clip, band, or sock on your baby's skin. The reading is continuous all night, not just a spot check. If SpO2 drops below your configured threshold and stays there, you get an alert on your phone within seconds.</p>
-      <p>Combined with <a href="/blog/baby-breathing-monitor-without-wearable">contactless breathing monitoring</a> and <a href="/blog/types-of-baby-cries">AI cry analysis</a>, Anvaya gives you a complete picture of your baby's overnight wellness — all from one device, with nothing touching your baby. Learn more about <a href="/blog/ai-baby-monitor-india-2026">how AI baby monitors work</a> or see the <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026 comparison</a>.</p>
-    `,
+      <h2>👶 Which babies need SpO2 monitoring most?</h2>
+      <p>Not every baby needs it. But it matters more for some:</p>
+      <ul>
+        <li>✅ <strong>Premature babies</strong> (born before 37 weeks) — highest risk of breathing pauses</li>
+        <li>✅ <strong>Babies who had a NICU stay</strong> — their breathing is already being watched for a reason</li>
+        <li>✅ <strong>Babies recovering from RSV, bronchiolitis or chest infection</strong> — lungs need extra watching</li>
+        <li>✅ <strong>Babies with a family history of SIDS</strong></li>
+        <li>✅ <strong>Any baby in the first 6 months</strong> — the highest-risk window</li>
+        <li>⚪ Healthy term babies with no complications — lower priority, but peace of mind is still valid</li>
+      </ul>
+
+      <div style="background:#fff5f5;border:1.5px solid #e8574433;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#c0392b;margin-bottom:8px;font-size:15px;">🚨 Call 112 immediately if you see any of these</div>
+        <ul style="margin:0;padding-left:20px;color:#5a2a27;font-size:13px;line-height:1.9;">
+          <li><strong>Lips, tongue or fingertips turn blue or grey</strong></li>
+          <li><strong>Baby is limp, not responding, or very hard to wake</strong></li>
+          <li><strong>Ribs visibly pulling in with each breath</strong></li>
+          <li><strong>Breathing pauses over 20 seconds</strong></li>
+          <li><strong>SpO2 below 90% sustained</strong></li>
+        </ul>
+      </div>
+
+      <p>Want to understand what your baby's breathing rate means alongside SpO2? See our guide on <a href="/blog/baby-breathing-patterns">normal baby breathing patterns</a>. For a full picture of monitoring options, read <a href="/blog/baby-breathing-monitor-without-wearable">baby breathing monitors without wearables</a>.</p>
+
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">🩸 SpO2 monitoring — without anything on your baby</div>
+        <div style="color:#4b6a63;font-size:13px;margin-bottom:12px;line-height:1.6;">Anvaya Smart SENSE monitors SpO2 contactlessly from beside the crib. No clip. No sock. No wearable. Just a reading, all night, with an alert if it drops. Built for India — with India warranty and free shipping.</div>
+        <a href="/anvaya" style="display:inline-flex;align-items:center;gap:8px;background:#4a7c6f;color:#fff;padding:9px 20px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;">See Anvaya Smart SENSE →</a>
+      </div>`,
   faqs: [
     { q: 'What is a normal SpO2 level for a baby?', a: 'A healthy baby\'s SpO2 should be between 95–100%. For babies aged 1–12 months, 97–100% is normal. Sustained SpO2 levels below 94% indicate insufficient oxygen and require immediate medical attention — contact your paediatrician or emergency services right away.' },
     { q: 'Can I monitor my baby\'s SpO2 without a wearable device?', a: 'Yes. Contactless baby monitors use advanced optical or radar sensing to estimate SpO2 from beside the crib without any clip, band, or sock on the baby\'s skin. This is more comfortable and maintains continuous monitoring even as the baby moves during sleep.' },
@@ -490,78 +608,85 @@ export const ARTICLES = [
     excerpt: 'AI baby monitors are no longer science fiction. In 2026, Indian parents can access AI-powered cry analysis, contactless breathing detection, and predictive health alerts — all from a device that sits beside the crib.',
     keywords: ['AI baby monitor India', 'AI baby monitoring India 2026', 'smart baby monitor AI', 'artificial intelligence baby monitor', 'AI infant monitor India'],
     content: `
-      <h2>What Is an AI Baby Monitor?</h2>
-      <p>An AI baby monitor is a device that uses artificial intelligence to go beyond simple video and audio. Instead of just showing you your baby, it actively analyses what it sees and hears — detecting breathing patterns, identifying cry types, tracking sleep quality, and alerting you when something needs attention.</p>
-      <p>In 2026, AI baby monitors available in India can do things that were impossible even three years ago: distinguish a hungry cry from a pain cry in under 4 seconds, detect breathing rate without any contact, and learn your baby's unique patterns over time to personalise alerts.</p>
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;line-height:1;margin-top:2px;">💡</div>
+        <div>
+          <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">In plain English: what does an AI baby monitor actually do?</div>
+          <div style="color:#4b6a63;font-size:13px;line-height:1.6;">It listens and watches your baby 24/7, learns what <em>your specific baby's</em> normal looks like, and only wakes you up when something actually needs attention. No more false alarms every time the baby grunts.</div>
+        </div>
+      </div>
 
-      <h2>How AI Baby Monitors Work</h2>
-      <p>Modern AI baby monitors like Anvaya Smart use three layers of intelligence working together:</p>
+      <h2>🧠 You know that gut feeling at 3am? AI is that — but it never sleeps</h2>
+      <p>Every experienced parent develops a sixth sense. They can tell a hungry cry from a tired cry without thinking. They hear a change in breathing before they can explain why. They just <em>know</em> when something is off.</p>
+      <p>That sixth sense takes months — sometimes years — to develop. And it only works if you're awake.</p>
+      <p>That's what an AI baby monitor does. It learns your baby's patterns. It watches all night, every night. And it alerts you when something actually needs your attention — not every time your baby squirms or makes a noise.</p>
+      <p>In 2026, AI baby monitors available in India can do three things that a regular video monitor simply cannot:</p>
 
-      <h3>1. Acoustic AI — Cry Analysis</h3>
-      <p>The monitor's microphone captures your baby's cry and runs it through a machine learning model trained on hundreds of thousands of infant cry recordings. The model identifies the acoustic signature — rhythm, pitch, duration, pattern — and classifies the cry type within seconds.</p>
-      <p>Anvaya Smart identifies five cry types: hungry, tired, uncomfortable, pain, and bored. After three days of learning, it personalises its model to your baby's unique cry patterns — because no two babies sound exactly alike.</p>
+      <h2>😢 Thing 1: It knows what your baby's cry means</h2>
+      <p>Your baby has been crying for 4 minutes. Is it hunger? Is it pain? Is it just the "I want to be held" cry that can wait 2 minutes while you finish peeing?</p>
+      <p>These cries sound different. Not dramatically different — but different enough that a trained ear (or a trained AI) can tell them apart.</p>
+      <p>An AI cry analyzer has heard millions of baby cries, all labelled by what the baby actually needed. It knows a hungry cry has a rhythmic "neh neh neh" pattern. It knows a pain cry is sudden, sharp, and has a brief silence before it screams again. It knows a tired cry is whiny and nasal, not urgent.</p>
+      <p>After 3 nights with your baby, it learns <em>your</em> baby's version of each cry — because no two babies sound exactly the same. By week 2, it knows your baby better than most visitors do.</p>
+      <p><strong>What this means for you at 3am:</strong> Your phone buzzes. "Hungry cry — last fed 3 hours ago." You grab a feed. Done. No guessing, no spiral of anxiety, back to sleep in 15 minutes.</p>
 
-      <h3>2. Radar Sensing — Contactless Breathing Detection</h3>
-      <p>Low-power radar (similar technology used in automotive safety systems) emits a signal and detects the micro-movements caused by breathing — the tiny chest rise and fall invisible to a camera. This allows the AI to track breathing rate and pattern from 90cm away, with no wearable on your baby.</p>
-      <p>The AI doesn't just count breaths — it builds a baseline of your baby's normal breathing pattern and alerts you only when something meaningfully deviates. This dramatically reduces false alarms while catching genuine issues.</p>
+      <h2>🫁 Thing 2: It can tell if your baby is breathing — without touching them</h2>
+      <p>This one surprises people. How can a device across the room know your baby is breathing?</p>
+      <p>Think of bats and echolocation. A bat sends out a tiny sound wave, it bounces off objects, and the bat uses the echo to know where things are. An AI baby monitor does something similar — but with a very gentle radar signal instead of sound.</p>
+      <p>This signal bounces off your baby's chest. Every time your baby breathes in, the chest rises a tiny bit. The radar picks up that movement — even through a blanket, even in complete darkness — and calculates exactly how fast your baby is breathing.</p>
+      <p>No clip on the finger. No band around the chest. No sock on the foot. Your baby doesn't even know it's happening.</p>
+      <p><strong>What this means for you:</strong> You know your baby is breathing right now. Not because you can see them on a grainy camera — but because a number on your phone says 42 breaths per minute. Steady. Normal. Go back to sleep.</p>
 
-      <h3>3. Computer Vision — Movement and Sleep Analysis</h3>
-      <p>The camera feed is continuously analysed by on-device computer vision models that detect sleep position, movement level, and sleep stage transitions. This powers the sleep quality score — not just total hours, but how many complete sleep cycles your baby achieved.</p>
+      <h2>📅 Thing 3: It gets smarter the longer you use it</h2>
+      <p>A regular baby monitor shows you the same thing on day 1 as it does on day 100.</p>
+      <p>An AI monitor is different. It builds a picture of <em>your baby's</em> normal over time.</p>
+      <p>Your baby normally sleeps 11 hours with 4–5 sleep cycles. Tonight they've only done 2 cycles and keep waking. That's unusual for your baby — not just unusual in general. The AI knows the difference.</p>
+      <p>Your baby normally breathes 38 times per minute during deep sleep. Tonight it's 52, consistently. That's elevated for your baby. Alert sent.</p>
+      <p>This personalisation is what separates an AI monitor from a smart device that's just collecting numbers. The numbers only mean something if you know what's normal for that specific baby.</p>
 
-      <h2>Why AI Baby Monitors Matter for Indian Parents</h2>
-      <p>India presents specific challenges that make AI monitoring particularly valuable:</p>
+      <h2>🇮🇳 Why this matters more in India than most countries</h2>
 
       <table>
-        <thead><tr><th>Challenge</th><th>How AI Monitoring Helps</th></tr></thead>
+        <thead><tr><th>Indian reality</th><th>How AI monitoring helps</th></tr></thead>
         <tbody>
-          <tr><td>Joint family setups</td><td>AI alerts reach your phone directly — even when grandparents are watching</td></tr>
-          <tr><td>Hot climate and wearable discomfort</td><td>Contactless AI monitoring needs nothing on baby's skin</td></tr>
-          <tr><td>New parent anxiety</td><td>AI provides context — "normal periodic breathing" vs genuine alerts</td></tr>
-          <tr><td>Language barriers with doctors</td><td>AI generates structured health reports you can share with paediatricians</td></tr>
-          <tr><td>Power cuts and connectivity issues</td><td>On-device AI works without continuous internet</td></tr>
+          <tr><td>🌡️ Heat makes wearables fall off and cause rashes</td><td>AI monitoring needs nothing on the baby's skin</td></tr>
+          <tr><td>⚡ Power cuts mean internet goes down</td><td>On-device AI keeps monitoring even offline</td></tr>
+          <tr><td>👨‍👩‍👦 Joint families — grandparents often watching baby</td><td>Alerts go to your phone wherever you are</td></tr>
+          <tr><td>😰 New parent anxiety is real and exhausting</td><td>AI gives context: "normal periodic breathing" not just an alarm</td></tr>
+          <tr><td>🏥 Paediatrician visits are infrequent</td><td>AI generates health reports you can share at your next visit</td></tr>
         </tbody>
       </table>
 
-      <h2>AI Baby Monitor Features to Look For in 2026</h2>
+      <h2>🆚 AI monitor vs regular monitor — what actually changes</h2>
 
-      <h3>On-Device AI Processing (Essential)</h3>
-      <p>The most important feature is where the AI processing happens. Cloud-based AI sends your baby's video and audio to remote servers — raising serious privacy concerns. On-device AI processes everything locally, meaning your baby's data never leaves your home. Anvaya Smart runs all AI on the device itself.</p>
+      <table>
+        <thead><tr><th>Situation</th><th>Regular video monitor</th><th>AI monitor</th></tr></thead>
+        <tbody>
+          <tr><td>Baby grunts in sleep</td><td>You wake up, check camera, try to go back to sleep</td><td>Nothing — AI knows grunting is normal for your baby</td></tr>
+          <tr><td>Baby's breathing slows</td><td>You don't know until you physically check</td><td>Alert on your phone before it becomes a problem</td></tr>
+          <tr><td>Baby cries at 2am</td><td>You run in, guess, try feeding, try rocking</td><td>"Tired cry — awake 90 min, try putting down drowsy"</td></tr>
+          <tr><td>Baby has a bad night</td><td>You know it was bad because you were up 5 times</td><td>Sleep report: 2 complete cycles vs. usual 5 — share with paediatrician</td></tr>
+          <tr><td>Power cut at 3am</td><td>Monitor goes offline</td><td>On-device AI keeps running</td></tr>
+        </tbody>
+      </table>
 
-      <h3>Personalised Learning</h3>
-      <p>Generic AI models trained on averages are less accurate than models that learn your specific baby. Look for monitors that build a personalised baseline over the first week and refine alerts based on what is normal for your baby specifically.</p>
+      <h2>🤔 "But is it safe? What about radiation?"</h2>
+      <p>Fair question — and a very Indian parent question (we've heard this from every family).</p>
+      <p>The radar in an AI breathing monitor operates at power levels measured in microwatts. For comparison: your WiFi router uses about 100,000 microwatts. Your mobile phone during a call uses millions of microwatts. The radar in a baby monitor is thousands of times weaker than either.</p>
+      <p>It's non-ionising radiation — same category as visible light and radio waves. It does not heat tissue. It does not pass through the body. It bounces off the surface. International safety standards allow levels far, far higher than what these devices emit.</p>
+      <p>Short version: it is safe. If anyone tells you otherwise, ask them to compare it to the WiFi router that's been in your bedroom for years.</p>
 
-      <h3>Predictive Alerts vs Reactive Alerts</h3>
-      <p>Basic monitors alert you after something has happened. Advanced AI monitors can detect early warning patterns — a gradual increase in breathing irregularity, a shift in cry patterns that precedes illness — before a crisis occurs. This is the next frontier in infant AI monitoring.</p>
+      <h2>🤔 "Does it replace a paediatrician?"</h2>
+      <p>No. Full stop.</p>
+      <p>An AI monitor is a continuous home monitoring tool — like a thermometer, but for breathing and sleep. It gives you information. A doctor interprets what that information means for your baby's specific health situation.</p>
+      <p>The most useful thing an AI monitor does for your paediatrician: it generates a health report you can actually show them. Instead of "she seemed to breathe funny on Tuesday," you can show a graph. That's real.</p>
 
-      <h3>Integration with Daily Timeline</h3>
-      <p>The best AI monitors don't just alert — they build a longitudinal picture of your baby's health. Daily timelines, weekly sleep reports, and trend analysis help you notice patterns that would be invisible in real time: a gradual decline in sleep quality, a shift in feeding-to-cry intervals, environmental correlations with sleep disruption.</p>
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">🧠 Anvaya Smart — India's AI baby monitor</div>
+        <div style="color:#4b6a63;font-size:13px;margin-bottom:12px;line-height:1.6;">Cry analysis, contactless breathing, SpO2 monitoring, sleep tracking — all on one device. Built for Indian conditions: works offline, nothing on baby's skin, India warranty. Starting at ₹8,999.</div>
+        <a href="/anvaya" style="display:inline-flex;align-items:center;gap:8px;background:#4a7c6f;color:#fff;padding:9px 20px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;">Explore Anvaya Smart →</a>
+      </div>
 
-      <h2>Anvaya Smart: India's Most Advanced AI Baby Monitor in 2026</h2>
-      <p>Built by an IIT Hyderabad team specifically for Indian conditions, Anvaya Smart combines all three AI layers — acoustic analysis, radar breathing detection, and computer vision — into one contactless device starting at ₹8,999.</p>
-
-      <h3>What Makes Anvaya Different from Other AI Baby Monitors</h3>
-      <ul>
-        <li><strong>100% on-device AI:</strong> No cloud dependency, complete privacy</li>
-        <li><strong>Contactless vital signs:</strong> Breathing, SpO₂, heart rate — without wearables</li>
-        <li><strong>Indian cry database:</strong> AI trained on Indian infant cry recordings</li>
-        <li><strong>Works offline:</strong> Core monitoring continues without Wi-Fi</li>
-        <li><strong>India warranty:</strong> 1-year full warranty with WhatsApp support</li>
-      </ul>
-
-      <h2>Frequently Asked Questions About AI Baby Monitors</h2>
-
-      <h3>Are AI baby monitors safe?</h3>
-      <p>Yes. Contactless AI monitors like Anvaya Smart use low-power radar at energy levels thousands of times lower than a Wi-Fi router. The AI processing happens on-device with no radiation risk to your baby.</p>
-
-      <h3>How accurate is AI cry analysis?</h3>
-      <p>Modern AI cry analysis achieves 85–92% accuracy on trained cry types. Accuracy improves after the first week as the model learns your specific baby's patterns. It is significantly more reliable than parental guessing at 3am.</p>
-
-      <h3>Do AI baby monitors replace paediatrician visits?</h3>
-      <p>No — and they are not designed to. AI monitors provide continuous home monitoring between visits and can generate health reports to share with your paediatrician. They are a complement to, not a replacement for, medical care.</p>
-
-      <h3>Which is the best AI baby monitor in India in 2026?</h3>
-      <p>Anvaya Smart SENSE (₹12,999) is the most advanced AI baby monitor available in India in 2026. It is the only device offering <a href="/blog/baby-breathing-monitor-without-wearable">contactless AI breathing monitoring</a>, <a href="/blog/baby-spo2-monitoring-india">SpO₂ detection</a>, personalised <a href="/blog/types-of-baby-cries">cry analysis</a>, and on-device privacy — all with a full India warranty and free shipping. See the full <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026 comparison</a>.</p>
-    `,
+      <p>Want to understand the specific sensors? See our guide on <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby breathing monitors</a>. Ready to compare options? See <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026</a>.</p>`,
   faqs: [
     { q: 'What does an AI baby monitor actually do?', a: 'An AI baby monitor uses artificial intelligence to analyse what it sees and hears — detecting breathing patterns, identifying cry types, tracking sleep quality, and alerting parents when something needs attention. It goes far beyond basic video and audio monitoring.' },
     { q: 'Is on-device AI processing important in a baby monitor?', a: 'Yes — critically. On-device AI processes your baby\'s video and audio locally without sending data to remote servers. Cloud-based AI raises serious privacy concerns. On-device AI also works during internet or power outages, which is essential in India\'s infrastructure context.' },
