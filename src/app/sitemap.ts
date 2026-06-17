@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: base, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${base}/anvaya`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/cry-analyzer`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },
+    { url: `${base}/how-it-works`, lastModified: now, changeFrequency: 'monthly', priority: 0.93 },
     { url: `${base}/early-access`, lastModified: now, changeFrequency: 'daily', priority: 0.90 },
     // Zero-competition SEO landing pages (own the category)
     { url: `${base}/contactless-baby-monitor-india`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },
@@ -28,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/careers`, lastModified: now, changeFrequency: 'monthly', priority: 0.60 },
     { url: `${base}/quiz`, lastModified: now, changeFrequency: 'monthly', priority: 0.65 },
     { url: `${base}/preorder`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${base}/tour`, lastModified: now, changeFrequency: 'monthly', priority: 0.80 },
   ];
 
   const blogPages: MetadataRoute.Sitemap = ARTICLES.map(article => ({

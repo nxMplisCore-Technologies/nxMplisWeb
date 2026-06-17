@@ -544,40 +544,41 @@ export default function Home() {
 
             {/* LEFT copy */}
             <div ref={heroRef}>
-              {/* Live family counter badge */}
-              <div className="flex flex-wrap gap-3 mb-7">
-                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm animate-fade-up backdrop-blur-sm">
-                  <Sparkles className="w-3 h-3 animate-spin-slow" />
-                  Early Access Open — Founding 100 families get exclusive pricing
+
+              {/* India-first badge */}
+              <div className="flex flex-wrap gap-2 mb-6 animate-fade-up">
+                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm backdrop-blur-sm">
+                  🇮🇳 India&apos;s First AI That Truly Cares For Your Baby
+                </div>
+                <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-full px-3 py-1.5 text-xs text-amber-700 font-semibold shadow-sm">
+                  <Sparkles className="w-3 h-3" /> Founding 100 families · Early access open
                 </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
-                Your Baby Breathes.<br />
+              {/* Headline */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05] mb-4 animate-fade-up delay-1">
+                Every breath.<br />
+                Every cry.<br />
                 <span style={{
-                  background: 'linear-gradient(120deg, #2d5c52 0%, #4a7c6f 30%, #7aab9e 50%, #e8957a 70%, #4a7c6f 90%, #2d5c52 100%)',
+                  background: 'linear-gradient(120deg,#2d5c52 0%,#4a7c6f 25%,#7aab9e 45%,#e8957a 65%,#4a7c6f 85%,#2d5c52 100%)',
                   backgroundSize: '200% auto',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                   animation: 'shimmer-sweep 4s linear infinite',
-                }}>You Sleep.</span>
+                }}>Every night — understood.</span>
               </h1>
 
-              {/* Star rating social proof */}
-              <div className="flex items-center gap-3 mb-4 animate-fade-up delay-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 star-filled fill-amber-400" />)}
-                </div>
-                <span className="text-sm font-bold text-foreground">4.9/5</span>
-                <span className="text-sm text-muted-foreground">· Loved by our pilot families</span>
-                <span className="hidden sm:inline text-sm text-muted-foreground">· Paediatrician-recommended</span>
-              </div>
-
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
-                Contactless AI monitoring — breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+              {/* Emotional sub-headline */}
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-2 max-w-lg animate-fade-up delay-2">
+                Indian parents check on their baby <strong className="text-foreground">8–12 times a night.</strong> Anvaya does it 12,000 times — contactlessly, silently, while you sleep.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 mb-4 animate-fade-up delay-4">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-lg animate-fade-up delay-2">
+                Breathing · SpO₂ · Cry type · Sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+              </p>
+
+              {/* Primary CTA */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-4 animate-fade-up delay-3">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
                   <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
                     style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)', transition: 'box-shadow .2s ease, transform .2s ease' }}
@@ -589,15 +590,62 @@ export default function Home() {
                 </LeadModalTrigger>
                 <CryCtaButton />
               </div>
+
+              {/* Curiosity hook */}
+              <div className="flex items-center gap-2 mb-2.5 animate-fade-up delay-4">
+                <motion.span
+                  className="text-lg select-none"
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}>
+                  👇
+                </motion.span>
+                <span className="text-sm font-semibold text-muted-foreground">
+                  Curious how it works?{' '}
+                  <span className="text-primary">Touch to find out.</span>
+                </span>
+              </div>
+
+              {/* Guide strip — tour + cinematic */}
+              <div className="flex flex-col sm:flex-row gap-2 mb-5 animate-fade-up delay-4">
+                <Link href="/tour"
+                  className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-primary/50 hover:bg-primary/8 hover:shadow-md hover:-translate-y-0.5"
+                  style={{ borderColor: 'rgba(74,124,111,0.35)', background: 'rgba(74,124,111,0.06)', color: '#4a7c6f' }}>
+                  <motion.span className="text-lg" animate={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}>📱</motion.span>
+                  <div className="flex-1">
+                    <div>See it handle <em>your</em> worry</div>
+                    <div className="text-[10px] opacity-60 font-normal">Interactive tour · 2 min · pick your fear</div>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </Link>
+                <Link href="/how-it-works"
+                  className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-orange-300/50 hover:bg-orange-50/60 hover:shadow-md hover:-translate-y-0.5"
+                  style={{ borderColor: 'rgba(212,120,74,0.35)', background: 'rgba(212,120,74,0.06)', color: '#d4784a' }}>
+                  <motion.span className="text-lg" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }}>🎬</motion.span>
+                  <div className="flex-1">
+                    <div>Watch it in action</div>
+                    <div className="text-[10px] opacity-60 font-normal">60-sec cinematic · auto-plays · no scroll</div>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </Link>
+              </div>
+
               <CryDemoStrip />
-              {/* Trust pills */}
+
+              {/* Star rating + trust pills */}
+              <div className="flex items-center gap-3 mb-3 animate-fade-up delay-5">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+                </div>
+                <span className="text-sm font-bold text-foreground">4.9/5</span>
+                <span className="text-sm text-muted-foreground">· Pilot families · Paediatrician-recommended</span>
+              </div>
               <div className="flex flex-wrap items-center gap-2 animate-fade-up delay-5">
                 {[
                   { icon: Shield, text: 'No payment now' },
                   { icon: CheckCircle, text: '30-day guarantee' },
-                  { icon: Zap, text: 'Free shipping across India' },
-                ].map(({ icon: Icon, text }, i) => (
-                  <span key={text} className="trust-pill" style={{ animationDelay: `${0.5 + i * 0.1}s` }}>
+                  { icon: Zap, text: 'Free shipping India' },
+                ].map(({ icon: Icon, text }) => (
+                  <span key={text} className="trust-pill">
                     <Icon className="w-3 h-3 shrink-0" />{text}
                   </span>
                 ))}
@@ -686,6 +734,83 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ════════════ TOUR + HOW-IT-WORKS FOMO STRIP ════════════ */}
+      <section className="py-14 lg:py-20" style={{ background: 'linear-gradient(135deg,#060e0b 0%,#0a1610 100%)' }}>
+        <div className="container mx-auto px-4 max-w-4xl">
+          <motion.div className="text-center mb-10"
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-400/60 mb-3">Before you decide</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-snug mb-3">
+              Most parents don't know what<br className="hidden sm:block" /> they're missing at 3 AM.
+            </h2>
+            <p className="text-white/40 text-sm max-w-sm mx-auto">
+              Until they see it. Two minutes. No scroll. Just pick your biggest worry.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Tour card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.1 }}>
+              <Link href="/tour" className="group block h-full rounded-2xl border border-emerald-400/20 p-6 transition-all hover:border-emerald-400/50 hover:bg-white/3"
+                style={{ background: 'rgba(74,124,111,0.08)' }}>
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(74,124,111,0.2)' }}>
+                    <span className="text-xl">📱</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-emerald-400/70 mb-1">Interactive · 2 min</div>
+                    <div className="text-base font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors">
+                      Take the Product Tour →
+                    </div>
+                    <p className="text-xs text-white/40 leading-relaxed">
+                      Pick your biggest worry — breathing, crying, or sleep. We'll walk you through exactly how Anvaya handles it. Live app screens. Real data.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mt-3">
+                      {['Is she breathing?', 'Why is he crying?', 'Enough sleep?'].map(t => (
+                        <span key={t} className="text-[9px] px-2 py-0.5 rounded-full border border-emerald-400/20 text-emerald-400/70">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* How it works card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.2 }}>
+              <Link href="/how-it-works" className="group block h-full rounded-2xl border border-white/10 p-6 transition-all hover:border-white/25 hover:bg-white/3"
+                style={{ background: 'rgba(255,255,255,0.03)' }}>
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(232,149,122,0.15)' }}>
+                    <span className="text-xl">🎬</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[9px] font-bold uppercase tracking-widest mb-1" style={{ color: 'rgba(232,149,122,0.7)' }}>Cinematic · Auto-plays</div>
+                    <div className="text-base font-bold text-white mb-1.5 group-hover:text-orange-300 transition-colors">
+                      See It In Action →
+                    </div>
+                    <p className="text-xs text-white/40 leading-relaxed">
+                      A 60-second film showing Anvaya working in real time — from a 3 AM silence to the morning report. No scroll needed. Just watch.
+                    </p>
+                    <div className="flex items-center gap-1.5 mt-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+                      <span className="text-[9px] text-white/30">Plays automatically · 6 scenes</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* FOMO line */}
+          <motion.p className="text-center text-xs text-white/20 mt-8"
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
+            147 families joined this week. Founding pricing ends when the first batch ships.
+          </motion.p>
         </div>
       </section>
 
