@@ -196,8 +196,18 @@ function CryCtaButton() {
       className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
       style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 4px 20px rgba(74,124,111,0.35)' }}
     >
+      <div className="flex items-center gap-[2px] shrink-0" style={{ height: 16 }}>
+        {[0,1,2,3,4].map(i => (
+          <div key={i} style={{
+            width: 2.5, borderRadius: 99, background: 'rgba(255,255,255,0.9)',
+            animation: `cry-wave ${0.5 + i * 0.08}s ease-in-out ${i * 0.07}s infinite alternate`,
+            minHeight: 2, maxHeight: 14,
+          }} />
+        ))}
+      </div>
       Try AI Cry Analyzer — Free
       <ArrowRight className="w-4 h-4" />
+      <style>{`@keyframes cry-wave{from{height:2px}to{height:14px}}`}</style>
     </Link>
   );
 }
