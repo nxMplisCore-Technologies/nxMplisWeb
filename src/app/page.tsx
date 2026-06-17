@@ -821,7 +821,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
-                <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-[#e4eeea] to-transparent blur-2xl" />
+                <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-slate-200/60 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-timeline.jpg" alt="Anvaya app — daily timeline showing sleeping, feeding and wake-up events" className="animate-float-slow relative z-10" objectPosition="top" />
                 <div className="absolute -right-8 top-12 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
                   <div className="text-[10px] text-muted-foreground">10:30 AM</div>
@@ -1088,7 +1088,7 @@ export default function Home() {
       <FAQSection />
 
       {/* ════════════ LEAD CAPTURE ════════════ */}
-      <section className="py-16 lg:py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-[#faf8f5] relative overflow-hidden">
         <div className="absolute inset-0 noise pointer-events-none opacity-40" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-xl mx-auto text-center">
