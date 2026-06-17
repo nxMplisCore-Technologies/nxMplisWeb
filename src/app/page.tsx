@@ -143,6 +143,282 @@ function AnimatedNumber({ target, suffix = '' }: { target: number; suffix?: stri
   return <strong ref={ref}>{val}{suffix}</strong>;
 }
 
+/* ─────────────────── BABY SVG ─────────────────── */
+function BabySVG() {
+  return (
+    <svg width="80" viewBox="0 0 70 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Head */}
+      <circle cx="35" cy="21" r="19" fill="#f9d5b0" />
+      {/* Ears */}
+      <ellipse cx="16.5" cy="21" rx="3.5" ry="4.5" fill="#f5c090" />
+      <ellipse cx="53.5" cy="21" rx="3.5" ry="4.5" fill="#f5c090" />
+      {/* Blush cheeks */}
+      <ellipse cx="22" cy="25" rx="5" ry="3" fill="rgba(225,100,70,0.22)" />
+      <ellipse cx="48" cy="25" rx="5" ry="3" fill="rgba(225,100,70,0.22)" />
+      {/* Sleeping eyes — curved downward arcs */}
+      <path d="M26,19 Q28.5,17 31,19" stroke="#7a4e2d" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+      <path d="M39,19 Q41.5,17 44,19" stroke="#7a4e2d" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+      {/* Tiny nose */}
+      <circle cx="33.5" cy="23" r="1.1" fill="#d4956a" />
+      <circle cx="36.5" cy="23" r="1.1" fill="#d4956a" />
+      {/* Soft smile */}
+      <path d="M30,28 Q35,32 40,28" stroke="#c27050" strokeWidth="1.3" strokeLinecap="round" fill="none" />
+      {/* Hair wisps */}
+      <path d="M28,4 Q32,1 35,3" stroke="#b07040" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+      <path d="M35,2 Q38,0 41,3" stroke="#b07040" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+      <path d="M22,8 Q25,4 29,6" stroke="#b07040" strokeWidth="1.3" strokeLinecap="round" fill="none" />
+      {/* Swaddle body */}
+      <ellipse cx="35" cy="52" rx="18" ry="11" fill="#c4d9f0" />
+      {/* Blanket fold */}
+      <path d="M18,46 Q25,42 35,43 Q45,42 52,46 Q48,50 35,50 Q22,50 18,46Z" fill="#d8eaf8" />
+      {/* Little fist peeking */}
+      <ellipse cx="50" cy="48" rx="4.5" ry="3.5" fill="#f9d5b0" />
+    </svg>
+  );
+}
+
+/* ─────────────────── SENSOR VISUALIZATION ─────────────────── */
+function SensorViz() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, margin: '-50px' });
+
+  const stars = [
+    { left: '8%', top: '6%', dur: 2.1 }, { left: '18%', top: '12%', dur: 3.0 },
+    { left: '32%', top: '4%', dur: 2.5 }, { left: '45%', top: '9%', dur: 1.9 },
+    { left: '58%', top: '5%', dur: 2.7 }, { left: '68%', top: '14%', dur: 2.3 },
+    { left: '78%', top: '8%', dur: 3.1 }, { left: '88%', top: '3%', dur: 2.0 },
+    { left: '12%', top: '22%', dur: 2.8 }, { left: '50%', top: '18%', dur: 2.2 },
+    { left: '75%', top: '20%', dur: 1.8 }, { left: '92%', top: '15%', dur: 2.6 },
+  ];
+
+  const radarDiameters = [70, 130, 190, 250];
+  const radarDelays = [0, 0.7, 1.4, 2.1];
+
+  return (
+    <div ref={ref} className="mx-auto select-none" style={{ width: 'min(580px, 100%)' }}>
+      {/* Night scene box */}
+      <div
+        className="relative overflow-hidden rounded-3xl"
+        style={{ height: 380, background: '#060f09' }}
+      >
+        {/* Stars */}
+        {stars.map((s, i) => (
+          <motion.div
+            key={`star-${i}`}
+            className="absolute rounded-full bg-white pointer-events-none"
+            style={{ left: s.left, top: s.top, width: 2, height: 2 }}
+            animate={isInView ? { opacity: [0.2, 1, 0.2] } : { opacity: 0.2 }}
+            transition={{ duration: s.dur, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        ))}
+
+        {/* Window with moon glow — top right */}
+        <div
+          className="absolute pointer-events-none"
+          style={{ right: 22, top: 16, width: 54, height: 62, border: '1.5px solid rgba(180,200,255,0.18)', borderRadius: 6, background: 'rgba(120,140,200,0.06)' }}
+        >
+          {/* Moon */}
+          <div
+            style={{
+              position: 'absolute', top: 10, left: '50%', transform: 'translateX(-50%)',
+              width: 22, height: 22, borderRadius: '50%',
+              background: 'radial-gradient(circle at 35% 35%, #fffde7 60%, #ffe082 100%)',
+              boxShadow: '0 0 18px 6px rgba(255,240,120,0.22)',
+            }}
+          />
+          {/* Window cross bars */}
+          <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: 1, background: 'rgba(180,200,255,0.15)' }} />
+          <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, background: 'rgba(180,200,255,0.15)' }} />
+        </div>
+
+        {/* Floor line */}
+        <div
+          className="absolute left-0 right-0 pointer-events-none"
+          style={{ top: '65%', height: 1, background: 'rgba(74,124,111,0.18)' }}
+        />
+
+        {/* ── LEFT: Anvaya pod on shelf ── */}
+        <div className="absolute pointer-events-none" style={{ left: '8%', bottom: 120 }}>
+          {/* Radar rings expanding from pod */}
+          {radarDiameters.map((diam, i) => (
+            <motion.div
+              key={`radar-${i}`}
+              className="absolute rounded-full border pointer-events-none"
+              style={{
+                width: diam,
+                height: diam,
+                left: 30 - diam / 2,
+                top: 38 - diam / 2,
+                borderColor: `rgba(74,124,111,${0.5 - i * 0.08})`,
+                borderStyle: 'solid',
+              }}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={isInView ? { scale: [0.5, 1.4], opacity: [0, 0.55, 0] } : { scale: 0.5, opacity: 0 }}
+              transition={{ duration: 2.8, delay: radarDelays[i], repeat: Infinity, ease: 'easeOut' }}
+            />
+          ))}
+          {/* Pod body */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.7 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 flex flex-col items-center justify-center gap-1.5"
+            style={{
+              width: 60, height: 76, borderRadius: 20,
+              background: 'linear-gradient(160deg,#2d5c50,#1a2e27)',
+              border: '1px solid rgba(74,124,111,0.55)',
+              boxShadow: '0 0 40px rgba(74,124,111,0.28), inset 0 1px 0 rgba(255,255,255,0.08)',
+            }}
+          >
+            <div className="flex items-center justify-center" style={{ width: 28, height: 28, borderRadius: 12, background: 'rgba(74,124,111,0.18)' }}>
+              <Activity className="w-3.5 h-3.5 text-[#7aab9e]" />
+            </div>
+            <motion.div
+              style={{ width: 6, height: 6, borderRadius: '50%', background: '#4a7c6f' }}
+              animate={{ opacity: [1, 0.25, 1] }}
+              transition={{ duration: 1.4, repeat: Infinity }}
+            />
+            <span className="text-[6px] font-black tracking-[0.14em] text-[#4a7c6f]">ANVAYA</span>
+          </motion.div>
+          {/* Shelf */}
+          <div style={{ width: 80, height: 6, marginTop: 4, borderRadius: 3, background: 'rgba(74,124,111,0.22)', marginLeft: -10 }} />
+        </div>
+
+        {/* ── RIGHT: Baby crib ── */}
+        <div className="absolute pointer-events-none" style={{ right: '6%', bottom: 120 }}>
+          {/* IR heat glow around baby */}
+          <motion.div
+            className="absolute rounded-full"
+            style={{
+              width: 90, height: 70, left: -5, top: 10,
+              background: 'radial-gradient(ellipse, rgba(232,149,122,0.22) 0%, rgba(212,120,74,0) 80%)',
+              filter: 'blur(6px)',
+            }}
+            animate={isInView ? { opacity: [0.4, 0.85, 0.4], scale: [0.95, 1.08, 0.95] } : { opacity: 0 }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          {/* Exclusion zone — slow rotating dashed teal circle */}
+          <motion.div
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              width: 120, height: 120, left: -25, top: -10,
+              border: '1.5px dashed rgba(74,124,111,0.55)',
+              borderRadius: '50%',
+            }}
+            animate={isInView ? { rotate: 360 } : { rotate: 0 }}
+            transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+          />
+          {/* Crib structure */}
+          <div className="relative" style={{ width: 80, height: 90 }}>
+            {/* Headboard */}
+            <div style={{ position: 'absolute', top: 0, left: 4, right: 4, height: 14, borderRadius: '6px 6px 0 0', background: 'rgba(180,200,220,0.25)', border: '1px solid rgba(180,200,255,0.22)' }} />
+            {/* Side rails */}
+            <div style={{ position: 'absolute', top: 14, left: 0, width: 4, height: 60, borderRadius: 2, background: 'rgba(180,200,220,0.2)', border: '1px solid rgba(180,200,255,0.18)' }} />
+            <div style={{ position: 'absolute', top: 14, right: 0, width: 4, height: 60, borderRadius: 2, background: 'rgba(180,200,220,0.2)', border: '1px solid rgba(180,200,255,0.18)' }} />
+            {/* Vertical bars */}
+            {[14, 26, 38, 50, 62].map((leftPos, idx) => (
+              <div key={`bar-${idx}`} style={{ position: 'absolute', top: 14, left: leftPos, width: 3, height: 58, borderRadius: 1.5, background: 'rgba(180,200,220,0.16)', border: '1px solid rgba(180,200,255,0.14)' }} />
+            ))}
+            {/* Baby inside crib */}
+            <div style={{ position: 'absolute', top: 16, left: '50%', transform: 'translateX(-50%)' }}>
+              <BabySVG />
+            </div>
+          </div>
+          {/* Crib legs */}
+          <div style={{ display: 'flex', gap: 52 }}>
+            <div style={{ width: 5, height: 14, borderRadius: 2, background: 'rgba(180,200,220,0.18)' }} />
+            <div style={{ width: 5, height: 14, borderRadius: 2, background: 'rgba(180,200,220,0.18)' }} />
+          </div>
+          {/* ZZZ floating upward */}
+          {['Z', 'Z', 'Z'].map((z, i) => (
+            <motion.div
+              key={`zzz-${i}`}
+              className="absolute font-bold text-[#7aab9e] pointer-events-none"
+              style={{ left: 42 + i * 10, top: 10 - i * 14, fontSize: 10 + i * 2, opacity: 0 }}
+              animate={isInView ? {
+                y: [-5, -30 - i * 12],
+                opacity: [0, 0.8, 0],
+              } : { opacity: 0 }}
+              transition={{ duration: 2.2, delay: i * 0.7, repeat: Infinity, ease: 'easeOut' }}
+            >
+              {z}
+            </motion.div>
+          ))}
+          {/* Safety chip near crib */}
+          <motion.div
+            className="absolute flex items-center gap-1 pointer-events-none"
+            style={{ right: 0, top: -32, whiteSpace: 'nowrap' }}
+            initial={{ opacity: 0, y: 6 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
+          >
+            <div
+              className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold"
+              style={{ background: 'rgba(74,124,111,0.18)', border: '1px solid rgba(74,124,111,0.35)', color: '#7aab9e' }}
+            >
+              <CheckCircle className="w-2.5 h-2.5" />
+              Nothing touches baby
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── LIVE vitals card — floating between pod and crib ── */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{ left: '50%', top: 22, transform: 'translateX(-50%)' }}
+          initial={{ opacity: 0, y: -8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.55, delay: 0.6 }}
+        >
+          <div
+            className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-bold whitespace-nowrap"
+            style={{
+              background: 'rgba(10,30,22,0.85)',
+              border: '1px solid rgba(74,124,111,0.45)',
+              color: '#7aab9e',
+              backdropFilter: 'blur(8px)',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+            }}
+          >
+            <motion.div
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: '#4a7c6f' }}
+              animate={{ opacity: [1, 0.2, 1] }}
+              transition={{ duration: 1.2, repeat: Infinity }}
+            />
+            <span className="text-[#e8957a] font-black tracking-wide">LIVE</span>
+            <span style={{ color: 'rgba(122,171,158,0.85)' }}>28 br/min · SpO₂ 98% · 36.5°C</span>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ── Safety chips below the dark box ── */}
+      <div className="flex flex-wrap justify-center gap-2 mt-4">
+        {[
+          { text: '✓ Nothing touches baby', delay: 0.2 },
+          { text: '✓ 1/1000th of Wi-Fi power', delay: 0.45 },
+          { text: '✓ All AI runs on-device · zero data shared', delay: 0.7 },
+        ].map((chip, i) => (
+          <motion.div
+            key={`chip-${i}`}
+            className="px-3 py-1 rounded-full text-[11px] font-semibold"
+            style={{
+              background: 'rgba(74,124,111,0.10)',
+              border: '1px solid rgba(74,124,111,0.28)',
+              color: '#4a7c6f',
+            }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            transition={{ duration: 0.45, delay: chip.delay }}
+          >
+            {chip.text}
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─────────────────── FAQ ─────────────────── */
 const HOME_FAQS = [
   { q: 'What is Anvaya Smart baby wellness pod?', a: 'Anvaya Smart is India\'s most advanced AI baby wellness pod. It monitors your baby\'s breathing, SpO₂, cry patterns, heart rate, temperature, and sleep — contactlessly, without anything on your baby\'s skin. It uses low-power radar, infrared sensing, and AI acoustic analysis to watch over your baby 24/7.' },
@@ -392,6 +668,83 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
                 </div>
               </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════ SENSOR VISUALIZATION ════════════ */}
+      <section className="py-24 bg-[#0a1a14] overflow-hidden relative">
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,124,111,0.12) 0%, transparent 70%)' }} />
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-14">
+            <motion.p
+              className="text-xs font-bold uppercase tracking-widest text-[#7aab9e] mb-3"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              The Technology
+            </motion.p>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-white mb-4 leading-snug"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: 0.08 }}
+            >
+              What Anvaya sees —<br />
+              <span style={{ color: '#4a7c6f' }}>without touching your baby.</span>
+            </motion.h2>
+            <motion.p
+              className="text-[#7aab9e]/80 max-w-md mx-auto text-base"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.18 }}
+            >
+              Two invisible technologies work together to give you a complete picture of your baby&apos;s health every night.
+            </motion.p>
+          </div>
+
+          {/* Animated visualization */}
+          <div className="flex justify-center">
+            <SensorViz />
+          </div>
+
+          {/* 3 tech cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-14 max-w-3xl mx-auto">
+            {[
+              {
+                color: '#4a7c6f',
+                title: 'Low-Power Radar',
+                desc: 'Detects micro-chest movements caused by breathing — from up to 90 cm. Power level: 1/1000th of your Wi-Fi router.',
+              },
+              {
+                color: '#e8957a',
+                title: 'Infrared Sensing',
+                desc: "Detects body heat to confirm your baby's presence, position, and surface temperature — without any skin contact.",
+              },
+              {
+                color: '#7aab9e',
+                title: 'On-Device AI',
+                desc: 'Processes every signal locally on the pod. No health data ever leaves your home. Alerts only when something is truly off.',
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="rounded-2xl p-5 border"
+                style={{ background: 'rgba(255,255,255,0.04)', borderColor: `${card.color}33` }}
+              >
+                <div className="w-2 h-2 rounded-full mb-3" style={{ background: card.color }} />
+                <div className="font-bold text-white text-sm mb-1.5">{card.title}</div>
+                <div className="text-[#7aab9e]/70 text-xs leading-relaxed">{card.desc}</div>
+              </motion.div>
             ))}
           </div>
         </div>
