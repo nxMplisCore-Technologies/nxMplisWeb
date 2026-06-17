@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/careers`, lastModified: now, changeFrequency: 'monthly', priority: 0.60 },
     { url: `${base}/quiz`, lastModified: now, changeFrequency: 'monthly', priority: 0.65 },
     { url: `${base}/preorder`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${base}/tour`, lastModified: now, changeFrequency: 'monthly', priority: 0.80 },
   ];
 
   const blogPages: MetadataRoute.Sitemap = ARTICLES.map(article => ({
