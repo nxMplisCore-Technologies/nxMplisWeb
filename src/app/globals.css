@@ -240,12 +240,12 @@
 
 /* ─── Mesh gradient hero background ─────────── */
 .mesh-hero {
-  background-color: #f5f0e8;
+  background-color: #faf8f5;
   background-image:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(74,124,111,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(232,149,122,0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 70% at 50% 90%, rgba(74,124,111,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 90% 70%, rgba(122,171,158,0.14) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(232,149,122,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 15%, rgba(245,185,140,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 70% at 50% 95%, rgba(250,210,180,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 65%, rgba(212,120,74,0.07) 0%, transparent 50%);
 }
 
 /* ─── Ambient glow orbs ───────────────────────── */

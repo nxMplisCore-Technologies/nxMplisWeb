@@ -440,17 +440,17 @@ export default function Home() {
 
       {/* ════════════ HERO ════════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden mesh-hero">
-        {/* Ambient glow orbs — slightly stronger */}
-        <div className="glow-orb w-[560px] h-[560px] -left-40 -top-20 bg-primary/25" style={{ animationDelay: '0s' }} />
-        <div className="glow-orb w-[440px] h-[440px] -right-20 top-10 bg-accent/20" style={{ animationDelay: '3s' }} />
-        <div className="glow-orb w-[340px] h-[340px] left-1/2 bottom-0 bg-primary/12" style={{ animationDelay: '6s' }} />
-        {/* Subtle dot grid */}
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,124,111,0.10) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
+        {/* Ambient glow orbs — warm coral/amber, no green */}
+        <div className="glow-orb w-[560px] h-[560px] -left-40 -top-20" style={{ background: 'rgba(232,149,122,0.18)', animationDelay: '0s' }} />
+        <div className="glow-orb w-[440px] h-[440px] -right-20 top-10" style={{ background: 'rgba(245,185,140,0.14)', animationDelay: '3s' }} />
+        <div className="glow-orb w-[340px] h-[340px] left-1/2 bottom-0" style={{ background: 'rgba(212,120,74,0.10)', animationDelay: '6s' }} />
+        {/* Subtle dot grid — warm neutral */}
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(180,140,110,0.12) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         {/* Subtle grain */}
         <div className="absolute inset-0 noise pointer-events-none opacity-30" />
-        {/* Decorative rings */}
-        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border border-primary/8 pointer-events-none" />
-        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/5 pointer-events-none" />
+        {/* Decorative rings — warm tone */}
+        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border pointer-events-none" style={{ borderColor: 'rgba(212,120,74,0.10)' }} />
+        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border pointer-events-none" style={{ borderColor: 'rgba(212,120,74,0.07)' }} />
         {/* Scroll indicator */}
         <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none"
           animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
