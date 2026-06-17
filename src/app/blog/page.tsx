@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ARTICLES, CATEGORIES } from '@/lib/data';
 import { BreadcrumbSchema } from '@/components/seo/JsonLd';
-import { Clock, Tag, ArrowRight, TrendingUp } from 'lucide-react';
+import { Clock, Tag, ArrowRight, TrendingUp, Mic, Activity, Brain } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Baby Wellness Blog | Sleep, Breathing, Cry Analysis | Anvaya Smart India',
@@ -31,6 +31,29 @@ export default function BlogPage() {
       </section>
 
       <div className="container mx-auto px-4 max-w-5xl py-12">
+
+        {/* Free Tools strip */}
+        <div className="mb-10 bg-gradient-to-r from-[#e4eeea] to-[#f0f5f3] rounded-2xl p-5 border border-primary/15">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary mb-3">Free AI Tools for Parents</p>
+          <div className="grid sm:grid-cols-3 gap-3">
+            {[
+              { icon: Mic, label: 'AI Cry Analyzer', desc: 'Decode your baby\'s cry in 10 seconds', href: '/cry-analyzer', cta: 'Try Free' },
+              { icon: Activity, label: 'Contactless Monitor', desc: 'Breathing, SpO₂ & cries without wearables', href: '/contactless-baby-monitor-india', cta: 'Learn More' },
+              { icon: Brain, label: 'Baby Wellness Quiz', desc: 'Which Anvaya model is right for you?', href: '/quiz', cta: 'Take Quiz' },
+            ].map(t => (
+              <Link key={t.label} href={t.href} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-primary/10 hover:border-primary/30 hover:shadow-sm transition-all group">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <t.icon className="w-4 h-4 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-sm" style={{ color: '#1a2e28' }}>{t.label}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5 mb-2">{t.desc}</div>
+                  <span className="text-xs font-bold text-primary group-hover:underline">{t.cta} →</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
 
         {/* Featured article */}
         <Link href={`/blog/${featured.slug}`} className="group block mb-12">
@@ -84,11 +107,11 @@ export default function BlogPage() {
           <p className="text-muted-foreground text-sm mb-6">Find exactly what you need for your baby's stage and situation.</p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
             {[
+              { topic: 'What Does Baby Cry Mean?', href: '/blog/what-does-baby-cry-mean', desc: '7 cry types decoded with AI tool' },
               { topic: 'Baby Breathing', href: '/blog/baby-breathing-patterns', desc: 'Normal rates, warning signs, monitoring' },
               { topic: 'Baby Sleep', href: '/blog/baby-sleep-guide-india', desc: 'Schedules, regressions, sleep tracking' },
-              { topic: 'Cry Analysis', href: '/blog/types-of-baby-cries', desc: 'Hungry vs tired vs pain' },
-              { topic: 'Baby SpO2', href: '/blog/baby-spo2-monitoring-india', desc: 'What it is, normal ranges' },
-              { topic: 'Newborn Care', href: '/blog/newborn-care-india', desc: 'First week, feeding, safety' },
+              { topic: 'Baby SpO₂', href: '/blog/baby-spo2-monitoring-india', desc: 'What it is, normal ranges, India guide' },
+              { topic: 'Contactless Monitoring', href: '/contactless-baby-monitor-india', desc: 'No wearables — how it works' },
               { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india-2026', desc: 'Compare all India options 2026' },
             ].map(t => (
               <Link key={t.topic} href={t.href} className="flex items-start gap-3 p-4 rounded-xl border border-[#e2dbd4] hover:border-primary/30 hover:bg-[#faf8f5] transition-all group">
