@@ -613,12 +613,12 @@ export default function Home() {
       </section>
 
       {/* ════════════ SENSOR VISUALIZATION ════════════ */}
-      <section className="py-14 lg:py-24 bg-[#0f172a] overflow-hidden relative">
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,124,111,0.12) 0%, transparent 70%)' }} />
+      <section className="py-14 lg:py-24 bg-white overflow-hidden relative">
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-14">
             <motion.p
-              className="text-xs font-bold uppercase tracking-widest text-[#7aab9e] mb-3"
+              className="text-xs font-bold uppercase tracking-widest mb-3"
+              style={{ color: '#4a7c6f' }}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -627,19 +627,17 @@ export default function Home() {
               The Technology
             </motion.p>
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-white mb-4 leading-snug"
-              style={{ backgroundColor: 'transparent' }}
+              className="text-3xl md:text-4xl font-bold mb-4 leading-snug"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.08 }}
             >
               What Anvaya sees —<br />
-              <span style={{ color: '#7aab9e' }}>without touching your baby.</span>
+              <span className="text-gradient">without touching your baby.</span>
             </motion.h2>
             <motion.p
-              className="text-[#7aab9e]/80 max-w-md mx-auto text-base"
-              style={{ backgroundColor: 'transparent' }}
+              className="text-muted-foreground max-w-md mx-auto text-base"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -657,34 +655,15 @@ export default function Home() {
           {/* 3 tech cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-14 max-w-3xl mx-auto">
             {[
-              {
-                color: '#4a7c6f',
-                title: 'Low-Power Radar',
-                desc: 'Detects micro-chest movements caused by breathing — from up to 90 cm. Power level: 1/1000th of your Wi-Fi router.',
-              },
-              {
-                color: '#e8957a',
-                title: 'Infrared Sensing',
-                desc: "Detects body heat to confirm your baby's presence, position, and surface temperature — without any skin contact.",
-              },
-              {
-                color: '#7aab9e',
-                title: 'On-Device AI',
-                desc: 'Processes every signal locally on the pod. No health data ever leaves your home. Alerts only when something is truly off.',
-              },
+              { color: '#4a7c6f', title: 'Low-Power Radar', desc: 'Detects micro-chest movements caused by breathing — from up to 90 cm. Power level: 1/1000th of your Wi-Fi router.' },
+              { color: '#e8957a', title: 'Infrared Sensing', desc: "Detects body heat to confirm your baby's presence, position, and surface temperature — without any skin contact." },
+              { color: '#7aab9e', title: 'On-Device AI', desc: 'Processes every signal locally on the pod. No health data ever leaves your home. Alerts only when something is truly off.' },
             ].map((card, i) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="rounded-2xl p-5 border"
-                style={{ background: 'rgba(255,255,255,0.04)', borderColor: `${card.color}33` }}
-              >
+              <motion.div key={card.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="rounded-2xl p-5 border border-[#e2dbd4] bg-white shadow-sm">
                 <div className="w-2 h-2 rounded-full mb-3" style={{ background: card.color }} />
-                <div className="font-bold text-white text-sm mb-1.5">{card.title}</div>
-                <div className="text-[#7aab9e]/70 text-xs leading-relaxed">{card.desc}</div>
+                <div className="font-bold text-sm mb-1.5 text-slate-800">{card.title}</div>
+                <div className="text-muted-foreground text-xs leading-relaxed">{card.desc}</div>
               </motion.div>
             ))}
           </div>
@@ -749,19 +728,17 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 2 — CRY ANALYSIS ════════════ */}
-      <section className="py-16 lg:py-28 bg-[#0f172a] overflow-hidden relative">
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse 60% 50% at 30% 50%, rgba(74,124,111,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 50%, rgba(232,149,122,0.08) 0%, transparent 70%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,124,111,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-16 lg:py-28 bg-[#faf8f5] overflow-hidden">
+        <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="lg:order-1 order-2">
-              <div className="section-divider" style={{ borderColor: 'rgba(74,124,111,0.3)' }} />
-              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#e8957a' }}>Cry Intelligence</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white" style={{ backgroundColor: 'transparent' }}>
+              <div className="section-divider" />
+              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Cry Intelligence</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Stop guessing.<br />Know what your<br />
-                <span style={{ color: '#e8957a' }}>baby needs — instantly.</span>
+                <span className="text-gradient">baby needs — instantly.</span>
               </h2>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: 'rgba(122,171,158,0.85)' }}>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 Hungry? Tired? Uncomfortable? Anvaya&apos;s AI identifies 5 cry types in real time — so you respond with confidence, not panic. Even at 3am. Even half asleep.
               </p>
               <div className="space-y-4 mb-10">
@@ -771,12 +748,11 @@ export default function Home() {
                   { emoji: '😣', title: 'Discomfort cry', desc: 'High-pitched and continuous. Alerts you immediately.' },
                 ].map((f, i) => (
                   <motion.div key={f.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}
-                    className="flex items-start gap-4 rounded-xl p-4 cursor-default"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(74,124,111,0.25)' }}>
+                    className="flex items-start gap-4 bg-white rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
                     <span className="text-2xl shrink-0">{f.emoji}</span>
                     <div>
-                      <div className="font-bold text-sm mb-0.5 text-white">{f.title}</div>
-                      <div className="text-sm" style={{ color: 'rgba(122,171,158,0.75)' }}>{f.desc}</div>
+                      <div className="font-bold text-sm mb-0.5">{f.title}</div>
+                      <div className="text-sm text-muted-foreground">{f.desc}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -789,28 +765,25 @@ export default function Home() {
                   </button>
                 </Link>
                 <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
-                  <Button variant="outline" className="rounded-2xl px-6 font-semibold cursor-pointer"
-                    style={{ borderColor: 'rgba(74,124,111,0.4)', color: '#7aab9e', background: 'transparent' }}>
-                    Get Early Access
+                  <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
+                    Get Early Access <ArrowRight className="w-4 h-4" />
                   </Button>
                 </LeadModalTrigger>
               </div>
             </Reveal>
             <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="absolute -inset-8 rounded-[56px] blur-2xl" style={{ background: 'radial-gradient(ellipse, rgba(232,149,122,0.18) 0%, transparent 70%)' }} />
+                <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-[#fdf0ea]/60 to-transparent blur-2xl" />
                 <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" objectPosition="top" />
-                <div className="absolute -left-8 top-20 rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block"
-                  style={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.4)' }}>
-                  <div className="text-[10px] font-medium" style={{ color: 'rgba(122,171,158,0.7)' }}>Cry detected</div>
-                  <div className="text-sm font-bold mt-0.5" style={{ color: '#e8957a' }}>Hungry cry 🍼</div>
-                  <div className="text-[10px] mt-1" style={{ color: 'rgba(122,171,158,0.6)' }}>Last fed: 2h 45m ago</div>
+                <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
+                  <div className="text-[10px] text-muted-foreground font-medium">Cry detected</div>
+                  <div className="text-sm font-bold text-[#e8957a] mt-0.5">Hungry cry 🍼</div>
+                  <div className="text-[10px] text-muted-foreground mt-1">Last fed: 2h 45m ago</div>
                 </div>
-                <div className="absolute -right-6 bottom-32 rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block"
-                  style={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.35)', animationDelay: '1.5s' }}>
-                  <div className="text-[10px]" style={{ color: 'rgba(122,171,158,0.7)' }}>Noise level</div>
-                  <div className="text-xl font-bold" style={{ color: '#4a7c6f' }}>25 dB</div>
-                  <div className="text-[10px] font-semibold" style={{ color: '#4ade80' }}>Quiet room ✓</div>
+                <div className="absolute -right-6 bottom-32 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1.5s' }}>
+                  <div className="text-[10px] text-muted-foreground">Noise level</div>
+                  <div className="text-xl font-bold text-primary">25 dB</div>
+                  <div className="text-[10px] text-green-600 font-semibold">Quiet room ✓</div>
                 </div>
               </div>
             </Reveal>
