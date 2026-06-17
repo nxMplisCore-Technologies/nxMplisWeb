@@ -19,7 +19,7 @@ export const ARTICLES = [
     readTime: '8 min read',
     imageUrl: '/anvaya-sense.jpg',
     dataAiHint: 'sleeping baby peaceful nursery',
-    excerpt: 'New parents in India are often alarmed by their newborn\'s breathing patterns. This expert guide covers normal rates, periodic breathing, and exactly when to call a doctor.',
+    excerpt: 'Normal newborn breathing rate is 40–60 breaths/min — and yes, those 5-second pauses are normal too. This guide covers every baby breathing pattern, sound, and warning sign Indian parents need to know.',
     keywords: ['baby breathing patterns India', 'normal baby breathing rate', 'newborn breathing', 'baby breathing monitor India'],
     content: `
       <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
@@ -176,17 +176,17 @@ export const ARTICLES = [
   },
   {
     slug: 'best-baby-monitor-india-2026',
-    title: 'Best Baby Monitor India 2026: Anvaya Smart vs Motorola vs Owlet (Honest Review)',
+    title: 'Best Baby Monitor India 2026: Complete Buying Guide for Indian Parents',
     author: 'Anvaya Smart Team',
     authorTitle: 'Baby Wellness Researchers · IIT Research Partners',
     date: '2025-04-20',
-    updatedDate: '2026-05-02',
+    updatedDate: '2026-06-17',
     category: 'Buying Guide',
     readTime: '12 min read',
     imageUrl: '/anvaya-nursery.jpg',
     dataAiHint: 'baby monitor comparison review',
-    excerpt: 'We compared every baby monitor available to Indian parents in 2026 — Anvaya Smart, Motorola, Owlet, and Infant Optics. Here is our honest verdict on features, price, and India suitability.',
-    keywords: ['best baby monitor India 2026', 'Motorola baby monitor India', 'baby monitor comparison India 2026', 'Owlet alternative India'],
+    excerpt: 'Which baby monitor is actually right for Indian homes? We break down what matters — contactless vs wearable, local support, heat tolerance, and real parent priorities — so you can choose confidently.',
+    keywords: ['best baby monitor India 2026', 'top rated baby monitors 2026 India', 'baby monitor buying guide India', 'smart baby monitor India', 'best cheap baby monitor India', 'baby monitor with breathing sensor India'],
     content: `
       <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
         <div style="font-size:28px;line-height:1;margin-top:2px;">💡</div>
@@ -605,7 +605,7 @@ export const ARTICLES = [
     readTime: '9 min read',
     imageUrl: '/anvaya-core-6.jpg',
     dataAiHint: 'AI baby monitor technology India',
-    excerpt: 'AI baby monitors are no longer science fiction. In 2026, Indian parents can access AI-powered cry analysis, contactless breathing detection, and predictive health alerts — all from a device that sits beside the crib.',
+    excerpt: 'AI baby monitors in India 2026: what they actually do, which features matter for Indian homes, and whether the technology lives up to the hype. A no-jargon guide for parents.',
     keywords: ['AI baby monitor India', 'AI baby monitoring India 2026', 'smart baby monitor AI', 'artificial intelligence baby monitor', 'AI infant monitor India'],
     content: `
       <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
