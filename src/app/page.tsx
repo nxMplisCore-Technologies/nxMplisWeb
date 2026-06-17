@@ -226,46 +226,28 @@ const CRY_DEMOS = [
 ];
 
 function CryDemoStrip() {
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setIdx(d => (d + 1) % CRY_DEMOS.length), 2800);
-    return () => clearInterval(t);
-  }, []);
-  const cur = CRY_DEMOS[idx];
+  const cur = CRY_DEMOS[0];
   return (
     <div className="mb-6">
-      <AnimatePresence mode="wait">
-        <motion.div key={idx}
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -10 }}
-          transition={{ duration: 0.3 }}
-          className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-sm"
-          style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${cur.color}35`, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
-        >
-          <div className="flex items-center gap-1.5 shrink-0">
-            <motion.div className="w-2 h-2 rounded-full" style={{ background: cur.color }}
-              animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.2, repeat: Infinity }}
-            />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI detected</span>
+      <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-sm"
+        style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${cur.color}35`, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
+      >
+        <div className="flex items-center gap-1.5 shrink-0">
+          <div className="w-2 h-2 rounded-full" style={{ background: cur.color }} />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI detected</span>
+        </div>
+        <div className="w-px h-4 bg-slate-200" />
+        <span style={{ fontSize: 18, lineHeight: 1 }}>{cur.emoji}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold" style={{ color: cur.color }}>{cur.label}</span>
+          <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.07)' }}>
+            <div className="h-full rounded-full" style={{ background: cur.color, width: `${cur.pct}%` }} />
           </div>
-          <div className="w-px h-4 bg-slate-200" />
-          <span style={{ fontSize: 18, lineHeight: 1 }}>{cur.emoji}</span>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold" style={{ color: cur.color }}>{cur.label}</span>
-            <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.07)' }}>
-              <motion.div className="h-full rounded-full" style={{ background: cur.color }}
-                initial={{ width: 0 }}
-                animate={{ width: `${cur.pct}%` }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              />
-            </div>
-            <span className="text-[10px] font-mono text-muted-foreground">{cur.pct}%</span>
-          </div>
-          <div className="w-px h-4 bg-slate-200" />
-          <Link href="/cry-analyzer" className="text-[10px] font-bold text-[#4a7c6f] hover:text-[#2d5c52] transition-colors shrink-0 whitespace-nowrap">Try free →</Link>
-        </motion.div>
-      </AnimatePresence>
+          <span className="text-[10px] font-mono text-muted-foreground">{cur.pct}%</span>
+        </div>
+        <div className="w-px h-4 bg-slate-200" />
+        <Link href="/cry-analyzer" className="text-[10px] font-bold text-[#4a7c6f] hover:text-[#2d5c52] transition-colors shrink-0 whitespace-nowrap">Try free →</Link>
+      </div>
     </div>
   );
 }
@@ -533,11 +515,10 @@ export default function Home() {
         <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border pointer-events-none" style={{ borderColor: 'rgba(212,120,74,0.10)' }} />
         <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border pointer-events-none" style={{ borderColor: 'rgba(212,120,74,0.07)' }} />
         {/* Scroll indicator */}
-        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none"
-          animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none opacity-50">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-primary/40">Scroll</span>
           <ChevronDown className="w-4 h-4 text-primary/35" />
-        </motion.div>
+        </div>
 
         <div className="container mx-auto px-4 pt-8 pb-14 sm:py-16 lg:py-20">
           <div className="grid md:grid-cols-2 gap-8 xl:gap-14 items-center">
@@ -593,12 +574,7 @@ export default function Home() {
 
               {/* Curiosity hook */}
               <div className="flex items-center gap-2 mb-2.5 animate-fade-up delay-4">
-                <motion.span
-                  className="text-lg select-none"
-                  animate={{ y: [0, 4, 0] }}
-                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}>
-                  👇
-                </motion.span>
+                <span className="text-lg select-none">👇</span>
                 <span className="text-sm font-semibold text-muted-foreground">
                   Curious how it works?{' '}
                   <span className="text-primary">Touch to find out.</span>
@@ -610,7 +586,7 @@ export default function Home() {
                 <Link href="/tour"
                   className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-primary/50 hover:bg-primary/8 hover:shadow-md hover:-translate-y-0.5"
                   style={{ borderColor: 'rgba(74,124,111,0.35)', background: 'rgba(74,124,111,0.06)', color: '#4a7c6f' }}>
-                  <motion.span className="text-lg" animate={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}>📱</motion.span>
+                  <span className="text-lg">📱</span>
                   <div className="flex-1">
                     <div>See it handle <em>your</em> worry</div>
                     <div className="text-[10px] opacity-60 font-normal">Interactive tour · 2 min · pick your fear</div>
@@ -620,7 +596,7 @@ export default function Home() {
                 <Link href="/how-it-works"
                   className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-orange-300/50 hover:bg-orange-50/60 hover:shadow-md hover:-translate-y-0.5"
                   style={{ borderColor: 'rgba(212,120,74,0.35)', background: 'rgba(212,120,74,0.06)', color: '#d4784a' }}>
-                  <motion.span className="text-lg" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }}>🎬</motion.span>
+                  <span className="text-lg">🎬</span>
                   <div className="flex-1">
                     <div>Watch it in action</div>
                     <div className="text-[10px] opacity-60 font-normal">60-sec cinematic · auto-plays · no scroll</div>
@@ -657,14 +633,14 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
                 <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
-                <div className="relative w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
+                <div className="relative w-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
                   <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="320px" />
                   <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
                     <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
                     <p className="text-[10px] text-muted-foreground mt-0.5">On table · On wall · On cradle</p>
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10">
                   <div className="flex items-center gap-1 mb-0.5">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 star-filled fill-amber-400" />)}
                   </div>
