@@ -29,7 +29,7 @@ const faqs = [
 export default function BabyBreathingPage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title="Baby Breathing Patterns: What's Normal and What's Not" description="Complete guide to normal baby breathing patterns for Indian parents" url="https://nxmplis.com/blog/baby-breathing-patterns" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2025-04-28" author="Deepak Singh" />
+      <ArticleSchema title="Baby Breathing Patterns: What's Normal and What's Not" description="Complete guide to normal baby breathing patterns for Indian parents" url="https://nxmplis.com/blog/baby-breathing-patterns" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2025-04-28" author="Anvaya Smart Team" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Blog', url: 'https://nxmplis.com/blog' }, { name: 'Baby Breathing Patterns', url: 'https://nxmplis.com/blog/baby-breathing-patterns' }]} />
 
