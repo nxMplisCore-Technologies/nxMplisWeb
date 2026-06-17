@@ -81,7 +81,7 @@ function LiveMonitorWidget() {
         </div>
       </div>
       {/* Waveform */}
-      <div className="bg-[#f0faf7] rounded-xl h-12 mb-3 overflow-hidden relative">
+      <div className="bg-slate-50 rounded-xl h-12 mb-3 overflow-hidden relative">
         <svg viewBox="0 0 312 48" className="w-full h-full" preserveAspectRatio="none">
           <polyline points={pts} fill="none" stroke="#4a7c6f" strokeWidth="1.8" strokeLinecap="round" style={{ transition: 'all 1s ease' }} />
         </svg>
@@ -505,9 +505,12 @@ export default function Home() {
                     <Sparkles className="w-4 h-4" />Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
                   </Button>
                 </LeadModalTrigger>
-                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto border-primary/30 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass font-semibold">
-                  <Link href="/anvaya">Explore Products</Link>
-                </Button>
+                <Link href="/cry-analyzer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
+                  style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 6px 24px rgba(74,124,111,0.40)', transition: 'box-shadow .2s ease, transform .2s ease' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 32px rgba(74,124,111,0.55)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 24px rgba(74,124,111,0.40)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
+                >🧠 Try AI Cry Analyzer — Free <ArrowRight className="w-4 h-4" /></Link>
               </div>
               {/* Trust pills */}
               <div className="flex flex-wrap items-center gap-2 animate-fade-up delay-5">
@@ -813,7 +816,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 3 — DAILY TIMELINE ════════════ */}
-      <section className="py-16 lg:py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] overflow-hidden">
+      <section className="py-16 lg:py-28 bg-[#faf8f5] overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
