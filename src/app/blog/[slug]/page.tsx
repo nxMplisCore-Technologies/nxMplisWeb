@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ARTICLES } from '@/lib/data';
-import { ArticleSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
-import { AuthorBio, LastUpdated, TrustBar } from '@/components/trust/EEATSignals';
+import { ArticleSchema, FAQSchema, BreadcrumbSchema, MedicalWebPageSchema } from '@/components/seo/JsonLd';
+import { AuthorBio, LastUpdated, TrustBar, MedicalReviewerBio } from '@/components/trust/EEATSignals';
 import { ArrowRight, Clock, Tag, Mic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -61,7 +61,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title={article.title} description={article.excerpt} url={`${BASE}/blog/${article.slug}`} image={`${BASE}${article.imageUrl}`} datePublished={article.date} dateModified={article.updatedDate} author={article.author} />
+      <ArticleSchema title={article.title} description={article.excerpt} url={`${BASE}/blog/${article.slug}`} image={`${BASE}${article.imageUrl}`} datePublished={article.date} dateModified={article.updatedDate} author={article.author} medicalReviewer={(article as any).medicalReviewer} />
+      {(article.category === 'Baby Health' || article.category === 'Buying Guide') && (
+        <MedicalWebPageSchema title={article.title} description={article.excerpt} url={`${BASE}/blog/${article.slug}`} dateModified={article.updatedDate} medicalReviewer={(article as any).medicalReviewer} />
+      )}
       <BreadcrumbSchema items={[{ name: 'Home', url: BASE }, { name: 'Blog', url: `${BASE}/blog` }, { name: article.title, url: `${BASE}/blog/${article.slug}` }]} />
       {(article as any).faqs && <FAQSchema faqs={(article as any).faqs} />}
 
@@ -80,7 +83,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 leading-tight">{article.title}</h1>
           <p className="text-lg text-muted-foreground mb-6">{article.excerpt}</p>
-          <AuthorBio compact />
+          <div className="space-y-3">
+            <AuthorBio compact />
+            {(article as any).medicalReviewer && (
+              <MedicalReviewerBio name={(article as any).medicalReviewer.name} credentials={(article as any).medicalReviewer.credentials} />
+            )}
+          </div>
         </div>
       </header>
 

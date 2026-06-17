@@ -37,6 +37,23 @@ export function PediatricianBadge() {
   );
 }
 
+// Medical reviewer bio — shows when a named doctor has reviewed the article
+export function MedicalReviewerBio({ name, credentials }: { name: string; credentials: string }) {
+  return (
+    <div className="flex items-start gap-4 p-5 bg-green-50 border border-green-200 rounded-2xl" itemScope itemType="https://schema.org/Person" role="note" aria-label="Medically reviewed">
+      <div className="w-11 h-11 rounded-full bg-green-100 flex items-center justify-center shrink-0 font-bold text-green-700 text-base" aria-hidden="true">
+        <Shield className="w-5 h-5" />
+      </div>
+      <div className="flex-1">
+        <div className="text-[10px] font-bold uppercase tracking-widest text-green-700 mb-0.5">Medically Reviewed</div>
+        <div className="font-bold text-sm text-green-900" itemProp="name">{name}</div>
+        <div className="text-xs text-green-700" itemProp="jobTitle">{credentials}</div>
+        <div className="text-[10px] text-green-600 mt-1">Content reviewed for clinical accuracy against AAP and WHO infant health guidelines.</div>
+      </div>
+    </div>
+  );
+}
+
 // Last updated — Google rewards regularly updated content
 export function LastUpdated({ date }: { date: string }) {
   return (

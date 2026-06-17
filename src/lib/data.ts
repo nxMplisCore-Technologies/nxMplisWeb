@@ -974,6 +974,243 @@ export const ARTICLES = [
     ],
     related: ['types-of-baby-cries', 'newborn-care-india', 'ai-baby-monitor-india-2026'],
   },
+  {
+    slug: 'sids-prevention-india',
+    title: 'SIDS Prevention in India: What Every New Parent Must Know (2026 Guide)',
+    author: 'Anvaya Smart Team',
+    authorTitle: 'Baby Wellness Researchers · IIT Research Partners',
+    date: '2026-06-17',
+    updatedDate: '2026-06-17',
+    category: 'Baby Health',
+    readTime: '10 min read',
+    imageUrl: '/anvaya-nursery.jpg',
+    dataAiHint: 'safe baby sleeping environment India',
+    excerpt: 'SIDS (Sudden Infant Death Syndrome) claims the lives of 1–2 infants per 1,000 live births in India annually. This guide covers every evidence-based prevention step, safe sleep setup, and warning sign — written for Indian home conditions.',
+    keywords: ['SIDS prevention India', 'sudden infant death syndrome India', 'safe sleep baby India', 'SIDS risk factors India', 'SIDS baby monitor India', 'safe sleep newborn India 2026'],
+    content: `
+      <div style="background:#fff5f5;border:1.5px solid #e8574733;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;line-height:1;margin-top:2px;">🚨</div>
+        <div>
+          <div style="font-weight:700;color:#991b1b;margin-bottom:4px;font-size:15px;">SIDS is real — but 90% of cases have known risk factors you can act on today.</div>
+          <div style="color:#7f1d1d;font-size:13px;line-height:1.6;">This guide covers every evidence-based step from the American Academy of Pediatrics and WHO — adapted for Indian homes, summer heat, and joint family setups.</div>
+        </div>
+      </div>
+
+      <h2>💔 What is SIDS — and how common is it in India?</h2>
+      <p>SIDS (Sudden Infant Death Syndrome) is the sudden, unexplained death of an infant under 1 year of age during sleep, even after a thorough investigation finds no cause. It is the leading cause of infant death between 1 month and 12 months in most countries.</p>
+      <p>In India, estimated rates are 1–2 per 1,000 live births — lower than the US (3.4/1,000) partly because Indian families commonly co-sleep and maintain room temperature awareness. But the risk is not zero, and awareness in India is far lower than it should be.</p>
+      <p><strong>Peak risk window:</strong> 90% of SIDS cases happen before 6 months of age. The peak is between 2–4 months — exactly when babies start sleeping longer stretches but before their arousal responses fully mature.</p>
+
+      <h2>🛏️ The ABCs of safe sleep — every Indian parent needs to know these</h2>
+      <p>The American Academy of Pediatrics (AAP) and WHO both agree on three fundamentals:</p>
+      <ul>
+        <li>🅰️ <strong>Alone:</strong> Baby should sleep alone in their own sleep space — not in an adult bed or with siblings</li>
+        <li>🅱️ <strong>Back:</strong> Always place baby on their BACK to sleep, for every sleep, every time</li>
+        <li>🇨 <strong>Crib:</strong> Use a firm, flat surface — a proper crib, bassinet, or firm mattress with a fitted sheet only</li>
+      </ul>
+      <p>These three alone reduce SIDS risk by up to 70%.</p>
+
+      <h2>🇮🇳 India-specific SIDS risk factors</h2>
+      <p>Standard SIDS guidelines were developed for Western homes. Indian conditions create specific risk factors that are rarely discussed:</p>
+
+      <table>
+        <thead><tr><th>India factor</th><th>Risk</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td>Summer heat (35–45°C)</td><td>⚠️ Overheating is a top SIDS trigger</td><td>Keep room 20–22°C if possible; light cotton clothing only; no heavy swaddling in heat</td></tr>
+          <tr><td>Soft mattresses / charpoy</td><td>🚨 High suffocation risk</td><td>Use a firm flat surface; no memory foam or thick padding under baby</td></tr>
+          <tr><td>Co-sleeping (sath sona)</td><td>⚠️ 2–5x higher risk if adult is a smoker or had alcohol</td><td>Safe co-sleeping rules apply strictly — see below</td></tr>
+          <tr><td>Mosquito nets draped over crib</td><td>⚠️ Can restrict airflow if touching baby's face</td><td>Keep net away from baby's face; use net on frame not draped directly</td></tr>
+          <tr><td>Kajal / surma near baby</td><td>⚠️ Lead content; keep away from baby's face entirely</td><td>Do not apply any kajal to infants</td></tr>
+          <tr><td>Oil massage before sleep</td><td>✅ Generally safe; avoid covering nose/mouth</td><td>Light massage is fine; don't massage face with oil then place prone</td></tr>
+        </tbody>
+      </table>
+
+      <h2>😴 Safe co-sleeping rules for Indian families</h2>
+      <p>We know co-sleeping is deeply embedded in Indian parenting culture. The goal is not to judge — it's to make co-sleeping as safe as possible if you choose it.</p>
+      <p><strong>Co-sleeping is significantly safer when ALL of these are true:</strong></p>
+      <ul>
+        <li>✅ Neither parent smokes (anywhere, ever)</li>
+        <li>✅ Neither parent has consumed alcohol or sedating medication</li>
+        <li>✅ Baby is healthy, full-term, over 4 months</li>
+        <li>✅ Mattress is firm (not soft/memory foam)</li>
+        <li>✅ No heavy quilts, pillows, or bolsters near baby</li>
+        <li>✅ Baby sleeps on their back, not against your chest</li>
+        <li>✅ Baby cannot roll off the bed or get trapped between mattress and wall</li>
+      </ul>
+      <p><strong>Co-sleeping risk is MUCH higher if:</strong> parent smokes, baby is under 3 months, parent drinks alcohol, or baby is on a soft surface.</p>
+
+      <h2>🌡️ Overheating — India's most underrated SIDS risk</h2>
+      <p>Overheating is one of the most consistently identified risk factors for SIDS. In Indian summers, this risk is significant.</p>
+      <p><strong>Signs your baby is too hot:</strong></p>
+      <ul>
+        <li>Sweaty hair at the back of the neck</li>
+        <li>Flushed, red cheeks</li>
+        <li>Rapid breathing</li>
+        <li>Feels hot to the touch on chest or back</li>
+      </ul>
+      <p><strong>Target room temperature:</strong> 20–22°C during sleep. If AC isn't available, use a fan to keep air circulating (but not blowing directly on baby). Dress baby in a single layer of light cotton.</p>
+      <p><strong>Rule of thumb:</strong> Baby should wear one more layer than you're comfortable in — not two or three more.</p>
+
+      <h2>📋 Complete safe sleep checklist for Indian parents</h2>
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:16px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:12px;">Before every sleep:</div>
+        <div style="font-size:13px;color:#4b6a63;line-height:2.2;">
+          ☐ Baby placed on BACK, not side or stomach<br/>
+          ☐ Firm, flat surface — no pillow, quilt, bolster, or soft toy in sleep space<br/>
+          ☐ Room temperature 20–22°C (use fan if no AC)<br/>
+          ☐ Single light cotton layer — no heavy swaddling in heat<br/>
+          ☐ Mosquito net not touching baby's face<br/>
+          ☐ No smoking in the home or car, ever<br/>
+          ☐ Baby in same room as parents (but own sleep surface) for first 6 months<br/>
+          ☐ Pacifier offered at sleep time (reduces SIDS risk by 90% in some studies)<br/>
+        </div>
+      </div>
+
+      <h2>🚨 Warning signs during sleep that need immediate action</h2>
+      <div style="background:#fff5f5;border:1.5px solid #e8574733;border-radius:16px;padding:20px 22px;margin:16px 0;">
+        <div style="font-weight:700;color:#991b1b;margin-bottom:10px;">Call 112 immediately if:</div>
+        <ul style="color:#7f1d1d;font-size:13px;line-height:2;">
+          <li>Baby stops breathing for more than 20 seconds</li>
+          <li>Baby is blue or grey around lips, fingertips, or face</li>
+          <li>Baby is limp and unresponsive and cannot be woken</li>
+          <li>Baby makes gasping or choking sounds that don't stop</li>
+        </ul>
+      </div>
+
+      <h2>📱 Does a baby monitor help prevent SIDS?</h2>
+      <p>This is the most important question parents ask — and it deserves an honest answer.</p>
+      <p><strong>No monitor can prevent SIDS.</strong> SIDS by definition has no warning signs that give you time to intervene. A monitor that alerts you when breathing has already stopped may not give you enough time for a meaningful response.</p>
+      <p>What monitoring does do:</p>
+      <ul>
+        <li>✅ <strong>Reduces parental anxiety</strong> — which improves parental sleep quality and mental health, proven to reduce unsafe behaviours like taking baby into adult bed out of exhaustion</li>
+        <li>✅ <strong>Catches breathing irregularities early</strong> — conditions that aren't SIDS but are serious (respiratory distress, apnea events, SpO2 drops during illness)</li>
+        <li>✅ <strong>Maintains room temperature awareness</strong> — Anvaya Smart tracks ambient temperature, alerting parents when room gets too warm during sleep</li>
+        <li>✅ <strong>Confirms safe sleep position</strong> — movement detection confirms baby hasn't rolled to a risky position</li>
+      </ul>
+
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">🌟 Anvaya Smart — contactless baby monitoring for Indian homes</div>
+        <div style="color:#4b6a63;font-size:13px;margin-bottom:12px;line-height:1.6;">Breathing monitoring, SpO₂, temperature alerts, cry analysis — nothing on your baby's skin. Room temperature monitoring included. Made for India's climate and infrastructure.</div>
+        <a href="/anvaya" style="display:inline-flex;align-items:center;gap:8px;background:#4a7c6f;color:#fff;padding:9px 20px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;">See Anvaya models →</a>
+      </div>`,
+    faqs: [
+      { q: 'What is SIDS and is it common in India?', a: 'SIDS (Sudden Infant Death Syndrome) is the unexplained death of an infant under 1 year during sleep. In India, the estimated rate is 1–2 per 1,000 live births. Peak risk is 2–4 months of age. Awareness is low in India despite the risk being real and preventable through safe sleep practices.' },
+      { q: 'How can I prevent SIDS in my baby?', a: 'The most evidence-based SIDS prevention steps are: always place baby on their back to sleep, use a firm flat surface, keep the room at 20–22°C (overheating is a major risk factor), avoid smoking anywhere near the baby, room-share (but not bed-share) for the first 6 months, and offer a pacifier at sleep time. These steps together can reduce SIDS risk by up to 70%.' },
+      { q: 'Is co-sleeping safe in India?', a: 'Co-sleeping carries higher SIDS risk, especially if parents smoke, drink alcohol, or baby is under 3 months. If you co-sleep, the risks are significantly lower when: neither parent smokes, neither parent drinks alcohol or takes sedating medication, baby is on a firm surface (not soft mattress), and baby sleeps on their back not against your chest. Always follow all safety rules when co-sleeping.' },
+      { q: 'Can a baby monitor prevent SIDS?', a: 'No monitor can prevent SIDS — it has no warning signs that allow intervention. However, monitors like Anvaya Smart provide continuous breathing monitoring, SpO2 tracking, and room temperature alerts that help parents ensure safe sleep conditions (avoiding overheating), catch genuine respiratory problems early, and sleep more confidently — which itself reduces unsafe behaviours born from exhaustion.' },
+      { q: 'What temperature is safe for a baby to sleep in India?', a: 'The recommended sleep room temperature for babies is 20–22°C. In Indian summers, this requires AC or a fan circulating air (not blowing directly on baby). Overheating is one of the top SIDS risk factors. Signs baby is too hot: sweaty neck, flushed cheeks, rapid breathing, hot to the touch. Dress baby in a single light cotton layer in summer.' },
+    ],
+    related: ['baby-breathing-patterns', 'baby-spo2-monitoring-india', 'baby-sleep-guide-india'],
+  },
+  {
+    slug: 'baby-health-monitoring-complete-guide',
+    title: 'Baby Health Monitoring: The Complete Guide for Indian Parents (2026)',
+    author: 'Anvaya Smart Team',
+    authorTitle: 'Baby Wellness Researchers · IIT Research Partners',
+    date: '2026-06-17',
+    updatedDate: '2026-06-17',
+    category: 'Baby Health',
+    readTime: '15 min read',
+    imageUrl: '/anvaya-nursery.jpg',
+    dataAiHint: 'baby health monitoring complete guide India',
+    excerpt: 'Everything Indian parents need to know about monitoring their baby\'s health at home — breathing, SpO2, heart rate, cry analysis, sleep, and temperature. What to watch, when to worry, and how modern technology helps.',
+    keywords: ['baby health monitoring India', 'infant health monitoring guide', 'baby monitoring guide India 2026', 'newborn health monitoring', 'baby breathing monitoring India', 'contactless baby monitor India'],
+    content: `
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:0 0 28px 0;display:flex;gap:16px;align-items:flex-start;">
+        <div style="font-size:28px;line-height:1;margin-top:2px;">📖</div>
+        <div>
+          <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">This is the pillar guide. Use the links below to jump to any topic.</div>
+          <div style="color:#4b6a63;font-size:13px;line-height:1.6;">Baby health monitoring covers breathing, SpO2, heart rate, temperature, cry patterns, and sleep. This guide covers all of it — with India-specific context throughout.</div>
+        </div>
+      </div>
+
+      <h2>🌟 Why baby health monitoring matters most in the first 6 months</h2>
+      <p>The first six months of a baby's life are the most medically significant period outside of hospital care. During this window:</p>
+      <ul>
+        <li>The brainstem's breathing control centre is still maturing</li>
+        <li>SpO2 regulation is less stable, especially during illness or heat exposure</li>
+        <li>SIDS risk is at its lifetime peak (2–4 months)</li>
+        <li>Parents are sleep-deprived and may miss subtle warning signs</li>
+        <li>Temperature dysregulation is common — babies cannot sweat or shiver effectively</li>
+      </ul>
+      <p>In India, these risks are compounded by summer heat (35–45°C), infrastructure variation (power cuts, humidity swings), and limited access to 24/7 paediatric advice outside major cities.</p>
+      <p>This guide covers what to monitor, what is normal, what is not, and how technology — when used correctly — can give Indian parents genuine peace of mind.</p>
+
+      <h2>🫁 1. Breathing monitoring — the most critical vital sign</h2>
+      <p>Breathing is the vital sign most parents watch most anxiously — and for good reason. Breathing irregularities in newborns are common, often normal, but occasionally serious.</p>
+      <p><strong>What is normal:</strong> 40–60 breaths per minute in newborns. Fast, irregular, with 5–10 second pauses (periodic breathing). All normal.</p>
+      <p><strong>What is not normal:</strong> Pauses over 20 seconds, rate consistently above 60 or below 20, blue lips or fingertips, nostrils flaring with every breath, ribs visibly pulling inward.</p>
+      <p><strong>When to monitor:</strong> Every night for the first 6 months. The 2–4am window is highest risk because sleep is deepest and parents are least likely to check.</p>
+      <p>→ <a href="/blog/baby-breathing-patterns">Full guide: Baby Breathing Patterns — What's Normal and What's Not</a></p>
+      <p>→ <a href="/blog/baby-breathing-monitor-without-wearable">Full guide: Baby Breathing Monitors Without Wearables — India Guide</a></p>
+
+      <h2>💉 2. SpO2 monitoring — oxygen in the blood</h2>
+      <p>SpO2 (oxygen saturation) measures the percentage of haemoglobin carrying oxygen. It is the single most direct indicator of whether your baby's lungs and heart are doing their job.</p>
+      <p><strong>Normal range:</strong> 95–100% in healthy infants. Below 94% for more than a few minutes warrants immediate attention.</p>
+      <p><strong>When SpO2 drops in Indian babies:</strong> During respiratory illness, in high altitudes (Shimla, Ladakh, Manali), in severe heat causing dehydration, and in premature babies whose lungs haven't fully matured.</p>
+      <p><strong>How it's measured:</strong> Traditional pulse oximeters use a clip or sock on the baby's finger or foot (wearable). Newer contactless systems use optical sensing from a distance — more practical in India's heat.</p>
+      <p>→ <a href="/blog/baby-spo2-monitoring-india">Full guide: Baby SpO2 Monitoring — What Indian Parents Need to Know</a></p>
+
+      <h2>😢 3. Cry analysis — what your baby is actually saying</h2>
+      <p>Babies have a limited communication toolkit: crying. But not all cries are the same. Research has identified distinct acoustic patterns in infant cries that correlate with specific needs and states.</p>
+      <p><strong>The 5 main cry types:</strong></p>
+      <ul>
+        <li>😋 <strong>Hunger cry:</strong> Rhythmic, repetitive, builds gradually</li>
+        <li>😫 <strong>Tired cry:</strong> Whiny, low-pitched, accompanied by eye rubbing</li>
+        <li>😣 <strong>Pain cry:</strong> Sudden, high-pitched, with a long pause then repetition</li>
+        <li>😤 <strong>Discomfort cry:</strong> Continuous, irritable — usually gas, position, temperature</li>
+        <li>😰 <strong>Overstimulation cry:</strong> Fussy, turns away, inconsolable in noisy environments</li>
+      </ul>
+      <p>AI systems trained on millions of cry samples can now identify these patterns with 85–92% accuracy — giving exhausted parents at 3am a starting point rather than guesswork.</p>
+      <p>→ <a href="/blog/types-of-baby-cries">Full guide: Types of Baby Cries and What They Mean</a></p>
+
+      <h2>😴 4. Sleep monitoring — the foundation of baby health</h2>
+      <p>Baby sleep is not just about duration — it's about cycle quality, arousal responses, and environment. Poor sleep environment is a direct SIDS risk factor (overheating, soft surfaces) and affects brain development.</p>
+      <p><strong>What matters to monitor:</strong> Total sleep duration, sleep cycle length, sleep environment temperature, position changes, and whether baby can settle back into sleep independently.</p>
+      <p><strong>India context:</strong> The 4-month sleep regression hits Indian families hard because most have been successfully managing baby sleep with rocking, feeding, or co-sleeping — crutches the regression makes permanent without guidance.</p>
+      <p>→ <a href="/blog/baby-sleep-guide-india">Full guide: Baby Sleep Guide India — From Newborn to 12 Months</a></p>
+
+      <h2>🌡️ 5. Temperature monitoring — underrated and critical in India</h2>
+      <p>Babies cannot regulate body temperature effectively for the first few months. In India's climate extremes, this is more dangerous than in temperate countries.</p>
+      <p><strong>Overheating risk:</strong> Room above 25°C during sleep significantly increases SIDS risk. In Indian summers, rooms can hit 32–38°C without AC.</p>
+      <p><strong>What to monitor:</strong> Ambient room temperature (not just skin temperature). Target 20–22°C during sleep. Alert parents if temperature rises above 26°C.</p>
+      <p>→ <a href="/blog/sids-prevention-india">Full guide: SIDS Prevention India — What Every Parent Must Know</a></p>
+
+      <h2>📊 Which monitoring approach is right for your situation?</h2>
+
+      <table>
+        <thead><tr><th>Your situation</th><th>Priority monitoring</th><th>Recommended approach</th></tr></thead>
+        <tbody>
+          <tr><td>Healthy full-term baby, typical home</td><td>Breathing + temperature</td><td>Contactless breathing monitor with temp sensor</td></tr>
+          <tr><td>Premature baby or NICU history</td><td>SpO2 + breathing + HR</td><td>Medical grade monitoring + paediatrician guidance</td></tr>
+          <tr><td>Baby with respiratory illness</td><td>SpO2 + breathing rate</td><td>Contactless SpO2 monitor; call paediatrician if SpO2 below 94%</td></tr>
+          <tr><td>Parent with high anxiety</td><td>Comprehensive + cry</td><td>Full-featured smart monitor — reduces check-in frequency and improves parental sleep</td></tr>
+          <tr><td>Hot climate, no AC</td><td>Temperature + breathing</td><td>Monitor with ambient temp alerts; prioritise room cooling</td></tr>
+        </tbody>
+      </table>
+
+      <h2>🛒 What to look for in a baby health monitor for India</h2>
+      <ul>
+        <li>✅ <strong>Works offline:</strong> Power cuts and internet outages are common in India. On-device AI processing means monitoring continues without internet.</li>
+        <li>✅ <strong>Contactless:</strong> Wearable sensors cause rashes in India's heat, fall off sweaty feet, and trigger false alarms. Contactless radar monitoring has no skin contact.</li>
+        <li>✅ <strong>India warranty:</strong> Most global brands (Owlet, Nanit) have no India warranty. Look for local support and warranty.</li>
+        <li>✅ <strong>Temperature monitoring included:</strong> Critical for India's climate. Know when your baby's room gets too warm.</li>
+        <li>✅ <strong>No monthly subscription:</strong> Many imported monitors lock full features behind ₹2,000–3,500/month subscriptions.</li>
+      </ul>
+
+      <div style="background:#f0f5f3;border:1.5px solid #4a7c6f33;border-radius:16px;padding:20px 22px;margin:28px 0;">
+        <div style="font-weight:700;color:#1a2e28;margin-bottom:4px;font-size:15px;">🌟 Anvaya Smart — India's complete baby health monitoring pod</div>
+        <div style="color:#4b6a63;font-size:13px;margin-bottom:12px;line-height:1.6;">Breathing, SpO₂, heart rate, cry analysis, sleep tracking, room temperature — all contactlessly, all on-device, all with India warranty. Starting ₹8,999.</div>
+        <a href="/anvaya" style="display:inline-flex;align-items:center;gap:8px;background:#4a7c6f;color:#fff;padding:9px 20px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;">See all Anvaya models →</a>
+      </div>`,
+    faqs: [
+      { q: 'What should I monitor for my newborn baby at home in India?', a: 'The five key health parameters to monitor for a newborn at home are: (1) breathing rate and pattern — normal is 40–60 breaths/min with occasional 5–10 second pauses; (2) SpO2 oxygen saturation — should stay 95–100%; (3) room temperature — keep at 20–22°C especially during sleep; (4) cry patterns — to identify hunger, pain, or discomfort; (5) sleep duration and quality. In India, temperature monitoring is especially important given summer heat.' },
+      { q: 'What is the best baby health monitor for Indian parents in 2026?', a: 'Anvaya Smart is the only comprehensive contactless baby health monitor designed for Indian conditions in 2026. It monitors breathing, SpO2, cry type, sleep patterns, and room temperature — all without attaching anything to your baby. It works offline during power cuts, has India warranty, free shipping, and no monthly subscription. Starting at ₹8,999.' },
+      { q: 'At what age can I stop monitoring my baby\'s breathing at night?', a: 'The highest-risk window for breathing irregularities and SIDS is 0–6 months, with peak risk at 2–4 months. Most paediatricians recommend some form of breathing awareness through the first 12 months. Monitoring becomes less critical after 6 months as the brainstem\'s breathing control matures and SIDS risk drops significantly.' },
+      { q: 'Do baby monitors help reduce SIDS risk?', a: 'No monitor can prevent SIDS, which by definition has no advance warning signs. However, monitoring helps in several indirect ways: it detects breathing irregularities and SpO2 drops from illness earlier; it tracks room temperature (overheating is a major SIDS risk factor); and it reduces parent anxiety, which reduces unsafe behaviours like bringing an exhausted parent to bed with the baby.' },
+    ],
+    related: ['baby-breathing-patterns', 'sids-prevention-india', 'best-baby-monitor-india-2026'],
+  },
 ];
 
 // ──────────────────────────────────────────────────────────
