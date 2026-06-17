@@ -193,26 +193,11 @@ function BabySVG() {
 function CryCtaButton() {
   return (
     <Link href="/cry-analyzer"
-      className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
-      style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 4px 20px rgba(74,124,111,0.35)', transition: 'box-shadow .2s ease, transform .2s ease' }}
-      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 28px rgba(74,124,111,0.50)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
-      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(74,124,111,0.35)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
+      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
+      style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 4px 20px rgba(74,124,111,0.35)' }}
     >
-      {/* Subtle shimmer sweep on load */}
-      <span className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.12) 50%,transparent 70%)', animation: 'btn-shimmer 2.8s ease-in-out infinite', animationDelay: '1s' }} />
-      {/* Animated sound wave bars */}
-      <div className="flex items-center gap-[2px] shrink-0" style={{ height: 16 }}>
-        {[0,1,2,3,4].map(i => (
-          <div key={i} style={{
-            width: 2.5, borderRadius: 99, background: 'rgba(255,255,255,0.9)',
-            animation: `cry-wave ${0.5 + i * 0.08}s ease-in-out ${i * 0.07}s infinite alternate`,
-            minHeight: 2, maxHeight: 14,
-          }} />
-        ))}
-      </div>
       Try AI Cry Analyzer — Free
       <ArrowRight className="w-4 h-4" />
-      <style>{`@keyframes cry-wave{from{height:2px}to{height:14px}} @keyframes btn-shimmer{0%,100%{transform:translateX(-120%)} 50%{transform:translateX(120%)}}`}</style>
     </Link>
   );
 }
