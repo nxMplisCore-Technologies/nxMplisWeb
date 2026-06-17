@@ -436,7 +436,7 @@ function PhoneScreenDecide({ color, worry }: { color: string; worry: Worry }) {
 function PhoneFrame({ children, shake, color }: { children: React.ReactNode; shake?: boolean; color: string }) {
   return (
     <motion.div className="relative mx-auto"
-      style={{ width: 200, height: 400 }}
+      style={{ width: 'min(190px, 52vw)', height: 'min(380px, 48vh)' }}
       animate={shake ? { x: [0, -8, 8, -5, 5, -2, 2, 0], rotate: [0, -1, 1, 0] } : {}}
       transition={shake ? { duration: 0.6 } : {}}>
       {/* Glow */}
@@ -486,7 +486,7 @@ function WelcomeScreen({ onSelect }: { onSelect: (w: Worry) => void }) {
       ))}
       <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #07080d 85%)' }} />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6" style={{ paddingTop: 64 }}>
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 overflow-hidden">
         <motion.div className="w-full max-w-xs"
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           {/* Title */}
@@ -595,7 +595,7 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
       </AnimatePresence>
 
       {/* Top bar — sits below main site header (header is ~56-64px) */}
-      <div className="relative z-10 shrink-0 flex items-center justify-between px-5 pb-2" style={{ paddingTop: 'max(env(safe-area-inset-top), 72px)' }}>
+      <div className="relative z-10 shrink-0 flex items-center justify-between px-5 pb-2" style={{ paddingTop: 'max(env(safe-area-inset-top, 12px), 12px)' }}>
         <button onClick={onRestart} className="text-[9px] text-white/25 hover:text-white/50 uppercase tracking-widest transition-colors flex items-center gap-1">
           ← Worries
         </button>
@@ -611,7 +611,7 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
       </div>
 
       {/* Main composition */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-5 gap-5 min-h-0">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-5 gap-3 min-h-0 overflow-hidden">
 
         {/* Scene time tag */}
         {step.timeTag && (
@@ -717,6 +717,17 @@ export default function TourPage() {
   const [stepIdx, setStepIdx] = useState(0);
   const [dir, setDir] = useState(1);
 
+  // Lock body scroll so mobile browser address bar can't shift the layout
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+      document.documentElement.style.overflow = '';
+    };
+  }, []);
+
   const worryConfig = WORRIES.find(w => w.id === worry);
   const steps = worry ? STEPS[worry] : [];
 
@@ -725,7 +736,9 @@ export default function TourPage() {
   const handleRestart = () => { setWorry(null); setStepIdx(0); };
 
   return (
-    <div className="fixed inset-0 overflow-hidden z-[100]" style={{ background: '#030507' }}>
+    // 100dvh = dynamic viewport height — accounts for iOS address bar correctly
+    <div className="fixed inset-0 overflow-hidden z-[100] touch-none"
+      style={{ background: '#030507', height: '100dvh' }}>
       <AnimatePresence initial={false}>
         {!worry
           ? <motion.div key="welcome" className="absolute inset-0"
