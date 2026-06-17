@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/cry-analyzer`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },
     { url: `${base}/early-access`, lastModified: now, changeFrequency: 'daily', priority: 0.90 },
     // Zero-competition SEO landing pages (own the category)
+    { url: `${base}/contactless-baby-monitor-india`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },
+    { url: `${base}/baby-spo2-monitor-india`, lastModified: now, changeFrequency: 'monthly', priority: 0.91 },
+    { url: `${base}/ai-baby-monitor-india`, lastModified: now, changeFrequency: 'monthly', priority: 0.91 },
     { url: `${base}/baby-monitoring`, lastModified: now, changeFrequency: 'monthly', priority: 0.90 },
     { url: `${base}/baby-wellness-app`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
     { url: `${base}/newborn-care-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
