@@ -528,18 +528,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* MIDDLE — Purple Cry Analyzer Widget */}
+            {/* MIDDLE — Cry Analyzer Widget */}
             <div className="animate-fade-up delay-3 flex flex-col items-center gap-3 order-2">
-              {/* Eye-catching label */}
+              {/* Label */}
               <div className="flex flex-col items-center gap-1.5">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
-                  style={{ background: 'linear-gradient(90deg,#5b21b6,#7c3aed,#a855f7)', color: '#fff', boxShadow: '0 0 20px rgba(124,58,237,0.45)' }}>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
+                  style={{ background: 'rgba(74,124,111,0.12)', border: '1px solid rgba(74,124,111,0.35)', color: '#4a7c6f' }}>
                   🧠 Try AI Live — Free
                 </div>
                 <p className="text-[11px] text-slate-500 font-medium text-center">Upload a cry recording or record live</p>
               </div>
               <div className="w-full">
-                <CryAnalyzerWidget variant="purple" />
+                <CryAnalyzerWidget variant="green" />
               </div>
             </div>
 
