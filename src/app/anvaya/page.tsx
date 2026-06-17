@@ -171,10 +171,10 @@ export default function AnvayaPage() {
 
       {/* ── Main product layout ── */}
       <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-[1fr_420px] gap-10 items-start">
+        <div className="grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-10 items-start">
 
           {/* LEFT — Image + model tabs + features */}
-          <div>
+          <div className="order-2 lg:order-1">
             {/* Model selector tabs — horizontally scrollable on mobile */}
             <div className="flex gap-2 mb-6 overflow-x-auto pb-1 snap-x scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
               {products.map((prod, i) => (
@@ -217,17 +217,17 @@ export default function AnvayaPage() {
             </div>
 
             {/* Trust strip */}
-            <div className="grid grid-cols-3 gap-3 mt-4">
+            <div className="grid grid-cols-3 gap-2 mt-4">
               {[
                 { icon: Truck, text: 'Free shipping', sub: 'All India' },
                 { icon: RefreshCw, text: '30-day returns', sub: 'No questions' },
-                { icon: Shield, text: 'Safe for newborns', sub: 'Clinically safe. Zero emissions.' },
+                { icon: Shield, text: 'Safe for newborns', sub: 'Contactless & safe' },
               ].map(t => (
-                <div key={t.text} className="flex items-center gap-2.5 bg-white rounded-xl p-3 border border-[#e2dbd4]">
+                <div key={t.text} className="flex flex-col items-center text-center gap-1.5 bg-white rounded-xl p-2.5 border border-[#e2dbd4]">
                   <t.icon className="w-4 h-4 shrink-0" style={{color: p.color}} />
                   <div>
-                    <div className="text-xs font-semibold">{t.text}</div>
-                    <div className="text-[10px] text-muted-foreground">{t.sub}</div>
+                    <div className="text-[10px] font-semibold leading-tight">{t.text}</div>
+                    <div className="text-[9px] text-muted-foreground mt-0.5 leading-tight">{t.sub}</div>
                   </div>
                 </div>
               ))}
@@ -314,7 +314,7 @@ export default function AnvayaPage() {
           </div>
 
           {/* RIGHT — Sticky buy panel */}
-          <div className="lg:sticky lg:top-20">
+          <div className="order-1 lg:order-2 lg:sticky lg:top-20">
             <div className="bg-white rounded-2xl border border-[#e2dbd4] shadow-lg overflow-hidden">
 
               {/* Product name + rating */}
