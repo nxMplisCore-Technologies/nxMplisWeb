@@ -689,6 +689,83 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ════════════ TOUR + HOW-IT-WORKS FOMO STRIP ════════════ */}
+      <section className="py-14 lg:py-20" style={{ background: 'linear-gradient(135deg,#060e0b 0%,#0a1610 100%)' }}>
+        <div className="container mx-auto px-4 max-w-4xl">
+          <motion.div className="text-center mb-10"
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-400/60 mb-3">Before you decide</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-snug mb-3">
+              Most parents don't know what<br className="hidden sm:block" /> they're missing at 3 AM.
+            </h2>
+            <p className="text-white/40 text-sm max-w-sm mx-auto">
+              Until they see it. Two minutes. No scroll. Just pick your biggest worry.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Tour card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.1 }}>
+              <Link href="/tour" className="group block h-full rounded-2xl border border-emerald-400/20 p-6 transition-all hover:border-emerald-400/50 hover:bg-white/3"
+                style={{ background: 'rgba(74,124,111,0.08)' }}>
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(74,124,111,0.2)' }}>
+                    <span className="text-xl">📱</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-emerald-400/70 mb-1">Interactive · 2 min</div>
+                    <div className="text-base font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors">
+                      Take the Product Tour →
+                    </div>
+                    <p className="text-xs text-white/40 leading-relaxed">
+                      Pick your biggest worry — breathing, crying, or sleep. We'll walk you through exactly how Anvaya handles it. Live app screens. Real data.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mt-3">
+                      {['Is she breathing?', 'Why is he crying?', 'Enough sleep?'].map(t => (
+                        <span key={t} className="text-[9px] px-2 py-0.5 rounded-full border border-emerald-400/20 text-emerald-400/70">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* How it works card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.2 }}>
+              <Link href="/how-it-works" className="group block h-full rounded-2xl border border-white/10 p-6 transition-all hover:border-white/25 hover:bg-white/3"
+                style={{ background: 'rgba(255,255,255,0.03)' }}>
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(232,149,122,0.15)' }}>
+                    <span className="text-xl">🎬</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[9px] font-bold uppercase tracking-widest mb-1" style={{ color: 'rgba(232,149,122,0.7)' }}>Cinematic · Auto-plays</div>
+                    <div className="text-base font-bold text-white mb-1.5 group-hover:text-orange-300 transition-colors">
+                      See It In Action →
+                    </div>
+                    <p className="text-xs text-white/40 leading-relaxed">
+                      A 60-second film showing Anvaya working in real time — from a 3 AM silence to the morning report. No scroll needed. Just watch.
+                    </p>
+                    <div className="flex items-center gap-1.5 mt-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+                      <span className="text-[9px] text-white/30">Plays automatically · 6 scenes</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* FOMO line */}
+          <motion.p className="text-center text-xs text-white/20 mt-8"
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
+            147 families joined this week. Founding pricing ends when the first batch ships.
+          </motion.p>
+        </div>
+      </section>
+
       {/* ════════════ SENSOR VISUALIZATION ════════════ */}
       <section className="py-14 lg:py-24 bg-white overflow-hidden relative">
         <div className="container mx-auto px-4 relative">
