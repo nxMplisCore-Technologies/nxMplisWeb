@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/anvaya', label: 'Products' },
+  { href: '/tour', label: 'Tour' },
   { href: '/how-it-works', label: 'How It Works' },
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
