@@ -4,14 +4,14 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Wind, Moon, Baby, Sparkles, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Sparkles, ChevronRight, ChevronLeft } from 'lucide-react';
 
 type Worry = 'breathing' | 'crying' | 'sleep';
 
 const WORRIES = [
-  { id: 'breathing' as Worry, icon: <Wind  className="w-6 h-6" />, label: 'Is she breathing?',       sub: 'The silence at 3 AM',   color: '#4ade80', dim: '#1a3d2e' },
-  { id: 'crying'    as Worry, icon: <Baby  className="w-6 h-6" />, label: 'Why is he crying?',        sub: 'Hunger? Pain? Nothing?', color: '#fb923c', dim: '#3d1a0a' },
-  { id: 'sleep'     as Worry, icon: <Moon  className="w-6 h-6" />, label: 'Is she sleeping enough?',  sub: 'Deep sleep = brain growth', color: '#a78bfa', dim: '#1a1040' },
+  { id: 'breathing' as Worry, icon: '🫁', label: 'Is she breathing?',       sub: 'The silence at 3 AM',     color: '#4ade80', dim: '#1a3d2e' },
+  { id: 'crying'    as Worry, icon: '😢', label: 'Why is he crying?',        sub: 'Hunger? Pain? Nothing?',  color: '#fb923c', dim: '#3d1a0a' },
+  { id: 'sleep'     as Worry, icon: '🌙', label: 'Is she sleeping enough?',  sub: 'Deep sleep = brain growth', color: '#a78bfa', dim: '#1a1040' },
 ];
 
 // ── Step data ─────────────────────────────────────────────────────────────────
@@ -27,25 +27,25 @@ type Step = {
 
 const STEPS: Record<Worry, Step[]> = {
   breathing: [
-    { scene: 'midnight', timeTag: '3:02 AM', heading: 'She hasn\'t made a sound\nin 40 minutes.', body: 'The silence that should feel peaceful — doesn\'t.', cta: 'What\'s Anvaya doing right now?', stat: { value: '12,840', label: 'breaths checked tonight' }, tip: 'Every single one: normal.' },
-    { scene: 'radar',    heading: 'A small device. Clipped to the crib.\nNo wires. No patches.', body: 'Radar and AI — watching in the dark so you don\'t have to.', cta: 'Show me what it sees', stat: { value: '6', label: 'sensors. Zero contact.' }, tip: 'Breathing · SpO₂ · Temp · Sound · Motion · Cry' },
-    { scene: 'data',     heading: '42 breaths per minute.\nNormal. Safe.', body: 'Not a guess. Proof — checked 12,840 times tonight.', cta: 'What if something changes?', stat: { value: '98%', label: 'SpO₂ — optimal' }, tip: 'Alerts fire in under 3 seconds if anything deviates.' },
-    { scene: 'alert',    timeTag: '3:47 AM', heading: 'SpO₂ dipped.\nAnvaya fired an alert.', body: 'Before you were fully awake — your phone already knew.', cta: 'What happened next?', stat: { value: '18s', label: 'until you were there' }, tip: 'You were at her side in 18 seconds. She was fine.' },
-    { scene: 'morning',  timeTag: '6:14 AM', heading: 'She woke up smiling.\nYou have 9 hours of data.', body: 'Every breath logged. Every pattern recorded. She was safe all night.', cta: 'Reserve Anvaya Smart', stat: { value: '8.4', label: 'sleep score out of 10' }, tip: 'Share the full report with your pediatrician.' },
+    { scene: 'midnight', timeTag: '3:02 AM', heading: '😶 She hasn\'t made a sound\nin 40 minutes.', body: 'The silence that should feel peaceful — doesn\'t.', cta: 'What\'s Anvaya doing? →', stat: { value: '12,840', label: 'breaths checked tonight' }, tip: '✅ Every single one: normal.' },
+    { scene: 'radar',    heading: '📡 A small clip. No wires.\nNothing on baby.', body: 'Like a baby monitor — but instead of a camera, it reads the air your baby breathes. Completely contactless.', cta: 'Show me what it sees →', stat: { value: '6', label: 'sensors. Zero contact.' }, tip: '🫁 Breathing · SpO₂ · Temp · Sound · Motion · Cry' },
+    { scene: 'data',     heading: '✅ 42 breaths per minute.\nNormal. Safe.', body: 'Not a guess. Real data — checked while you slept, 12,840 times tonight.', cta: 'What if something changes? →', stat: { value: '98%', label: 'SpO₂ oxygen — perfect' }, tip: '⚡ Alerts fire in under 3 seconds if anything deviates.' },
+    { scene: 'alert',    timeTag: '3:47 AM', heading: '⚡ SpO₂ dipped briefly.\nAnvaya was already on it.', body: 'Before you were fully awake — your phone already knew and woke you.', cta: 'What happened next? →', stat: { value: '18s', label: 'until you were there' }, tip: '💚 You were at her side in 18 seconds. She was fine.' },
+    { scene: 'morning',  timeTag: '6:14 AM', heading: '☀️ She woke up smiling.\nYou both made it.', body: 'Every breath logged. Every pattern recorded. You have 9 hours of proof she was safe.', cta: 'Get Anvaya for my baby 🎉', stat: { value: '8.4', label: 'sleep quality score' }, tip: '📋 Share the full report with your pediatrician.' },
   ],
   crying: [
-    { scene: 'midnight', timeTag: '2:58 AM', heading: 'Third time tonight.\nYou don\'t know why.', body: 'Fed, changed, held. Still crying. The helplessness is real.', cta: 'What does Anvaya hear?', stat: { value: '0.4s', label: 'to detect the cry' }, tip: 'Anvaya heard him before your phone even buzzed.' },
-    { scene: 'radar',    heading: 'Every cry has a signature.\nAnvaya reads it.', body: 'Trained on 50,000+ real recordings — hunger, pain, discomfort, fatigue.', cta: 'Show me the analysis', stat: { value: '50K+', label: 'cry recordings trained on' }, tip: 'Tuned specifically to Indian acoustic environments.' },
-    { scene: 'data',     heading: 'Hunger.\n94% confidence.', body: 'Not pain. Not gas. You pick him up knowing exactly what he needs.', cta: 'How accurate is this?', stat: { value: '94%', label: 'classification confidence' }, tip: 'Matched pediatrician assessments 91% of the time in trials.' },
-    { scene: 'alert',    heading: 'The guessing spiral — gone.\nFrom 20 minutes to 8 seconds.', body: 'At 3 AM, certainty is everything. Anvaya gives you that.', cta: 'What does the pattern show?', stat: { value: '8s', label: 'avg response time' }, tip: '23 hunger · 4 discomfort · 1 pain — last 7 days.' },
-    { scene: 'morning',  timeTag: '7:00 AM', heading: 'He\'s peaceful.\nYou slept 4 hours straight.', body: 'Because when it matters, you knew. In seconds. Not minutes.', cta: 'Reserve Anvaya Smart', stat: { value: '+3.1h', label: 'extra sleep per night' }, tip: 'Parents report 38% fewer unnecessary wake-ups by week 2.' },
+    { scene: 'midnight', timeTag: '2:58 AM', heading: '😭 Third time tonight.\nYou don\'t know why.', body: 'Fed, changed, held. Still crying. The helplessness is the hardest part.', cta: 'What does Anvaya hear? →', stat: { value: '0.4s', label: 'to detect the cry' }, tip: '👂 Heard him before your phone even buzzed.' },
+    { scene: 'radar',    heading: '🎙️ Every cry has a signature.\nAnvaya reads it.', body: 'Think of it like Shazam — but for baby cries. It recognises the pattern, not just the sound.', cta: 'Show me the analysis →', stat: { value: '50K+', label: 'cry recordings trained on' }, tip: '🇮🇳 Tuned to Indian acoustic environments.' },
+    { scene: 'data',     heading: '🍼 Hunger. 94% confidence.\nFeed him. Rest easy.', body: 'Not pain. Not gas. You pick him up knowing exactly what he needs — no guessing.', cta: 'How accurate is this? →', stat: { value: '94%', label: 'classification confidence' }, tip: '👨‍⚕️ Matched pediatrician assessments 91% of the time.' },
+    { scene: 'alert',    heading: '⏱️ The guessing spiral — gone.\n20 minutes → 8 seconds.', body: 'At 3 AM, certainty is everything. You know what he needs before you\'re even standing.', cta: 'What does the pattern show? →', stat: { value: '8s', label: 'average response time' }, tip: '📊 23 hunger · 4 discomfort · 1 pain this week.' },
+    { scene: 'morning',  timeTag: '7:00 AM', heading: '😴 He\'s peaceful.\nYou slept 4 hours straight.', body: 'Because when it mattered, you knew in seconds. You both went right back to sleep.', cta: 'Get Anvaya for my baby 🎉', stat: { value: '+3.1h', label: 'extra sleep per night' }, tip: '🌟 38% fewer wake-ups reported by week 2.' },
   ],
   sleep: [
-    { scene: 'midnight', timeTag: '11:00 PM', heading: 'Is she in deep sleep?\nOr just quiet?', body: 'Her brain is developing. The quality of this sleep matters more than you know.', cta: 'What is Anvaya tracking?', stat: { value: '18 min', label: 'in deep sleep now' }, tip: 'Brain development is happening right now.' },
-    { scene: 'radar',    heading: 'No chest clip.\nNo wrist band.', body: 'Same sleep stage data as a pediatric sleep lab. Completely contactless.', cta: 'Show me the sleep map', stat: { value: '3', label: 'stages tracked: deep · REM · light' }, tip: 'Newborns spend 50% of sleep in REM.' },
-    { scene: 'data',     heading: 'Deep sleep: 3.8 hours.\nREM: 2.1 hours. Optimal.', body: 'Not an average. Her specific night, mapped in real time.', cta: 'What does optimal mean?', stat: { value: '9.1', label: 'sleep score tonight' }, tip: 'AAP: 4h+ deep sleep per night for healthy cognitive development.' },
-    { scene: 'alert',    timeTag: '2:14 AM', heading: 'She stirred.\nAnvaya waited. She settled.', body: 'You slept through it — because Anvaya knew she didn\'t need you yet.', cta: 'How does it decide?', stat: { value: '90s', label: 'wait before alerting' }, tip: 'Reduces unnecessary parent wake-ups by 61%.' },
-    { scene: 'morning',  timeTag: '6:48 AM', heading: 'She woke up smiling.\n9.2 hours of perfect sleep.', body: 'Her brain had exactly what it needed to grow. So did yours.', cta: 'Reserve Anvaya Smart', stat: { value: '4.1h', label: 'deep sleep — optimal' }, tip: 'Total: 9h 14m · REM: 2.3h · Wakings: 1 (self-settled)' },
+    { scene: 'midnight', timeTag: '11:00 PM', heading: '🌙 Is she in deep sleep?\nOr just quiet?', body: 'Her brain is building itself right now. The quality of this sleep matters more than you know.', cta: 'What is Anvaya tracking? →', stat: { value: '18 min', label: 'in deep sleep now' }, tip: '🧠 Brain development is happening right now.' },
+    { scene: 'radar',    heading: '🔬 No chest clip.\nNo wrist band. Nothing.', body: 'Like a sleep lab — but at home. Same data, zero discomfort. She sleeps better because nothing\'s on her.', cta: 'Show me the sleep map →', stat: { value: '3', label: 'stages: deep · REM · light' }, tip: '💤 Newborns spend 50% of sleep in REM.' },
+    { scene: 'data',     heading: '💜 Deep sleep: 3.8h.\nREM: 2.1h. Optimal.', body: 'Not an average. Not a guess. Her actual sleep, mapped in real time while you rest.', cta: 'What does optimal mean? →', stat: { value: '9.1', label: 'sleep quality score' }, tip: '👶 4h+ deep sleep = healthy cognitive development (AAP).' },
+    { scene: 'alert',    timeTag: '2:14 AM', heading: '🤫 She stirred.\nAnvaya waited. She settled.', body: 'Anvaya gave her 90 seconds to self-soothe. She did. You slept through it — because you could.', cta: 'How does it decide? →', stat: { value: '90s', label: 'smart wait before alerting' }, tip: '😴 Reduces unnecessary parent wake-ups by 61%.' },
+    { scene: 'morning',  timeTag: '6:48 AM', heading: '☀️ She woke up smiling.\n9.2 hours of great sleep.', body: 'Her brain had exactly what it needed. So did yours. Both of you, well-rested.', cta: 'Get Anvaya for my baby 🎉', stat: { value: '4.1h', label: 'deep sleep — optimal' }, tip: '📋 Total: 9h 14m · REM: 2.3h · 1 self-settled waking.' },
   ],
 };
 
@@ -387,28 +387,35 @@ function PhoneFrame({ children, shake, color }: { children: React.ReactNode; sha
 // ── Welcome ───────────────────────────────────────────────────────────────────
 function WelcomeScreen({ onSelect }: { onSelect: (w: Worry) => void }) {
   return (
-    <div className="absolute inset-0 overflow-hidden" style={{ background: '#030507' }}>
-      {/* Ambient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-8" style={{ background: '#4ade80' }} />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full blur-3xl opacity-8" style={{ background: '#fb923c' }} />
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 30%, #030507 80%)' }} />
+    <div className="absolute inset-0 overflow-hidden" style={{ background: '#07080d' }}>
+      {/* Single soft neutral glow — no color mixing */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-3xl"
+        style={{ background: 'rgba(180,160,255,0.05)' }} />
+      {/* Subtle star dots */}
+      {[...Array(18)].map((_, i) => (
+        <motion.div key={i} className="absolute w-0.5 h-0.5 rounded-full bg-white"
+          style={{ left: `${10 + (i * 37) % 80}%`, top: `${8 + (i * 53) % 60}%`, opacity: 0.15 + (i % 4) * 0.08 }}
+          animate={{ opacity: [0.1, 0.35, 0.1] }}
+          transition={{ duration: 2 + (i % 3), repeat: Infinity, delay: i * 0.4 }} />
+      ))}
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #07080d 85%)' }} />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-6" style={{ paddingTop: 64 }}>
         <motion.div className="w-full max-w-xs"
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           {/* Title */}
-          <div className="text-center mb-8">
-            <motion.div className="text-[9px] text-white/25 uppercase tracking-[0.3em] mb-4"
+          <div className="text-center mb-6">
+            <motion.div className="text-[9px] text-white/20 uppercase tracking-[0.3em] mb-4"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-              Anvaya Smart · Interactive Tour
+              ✨ Anvaya Smart · Interactive Tour
             </motion.div>
-            <motion.h1 className="text-[28px] font-bold text-white leading-tight mb-3"
+            <motion.h1 className="text-[26px] font-bold text-white leading-tight mb-2"
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-              What keeps you<br />up at night?
+              What keeps you<br />up at night? 🌙
             </motion.h1>
-            <motion.p className="text-white/30 text-xs"
+            <motion.p className="text-white/30 text-xs leading-relaxed"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-              Pick your fear. We'll show you how Anvaya handles it — in 5 scenes.
+              Pick your worry — we'll walk you through exactly<br />how Anvaya handles it. 5 scenes. No scroll.
             </motion.p>
           </div>
 
@@ -417,23 +424,34 @@ function WelcomeScreen({ onSelect }: { onSelect: (w: Worry) => void }) {
             {WORRIES.map((w, i) => (
               <motion.button key={w.id} onClick={() => onSelect(w.id)}
                 className="group flex items-center gap-4 px-4 py-3.5 rounded-2xl text-left w-full border transition-all duration-300"
-                style={{ borderColor: w.color + '20', background: w.color + '0a' }}
+                style={{ borderColor: 'rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.04)' }}
                 initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + i * 0.12, type: 'spring', stiffness: 160 }}
-                whileHover={{ borderColor: w.color + '50', background: w.color + '15', x: 4 }}
+                whileHover={{ borderColor: w.color + '50', background: w.color + '12', x: 4 }}
                 whileTap={{ scale: 0.97 }}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all" style={{ background: w.color + '18', color: w.color }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-2xl"
+                  style={{ background: 'rgba(255,255,255,0.06)' }}>
                   {w.icon}
                 </div>
                 <div className="flex-1">
                   <div className="text-sm font-semibold text-white">{w.label}</div>
-                  <div className="text-[10px] mt-0.5" style={{ color: w.color + '80' }}>{w.sub}</div>
+                  <div className="text-[10px] mt-0.5 text-white/40">{w.sub}</div>
                 </div>
-                <ChevronRight className="w-4 h-4 shrink-0 opacity-0 group-hover:opacity-60 transition-opacity" style={{ color: w.color }} />
+                <ChevronRight className="w-4 h-4 shrink-0 text-white/20 group-hover:text-white/60 transition-colors" />
               </motion.button>
             ))}
           </div>
 
-          <motion.p className="text-center text-white/12 text-[9px] mt-5"
+          {/* Safety analogy strip */}
+          <motion.div className="mt-5 rounded-xl px-4 py-3 border border-white/8 text-center"
+            style={{ background: 'rgba(255,255,255,0.03)' }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
+            <div className="text-[10px] text-white/50 leading-relaxed">
+              🛡️ <span className="text-white/70 font-medium">Nothing ever touches your baby.</span><br />
+              Think of it like a night-vision guard — but made of light and sound, not wires or patches.
+            </div>
+          </motion.div>
+
+          <motion.p className="text-center text-white/15 text-[9px] mt-4"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
             5 scenes · swipe or tap · no scrolling
           </motion.p>
@@ -488,10 +506,10 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
         </motion.div>
       </AnimatePresence>
 
-      {/* Top bar */}
-      <div className="relative z-10 shrink-0 flex items-center justify-between px-5 pt-5 pb-2">
-        <button onClick={onRestart} className="text-[9px] text-white/20 hover:text-white/40 uppercase tracking-widest transition-colors">
-          ← Menu
+      {/* Top bar — sits below main site header (header is ~56-64px) */}
+      <div className="relative z-10 shrink-0 flex items-center justify-between px-5 pb-2" style={{ paddingTop: 'max(env(safe-area-inset-top), 72px)' }}>
+        <button onClick={onRestart} className="text-[9px] text-white/25 hover:text-white/50 uppercase tracking-widest transition-colors flex items-center gap-1">
+          ← Worries
         </button>
         {/* Progress pills */}
         <div className="flex gap-1.5 items-center">
@@ -600,7 +618,7 @@ export default function TourPage() {
   const handleRestart = () => { setWorry(null); setStepIdx(0); };
 
   return (
-    <div className="fixed inset-0 overflow-hidden" style={{ background: '#030507' }}>
+    <div className="fixed inset-0 overflow-hidden z-[100]" style={{ background: '#030507' }}>
       <AnimatePresence initial={false}>
         {!worry
           ? <motion.div key="welcome" className="absolute inset-0"
