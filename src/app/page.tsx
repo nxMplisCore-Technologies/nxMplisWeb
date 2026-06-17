@@ -529,7 +529,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
 
       {/* ════════════ HERO ════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden mesh-hero">
+      <section className="relative min-h-[85vh] md:min-h-screen flex items-start md:items-center overflow-hidden mesh-hero">
         {/* Ambient glow orbs — warm coral/amber, no green */}
         <div className="glow-orb w-[560px] h-[560px] -left-40 -top-20" style={{ background: 'rgba(232,149,122,0.18)', animationDelay: '0s' }} />
         <div className="glow-orb w-[440px] h-[440px] -right-20 top-10" style={{ background: 'rgba(245,185,140,0.14)', animationDelay: '3s' }} />
@@ -548,7 +548,7 @@ export default function Home() {
           <ChevronDown className="w-4 h-4 text-primary/35" />
         </motion.div>
 
-        <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-20">
+        <div className="container mx-auto px-4 pt-8 pb-14 sm:py-16 lg:py-20">
           <div className="grid md:grid-cols-2 gap-8 xl:gap-14 items-center">
 
             {/* LEFT copy */}
@@ -1019,7 +1019,7 @@ export default function Home() {
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {[
               { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
               { name: 'SENSE', tagline: 'Understand more than sound.', bg: 'from-[#e8f2ee] to-[#f5ede0]', border: '#a7d9c8', color: '#4a7c6f', features: ['Breathing & SpO2', 'Heart Rate', 'Cry Analysis', 'Air Quality'], popular: true },
@@ -1028,23 +1028,23 @@ export default function Home() {
             ].map((p, i) => (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
               <Link href={`/anvaya#${p.name.toLowerCase()}`}
-                className={`card-hover group block rounded-2xl border p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
+                className={`card-hover group block rounded-2xl border p-4 sm:p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
                 style={{ borderColor: p.border }}>
                 {p.popular && (
                   <div className="absolute top-3 right-3 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Best Seller</div>
                 )}
-                <div className="text-[10px] font-bold uppercase tracking-widest mb-2 opacity-50" style={{ color: p.dark ? '#fbbf24' : p.color }}>Anvaya</div>
-                <h3 className={`text-2xl font-bold mb-1 ${p.dark ? 'text-white' : ''}`}>{p.name}</h3>
-                <p className="text-xs font-semibold mb-4 leading-relaxed" style={{ color: p.color }}>{p.tagline}</p>
-                <ul className="space-y-1.5 mb-5">
+                <div className="text-[9px] font-bold uppercase tracking-widest mb-1.5 opacity-50" style={{ color: p.dark ? '#fbbf24' : p.color }}>Anvaya</div>
+                <h3 className={`text-lg sm:text-2xl font-bold mb-1 ${p.dark ? 'text-white' : ''}`}>{p.name}</h3>
+                <p className="text-[10px] sm:text-xs font-semibold mb-3 leading-snug" style={{ color: p.color }}>{p.tagline}</p>
+                <ul className="space-y-1.5 mb-4">
                   {p.features.map(f => (
-                    <li key={f} className={`flex items-center gap-2 text-xs ${p.dark ? 'text-gray-300' : 'text-muted-foreground'}`}>
-                      <CheckCircle className="w-3 h-3 shrink-0" style={{ color: p.color }} />{f}
+                    <li key={f} className={`flex items-center gap-1.5 text-[10px] sm:text-xs ${p.dark ? 'text-gray-300' : 'text-muted-foreground'}`}>
+                      <CheckCircle className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" style={{ color: p.color }} />{f}
                     </li>
                   ))}
                 </ul>
-                <div className={`text-xs font-semibold mt-3 ${p.dark ? 'text-yellow-300/70' : 'text-muted-foreground'}`}>Founding price — revealed on sign-up</div>
-                <div className={`mt-2 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all ${p.dark ? 'text-yellow-400' : 'text-primary'}`}>
+                <div className={`text-[9px] sm:text-xs font-semibold mt-2 ${p.dark ? 'text-yellow-300/70' : 'text-muted-foreground'}`}>Founding price — on sign-up</div>
+                <div className={`mt-1.5 text-[10px] sm:text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all ${p.dark ? 'text-yellow-400' : 'text-primary'}`}>
                   Explore <ArrowRight className="w-3 h-3" />
                 </div>
               </Link>
