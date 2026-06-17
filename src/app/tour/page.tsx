@@ -14,9 +14,41 @@ const WORRIES = [
   { id: 'sleep'     as Worry, icon: '🌙', label: 'Is she sleeping enough?',  sub: 'Deep sleep = brain growth', color: '#a78bfa', dim: '#1a1040' },
 ];
 
+// ── Pod recommendation per worry ──────────────────────────────────────────────
+type PodRec = {
+  name: string; price: string; originalPrice: string;
+  badge: string; why: string;
+  features: string[];
+  href: string;
+};
+
+const POD_REC: Record<Worry, PodRec> = {
+  breathing: {
+    name: 'Anvaya SENSE', price: '₹10,999', originalPrice: '₹12,999',
+    badge: '🫁 Best for breathing & SpO₂',
+    why: 'SENSE is built for exactly what you just experienced — contactless breathing rate + SpO₂ oxygen monitoring, 24/7, with instant alerts.',
+    features: ['✅ Contactless breathing rate (radar)', '✅ SpO₂ oxygen monitoring', '✅ Instant alert under 3 seconds', '✅ 9-hour overnight report', '✅ Nothing touches your baby'],
+    href: '/preorder?pod=sense',
+  },
+  crying: {
+    name: 'Anvaya SENSE', price: '₹10,999', originalPrice: '₹12,999',
+    badge: '🍼 Best for cry analysis',
+    why: 'SENSE includes the full AI cry classifier — hunger, pain, discomfort, fatigue — plus breathing and SpO₂ so you see the complete picture.',
+    features: ['✅ AI cry classifier (5 types)', '✅ Real-time cry pattern analysis', '✅ 7-day cry history & trends', '✅ Breathing + SpO₂ included', '✅ Nothing touches your baby'],
+    href: '/preorder?pod=sense',
+  },
+  sleep: {
+    name: 'Anvaya PULSE', price: '₹13,999', originalPrice: '₹15,999',
+    badge: '💜 Best for sleep tracking',
+    why: 'PULSE maps deep sleep, REM, and light sleep cycles all night — plus smart alerts that wait for self-settling so you\'re not woken unnecessarily.',
+    features: ['✅ Deep / REM / light sleep staging', '✅ Smart 90s self-settle window', '✅ Sleep quality score nightly', '✅ 30-day sleep trend reports', '✅ Nothing touches your baby'],
+    href: '/preorder?pod=pulse',
+  },
+};
+
 // ── Step data ─────────────────────────────────────────────────────────────────
 type Step = {
-  scene: 'midnight' | 'radar' | 'data' | 'alert' | 'morning';
+  scene: 'midnight' | 'radar' | 'data' | 'alert' | 'morning' | 'decide';
   timeTag?: string;
   heading: string;
   body: string;
@@ -31,21 +63,24 @@ const STEPS: Record<Worry, Step[]> = {
     { scene: 'radar',    heading: '📡 A small clip. No wires.\nNothing on baby.', body: 'Like a baby monitor — but instead of a camera, it reads the air your baby breathes. Completely contactless.', cta: 'Show me what it sees →', stat: { value: '6', label: 'sensors. Zero contact.' }, tip: '🫁 Breathing · SpO₂ · Temp · Sound · Motion · Cry' },
     { scene: 'data',     heading: '✅ 42 breaths per minute.\nNormal. Safe.', body: 'Not a guess. Real data — checked while you slept, 12,840 times tonight.', cta: 'What if something changes? →', stat: { value: '98%', label: 'SpO₂ oxygen — perfect' }, tip: '⚡ Alerts fire in under 3 seconds if anything deviates.' },
     { scene: 'alert',    timeTag: '3:47 AM', heading: '⚡ SpO₂ dipped briefly.\nAnvaya was already on it.', body: 'Before you were fully awake — your phone already knew and woke you.', cta: 'What happened next? →', stat: { value: '18s', label: 'until you were there' }, tip: '💚 You were at her side in 18 seconds. She was fine.' },
-    { scene: 'morning',  timeTag: '6:14 AM', heading: '☀️ She woke up smiling.\nYou both made it.', body: 'Every breath logged. Every pattern recorded. You have 9 hours of proof she was safe.', cta: 'Get Anvaya for my baby 🎉', stat: { value: '8.4', label: 'sleep quality score' }, tip: '📋 Share the full report with your pediatrician.' },
+    { scene: 'morning',  timeTag: '6:14 AM', heading: '☀️ She woke up smiling.\nYou both made it.', body: 'Every breath logged. Every pattern recorded. You have 9 hours of proof she was safe.', cta: 'Which Anvaya is right for us? →', stat: { value: '8.4', label: 'sleep quality score' }, tip: '📋 Share the full report with your pediatrician.' },
+    { scene: 'decide',   heading: '🎯 Made for your worry.\nBuilt for your baby.', body: 'Based on what you just saw, here\'s the pod we\'d recommend for you.', cta: '', stat: { value: '₹2,000', label: 'founding family saving' }, tip: '🔒 No payment now. Reserve your spot.' },
   ],
   crying: [
     { scene: 'midnight', timeTag: '2:58 AM', heading: '😭 Third time tonight.\nYou don\'t know why.', body: 'Fed, changed, held. Still crying. The helplessness is the hardest part.', cta: 'What does Anvaya hear? →', stat: { value: '0.4s', label: 'to detect the cry' }, tip: '👂 Heard him before your phone even buzzed.' },
     { scene: 'radar',    heading: '🎙️ Every cry has a signature.\nAnvaya reads it.', body: 'Think of it like Shazam — but for baby cries. It recognises the pattern, not just the sound.', cta: 'Show me the analysis →', stat: { value: '50K+', label: 'cry recordings trained on' }, tip: '🇮🇳 Tuned to Indian acoustic environments.' },
     { scene: 'data',     heading: '🍼 Hunger. 94% confidence.\nFeed him. Rest easy.', body: 'Not pain. Not gas. You pick him up knowing exactly what he needs — no guessing.', cta: 'How accurate is this? →', stat: { value: '94%', label: 'classification confidence' }, tip: '👨‍⚕️ Matched pediatrician assessments 91% of the time.' },
     { scene: 'alert',    heading: '⏱️ The guessing spiral — gone.\n20 minutes → 8 seconds.', body: 'At 3 AM, certainty is everything. You know what he needs before you\'re even standing.', cta: 'What does the pattern show? →', stat: { value: '8s', label: 'average response time' }, tip: '📊 23 hunger · 4 discomfort · 1 pain this week.' },
-    { scene: 'morning',  timeTag: '7:00 AM', heading: '😴 He\'s peaceful.\nYou slept 4 hours straight.', body: 'Because when it mattered, you knew in seconds. You both went right back to sleep.', cta: 'Get Anvaya for my baby 🎉', stat: { value: '+3.1h', label: 'extra sleep per night' }, tip: '🌟 38% fewer wake-ups reported by week 2.' },
+    { scene: 'morning',  timeTag: '7:00 AM', heading: '😴 He\'s peaceful.\nYou slept 4 hours straight.', body: 'Because when it mattered, you knew in seconds. You both went right back to sleep.', cta: 'Which Anvaya is right for us? →', stat: { value: '+3.1h', label: 'extra sleep per night' }, tip: '🌟 38% fewer wake-ups reported by week 2.' },
+    { scene: 'decide',   heading: '🎯 Made for your worry.\nBuilt for your baby.', body: 'Based on what you just saw, here\'s the pod we\'d recommend for you.', cta: '', stat: { value: '₹2,000', label: 'founding family saving' }, tip: '🔒 No payment now. Reserve your spot.' },
   ],
   sleep: [
     { scene: 'midnight', timeTag: '11:00 PM', heading: '🌙 Is she in deep sleep?\nOr just quiet?', body: 'Her brain is building itself right now. The quality of this sleep matters more than you know.', cta: 'What is Anvaya tracking? →', stat: { value: '18 min', label: 'in deep sleep now' }, tip: '🧠 Brain development is happening right now.' },
     { scene: 'radar',    heading: '🔬 No chest clip.\nNo wrist band. Nothing.', body: 'Like a sleep lab — but at home. Same data, zero discomfort. She sleeps better because nothing\'s on her.', cta: 'Show me the sleep map →', stat: { value: '3', label: 'stages: deep · REM · light' }, tip: '💤 Newborns spend 50% of sleep in REM.' },
     { scene: 'data',     heading: '💜 Deep sleep: 3.8h.\nREM: 2.1h. Optimal.', body: 'Not an average. Not a guess. Her actual sleep, mapped in real time while you rest.', cta: 'What does optimal mean? →', stat: { value: '9.1', label: 'sleep quality score' }, tip: '👶 4h+ deep sleep = healthy cognitive development (AAP).' },
     { scene: 'alert',    timeTag: '2:14 AM', heading: '🤫 She stirred.\nAnvaya waited. She settled.', body: 'Anvaya gave her 90 seconds to self-soothe. She did. You slept through it — because you could.', cta: 'How does it decide? →', stat: { value: '90s', label: 'smart wait before alerting' }, tip: '😴 Reduces unnecessary parent wake-ups by 61%.' },
-    { scene: 'morning',  timeTag: '6:48 AM', heading: '☀️ She woke up smiling.\n9.2 hours of great sleep.', body: 'Her brain had exactly what it needed. So did yours. Both of you, well-rested.', cta: 'Get Anvaya for my baby 🎉', stat: { value: '4.1h', label: 'deep sleep — optimal' }, tip: '📋 Total: 9h 14m · REM: 2.3h · 1 self-settled waking.' },
+    { scene: 'morning',  timeTag: '6:48 AM', heading: '☀️ She woke up smiling.\n9.2 hours of great sleep.', body: 'Her brain had exactly what it needed. So did yours. Both of you, well-rested.', cta: 'Which Anvaya is right for us? →', stat: { value: '4.1h', label: 'deep sleep — optimal' }, tip: '📋 Total: 9h 14m · REM: 2.3h · 1 self-settled waking.' },
+    { scene: 'decide',   heading: '🎯 Made for your worry.\nBuilt for your baby.', body: 'Based on what you just saw, here\'s the pod we\'d recommend for you.', cta: '', stat: { value: '₹2,000', label: 'founding family saving' }, tip: '🔒 No payment now. Reserve your spot.' },
   ],
 };
 
@@ -152,12 +187,29 @@ function BgMorning({ color }: { color: string }) {
   );
 }
 
+function BgDecide({ color }: { color: string }) {
+  return (
+    <div className="absolute inset-0 overflow-hidden" style={{ background: '#08080e' }}>
+      {/* Soft radial bloom */}
+      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full blur-3xl"
+        style={{ background: color, opacity: 0.07 }} />
+      {/* Subtle grid lines */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: `linear-gradient(${color}40 1px, transparent 1px), linear-gradient(90deg, ${color}40 1px, transparent 1px)`,
+        backgroundSize: '40px 40px',
+      }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 30%, #08080e 80%)' }} />
+    </div>
+  );
+}
+
 const SCENE_BACKGROUNDS: Record<Step['scene'], (props: { color: string; timeTag?: string }) => React.ReactNode> = {
   midnight: ({ color, timeTag }) => <BgMidnight color={color} timeTag={timeTag} />,
   radar:    ({ color }) => <BgRadar color={color} />,
   data:     ({ color }) => <BgData color={color} />,
   alert:    ({ color }) => <BgAlert color={color} />,
   morning:  ({ color }) => <BgMorning color={color} />,
+  decide:   ({ color }) => <BgDecide color={color} />,
 };
 
 // ── Phone screens — cinematic, minimal, one big thing ────────────────────────
@@ -347,6 +399,40 @@ function PhoneScreenMorning({ color, worry }: { color: string; worry: Worry }) {
 }
 
 // ── Phone frame ───────────────────────────────────────────────────────────────
+function PhoneScreenDecide({ color, worry }: { color: string; worry: Worry }) {
+  const rec = POD_REC[worry];
+  return (
+    <div className="w-full h-full flex flex-col p-3" style={{ background: '#08080e' }}>
+      {/* Badge */}
+      <div className="rounded-xl px-2.5 py-1.5 text-center mb-2 border" style={{ background: color + '12', borderColor: color + '30' }}>
+        <div className="text-[8px] font-bold" style={{ color }}>{rec.badge}</div>
+      </div>
+      {/* Pod name + price */}
+      <div className="text-center mb-2">
+        <div className="text-sm font-bold text-white">{rec.name}</div>
+        <div className="flex items-center justify-center gap-2 mt-0.5">
+          <span className="text-lg font-bold" style={{ color }}>{rec.price}</span>
+          <span className="text-[9px] text-white/25 line-through">{rec.originalPrice}</span>
+        </div>
+        <div className="text-[7px] text-white/25 mt-0.5">Founding family price · Limited spots</div>
+      </div>
+      {/* Features */}
+      <div className="flex-1 space-y-1.5 overflow-hidden">
+        {rec.features.map((f, i) => (
+          <motion.div key={f} className="text-[8px] text-white/60 leading-relaxed"
+            initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.12 }}>
+            {f}
+          </motion.div>
+        ))}
+      </div>
+      {/* Guarantee strip */}
+      <div className="rounded-lg p-1.5 text-center border border-white/8 mt-2" style={{ background: 'rgba(255,255,255,0.03)' }}>
+        <div className="text-[7px] text-white/30">🔒 No payment now · 30-day guarantee · Free shipping</div>
+      </div>
+    </div>
+  );
+}
+
 function PhoneFrame({ children, shake, color }: { children: React.ReactNode; shake?: boolean; color: string }) {
   return (
     <motion.div className="relative mx-auto"
@@ -467,7 +553,6 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
   onNext: () => void; onPrev: () => void; onRestart: () => void;
 }) {
   const [tipVisible, setTipVisible] = useState(false);
-  const isLast = stepIdx === totalSteps - 1;
   const touchX = useRef(0);
 
   // Auto-hide tip after 4 seconds
@@ -480,12 +565,15 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
   // Reset tip on step change
   useEffect(() => { setTipVisible(false); }, [stepIdx]);
 
+  const isDecide = step.scene === 'decide';
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const phoneScreens: Record<Step['scene'], React.ReactNode> = {
     midnight: <PhoneScreenMidnight color={color} worry={worry} />,
     radar:    <PhoneScreenRadar color={color} />,
     data:     <PhoneScreenData color={color} worry={worry} />,
     alert:    <PhoneScreenAlert worry={worry} />,
     morning:  <PhoneScreenMorning color={color} worry={worry} />,
+    decide:   <PhoneScreenDecide color={color} worry={worry} />,
   };
 
   return (
@@ -578,26 +666,45 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
       </div>
 
       {/* Bottom nav */}
-      <div className="relative z-10 shrink-0 px-5 pb-7 pt-3 flex items-center gap-3">
-        {stepIdx > 0 && (
-          <button onClick={onPrev}
-            className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center text-white/30 hover:text-white/60 shrink-0 transition-colors backdrop-blur-sm"
-            style={{ background: 'rgba(255,255,255,0.04)' }}>
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-        )}
-        {isLast ? (
-          <Button asChild className="flex-1 h-12 font-bold text-sm gap-2 text-white shadow-lg"
-            style={{ background: `linear-gradient(135deg, ${color}, ${color}cc)`, boxShadow: `0 4px 24px ${color}40` }}>
-            <Link href="/preorder"><Sparkles className="w-4 h-4" />Reserve Anvaya Smart</Link>
-          </Button>
+      <div className="relative z-10 shrink-0 px-5 pb-7 pt-2">
+        {isDecide ? (
+          /* Decide step — rich CTA */
+          <div className="flex flex-col gap-2">
+            {/* Why this pod — one sentence */}
+            <p className="text-[10px] text-white/35 text-center leading-relaxed px-2">{POD_REC[worry].why}</p>
+            <Button asChild className="w-full h-12 font-bold text-sm gap-2 text-white shadow-lg"
+              style={{ background: `linear-gradient(135deg, ${color}, ${color}bb)`, boxShadow: `0 4px 24px ${color}40` }}>
+              <Link href={POD_REC[worry].href}><Sparkles className="w-4 h-4" />Reserve {POD_REC[worry].name} — {POD_REC[worry].price}</Link>
+            </Button>
+            <div className="flex gap-2">
+              <Button asChild variant="outline" className="flex-1 h-10 text-xs border-white/10 text-white/50 hover:text-white bg-transparent hover:bg-white/5">
+                <Link href="/compare">Compare all pods →</Link>
+              </Button>
+              <button onClick={onPrev}
+                className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white/25 hover:text-white/50 transition-colors shrink-0"
+                style={{ background: 'rgba(255,255,255,0.03)' }}>
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            </div>
+            <p className="text-center text-[9px] text-white/20">🔒 No payment now · 30-day money-back · Free shipping</p>
+          </div>
         ) : (
-          <motion.button onClick={onNext}
-            className="flex-1 h-12 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 text-white shadow-lg"
-            style={{ background: `linear-gradient(135deg, ${color}dd, ${color}99)`, boxShadow: `0 4px 20px ${color}35` }}
-            whileTap={{ scale: 0.97 }}>
-            {step.cta} <ChevronRight className="w-4 h-4" />
-          </motion.button>
+          /* Normal steps */
+          <div className="flex items-center gap-3">
+            {stepIdx > 0 && (
+              <button onClick={onPrev}
+                className="w-11 h-11 rounded-xl border border-white/10 flex items-center justify-center text-white/30 hover:text-white/60 shrink-0 transition-colors"
+                style={{ background: 'rgba(255,255,255,0.04)' }}>
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            )}
+            <motion.button onClick={onNext}
+              className="flex-1 h-12 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 text-white shadow-lg"
+              style={{ background: `linear-gradient(135deg, ${color}dd, ${color}99)`, boxShadow: `0 4px 20px ${color}35` }}
+              whileTap={{ scale: 0.97 }}>
+              {step.cta} <ChevronRight className="w-4 h-4" />
+            </motion.button>
+          </div>
         )}
       </div>
     </div>
