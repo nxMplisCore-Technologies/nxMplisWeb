@@ -30,16 +30,17 @@ const scaleIn = {
 };
 
 /* ─────────────────── SECTION WRAPPER ─────────────────── */
-function Reveal({ children, variant = fadeUp, custom = 0, className = '' }: {
+function Reveal({ children, variant = fadeUp, custom = 0, className = '', style }: {
   children: React.ReactNode;
   variant?: typeof fadeUp;
   custom?: number;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   return (
-    <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={variant} custom={custom} className={className}>
+    <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={variant} custom={custom} className={className} style={{ backgroundColor: 'transparent', ...style }}>
       {children}
     </motion.div>
   );
@@ -627,16 +628,18 @@ export default function Home() {
             </motion.p>
             <motion.h2
               className="text-3xl md:text-4xl font-bold text-white mb-4 leading-snug"
+              style={{ backgroundColor: 'transparent' }}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.08 }}
             >
               What Anvaya sees —<br />
-              <span style={{ color: '#4a7c6f' }}>without touching your baby.</span>
+              <span style={{ color: '#7aab9e' }}>without touching your baby.</span>
             </motion.h2>
             <motion.p
               className="text-[#7aab9e]/80 max-w-md mx-auto text-base"
+              style={{ backgroundColor: 'transparent' }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -754,7 +757,7 @@ export default function Home() {
             <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" style={{ borderColor: 'rgba(74,124,111,0.3)' }} />
               <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#e8957a' }}>Cry Intelligence</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white" style={{ backgroundColor: 'transparent' }}>
                 Stop guessing.<br />Know what your<br />
                 <span style={{ color: '#e8957a' }}>baby needs — instantly.</span>
               </h2>
