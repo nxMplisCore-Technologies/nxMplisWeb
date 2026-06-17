@@ -16,33 +16,29 @@ const WORRIES = [
 
 // ── Pod recommendation per worry ──────────────────────────────────────────────
 type PodRec = {
-  name: string; price: string; originalPrice: string;
+  name: string;
   badge: string; why: string;
   features: string[];
-  href: string;
 };
 
 const POD_REC: Record<Worry, PodRec> = {
   breathing: {
-    name: 'Anvaya SENSE', price: '₹10,999', originalPrice: '₹12,999',
-    badge: '🫁 Best for breathing & SpO₂',
-    why: 'SENSE is built for exactly what you just experienced — contactless breathing rate + SpO₂ oxygen monitoring, 24/7, with instant alerts.',
-    features: ['✅ Contactless breathing rate (radar)', '✅ SpO₂ oxygen monitoring', '✅ Instant alert under 3 seconds', '✅ 9-hour overnight report', '✅ Nothing touches your baby'],
-    href: '/preorder?pod=sense',
+    name: 'Anvaya SENSE',
+    badge: '🫁 Best match for breathing & SpO₂',
+    why: 'SENSE is built for exactly this — contactless breathing + SpO₂ monitoring, 24/7, with alerts in under 3 seconds.',
+    features: ['✅ Contactless breathing rate (radar)', '✅ SpO₂ oxygen monitoring', '✅ Alert in under 3 seconds', '✅ 9-hour overnight report', '✅ Nothing touches your baby'],
   },
   crying: {
-    name: 'Anvaya SENSE', price: '₹10,999', originalPrice: '₹12,999',
-    badge: '🍼 Best for cry analysis',
-    why: 'SENSE includes the full AI cry classifier — hunger, pain, discomfort, fatigue — plus breathing and SpO₂ so you see the complete picture.',
-    features: ['✅ AI cry classifier (5 types)', '✅ Real-time cry pattern analysis', '✅ 7-day cry history & trends', '✅ Breathing + SpO₂ included', '✅ Nothing touches your baby'],
-    href: '/preorder?pod=sense',
+    name: 'Anvaya SENSE',
+    badge: '🍼 Best match for cry analysis',
+    why: 'SENSE includes the full AI cry classifier — hunger, pain, discomfort, fatigue — so you always know what your baby needs.',
+    features: ['✅ AI cry classifier (5 cry types)', '✅ Real-time cry pattern analysis', '✅ 7-day cry history & trends', '✅ Breathing + SpO₂ included', '✅ Nothing touches your baby'],
   },
   sleep: {
-    name: 'Anvaya PULSE', price: '₹13,999', originalPrice: '₹15,999',
-    badge: '💜 Best for sleep tracking',
-    why: 'PULSE maps deep sleep, REM, and light sleep cycles all night — plus smart alerts that wait for self-settling so you\'re not woken unnecessarily.',
+    name: 'Anvaya PULSE',
+    badge: '💜 Best match for sleep tracking',
+    why: 'PULSE maps deep sleep, REM, and light cycles all night — plus smart alerts that wait for self-settling so you\'re not woken needlessly.',
     features: ['✅ Deep / REM / light sleep staging', '✅ Smart 90s self-settle window', '✅ Sleep quality score nightly', '✅ 30-day sleep trend reports', '✅ Nothing touches your baby'],
-    href: '/preorder?pod=pulse',
   },
 };
 
@@ -402,33 +398,33 @@ function PhoneScreenMorning({ color, worry }: { color: string; worry: Worry }) {
 function PhoneScreenDecide({ color, worry }: { color: string; worry: Worry }) {
   const rec = POD_REC[worry];
   return (
-    <div className="w-full h-full flex flex-col p-3" style={{ background: '#08080e' }}>
+    <div className="w-full h-full flex flex-col p-3 gap-2" style={{ background: '#08080e' }}>
       {/* Badge */}
-      <div className="rounded-xl px-2.5 py-1.5 text-center mb-2 border" style={{ background: color + '12', borderColor: color + '30' }}>
+      <div className="rounded-xl px-2.5 py-1.5 text-center border" style={{ background: color + '12', borderColor: color + '30' }}>
         <div className="text-[8px] font-bold" style={{ color }}>{rec.badge}</div>
       </div>
-      {/* Pod name + price */}
-      <div className="text-center mb-2">
+      {/* Pod name */}
+      <div className="text-center">
         <div className="text-sm font-bold text-white">{rec.name}</div>
-        <div className="flex items-center justify-center gap-2 mt-0.5">
-          <span className="text-lg font-bold" style={{ color }}>{rec.price}</span>
-          <span className="text-[9px] text-white/25 line-through">{rec.originalPrice}</span>
-        </div>
-        <div className="text-[7px] text-white/25 mt-0.5">Founding family price · Limited spots</div>
+        <div className="text-[7px] text-white/30 mt-0.5">Contact us for the best price 💬</div>
       </div>
       {/* Features */}
       <div className="flex-1 space-y-1.5 overflow-hidden">
         {rec.features.map((f, i) => (
           <motion.div key={f} className="text-[8px] text-white/60 leading-relaxed"
-            initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.12 }}>
+            initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}>
             {f}
           </motion.div>
         ))}
       </div>
-      {/* Guarantee strip */}
-      <div className="rounded-lg p-1.5 text-center border border-white/8 mt-2" style={{ background: 'rgba(255,255,255,0.03)' }}>
-        <div className="text-[7px] text-white/30">🔒 No payment now · 30-day guarantee · Free shipping</div>
-      </div>
+      {/* Lucky draw strip */}
+      <motion.div className="rounded-xl p-2 text-center border border-amber-400/30"
+        style={{ background: 'rgba(251,191,36,0.08)' }}
+        animate={{ borderColor: ['rgba(251,191,36,0.3)', 'rgba(251,191,36,0.7)', 'rgba(251,191,36,0.3)'] }}
+        transition={{ duration: 2, repeat: Infinity }}>
+        <div className="text-[8px] font-bold text-amber-300">🎰 Lucky Draw — Win 1 Free Pod!</div>
+        <div className="text-[7px] text-white/35 mt-0.5">Every inquiry gets an entry</div>
+      </motion.div>
     </div>
   );
 }
@@ -473,73 +469,106 @@ function PhoneFrame({ children, shake, color }: { children: React.ReactNode; sha
 // ── Welcome ───────────────────────────────────────────────────────────────────
 function WelcomeScreen({ onSelect }: { onSelect: (w: Worry) => void }) {
   return (
-    <div className="absolute inset-0 overflow-hidden" style={{ background: '#07080d' }}>
-      {/* Single soft neutral glow — no color mixing */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-3xl"
-        style={{ background: 'rgba(180,160,255,0.05)' }} />
-      {/* Subtle star dots */}
-      {[...Array(18)].map((_, i) => (
-        <motion.div key={i} className="absolute w-0.5 h-0.5 rounded-full bg-white"
-          style={{ left: `${10 + (i * 37) % 80}%`, top: `${8 + (i * 53) % 60}%`, opacity: 0.15 + (i % 4) * 0.08 }}
-          animate={{ opacity: [0.1, 0.35, 0.1] }}
-          transition={{ duration: 2 + (i % 3), repeat: Infinity, delay: i * 0.4 }} />
+    <div className="absolute inset-0 overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #0d0a1a 0%, #0a0f14 45%, #080d0a 100%)' }}>
+
+      {/* Warm layered glows — each in a corner so they don't muddy the centre */}
+      <div className="absolute -top-20 -left-16 w-72 h-72 rounded-full blur-3xl opacity-30"
+        style={{ background: 'radial-gradient(circle, #4ade80 0%, transparent 70%)' }} />
+      <div className="absolute -top-10 -right-16 w-64 h-64 rounded-full blur-3xl opacity-20"
+        style={{ background: 'radial-gradient(circle, #a78bfa 0%, transparent 70%)' }} />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-40 rounded-full blur-3xl opacity-15"
+        style={{ background: 'radial-gradient(circle, #fb923c 0%, transparent 70%)' }} />
+
+      {/* Star field */}
+      {[...Array(22)].map((_, i) => (
+        <motion.div key={i} className="absolute rounded-full bg-white"
+          style={{
+            width: i % 5 === 0 ? 2 : 1, height: i % 5 === 0 ? 2 : 1,
+            left: `${5 + (i * 41) % 90}%`, top: `${5 + (i * 57) % 55}%`,
+          }}
+          animate={{ opacity: [0.08, 0.5, 0.08] }}
+          transition={{ duration: 2.5 + (i % 4) * 0.8, repeat: Infinity, delay: i * 0.35 }} />
       ))}
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #07080d 85%)' }} />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 overflow-hidden">
+      {/* Subtle mesh grid */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+        backgroundSize: '44px 44px',
+      }} />
+
+      {/* Soft centre vignette to focus the eye */}
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(8,8,14,0.7) 100%)' }} />
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-5 overflow-hidden">
         <motion.div className="w-full max-w-xs"
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          {/* Title */}
-          <div className="text-center mb-6">
-            <motion.div className="text-[9px] text-white/20 uppercase tracking-[0.3em] mb-4"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-              ✨ Anvaya Smart · Interactive Tour
-            </motion.div>
-            <motion.h1 className="text-[26px] font-bold text-white leading-tight mb-2"
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-              What keeps you<br />up at night? 🌙
-            </motion.h1>
-            <motion.p className="text-white/30 text-xs leading-relaxed"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-              Pick your worry — we'll walk you through exactly<br />how Anvaya handles it. 5 scenes. No scroll.
-            </motion.p>
-          </div>
+          initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: 'easeOut' }}>
 
-          {/* Cards */}
-          <div className="flex flex-col gap-2.5">
+          {/* Hero badge */}
+          <motion.div className="flex justify-center mb-5"
+            initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15, type: 'spring', stiffness: 200 }}>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border"
+              style={{ background: 'rgba(255,255,255,0.06)', borderColor: 'rgba(255,255,255,0.12)' }}>
+              <motion.span className="text-base" animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 3, repeat: Infinity }}>✨</motion.span>
+              <span className="text-[10px] font-semibold text-white/60 uppercase tracking-widest">Anvaya Smart Tour</span>
+              <motion.span className="text-base" animate={{ rotate: [0, -10, 10, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}>🌙</motion.span>
+            </div>
+          </motion.div>
+
+          {/* Title */}
+          <motion.div className="text-center mb-5"
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
+            <h1 className="font-bold text-white leading-tight mb-2" style={{ fontSize: 'clamp(22px,7vw,28px)' }}>
+              What keeps you<br />
+              <span style={{ background: 'linear-gradient(90deg,#4ade80,#a78bfa,#fb923c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                up at night?
+              </span>
+            </h1>
+            <p className="text-white/35 text-xs leading-relaxed">
+              Pick your worry — 5 scenes, no scrolling.<br />We'll show you exactly how Anvaya helps.
+            </p>
+          </motion.div>
+
+          {/* Worry cards — each with its own color */}
+          <div className="flex flex-col gap-2">
             {WORRIES.map((w, i) => (
               <motion.button key={w.id} onClick={() => onSelect(w.id)}
-                className="group flex items-center gap-4 px-4 py-3.5 rounded-2xl text-left w-full border transition-all duration-300"
-                style={{ borderColor: 'rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.04)' }}
-                initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + i * 0.12, type: 'spring', stiffness: 160 }}
-                whileHover={{ borderColor: w.color + '50', background: w.color + '12', x: 4 }}
-                whileTap={{ scale: 0.97 }}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-2xl"
-                  style={{ background: 'rgba(255,255,255,0.06)' }}>
+                className="group flex items-center gap-3 px-4 py-3.5 rounded-2xl text-left w-full border transition-all duration-200"
+                style={{ borderColor: w.color + '30', background: w.color + '0e' }}
+                initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.35 + i * 0.1, type: 'spring', stiffness: 180, damping: 20 }}
+                whileHover={{ borderColor: w.color + '70', background: w.color + '1a', x: 3 }}
+                whileTap={{ scale: 0.96 }}>
+                {/* Coloured icon pill */}
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-xl font-bold"
+                  style={{ background: w.color + '20', boxShadow: `0 0 12px ${w.color}25` }}>
                   {w.icon}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold text-white">{w.label}</div>
-                  <div className="text-[10px] mt-0.5 text-white/40">{w.sub}</div>
+                  <div className="text-[10px] mt-0.5" style={{ color: w.color + 'aa' }}>{w.sub}</div>
                 </div>
-                <ChevronRight className="w-4 h-4 shrink-0 text-white/20 group-hover:text-white/60 transition-colors" />
+                <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
+                  style={{ background: w.color + '20' }}>
+                  <ChevronRight className="w-3.5 h-3.5" style={{ color: w.color }} />
+                </div>
               </motion.button>
             ))}
           </div>
 
-          {/* Safety analogy strip */}
-          <motion.div className="mt-5 rounded-xl px-4 py-3 border border-white/8 text-center"
+          {/* Safety strip */}
+          <motion.div className="mt-4 rounded-xl px-4 py-2.5 border border-white/8 text-center"
             style={{ background: 'rgba(255,255,255,0.03)' }}
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
-            <div className="text-[10px] text-white/50 leading-relaxed">
-              🛡️ <span className="text-white/70 font-medium">Nothing ever touches your baby.</span><br />
-              Think of it like a night-vision guard — but made of light and sound, not wires or patches.
-            </div>
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+            <p className="text-[10px] text-white/45 leading-relaxed">
+              🛡️ <span className="text-white/65 font-medium">Nothing ever touches your baby.</span><br />
+              Like a night-vision guard — made of light &amp; sound, not wires.
+            </p>
           </motion.div>
 
-          <motion.p className="text-center text-white/15 text-[9px] mt-4"
+          <motion.p className="text-center text-white/15 text-[9px] mt-3"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-            5 scenes · swipe or tap · no scrolling
+            Tap a worry to begin · swipe to navigate
           </motion.p>
         </motion.div>
       </div>
@@ -668,16 +697,24 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
       {/* Bottom nav */}
       <div className="relative z-10 shrink-0 px-5 pb-7 pt-2">
         {isDecide ? (
-          /* Decide step — rich CTA */
+          /* Decide step — contact CTA, no price */
           <div className="flex flex-col gap-2">
-            {/* Why this pod — one sentence */}
-            <p className="text-[10px] text-white/35 text-center leading-relaxed px-2">{POD_REC[worry].why}</p>
+            <p className="text-[10px] text-white/35 text-center leading-relaxed px-1">{POD_REC[worry].why}</p>
+            {/* Primary — WhatsApp / contact */}
             <Button asChild className="w-full h-12 font-bold text-sm gap-2 text-white shadow-lg"
-              style={{ background: `linear-gradient(135deg, ${color}, ${color}bb)`, boxShadow: `0 4px 24px ${color}40` }}>
-              <Link href={POD_REC[worry].href}><Sparkles className="w-4 h-4" />Reserve {POD_REC[worry].name} — {POD_REC[worry].price}</Link>
+              style={{ background: 'linear-gradient(135deg,#25d366,#128c7e)', boxShadow: '0 4px 24px rgba(37,211,102,0.35)' }}>
+              <Link href="/contact">💬 WhatsApp us for best price</Link>
             </Button>
+            {/* Lucky draw strip */}
+            <motion.div className="rounded-xl px-3 py-2 border border-amber-400/30 text-center"
+              style={{ background: 'rgba(251,191,36,0.06)' }}
+              animate={{ borderColor: ['rgba(251,191,36,0.25)', 'rgba(251,191,36,0.6)', 'rgba(251,191,36,0.25)'] }}
+              transition={{ duration: 2, repeat: Infinity }}>
+              <div className="text-[10px] font-bold text-amber-300">🎰 Lucky Draw — Win 1 Free Anvaya Pod!</div>
+              <div className="text-[9px] text-white/30 mt-0.5">Every inquiry gets a draw entry · Results monthly</div>
+            </motion.div>
             <div className="flex gap-2">
-              <Button asChild variant="outline" className="flex-1 h-10 text-xs border-white/10 text-white/50 hover:text-white bg-transparent hover:bg-white/5">
+              <Button asChild variant="outline" className="flex-1 h-10 text-xs border-white/10 text-white/40 hover:text-white bg-transparent hover:bg-white/5">
                 <Link href="/compare">Compare all pods →</Link>
               </Button>
               <button onClick={onPrev}
@@ -686,7 +723,6 @@ function TourStep({ stepIdx, totalSteps, step, worry, color, onNext, onPrev, onR
                 <ChevronLeft className="w-4 h-4" />
               </button>
             </div>
-            <p className="text-center text-[9px] text-white/20">🔒 No payment now · 30-day money-back · Free shipping</p>
           </div>
         ) : (
           /* Normal steps */
