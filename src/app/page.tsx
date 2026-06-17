@@ -591,21 +591,41 @@ export default function Home() {
                 <CryCtaButton />
               </div>
 
+              {/* Curiosity hook */}
+              <div className="flex items-center gap-2 mb-2.5 animate-fade-up delay-4">
+                <motion.span
+                  className="text-lg select-none"
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}>
+                  👇
+                </motion.span>
+                <span className="text-sm font-semibold text-muted-foreground">
+                  Curious how it works?{' '}
+                  <span className="text-primary">Touch to find out.</span>
+                </span>
+              </div>
+
               {/* Guide strip — tour + cinematic */}
               <div className="flex flex-col sm:flex-row gap-2 mb-5 animate-fade-up delay-4">
                 <Link href="/tour"
-                  className="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all hover:border-primary/40 hover:bg-primary/5"
-                  style={{ borderColor: 'rgba(74,124,111,0.25)', background: 'rgba(74,124,111,0.04)', color: '#4a7c6f' }}>
-                  <span className="text-base">📱</span>
-                  <span>See it handle <em>your</em> worry — Interactive tour</span>
-                  <ArrowRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                  className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-primary/50 hover:bg-primary/8 hover:shadow-md hover:-translate-y-0.5"
+                  style={{ borderColor: 'rgba(74,124,111,0.35)', background: 'rgba(74,124,111,0.06)', color: '#4a7c6f' }}>
+                  <motion.span className="text-lg" animate={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}>📱</motion.span>
+                  <div className="flex-1">
+                    <div>See it handle <em>your</em> worry</div>
+                    <div className="text-[10px] opacity-60 font-normal">Interactive tour · 2 min · pick your fear</div>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                 </Link>
                 <Link href="/how-it-works"
-                  className="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all hover:border-primary/40 hover:bg-primary/5"
-                  style={{ borderColor: 'rgba(212,120,74,0.25)', background: 'rgba(212,120,74,0.04)', color: '#d4784a' }}>
-                  <span className="text-base">🎬</span>
-                  <span>Watch it in action — 60-sec film</span>
-                  <ArrowRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                  className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-orange-300/50 hover:bg-orange-50/60 hover:shadow-md hover:-translate-y-0.5"
+                  style={{ borderColor: 'rgba(212,120,74,0.35)', background: 'rgba(212,120,74,0.06)', color: '#d4784a' }}>
+                  <motion.span className="text-lg" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }}>🎬</motion.span>
+                  <div className="flex-1">
+                    <div>Watch it in action</div>
+                    <div className="text-[10px] opacity-60 font-normal">60-sec cinematic · auto-plays · no scroll</div>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                 </Link>
               </div>
 
