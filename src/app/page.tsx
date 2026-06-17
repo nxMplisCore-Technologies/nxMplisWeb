@@ -419,11 +419,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  const bgParallax   = useTransform(scrollY, [0, 700], [0, 130]);
-  const copyParallax = useTransform(scrollY, [0, 700], [0, -65]);
-  const midParallax  = useTransform(scrollY, [0, 700], [0, -45]);
-  const rightParallax= useTransform(scrollY, [0, 700], [0, -85]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -444,111 +439,118 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
 
       {/* ════════════ HERO ════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden mesh-hero">
+        {/* Ambient glow orbs */}
+        <div className="glow-orb w-[500px] h-[500px] -left-40 -top-20 bg-primary/20" style={{ animationDelay: '0s' }} />
+        <div className="glow-orb w-[400px] h-[400px] -right-20 top-10 bg-accent/15" style={{ animationDelay: '3s' }} />
+        <div className="glow-orb w-[300px] h-[300px] left-1/2 bottom-0 bg-primary/10" style={{ animationDelay: '6s' }} />
+        {/* Subtle grain */}
+        <div className="absolute inset-0 noise pointer-events-none opacity-40" />
+        {/* Decorative rings */}
+        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border border-primary/8 pointer-events-none" />
+        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/5 pointer-events-none" />
 
-        {/* Full-bleed nursery photo — parallax slower than content */}
-        <motion.div className="absolute inset-0 z-0 scale-110" style={{ y: bgParallax }}>
-          <Image src="/anvaya-nursery.jpg" alt="" fill className="object-cover object-center" priority sizes="100vw" />
-          {/* Dark teal overlay */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg,rgba(6,18,13,0.82) 0%,rgba(4,12,9,0.72) 45%,rgba(10,22,16,0.65) 100%)' }} />
-          {/* Subtle grain */}
-          <div className="absolute inset-0 noise pointer-events-none opacity-25" />
-        </motion.div>
-
-        {/* Ambient color accents */}
-        <div className="absolute -left-24 top-10 w-[360px] h-[360px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(74,124,111,0.28) 0%,transparent 70%)', filter: 'blur(60px)' }} />
-        <div className="absolute right-0 bottom-0 w-[280px] h-[280px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(232,149,122,0.22) 0%,transparent 70%)', filter: 'blur(50px)' }} />
-
-        {/* Fade into next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-36 pointer-events-none z-10" style={{ background: 'linear-gradient(to bottom,transparent,#faf8f5)' }} />
-
-        <div className="container mx-auto px-4 py-28 lg:py-16 relative z-20">
+        <div className="container mx-auto px-4 py-28 lg:py-16">
           <div className="grid lg:grid-cols-[1fr_300px_1fr] gap-10 xl:gap-14 items-center">
 
-            {/* LEFT — frosted glass copy panel */}
-            <motion.div ref={heroRef} style={{ y: copyParallax }}>
-              <div className="rounded-3xl p-7 lg:p-10" style={{ background: 'rgba(255,255,255,0.07)', backdropFilter: 'blur(24px) saturate(1.4)', border: '1px solid rgba(255,255,255,0.16)', boxShadow: '0 8px 48px rgba(0,0,0,0.32),inset 0 1px 0 rgba(255,255,255,0.12)' }}>
-
-                {/* Badges */}
-                <div className="flex flex-wrap gap-3 mb-7">
-                  <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold animate-fade-up" style={{ background: 'rgba(255,255,255,0.13)', border: '1px solid rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.92)' }}>
-                    <Sparkles className="w-3 h-3 animate-spin-slow" />
-                    Early Access Open — Founding 100 families
-                  </div>
-                  <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold animate-fade-up delay-1" style={{ background: 'rgba(74,124,111,0.22)', border: '1px solid rgba(74,124,111,0.48)', color: '#7aab9e' }}>
-                    <div className="live-dot w-1.5 h-1.5 shrink-0" />
-                    847 families monitoring tonight
-                  </div>
+            {/* LEFT copy */}
+            <div ref={heroRef}>
+              {/* Live family counter badge */}
+              <div className="flex flex-wrap gap-3 mb-7">
+                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm animate-fade-up backdrop-blur-sm">
+                  <Sparkles className="w-3 h-3 animate-spin-slow" />
+                  Early Access Open — Founding 100 families get exclusive pricing
                 </div>
-
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05] mb-5 text-white animate-fade-up delay-1">
-                  Your Baby Breathes.<br />
-                  <span className="text-gradient">You Sleep.</span>
-                </h1>
-
-                <div className="flex items-center gap-3 mb-4 animate-fade-up delay-2">
-                  <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400" />)}</div>
-                  <span className="text-sm font-bold text-white">4.9/5</span>
-                  <span className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>· Pilot families · Paediatrician-recommended</span>
-                </div>
-
-                <p className="text-base leading-relaxed mb-8 max-w-lg animate-fade-up delay-3" style={{ color: 'rgba(255,255,255,0.72)' }}>
-                  Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
-                </p>
-
-                <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
-                  <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
-                    <Button size="lg" className="gap-2 text-base px-7 py-6 rounded-xl font-bold text-white cursor-pointer" style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 28px rgba(232,149,122,0.55)' }}>
-                      Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </LeadModalTrigger>
-                  <Button asChild size="lg" className="text-base px-7 py-6 rounded-xl font-semibold" style={{ background: 'rgba(255,255,255,0.11)', border: '1px solid rgba(255,255,255,0.26)', color: 'white' }}>
-                    <Link href="/anvaya">Explore Products</Link>
-                  </Button>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm animate-fade-up delay-5" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                  {[
-                    { icon: Shield, text: 'No payment now' },
-                    { icon: CheckCircle, text: '30-day guarantee' },
-                    { icon: Zap, text: 'Free shipping' },
-                  ].map(({ icon: Icon, text }) => (
-                    <span key={text} className="flex items-center gap-1.5">
-                      <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{text}
-                    </span>
-                  ))}
+                <div className="inline-flex items-center gap-2 bg-green-50/90 border border-green-200 rounded-full px-3 py-1.5 text-xs font-bold text-green-700 shadow-sm animate-fade-up delay-1 backdrop-blur-sm">
+                  <div className="live-dot w-1.5 h-1.5 shrink-0" />
+                  847 families monitoring tonight
                 </div>
               </div>
-            </motion.div>
 
-            {/* MIDDLE — Cry Analyzer */}
-            <motion.div style={{ y: midParallax }} className="animate-fade-up delay-3 flex flex-col items-center gap-3 order-3 lg:order-2">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
+                Your Baby Breathes.<br />
+                <span className="text-gradient">You Sleep.</span>
+              </h1>
+
+              {/* Star rating social proof */}
+              <div className="flex items-center gap-3 mb-4 animate-fade-up delay-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 star-filled fill-amber-400" />)}
+                </div>
+                <span className="text-sm font-bold text-foreground">4.9/5</span>
+                <span className="text-sm text-muted-foreground">· Loved by our pilot families</span>
+                <span className="hidden sm:inline text-sm text-muted-foreground">· Paediatrician-recommended</span>
+              </div>
+
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
+                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+              </p>
+              <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
+                <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
+                  <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
+                    Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </LeadModalTrigger>
+                <Button asChild size="lg" variant="outline" className="border-primary/25 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass">
+                  <Link href="/anvaya">Explore Products</Link>
+                </Button>
+              </div>
+              {/* Risk-reduction microcopy */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground animate-fade-up delay-5">
+                {[
+                  { icon: Shield, text: 'No payment now' },
+                  { icon: CheckCircle, text: '30-day guarantee' },
+                  { icon: Zap, text: 'Free shipping' },
+                ].map(({ icon: Icon, text }) => (
+                  <span key={text} className="flex items-center gap-1.5">
+                    <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{text}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* MIDDLE — Purple Cry Analyzer Widget */}
+            <div className="animate-fade-up delay-3 flex flex-col items-center gap-3 order-3 lg:order-2">
+              {/* Eye-catching label */}
               <div className="flex flex-col items-center gap-1.5">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider" style={{ background: 'linear-gradient(90deg,#5b21b6,#7c3aed,#a855f7)', color: '#fff', boxShadow: '0 0 20px rgba(124,58,237,0.5)' }}>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
+                  style={{ background: 'linear-gradient(90deg,#5b21b6,#7c3aed,#a855f7)', color: '#fff', boxShadow: '0 0 20px rgba(124,58,237,0.45)' }}>
                   🧠 Try AI Live — Free
                 </div>
-                <p className="text-[11px] font-medium text-center" style={{ color: 'rgba(255,255,255,0.5)' }}>Upload a cry recording or record live</p>
+                <p className="text-[11px] text-slate-500 font-medium text-center">Upload a cry recording or record live</p>
               </div>
               <div className="w-full">
                 <CryAnalyzerWidget variant="purple" />
               </div>
-            </motion.div>
+            </div>
 
-            {/* RIGHT — Live monitor */}
-            <motion.div style={{ y: rightParallax }} className="flex flex-col items-center gap-5 order-2 lg:order-3 animate-fade-up delay-4">
-              {/* Floating badge above widget */}
-              <div className="glass rounded-2xl px-4 py-3 shadow-xl self-end animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
-                <div className="flex items-center gap-1 mb-0.5">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400" />)}
+            {/* RIGHT — product + live widget */}
+            <div className="flex flex-col items-center gap-6 order-2 lg:order-3">
+              <div className="relative">
+                {/* Halo rings */}
+                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none hidden sm:block" />
+                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none hidden sm:block" />
+                <div className="relative w-72 lg:w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
+                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 288px, 320px" />
+                  {/* Overlay badge */}
+                  <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
+                    <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
+                    <p className="text-[10px] text-muted-foreground mt-0.5">On table · On wall · On cradle</p>
+                  </div>
                 </div>
-                <div className="text-xs font-bold">Pediatrician-approved</div>
+                {/* Floating trust badge */}
+                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
+                  <div className="flex items-center gap-1 mb-0.5">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 star-filled fill-amber-400" />)}
+                  </div>
+                  <div className="text-xs font-bold">Pediatrician-approved</div>
+                </div>
               </div>
-              <LiveMonitorWidget />
-              <div className="glass rounded-xl px-3 py-2 shadow-lg self-start animate-float" style={{ animationDelay: '2s' }}>
-                <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
-                <p className="text-[10px] text-muted-foreground mt-0.5">On table · On wall · On cradle</p>
+              {/* Live monitor */}
+              <div className="animate-fade-up delay-4 w-full flex justify-center">
+                <LiveMonitorWidget />
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </div>
