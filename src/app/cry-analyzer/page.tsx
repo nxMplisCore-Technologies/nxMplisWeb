@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Upload, Mic, MicOff, Loader2, RotateCcw, AlertTriangle, Sparkles } from 'lucide-react';
 import { processRecordedAudio } from '@/lib/audioProcessor';
@@ -32,13 +32,6 @@ const RELIABILITY_BADGE: Record<string, { bg: string; text: string; label: strin
   LOW:    { bg: 'bg-red-100',    text: 'text-red-700',    label: 'LOW' },
 };
 
-const BG_SCENES: Record<AppState, { images: string[]; opacity: number }> = {
-  idle:       { images: ['/cry-analyzer/sad/1.jpg', '/cry-analyzer/sad/2.jpg', '/cry-analyzer/sad/3.jpg', '/cry-analyzer/sad/4.jpg'], opacity: 0.22 },
-  uploading:  { images: ['/cry-analyzer/sad/1.jpg', '/cry-analyzer/sad/2.jpg', '/cry-analyzer/sad/3.jpg'], opacity: 0.18 },
-  processing: { images: ['/cry-analyzer/pacifying/1.jpg', '/cry-analyzer/pacifying/2.jpg', '/cry-analyzer/pacifying/3.jpg'], opacity: 0.22 },
-  result:     { images: ['/cry-analyzer/happy/1.jpg', '/cry-analyzer/happy/2.jpg', '/cry-analyzer/happy/3.jpg', '/cry-analyzer/happy/4.jpg'], opacity: 0.25 },
-  error:      { images: ['/cry-analyzer/sad/1.jpg', '/cry-analyzer/sad/2.jpg'], opacity: 0.15 },
-};
 
 function normToHundred(probs: Record<string, number>): Array<[string, number]> {
   const entries = Object.entries(probs).map(([k, v]) => [k, Number(v) || 0] as [string, number]);
@@ -95,7 +88,6 @@ export default function CryAnalyzerPage() {
   const [fileName, setFileName] = useState('');
   const [result, setResult] = useState<PredictionResult | null>(null);
   const [error, setError] = useState('');
-  const [bgIndex, setBgIndex] = useState(0);
   const [recording, setRecording] = useState(false);
   const [recSeconds, setRecSeconds] = useState(0);
   const [recPressed, setRecPressed] = useState(false);
@@ -105,16 +97,6 @@ export default function CryAnalyzerPage() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const images = BG_SCENES[state].images;
-    if (images.length <= 1) return;
-    const id = setInterval(() => {
-      setBgIndex(prev => { let next = Math.floor(Math.random() * images.length); if (next === prev) next = (next + 1) % images.length; return next; });
-    }, 5000);
-    return () => clearInterval(id);
-  }, [state]);
-
-  useEffect(() => { setBgIndex(0); }, [state]);
 
   const analyze = useCallback(async (file: File) => {
     setFileName(file.name);
@@ -176,8 +158,6 @@ export default function CryAnalyzerPage() {
 
   const reset = () => { setState('idle'); setResult(null); setError(''); setFileName(''); setRecSeconds(0); setRecording(false); };
 
-  const scene = BG_SCENES[state];
-  const bgUrl = scene.images[bgIndex % scene.images.length];
   const isWorking = state === 'uploading' || state === 'processing';
 
   return (
@@ -192,9 +172,6 @@ export default function CryAnalyzerPage() {
       <div className="absolute left-1/2 bottom-0 w-[300px] h-[300px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse,rgba(74,124,111,0.12) 0%,transparent 70%)', filter: 'blur(50px)', animationDelay: '2s' }} />
 
-      {/* Background scene image */}
-      <div key={bgUrl} className="absolute inset-0 bg-center bg-cover transition-opacity duration-1000 pointer-events-none"
-        style={{ backgroundImage: `url(${bgUrl})`, opacity: scene.opacity }} />
       {/* Subtle dot grid */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: 'radial-gradient(circle, rgba(74,124,111,0.08) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />

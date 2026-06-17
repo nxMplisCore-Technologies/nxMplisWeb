@@ -10,7 +10,6 @@ import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, H
 import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { useToast } from '@/hooks/use-toast';
 import { FAQSchema } from '@/components/seo/JsonLd';
-import CryAnalyzerWidget from '@/components/cry-analyzer/CryAnalyzerWidget';
 
 /* ─────────────────── ANIMATION VARIANTS ─────────────────── */
 const fadeUp = {
@@ -458,8 +457,8 @@ export default function Home() {
           <ChevronDown className="w-4 h-4 text-primary/35" />
         </motion.div>
 
-        <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_300px_1fr] gap-8 xl:gap-14 items-start lg:items-center">
+        <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-20">
+          <div className="grid md:grid-cols-2 gap-8 xl:gap-14 items-center">
 
             {/* LEFT copy */}
             <div ref={heroRef}>
@@ -468,10 +467,6 @@ export default function Home() {
                 <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm animate-fade-up backdrop-blur-sm">
                   <Sparkles className="w-3 h-3 animate-spin-slow" />
                   Early Access Open — Founding 100 families get exclusive pricing
-                </div>
-                <div className="inline-flex items-center gap-2 bg-green-50/90 border border-green-200 rounded-full px-3 py-1.5 text-xs font-bold text-green-700 shadow-sm animate-fade-up delay-1 backdrop-blur-sm">
-                  <div className="live-dot w-1.5 h-1.5 shrink-0" />
-                  847 families monitoring tonight
                 </div>
               </div>
 
@@ -498,7 +493,7 @@ export default function Home() {
               </div>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
-                Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+                Contactless AI monitoring — breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-7 animate-fade-up delay-4">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
@@ -528,23 +523,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* MIDDLE — Cry Analyzer Widget */}
-            <div className="animate-fade-up delay-3 flex flex-col items-center gap-3 order-2">
-              {/* Label */}
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
-                  style={{ background: 'rgba(74,124,111,0.12)', border: '1px solid rgba(74,124,111,0.35)', color: '#4a7c6f' }}>
-                  🧠 Try AI Live — Free
-                </div>
-                <p className="text-[11px] text-slate-500 font-medium text-center">Upload a cry recording or record live</p>
-              </div>
-              <div className="w-full">
-                <CryAnalyzerWidget variant="green" />
-              </div>
-            </div>
-
-            {/* RIGHT — product + live widget (hidden on mobile, shows on lg+) */}
-            <div className="hidden lg:flex flex-col items-center gap-6 order-3 lg:order-3">
+            {/* RIGHT — product + live monitor */}
+            <div className="hidden md:flex flex-col items-center gap-6">
               <div className="relative">
                 <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
                 <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
@@ -763,18 +743,20 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 2 — CRY ANALYSIS ════════════ */}
-      <section className="py-16 lg:py-28 bg-[#faf8f5] overflow-hidden">
-        <div className="container mx-auto px-4">
+      <section className="py-16 lg:py-28 bg-[#0a1a14] overflow-hidden relative">
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse 60% 50% at 30% 50%, rgba(74,124,111,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 50%, rgba(232,149,122,0.08) 0%, transparent 70%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,124,111,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="lg:order-1 order-2">
-              <div className="section-divider" />
-              <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Cry Intelligence</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <div className="section-divider" style={{ borderColor: 'rgba(74,124,111,0.3)' }} />
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#e8957a' }}>Cry Intelligence</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
                 Stop guessing.<br />Know what your<br />
-                <span className="text-gradient">baby needs — instantly.</span>
+                <span style={{ color: '#e8957a' }}>baby needs — instantly.</span>
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Hungry? Tired? Uncomfortable? Anvaya&apos;s AI identifies 5 cry types in real time — so you respond with confidence, not panic. Even at 3am. Even half asleep. Even when you&apos;re exhausted.
+              <p className="text-lg leading-relaxed mb-8" style={{ color: 'rgba(122,171,158,0.85)' }}>
+                Hungry? Tired? Uncomfortable? Anvaya&apos;s AI identifies 5 cry types in real time — so you respond with confidence, not panic. Even at 3am. Even half asleep.
               </p>
               <div className="space-y-4 mb-10">
                 {[
@@ -782,34 +764,47 @@ export default function Home() {
                   { emoji: '😴', title: 'Tired cry', desc: 'Whiny and intermittent. Know when to soothe vs. wait.' },
                   { emoji: '😣', title: 'Discomfort cry', desc: 'High-pitched and continuous. Alerts you immediately.' },
                 ].map((f, i) => (
-                  <motion.div key={f.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="flex items-start gap-4 bg-white rounded-xl p-4 border border-[#e8ddd4] card-hover cursor-default">
+                  <motion.div key={f.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}
+                    className="flex items-start gap-4 rounded-xl p-4 cursor-default"
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(74,124,111,0.25)' }}>
                     <span className="text-2xl shrink-0">{f.emoji}</span>
                     <div>
-                      <div className="font-bold text-sm mb-0.5">{f.title}</div>
-                      <div className="text-sm text-muted-foreground">{f.desc}</div>
+                      <div className="font-bold text-sm mb-0.5 text-white">{f.title}</div>
+                      <div className="text-sm" style={{ color: 'rgba(122,171,158,0.75)' }}>{f.desc}</div>
                     </div>
                   </motion.div>
                 ))}
               </div>
-              <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
-                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
-                  Get Early Access <ArrowRight className="w-4 h-4" />
-                </Button>
-              </LeadModalTrigger>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/cry-analyzer">
+                  <button className="relative overflow-hidden font-bold text-white rounded-2xl flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm transition-all duration-150 select-none"
+                    style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 24px rgba(232,149,122,0.45)' }}>
+                    🧠 Try AI Cry Analyzer — Free <ArrowRight className="w-4 h-4" />
+                  </button>
+                </Link>
+                <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
+                  <Button variant="outline" className="rounded-2xl px-6 font-semibold cursor-pointer"
+                    style={{ borderColor: 'rgba(74,124,111,0.4)', color: '#7aab9e', background: 'transparent' }}>
+                    Get Early Access
+                  </Button>
+                </LeadModalTrigger>
+              </div>
             </Reveal>
             <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-bl from-[#fdf0ea]/60 to-transparent blur-2xl" />
+                <div className="absolute -inset-8 rounded-[56px] blur-2xl" style={{ background: 'radial-gradient(ellipse, rgba(232,149,122,0.18) 0%, transparent 70%)' }} />
                 <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" objectPosition="top" />
-                <div className="absolute -left-8 top-20 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block">
-                  <div className="text-[10px] text-muted-foreground font-medium">Cry detected</div>
-                  <div className="text-sm font-bold text-[#e8957a] mt-0.5">Hungry cry 🍼</div>
-                  <div className="text-[10px] text-muted-foreground mt-1">Last fed: 2h 45m ago</div>
+                <div className="absolute -left-8 top-20 rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block"
+                  style={{ background: 'rgba(6,18,12,0.85)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.4)' }}>
+                  <div className="text-[10px] font-medium" style={{ color: 'rgba(122,171,158,0.7)' }}>Cry detected</div>
+                  <div className="text-sm font-bold mt-0.5" style={{ color: '#e8957a' }}>Hungry cry 🍼</div>
+                  <div className="text-[10px] mt-1" style={{ color: 'rgba(122,171,158,0.6)' }}>Last fed: 2h 45m ago</div>
                 </div>
-                <div className="absolute -right-6 bottom-32 glass rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1.5s' }}>
-                  <div className="text-[10px] text-muted-foreground">Noise level</div>
-                  <div className="text-xl font-bold text-primary">25 dB</div>
-                  <div className="text-[10px] text-green-600 font-semibold">Quiet room ✓</div>
+                <div className="absolute -right-6 bottom-32 rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block"
+                  style={{ background: 'rgba(6,18,12,0.85)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.35)', animationDelay: '1.5s' }}>
+                  <div className="text-[10px]" style={{ color: 'rgba(122,171,158,0.7)' }}>Noise level</div>
+                  <div className="text-xl font-bold" style={{ color: '#4a7c6f' }}>25 dB</div>
+                  <div className="text-[10px] font-semibold" style={{ color: '#4ade80' }}>Quiet room ✓</div>
                 </div>
               </div>
             </Reveal>
