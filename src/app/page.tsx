@@ -333,7 +333,7 @@ function SensorViz() {
           transition={{ duration: 0.55, delay: 0.6 }}
         >
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl whitespace-nowrap"
-            style={{ fontSize: 10, fontWeight: 700, background: 'rgba(6,18,12,0.9)', border: '1px solid rgba(74,124,111,0.52)', color: '#7aab9e', backdropFilter: 'blur(12px)', boxShadow: '0 4px 24px rgba(0,0,0,0.5)' }}>
+            style={{ fontSize: 10, fontWeight: 700, background: 'rgba(15,23,42,0.92)', border: '1px solid rgba(74,124,111,0.52)', color: '#7aab9e', backdropFilter: 'blur(12px)', boxShadow: '0 4px 24px rgba(0,0,0,0.5)' }}>
             <motion.div style={{ width: 7, height: 7, borderRadius: '50%', background: '#4a7c6f', boxShadow: '0 0 7px rgba(74,124,111,0.9)' }} animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
             <span style={{ color: '#e8957a', fontWeight: 900, letterSpacing: '0.06em' }}>LIVE</span>
             <span style={{ color: 'rgba(122,171,158,0.9)' }}>28 br/min · SpO₂ 98% · 36.5°C</span>
@@ -613,7 +613,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ SENSOR VISUALIZATION ════════════ */}
-      <section className="py-14 lg:py-24 bg-[#0a1a14] overflow-hidden relative">
+      <section className="py-14 lg:py-24 bg-[#0f172a] overflow-hidden relative">
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,124,111,0.12) 0%, transparent 70%)' }} />
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-14">
@@ -749,7 +749,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 2 — CRY ANALYSIS ════════════ */}
-      <section className="py-16 lg:py-28 bg-[#0a1a14] overflow-hidden relative">
+      <section className="py-16 lg:py-28 bg-[#0f172a] overflow-hidden relative">
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse 60% 50% at 30% 50%, rgba(74,124,111,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 50%, rgba(232,149,122,0.08) 0%, transparent 70%)' }} />
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,124,111,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="container mx-auto px-4 relative z-10">
@@ -801,13 +801,13 @@ export default function Home() {
                 <div className="absolute -inset-8 rounded-[56px] blur-2xl" style={{ background: 'radial-gradient(ellipse, rgba(232,149,122,0.18) 0%, transparent 70%)' }} />
                 <PhoneMockup src="/app-live.jpg" alt="Anvaya app — live cry detection, breathing monitoring and decibel meter" className="animate-float-slow relative z-10" objectPosition="top" />
                 <div className="absolute -left-8 top-20 rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block"
-                  style={{ background: 'rgba(6,18,12,0.85)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.4)' }}>
+                  style={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.4)' }}>
                   <div className="text-[10px] font-medium" style={{ color: 'rgba(122,171,158,0.7)' }}>Cry detected</div>
                   <div className="text-sm font-bold mt-0.5" style={{ color: '#e8957a' }}>Hungry cry 🍼</div>
                   <div className="text-[10px] mt-1" style={{ color: 'rgba(122,171,158,0.6)' }}>Last fed: 2h 45m ago</div>
                 </div>
                 <div className="absolute -right-6 bottom-32 rounded-2xl px-3 py-2.5 shadow-xl z-20 animate-float hidden sm:block"
-                  style={{ background: 'rgba(6,18,12,0.85)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.35)', animationDelay: '1.5s' }}>
+                  style={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(16px)', border: '1px solid rgba(74,124,111,0.35)', animationDelay: '1.5s' }}>
                   <div className="text-[10px]" style={{ color: 'rgba(122,171,158,0.7)' }}>Noise level</div>
                   <div className="text-xl font-bold" style={{ color: '#4a7c6f' }}>25 dB</div>
                   <div className="text-[10px] font-semibold" style={{ color: '#4ade80' }}>Quiet room ✓</div>
