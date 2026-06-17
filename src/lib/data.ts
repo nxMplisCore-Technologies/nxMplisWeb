@@ -14,7 +14,7 @@ export const ARTICLES = [
     author: 'Anvaya Smart Team',
     authorTitle: 'Baby Wellness Researchers · IIT Research Partners',
     date: '2025-04-28',
-    updatedDate: '2026-05-02',
+    updatedDate: '2026-06-17',
     category: 'Baby Health',
     readTime: '8 min read',
     imageUrl: '/anvaya-sense.jpg',
@@ -36,8 +36,8 @@ export const ARTICLES = [
       <p>You, however, are now wide awake with a racing heart.</p>
       <p>Here's the thing: <strong>newborn breathing is supposed to look chaotic.</strong> It's fast, it's irregular, it pauses, it grunts. None of that means something is wrong. Your baby's brain is still learning to control breathing — it takes a few months to get the hang of it.</p>
 
-      <h2>📊 How fast is normal? (Quick reference)</h2>
-      <p>Adults breathe 12–20 times per minute. Babies breathe much faster — and slower counts as a warning sign, not a good thing.</p>
+      <h2>📊 Normal newborn breathing rate: quick reference</h2>
+      <p>The single most searched question: <em>what is a normal breathing rate for a newborn?</em> Adults breathe 12–20 times per minute. Babies breathe much faster — and slower counts as a warning sign, not a good thing.</p>
 
       <table>
         <thead><tr><th>Age</th><th>Normal rate</th><th>What it looks like</th><th>Should you worry?</th></tr></thead>
@@ -49,6 +49,17 @@ export const ARTICLES = [
         </tbody>
       </table>
       <p>A quick way to count: watch the belly rise and fall for 30 seconds, then double it. Above 60 consistently = call your doctor. Below 20 = call your doctor.</p>
+
+      <h2>🔍 Normal breathing patterns in newborns: what to expect week by week</h2>
+      <p>Normal infant breathing patterns change significantly in the first 3 months. Here's what parents can expect:</p>
+      <ul>
+        <li><strong>Week 1–2:</strong> Very fast (50–60/min), irregular, lots of grunting and snuffling. Completely normal.</li>
+        <li><strong>Week 3–6:</strong> Still fast but slightly more rhythmic. Periodic pauses most common in this window.</li>
+        <li><strong>Month 2:</strong> Rate slows slightly (40–55/min). Breathing becomes smoother during wakeful periods.</li>
+        <li><strong>Month 3:</strong> Periodic breathing becomes rare. Rate 35–50/min. Parents notice it's easier to watch.</li>
+        <li><strong>Month 4+:</strong> Breathing looks much closer to adult pattern. 30–45/min. The chest-watching anxiety usually fades.</li>
+      </ul>
+      <p><strong>Key insight:</strong> Normal newborn breathing patterns are supposed to look abnormal. The irregularity <em>is</em> the normal. Your baby's body is doing exactly what it should.</p>
 
       <h2>⏸️ Why does my baby's breathing keep stopping?</h2>
       <p>Those 5–10 second pauses have a name: <strong>periodic breathing.</strong> It sounds alarming but it's basically your baby's brain practising.</p>
@@ -112,8 +123,15 @@ export const ARTICLES = [
     `,
   faqs: [
     { q: 'What is a normal breathing rate for a newborn?', a: 'A normal breathing rate for a newborn is 40–60 breaths per minute — much faster than adults. Occasional pauses of 5–10 seconds known as periodic breathing are also completely normal in babies under 3 months and resolve on their own.' },
+    { q: 'What is normal newborn breathing?', a: 'Normal newborn breathing is irregular, fast (40–60 breaths per minute), and often noisy. Newborns may grunt, snuffle, squeak, and take 5–10 second pauses. All of this is normal because the brainstem is still developing breathing control. It smooths out by 3 months.' },
+    { q: 'Is it normal for a newborn to breathe fast?', a: 'Yes. Newborns breathe 40–60 times per minute — two to five times faster than adults. This is completely normal. Only worry if the rate is consistently above 60 (tachypnea) or below 20 (bradypnea), or if other signs of distress appear like nostril flaring or rib retractions.' },
     { q: 'What is periodic breathing in babies?', a: 'Periodic breathing is when a baby pauses breathing for 5–10 seconds then resumes normally. It is caused by immaturity in the brainstem\'s breathing control centre, is completely normal in newborns, and typically resolves by 3 months of age without any intervention.' },
+    { q: 'What are normal breathing patterns for newborns?', a: 'Normal breathing patterns for newborns include fast irregular breaths (40–60/min), occasional 5–10 second pauses (periodic breathing), grunting sounds while sleeping, nostril flaring during feeds, and abdominal breathing where the belly moves more than the chest. All of these are expected and resolve as the nervous system matures.' },
+    { q: 'How do newborns breathe?', a: 'Newborns breathe primarily through their nose (obligate nasal breathers) and use their belly (abdominal muscles) rather than chest muscles. Their breathing is faster and more irregular than adults, controlled by an immature brainstem. They cannot easily switch to mouth breathing if their nose is blocked, which is why nasal hygiene matters.' },
+    { q: 'What is a normal breathing rate for a 3-month-old baby?', a: 'A normal breathing rate for a 3-month-old is 35–55 breaths per minute. By 3 months, periodic breathing pauses become rare, breathing sounds less grunty, and the pattern becomes more regular. By 6 months, the rate settles to 30–45 breaths per minute.' },
     { q: 'When should I be concerned about my baby\'s breathing?', a: 'Seek immediate help if breathing pauses exceed 20 seconds, the rate is consistently above 60 or below 20, nostrils flare with each breath, ribs are visible during breathing, lips turn blue, or SpO2 drops below 94%. These are signs of respiratory distress.' },
+    { q: 'What does irregular breathing in a newborn mean?', a: 'Irregular breathing in a newborn — speeding up, slowing down, pausing briefly — is almost always normal. The brainstem\'s respiratory control centre is immature and still calibrating. Irregular breathing only becomes a concern if pauses exceed 20 seconds, colour changes occur, or the rate stays consistently outside 20–60 breaths per minute.' },
+    { q: 'Why does my baby grunt and make noises while breathing?', a: 'Baby grunting during breathing is usually normal. Newborns grunt when closing the glottis (back of throat) to increase lung air pressure — helping keep immature air sacs open. It can also happen during bowel movements or when adjusting sleep position. Grunting with every breath consistently, or accompanied by blue lips, needs medical attention.' },
   ],
   related: ['baby-spo2-monitoring-india', 'baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026'],
   },
@@ -255,6 +273,19 @@ export const ARTICLES = [
         </tbody>
       </table>
 
+      <h2>💰 Best budget baby monitors with breathing tracking in India (2026)</h2>
+      <p>If you're looking for an affordable baby monitor that actually monitors breathing — not just video — here's what's available in India without breaking the bank:</p>
+      <table>
+        <thead><tr><th>Monitor</th><th>Price (India)</th><th>Breathing?</th><th>SpO2?</th><th>India warranty?</th><th>Subscription?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Anvaya Smart CORE</strong></td><td>₹8,999</td><td>✅ Radar-based</td><td>❌</td><td>✅ 1 year</td><td>✅ None</td></tr>
+          <tr><td><strong>Anvaya Smart SENSE</strong></td><td>₹12,999</td><td>✅ Radar-based</td><td>✅ Contactless</td><td>✅ 1 year</td><td>✅ None</td></tr>
+          <tr><td>Motorola MBP (video only)</td><td>₹8,000–12,000</td><td>❌ No</td><td>❌</td><td>✅ 1 year</td><td>✅ None</td></tr>
+          <tr><td>Owlet Dream Sock (import)</td><td>₹35,000+</td><td>✅ Movement-based</td><td>✅ Wearable</td><td>❌ None</td><td>⚠️ ₹2,500+/month</td></tr>
+        </tbody>
+      </table>
+      <p><strong>The honest answer:</strong> If you want breathing monitoring under ₹10,000 with India warranty and no monthly fees, the Anvaya Smart CORE is currently the only option in this category available locally. For ₹8,999 you get radar breathing detection and AI cry analysis — contactlessly.</p>
+
       <h2>✅ "Which one should I actually get?" — Decision guide</h2>
 
       <div style="background:#f9f7f4;border:1.5px solid #e2dbd4;border-radius:16px;padding:20px 24px;margin:24px 0;">
@@ -288,8 +319,13 @@ export const ARTICLES = [
       <p>Want to go deeper? Read <a href="/blog/baby-breathing-monitor-without-wearable">why contactless breathing monitors work better in India's heat</a>, or understand <a href="/blog/baby-spo2-monitoring-india">what SpO2 is and why it matters</a>.</p>`,
   faqs: [
     { q: 'What is the best baby monitor in India in 2026?', a: 'For Indian parents wanting wellness monitoring beyond a basic camera, Anvaya Smart SENSE at ₹12,999 is the top choice in 2026. It offers contactless breathing monitoring, SpO2 tracking, AI cry analysis, and sleep insights with a full 1-year India warranty and free shipping.' },
+    { q: 'What are the top rated baby monitors in India in 2026?', a: 'The top rated baby monitors in India in 2026 based on features, local availability, and parent reviews are: (1) Anvaya Smart SENSE — best for breathing + SpO2 + cry analysis with nothing on baby; (2) Motorola MBP series — best video-only option with India warranty; (3) Anvaya Smart CORE — best budget breathing monitor at ₹8,999.' },
+    { q: 'What is the best cheap baby monitor with breathing tracking in India?', a: 'The best cheap baby monitor with breathing tracking in India is the Anvaya Smart CORE at ₹8,999. It provides contactless radar-based breathing monitoring with AI cry analysis — no wearable, no subscription, India warranty, and free shipping. For comparison, most imported wearable breathing monitors cost ₹35,000+ without local support.' },
+    { q: 'What is the best smart baby monitor with movement tracking in India?', a: 'Anvaya Smart SENSE at ₹12,999 is the best smart baby monitor with movement and breathing tracking in India. It uses low-power radar to detect breathing movements contactlessly, plus SpO2, cry analysis, and sleep tracking — all processed on-device without cloud dependency.' },
     { q: 'Which baby monitors are officially available in India with local warranty?', a: 'Anvaya Smart is the primary option with full 1-year India warranty, free shipping, and 0% EMI. Most global brands like Owlet and Infant Optics are not officially sold in India and must be imported without any local support, at significantly higher cost.' },
     { q: 'Is it worth buying a contactless baby breathing monitor in India?', a: 'Yes, especially for the first 6 months — the highest-risk window. A contactless breathing monitor provides continuous overnight monitoring without attaching anything to your baby\'s skin, giving parents significant peace of mind and early warning of breathing irregularities.' },
+    { q: 'What baby monitor works best in Indian homes with power cuts?', a: 'Anvaya Smart is designed specifically for Indian infrastructure. Its on-device AI means it continues processing and storing data during internet outages. Battery backup mode keeps monitoring during power cuts. Most imported cloud-based monitors lose functionality during both internet and power outages.' },
+    { q: 'Do I need a baby monitor if I co-sleep with my baby?', a: 'If you are in the same room and the same bed, a monitor adds limited immediate value. However, if your baby naps separately, sleeps in a separate crib in the room, or you plan to transition them to their own room, a monitor — especially one with breathing tracking — gives you peace of mind without physically checking every few minutes.' },
   ],
   related: ['baby-breathing-monitor-without-wearable', 'baby-spo2-monitoring-india', 'ai-baby-monitor-india-2026'],
   },
@@ -600,7 +636,7 @@ export const ARTICLES = [
     author: 'Anvaya Smart Team',
     authorTitle: 'Baby Wellness Researchers · IIT Research Partners',
     date: '2026-05-02',
-    updatedDate: '2026-05-02',
+    updatedDate: '2026-06-17',
     category: 'Baby Technology',
     readTime: '9 min read',
     imageUrl: '/anvaya-core-6.jpg',
@@ -689,7 +725,10 @@ export const ARTICLES = [
       <p>Want to understand the specific sensors? See our guide on <a href="/blog/baby-breathing-monitor-without-wearable">contactless baby breathing monitors</a>. Ready to compare options? See <a href="/blog/best-baby-monitor-india-2026">best baby monitor India 2026</a>.</p>`,
   faqs: [
     { q: 'What does an AI baby monitor actually do?', a: 'An AI baby monitor uses artificial intelligence to analyse what it sees and hears — detecting breathing patterns, identifying cry types, tracking sleep quality, and alerting parents when something needs attention. It goes far beyond basic video and audio monitoring.' },
+    { q: 'What is the best AI baby monitor available in India in 2026?', a: 'Anvaya Smart is the only AI baby monitor designed for Indian conditions available with local warranty in 2026. It uses on-device AI for breathing detection, cry analysis (5 types), SpO2 monitoring, and sleep tracking — without sending data to the cloud, and without needing continuous internet.' },
+    { q: 'How is an AI baby monitor different from a regular baby monitor?', a: 'A regular baby monitor transmits audio and video so you can watch your baby. An AI baby monitor analyses what it detects and tells you what it means — "breathing is irregular," "this cry sounds like hunger," "baby has been in light sleep for 40 minutes." It interprets, not just transmits.' },
     { q: 'Is on-device AI processing important in a baby monitor?', a: 'Yes — critically. On-device AI processes your baby\'s video and audio locally without sending data to remote servers. Cloud-based AI raises serious privacy concerns. On-device AI also works during internet or power outages, which is essential in India\'s infrastructure context.' },
+    { q: 'Are AI baby monitors safe from a radiation standpoint?', a: 'Yes. Anvaya Smart uses low-power UWB radar — the same technology used in car collision sensors and smartphones for spatial awareness. The emission is far below WHO safety thresholds, less than a typical WiFi router. There is no ionising radiation (X-ray type). The device sits 30–90cm from the crib, not on the baby.' },
     { q: 'How accurate is AI cry analysis for babies?', a: 'Modern AI cry analysis achieves 85–92% accuracy across trained cry types. Accuracy improves after the first week as the model learns your specific baby\'s patterns. After personalisation, it is significantly more reliable than guessing at 3am — and improves the longer you use it.' },
   ],
   related: ['baby-breathing-monitor-without-wearable', 'best-baby-monitor-india-2026', 'types-of-baby-cries'],
@@ -700,7 +739,7 @@ export const ARTICLES = [
     author: 'Anvaya Smart Team',
     authorTitle: 'Baby Wellness Researchers · IIT Research Partners',
     date: '2026-05-02',
-    updatedDate: '2026-05-02',
+    updatedDate: '2026-06-17',
     category: 'Baby Health',
     readTime: '10 min read',
     imageUrl: '/anvaya-sense.jpg',
@@ -797,6 +836,8 @@ export const ARTICLES = [
     `,
   faqs: [
     { q: 'How does a contactless baby breathing monitor work?', a: 'Contactless baby breathing monitors use low-power radar to detect the micro-movements caused by the chest rising and falling with each breath. The radar signal bounces off the baby\'s body and AI calculates breathing rate and pattern from up to 90cm away — nothing touches the baby.' },
+    { q: 'What is the best baby breathing monitor without a wearable in India?', a: 'Anvaya Smart is the only contactless baby breathing monitor with local availability and India warranty in 2026. Starting at ₹8,999, it uses radar-based breathing detection and AI analysis — nothing on the baby\'s skin, no subscription, free shipping across India.' },
+    { q: 'Is a baby monitor without wearable as accurate as one with wearable?', a: 'For breathing rate detection, contactless radar monitors match wearable accuracy for most parent needs. Wearables measure SpO2 via direct skin contact (light absorption), while contactless monitors use optical sensing. For clinical-grade SpO2 in medically complex babies, consult your paediatrician — for typical home monitoring, contactless accuracy is excellent.' },
     { q: 'Why are wearable baby monitors problematic for Indian conditions?', a: 'Wearable monitors cause rashes and irritation in India\'s heat and humidity, frequently fall off during sleep triggering false alarms, disturb baby sleep with physical sensation on skin, and are mostly not officially available in India — requiring expensive imports above ₹35,000 with no local support.' },
     { q: 'Is radar sensing safe for newborns?', a: 'Yes. Baby monitor radar operates at power levels measured in microwatts — thousands of times lower than a Wi-Fi router and far below any established safety threshold for infants. It is non-ionising, does not heat tissue, and has been tested to international EMF safety standards.' },
   ],
