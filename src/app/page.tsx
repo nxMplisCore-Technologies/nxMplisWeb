@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, ChevronDown, Quote, Shield, Zap, Lock, Wifi, Camera, Music, Bell } from 'lucide-react';
@@ -186,6 +186,96 @@ function BabySVG() {
       <ellipse cx="57" cy="52" rx="5.5" ry="4.5" fill="#f9d5b0"/>
       <ellipse cx="55" cy="51" rx="2" ry="1.5" fill="rgba(200,110,60,0.25)"/>
     </svg>
+  );
+}
+
+/* ─────────────────── CRY CTA BUTTON ─────────────────── */
+function CryCtaButton() {
+  return (
+    <div className="relative w-full sm:w-auto inline-flex">
+      {/* Outward pulse rings */}
+      {[0, 1, 2].map(i => (
+        <motion.div key={i}
+          className="absolute inset-0 rounded-xl pointer-events-none"
+          style={{ border: '1.5px solid rgba(74,124,111,0.55)' }}
+          animate={{ scale: [1, 1.55, 2.1], opacity: [0.55, 0.2, 0] }}
+          transition={{ duration: 2.4, delay: i * 0.8, repeat: Infinity, ease: 'easeOut' }}
+        />
+      ))}
+      <Link href="/cry-analyzer"
+        className="relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
+        style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 6px 24px rgba(74,124,111,0.40)', transition: 'box-shadow .2s ease, transform .2s ease' }}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 32px rgba(74,124,111,0.55)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 24px rgba(74,124,111,0.40)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
+      >
+        {/* Animated sound wave bars */}
+        <div className="flex items-center gap-[2px] shrink-0" style={{ height: 16 }}>
+          {[0,1,2,3,4].map(i => (
+            <div key={i} style={{
+              width: 2.5, borderRadius: 99, background: 'rgba(255,255,255,0.9)',
+              animation: `cry-wave ${0.5 + i * 0.08}s ease-in-out ${i * 0.07}s infinite alternate`,
+              minHeight: 2, maxHeight: 14,
+            }} />
+          ))}
+        </div>
+        Try AI Cry Analyzer — Free
+        <ArrowRight className="w-4 h-4" />
+        <style>{`@keyframes cry-wave{from{height:2px}to{height:14px}}`}</style>
+      </Link>
+    </div>
+  );
+}
+
+/* ─────────────────── CRY DEMO STRIP ─────────────────── */
+const CRY_DEMOS = [
+  { emoji: '🍼', label: 'Hungry', pct: 94, color: '#f59e0b' },
+  { emoji: '😴', label: 'Tired', pct: 87, color: '#8b5cf6' },
+  { emoji: '😣', label: 'Discomfort', pct: 79, color: '#ef4444' },
+  { emoji: '😮‍💨', label: 'Needs Burping', pct: 83, color: '#10b981' },
+];
+
+function CryDemoStrip() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx(d => (d + 1) % CRY_DEMOS.length), 2800);
+    return () => clearInterval(t);
+  }, []);
+  const cur = CRY_DEMOS[idx];
+  return (
+    <div className="mb-6">
+      <AnimatePresence mode="wait">
+        <motion.div key={idx}
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -10 }}
+          transition={{ duration: 0.3 }}
+          className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-sm"
+          style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${cur.color}35`, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
+        >
+          <div className="flex items-center gap-1.5 shrink-0">
+            <motion.div className="w-2 h-2 rounded-full" style={{ background: cur.color }}
+              animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.2, repeat: Infinity }}
+            />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI detected</span>
+          </div>
+          <div className="w-px h-4 bg-slate-200" />
+          <span style={{ fontSize: 18, lineHeight: 1 }}>{cur.emoji}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold" style={{ color: cur.color }}>{cur.label}</span>
+            <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.07)' }}>
+              <motion.div className="h-full rounded-full" style={{ background: cur.color }}
+                initial={{ width: 0 }}
+                animate={{ width: `${cur.pct}%` }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              />
+            </div>
+            <span className="text-[10px] font-mono text-muted-foreground">{cur.pct}%</span>
+          </div>
+          <div className="w-px h-4 bg-slate-200" />
+          <Link href="/cry-analyzer" className="text-[10px] font-bold text-[#4a7c6f] hover:text-[#2d5c52] transition-colors shrink-0 whitespace-nowrap">Try free →</Link>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -496,7 +586,7 @@ export default function Home() {
               <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
                 Contactless AI monitoring — breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 mb-7 animate-fade-up delay-4">
+              <div className="flex flex-col sm:flex-row gap-3 mb-4 animate-fade-up delay-4">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
                   <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
                     style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)', transition: 'box-shadow .2s ease, transform .2s ease' }}
@@ -506,13 +596,9 @@ export default function Home() {
                     <Sparkles className="w-4 h-4" />Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
                   </Button>
                 </LeadModalTrigger>
-                <Link href="/cry-analyzer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
-                  style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 6px 24px rgba(74,124,111,0.40)', transition: 'box-shadow .2s ease, transform .2s ease' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 32px rgba(74,124,111,0.55)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 24px rgba(74,124,111,0.40)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
-                >🧠 Try AI Cry Analyzer — Free <ArrowRight className="w-4 h-4" /></Link>
+                <CryCtaButton />
               </div>
+              <CryDemoStrip />
               {/* Trust pills */}
               <div className="flex flex-wrap items-center gap-2 animate-fade-up delay-5">
                 {[
@@ -758,12 +844,30 @@ export default function Home() {
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/cry-analyzer">
-                  <button className="relative overflow-hidden font-bold text-white rounded-2xl flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm transition-all duration-150 select-none"
-                    style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 24px rgba(232,149,122,0.45)' }}>
-                    🧠 Try AI Cry Analyzer — Free <ArrowRight className="w-4 h-4" />
-                  </button>
-                </Link>
+                <div className="relative inline-flex">
+                  {[0, 1].map(i => (
+                    <motion.div key={i} className="absolute inset-0 rounded-2xl pointer-events-none"
+                      style={{ border: '1.5px solid rgba(232,149,122,0.55)' }}
+                      animate={{ scale: [1, 1.5, 2.0], opacity: [0.55, 0.2, 0] }}
+                      transition={{ duration: 2.2, delay: i * 0.85, repeat: Infinity, ease: 'easeOut' }}
+                    />
+                  ))}
+                  <Link href="/cry-analyzer">
+                    <button className="relative overflow-hidden font-bold text-white rounded-2xl flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm transition-all duration-150 select-none"
+                      style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 24px rgba(232,149,122,0.45)' }}>
+                      <div className="flex items-center gap-[2px] shrink-0" style={{ height: 14 }}>
+                        {[0,1,2,3,4].map(i => (
+                          <div key={i} style={{
+                            width: 2, borderRadius: 99, background: 'rgba(255,255,255,0.9)',
+                            animation: `cry-wave ${0.5 + i * 0.08}s ease-in-out ${i * 0.07}s infinite alternate`,
+                            minHeight: 2, maxHeight: 12,
+                          }} />
+                        ))}
+                      </div>
+                      Try AI Cry Analyzer — Free <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </Link>
+                </div>
                 <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
                   <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
                     Get Early Access <ArrowRight className="w-4 h-4" />
