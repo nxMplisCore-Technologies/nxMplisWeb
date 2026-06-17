@@ -124,7 +124,7 @@ function MicBtn({ onClick, glowColor, btnColor }: { onClick: () => void; glowCol
 export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'green' | 'purple' }) {
   // Both variants now use the clean brand-teal theme — purple was too heavy
   const accent = '#4a7c6f';
-  const accentLight = '#f0f7f5';
+  const accentLight = '#f4faf8';
   const glowColor = 'rgba(74,124,111,0.35)';
 
   const [tab, setTab] = useState<'upload' | 'record'>('upload');
