@@ -1,426 +1,354 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import {
-  motion, useScroll, useTransform, useSpring,
-  AnimatePresence, useMotionValue, useAnimationFrame,
-} from 'framer-motion';
+import { useRef, useEffect, useState, useCallback } from 'react';
+import { motion, AnimatePresence, useSpring, useMotionValue, animate } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle, Pause, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// ─── helpers ────────────────────────────────────────────────────────────────
+// ─── constants ───────────────────────────────────────────────────────────────
 
-function useScrollScene(scrollYProgress: any, start: number, end: number) {
-  const progress = useTransform(scrollYProgress, [start, end], [0, 1]);
-  const smooth = useSpring(progress, { stiffness: 60, damping: 20 });
-  return smooth;
-}
+const SCENE_DURATION = 5000; // ms per scene
+const SCENES = ['2:47 AM', 'Radar', 'Breathing', 'Oxygen', 'Cries', 'Peace'] as const;
+const BG = ['#0a0f0d', '#0d1a16', '#091210', '#120a0a', '#0f0a0a', '#0d1a16'];
 
-// ─── Scene 1: 2:47 AM ───────────────────────────────────────────────────────
+// ─── Radar rings ─────────────────────────────────────────────────────────────
 
-function Scene1({ p }: { p: any }) {
-  const opacity = useTransform(p, [0, 0.15, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(p, [0, 0.15], [60, 0]);
-  const clockOpacity = useTransform(p, [0.1, 0.3], [0, 1]);
-  const questionOpacity = useTransform(p, [0.35, 0.55, 0.85, 1], [0, 1, 1, 0]);
-  const questionY = useTransform(p, [0.35, 0.55], [30, 0]);
-  const heartScale = useTransform(p, [0.4, 1], [1, 1.25]);
-
-  return (
-    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-      {/* Time */}
-      <motion.div style={{ opacity: clockOpacity, y }} className="mb-8">
-        <div className="text-8xl sm:text-[10rem] font-bold text-white tabular-nums tracking-tight leading-none" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          2:47
-        </div>
-        <div className="text-white/40 text-xl tracking-[0.4em] uppercase mt-2">AM</div>
-      </motion.div>
-
-      {/* Heartbeat line */}
-      <motion.svg style={{ opacity: questionOpacity }} viewBox="0 0 240 40" className="w-60 mb-8" aria-hidden="true">
-        <motion.path
-          d="M0 20 L50 20 L65 5 L75 35 L85 10 L95 30 L105 20 L240 20"
-          fill="none" stroke="#e8957a" strokeWidth="2" strokeLinecap="round"
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
-        />
-      </motion.svg>
-
-      {/* Question */}
-      <motion.div style={{ opacity: questionOpacity, y: questionY }}>
-        <p className="text-white/50 text-lg sm:text-2xl font-light mb-3 tracking-wide">
-          Every parent knows this moment.
-        </p>
-        <p className="text-white text-2xl sm:text-4xl font-bold leading-tight">
-          "Is my baby<br />still breathing?"
-        </p>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-// ─── Scene 2: Anvaya watches ─────────────────────────────────────────────────
-
-function RadarRings({ active }: { active: boolean }) {
+function RadarRings() {
   return (
     <svg viewBox="0 0 300 300" className="w-full h-full" aria-hidden="true">
       {[40, 75, 110, 145, 180].map((r, i) => (
         <motion.circle key={r} cx="150" cy="150" r={r}
           fill="none" stroke="#4a7c6f" strokeWidth={i === 0 ? 2 : 1}
-          opacity={active ? undefined : 0}
-          animate={active ? { opacity: [0, 0.6, 0], scale: [0.7, 1, 1.05] } : { opacity: 0 }}
+          animate={{ opacity: [0, 0.6, 0], scale: [0.7, 1, 1.05] }}
           transition={{ duration: 3, delay: i * 0.5, repeat: Infinity, ease: 'easeOut' }}
         />
       ))}
-      {/* Device */}
       <motion.circle cx="150" cy="150" r="14" fill="#4a7c6f"
-        animate={active ? { scale: [1, 1.1, 1] } : { scale: 1 }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
+        animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: Infinity }} />
       <circle cx="150" cy="150" r="7" fill="#faf8f5" />
-      {/* Baby */}
-      <motion.g animate={active ? { y: [0, -4, 0] } : { y: 0 }} transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}>
-        <circle cx="150" cy="72" r="10" fill="#e8957a" opacity="0.9" />
-        <text x="150" y="76" textAnchor="middle" fontSize="11">🍼</text>
+      <motion.g animate={{ y: [0, -5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}>
+        <circle cx="150" cy="68" r="12" fill="#e8957a" opacity="0.9" />
+        <text x="150" y="73" textAnchor="middle" fontSize="13">🍼</text>
       </motion.g>
-      {/* Detection label */}
-      <motion.text x="150" y="260" textAnchor="middle" fontSize="11" fill="#4a7c6f" fontWeight="700" letterSpacing="2"
-        animate={active ? { opacity: [0.5, 1, 0.5] } : { opacity: 0 }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
+      <motion.text x="150" y="265" textAnchor="middle" fontSize="11"
+        fill="#4a7c6f" fontWeight="700" letterSpacing="2"
+        animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity }}>
         BREATHING DETECTED ✓
       </motion.text>
     </svg>
   );
 }
 
-function Scene2({ p }: { p: any }) {
-  const opacity = useTransform(p, [0, 0.1, 0.85, 1], [0, 1, 1, 0]);
-  const headlineY = useTransform(p, [0.05, 0.2], [50, 0]);
-  const headlineOp = useTransform(p, [0.05, 0.2], [0, 1]);
-  const subOp = useTransform(p, [0.25, 0.45], [0, 1]);
-  const radarOp = useTransform(p, [0.05, 0.25], [0, 1]);
-  const [show, setShow] = useState(false);
+// ─── ECG waveform (path only — no offsetPath) ────────────────────────────────
 
-  useEffect(() => {
-    const unsub = radarOp.on('change', v => setShow(v > 0.3));
-    return unsub;
-  }, [radarOp]);
+const ECG_D = "M0 40 L30 40 L45 40 L55 15 L65 65 L75 20 L85 58 L95 40 L125 40 L140 40 L150 12 L160 68 L170 18 L180 55 L190 40 L220 40 L235 40 L245 10 L255 70 L265 16 L275 58 L285 40 L320 40";
 
-  return (
-    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-      <motion.div style={{ opacity: radarOp }} className="w-56 h-56 sm:w-72 sm:h-72 mb-8">
-        <RadarRings active={show} />
-      </motion.div>
-      <motion.h2 style={{ y: headlineY, opacity: headlineOp }}
-        className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
-      >
-        Anvaya watches.<br />
-        <span style={{ color: '#7aab9e' }}>So you don't have to.</span>
-      </motion.h2>
-      <motion.p style={{ opacity: subOp }}
-        className="text-white/50 text-base sm:text-xl max-w-lg leading-relaxed"
-      >
-        Low-power radar. From across the room. Nothing on your baby.
-      </motion.p>
-    </motion.div>
-  );
-}
-
-// ─── Scene 3: Breathing ──────────────────────────────────────────────────────
-
-function BreathingECG({ progress }: { progress: any }) {
-  const pathLen = useTransform(progress, [0.2, 0.8], [0, 1]);
+function BreathingECG() {
   return (
     <svg viewBox="0 0 320 80" className="w-full" aria-hidden="true">
       <defs>
         <linearGradient id="ecgGrad" x1="0" x2="1" y1="0" y2="0">
           <stop offset="0%" stopColor="#4a7c6f" stopOpacity="0" />
-          <stop offset="30%" stopColor="#4a7c6f" stopOpacity="1" />
-          <stop offset="100%" stopColor="#7aab9e" stopOpacity="1" />
+          <stop offset="20%" stopColor="#4a7c6f" />
+          <stop offset="100%" stopColor="#7aab9e" />
         </linearGradient>
       </defs>
-      <motion.path
-        d="M0 40 L30 40 L45 40 L55 15 L65 65 L75 20 L85 58 L95 40 L125 40 L140 40 L150 12 L160 68 L170 18 L180 55 L190 40 L220 40 L235 40 L245 10 L255 70 L265 16 L275 58 L285 40 L320 40"
-        fill="none" stroke="url(#ecgGrad)" strokeWidth="2.5" strokeLinecap="round"
-        style={{ pathLength: pathLen } as any}
-      />
-      {/* Scanning dot */}
-      <motion.circle r="4" fill="#4a7c6f"
-        style={{
-          offsetPath: "path('M0 40 L30 40 L45 40 L55 15 L65 65 L75 20 L85 58 L95 40 L125 40 L140 40 L150 12 L160 68 L170 18 L180 55 L190 40 L220 40 L235 40 L245 10 L255 70 L265 16 L275 58 L285 40 L320 40')",
-          offsetDistance: pathLen as any,
-        }}
-      />
+      <motion.path d={ECG_D} fill="none" stroke="url(#ecgGrad)" strokeWidth="2.5" strokeLinecap="round"
+        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+        transition={{ duration: 2.5, ease: 'easeInOut', repeat: Infinity, repeatDelay: 0.5 }} />
+      <text x="160" y="75" textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.3)">
+        Normal rhythm · 44 bpm
+      </text>
     </svg>
   );
 }
 
-function Scene3({ p }: { p: any }) {
-  const opacity = useTransform(p, [0, 0.1, 0.85, 1], [0, 1, 1, 0]);
-  const labelOp = useTransform(p, [0.15, 0.35], [0, 1]);
-  const rateOp = useTransform(p, [0.45, 0.65], [0, 1]);
-  const noteOp = useTransform(p, [0.6, 0.8], [0, 1]);
+// ─── SpO2 arc ────────────────────────────────────────────────────────────────
 
-  return (
-    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center px-6">
-      <div className="w-full max-w-2xl mx-auto text-center">
-        <motion.div style={{ opacity: labelOp }}
-          className="text-[#7aab9e] text-xs font-bold uppercase tracking-[0.4em] mb-6"
-        >
-          Breathing monitor
-        </motion.div>
-        <div className="mb-6">
-          <BreathingECG progress={p} />
-        </div>
-        <motion.div style={{ opacity: rateOp }} className="flex items-baseline justify-center gap-3 mb-8">
-          <span className="text-7xl sm:text-9xl font-bold text-white tabular-nums">44</span>
-          <div className="text-left">
-            <div className="text-white/60 text-sm">breaths</div>
-            <div className="text-white/60 text-sm">per minute</div>
-          </div>
-        </motion.div>
-        <motion.div style={{ opacity: noteOp }}
-          className="inline-flex items-center gap-2 bg-[#4a7c6f]/20 border border-[#4a7c6f]/40 rounded-full px-5 py-2"
-        >
-          <span className="w-2 h-2 rounded-full bg-[#7aab9e] inline-block animate-pulse" />
-          <span className="text-[#7aab9e] text-sm font-semibold">Normal · No alert</span>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
-
-// ─── Scene 4: SpO2 ──────────────────────────────────────────────────────────
-
-function Scene4({ p }: { p: any }) {
-  const opacity = useTransform(p, [0, 0.1, 0.85, 1], [0, 1, 1, 0]);
-  const gaugeProgress = useTransform(p, [0.1, 0.7], [0, 0.87]);
-  const [displayVal, setDisplayVal] = useState(70);
-
+function SpO2Arc() {
+  const [val, setVal] = useState(70);
   useEffect(() => {
-    const unsub = gaugeProgress.on('change', v => {
-      setDisplayVal(Math.round(70 + v * 32.2));
-    });
-    return unsub;
-  }, [gaugeProgress]);
-
-  const color = displayVal >= 95 ? '#7aab9e' : displayVal >= 90 ? '#e8957a' : '#ef4444';
-  const circumference = 2 * Math.PI * 90;
-
+    let v = 70;
+    const id = setInterval(() => {
+      v = Math.min(v + 0.7, 98);
+      setVal(Math.round(v));
+      if (v >= 98) clearInterval(id);
+    }, 40);
+    return () => clearInterval(id);
+  }, []);
+  const color = val >= 95 ? '#7aab9e' : val >= 90 ? '#e8957a' : '#ef4444';
+  const circ = 2 * Math.PI * 90;
+  const pct = (val - 70) / 28;
   return (
-    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-      <div className="text-[#e8957a] text-xs font-bold uppercase tracking-[0.4em] mb-8">SpO₂ — Blood Oxygen</div>
-
-      <div className="relative w-56 h-56 sm:w-72 sm:h-72 mb-8">
-        <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90" aria-hidden="true">
-          {/* Track */}
-          <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="12" />
-          {/* Progress */}
-          <motion.circle cx="100" cy="100" r="90" fill="none"
-            stroke={color} strokeWidth="12" strokeLinecap="round"
-            strokeDasharray={circumference}
-            style={{ strokeDashoffset: useTransform(gaugeProgress, v => circumference - v * circumference) as any }}
-            transition={{ ease: 'easeOut' }}
-          />
-        </svg>
-        {/* Centre value */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <motion.div className="text-6xl sm:text-7xl font-bold tabular-nums" style={{ color }}>
-            {displayVal}
-          </motion.div>
-          <div className="text-white/40 text-lg font-light">%</div>
-        </div>
+    <div className="relative w-52 h-52 sm:w-64 sm:h-64">
+      <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90" aria-hidden="true">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="12" />
+        <motion.circle cx="100" cy="100" r="90" fill="none"
+          stroke={color} strokeWidth="12" strokeLinecap="round"
+          strokeDasharray={circ}
+          animate={{ strokeDashoffset: circ - pct * circ }}
+          transition={{ ease: 'easeOut', duration: 0.05 }} />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <div className="text-5xl sm:text-6xl font-bold tabular-nums" style={{ color }}>{val}</div>
+        <div className="text-white/30 text-base">%  SpO₂</div>
       </div>
-
-      <motion.h2 className="text-3xl sm:text-5xl font-bold text-white mb-4 leading-tight">
-        {displayVal >= 95 ? <>Oxygen normal.<br /><span style={{ color }}>All good.</span></> :
-         displayVal >= 90 ? <>Oxygen dropping.<br /><span style={{ color }}>Watching closely.</span></> :
-         <>Oxygen low.<br /><span style={{ color }}>Alert sent.</span></>}
-      </motion.h2>
-      <p className="text-white/40 text-base sm:text-lg max-w-sm">Measured contactlessly. No clip on the foot. No rashes in the heat.</p>
-    </motion.div>
+    </div>
   );
 }
 
-// ─── Scene 5: Cry Analysis ───────────────────────────────────────────────────
+// ─── Cry analyser ────────────────────────────────────────────────────────────
 
-const CRY_BARS = [6, 14, 9, 18, 5, 20, 8, 16, 11, 19, 7, 15, 10, 17, 6, 13, 9, 20, 5, 18];
-const CRY_RESULTS = [
+const CRY_BARS_H = [6,14,9,18,5,20,8,16,11,19,7,15,10,17,6,13,9,20,5,18];
+const CRY_TYPES = [
   { label: 'Hunger', pct: 78, color: '#e8957a' },
   { label: 'Pain', pct: 12, color: '#ef4444' },
   { label: 'Tired', pct: 6, color: '#7aab9e' },
   { label: 'Discomfort', pct: 4, color: '#c0674f' },
 ];
 
-function Scene5({ p }: { p: any }) {
-  const opacity = useTransform(p, [0, 0.1, 0.85, 1], [0, 1, 1, 0]);
-  const waveOp = useTransform(p, [0.05, 0.2], [0, 1]);
-  const barsOp = useTransform(p, [0.3, 0.5], [0, 1]);
-  const resultOp = useTransform(p, [0.6, 0.75], [0, 1]);
-  const resultY = useTransform(p, [0.6, 0.75], [20, 0]);
-
+function CryScene() {
+  const [phase, setPhase] = useState<'wave'|'bars'|'result'>('wave');
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase('bars'), 1200);
+    const t2 = setTimeout(() => setPhase('result'), 2600);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
   return (
-    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-      <div className="text-[#e8957a] text-xs font-bold uppercase tracking-[0.4em] mb-8">Cry Analysis · AI</div>
-
-      {/* Sound wave */}
-      <motion.div style={{ opacity: waveOp }} className="flex items-center justify-center gap-1 h-16 mb-10">
-        {CRY_BARS.map((h, i) => (
-          <motion.div key={i}
-            className="w-1.5 sm:w-2 rounded-full"
-            style={{ background: '#e8957a' }}
-            animate={{ height: [h * 0.5, h, h * 0.6, h * 0.8, h * 0.4] }}
-            transition={{ duration: 0.8 + Math.random() * 0.4, repeat: Infinity, delay: i * 0.04, ease: 'easeInOut' }}
-          />
+    <div className="flex flex-col items-center gap-6 w-full">
+      {/* Wave */}
+      <div className="flex items-center justify-center gap-1 h-14">
+        {CRY_BARS_H.map((h, i) => (
+          <motion.div key={i} className="w-1.5 sm:w-2 rounded-full bg-[#e8957a]"
+            animate={{ height: [h * 0.4, h, h * 0.5, h * 0.8, h * 0.3] }}
+            transition={{ duration: 0.5 + (i % 5) * 0.08, repeat: Infinity, delay: i * 0.04 }} />
         ))}
-      </motion.div>
-
-      {/* Classification bars */}
-      <motion.div style={{ opacity: barsOp }} className="w-full max-w-sm mb-8 space-y-3">
-        {CRY_RESULTS.map((c, i) => (
-          <div key={c.label} className="flex items-center gap-3">
-            <span className="text-white/50 text-xs w-20 text-right">{c.label}</span>
-            <div className="flex-1 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.08)' }}>
-              <motion.div className="h-full rounded-full"
-                style={{ background: c.color }}
-                initial={{ width: 0 }}
-                animate={{ width: `${c.pct}%` }}
-                transition={{ duration: 0.8, delay: i * 0.15 + 0.2, ease: 'easeOut' }}
-              />
-            </div>
-            <span className="text-xs font-bold w-8 text-left" style={{ color: c.color }}>{c.pct}%</span>
-          </div>
-        ))}
-      </motion.div>
-
-      {/* Verdict */}
-      <motion.div style={{ opacity: resultOp, y: resultY }}>
-        <div className="text-4xl sm:text-6xl font-bold text-white mb-3">😋 Hungry.</div>
-        <p className="text-white/40 text-sm sm:text-base">Confirmed in 1.8 seconds. Before you even got up.</p>
-      </motion.div>
-    </motion.div>
+      </div>
+      {/* Bars */}
+      <AnimatePresence>
+        {(phase === 'bars' || phase === 'result') && (
+          <motion.div className="w-full max-w-xs space-y-3"
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            {CRY_TYPES.map((c, i) => (
+              <div key={c.label} className="flex items-center gap-3">
+                <span className="text-white/40 text-xs w-20 text-right">{c.label}</span>
+                <div className="flex-1 h-2 rounded-full bg-white/10">
+                  <motion.div className="h-full rounded-full"
+                    style={{ background: c.color }}
+                    initial={{ width: 0 }} animate={{ width: `${c.pct}%` }}
+                    transition={{ duration: 0.7, delay: i * 0.15, ease: 'easeOut' }} />
+                </div>
+                <span className="text-xs font-bold w-8" style={{ color: c.color }}>{c.pct}%</span>
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Result */}
+      <AnimatePresence>
+        {phase === 'result' && (
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+            className="text-center">
+            <div className="text-4xl sm:text-5xl font-bold text-white">😋 Hungry.</div>
+            <p className="text-white/30 text-sm mt-2">Confirmed in 1.8 seconds.</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
-// ─── Scene 6: Peace ──────────────────────────────────────────────────────────
+// ─── Scene definitions ───────────────────────────────────────────────────────
 
-function Scene6({ p }: { p: any }) {
-  const opacity = useTransform(p, [0, 0.15], [0, 1]);
-  const headlineOp = useTransform(p, [0.05, 0.25], [0, 1]);
-  const headlineY = useTransform(p, [0.05, 0.25], [40, 0]);
-  const statsOp = useTransform(p, [0.25, 0.45], [0, 1]);
-  const ctaOp = useTransform(p, [0.45, 0.65], [0, 1]);
-  const ctaY = useTransform(p, [0.45, 0.65], [30, 0]);
-
+function Scene1() {
   return (
-    <motion.div style={{ opacity }} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-      {/* Soft glow */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-        <div className="w-96 h-96 rounded-full" style={{ background: 'radial-gradient(circle, rgba(74,124,111,0.15) 0%, transparent 70%)' }} />
-      </div>
-
-      <motion.div style={{ opacity: headlineOp, y: headlineY }} className="relative z-10 mb-10">
-        <motion.div className="text-6xl sm:text-8xl mb-6"
-          animate={{ rotate: [0, 5, -5, 0] }} transition={{ duration: 4, repeat: Infinity, repeatDelay: 2 }}
-        >
-          🌙
-        </motion.div>
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
-          Sleep tonight.<br />
-          <span style={{ color: '#7aab9e' }}>Really.</span>
-        </h2>
-        <p className="text-white/40 text-base sm:text-xl max-w-md mx-auto">
-          Anvaya watches breathing, oxygen, cries, and temperature — all night, every night.
+    <div className="flex flex-col items-center justify-center text-center h-full px-6">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+        <div className="text-7xl sm:text-[9rem] lg:text-[11rem] font-bold text-white tabular-nums leading-none">
+          2:47
+        </div>
+        <div className="text-white/30 text-lg tracking-[0.5em] uppercase mt-1 mb-10">AM</div>
+      </motion.div>
+      <motion.svg viewBox="0 0 240 40" className="w-56 mb-8"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
+        <motion.path d="M0 20 L50 20 L65 5 L75 35 L85 10 L95 30 L105 20 L240 20"
+          fill="none" stroke="#e8957a" strokeWidth="2" strokeLinecap="round"
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+          transition={{ duration: 1.2, delay: 0.8 }} />
+      </motion.svg>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
+        <p className="text-white/40 text-lg sm:text-2xl font-light mb-3">Every parent knows this moment.</p>
+        <p className="text-white text-2xl sm:text-4xl font-bold leading-tight">
+          "Is my baby<br />still breathing?"
         </p>
       </motion.div>
+    </div>
+  );
+}
 
-      {/* Stats */}
-      <motion.div style={{ opacity: statsOp }} className="flex gap-8 sm:gap-16 mb-10 relative z-10">
-        {[['73', 'families monitoring'], ['0', 'wires or wearables'], ['₹8,999', 'starting price']].map(([val, label]) => (
-          <div key={val} className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-white">{val}</div>
-            <div className="text-white/40 text-xs mt-1 max-w-[80px]">{label}</div>
-          </div>
-        ))}
+function Scene2() {
+  return (
+    <div className="flex flex-col items-center justify-center text-center h-full px-6">
+      <motion.div className="w-52 h-52 sm:w-64 sm:h-64 mb-6"
+        initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7 }}>
+        <RadarRings />
       </motion.div>
+      <motion.h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
+        initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+        Anvaya watches.<br />
+        <span style={{ color: '#7aab9e' }}>So you don't have to.</span>
+      </motion.h2>
+      <motion.p className="text-white/40 text-base sm:text-xl max-w-md"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
+        Low-power radar. From across the room. Nothing on your baby.
+      </motion.p>
+    </div>
+  );
+}
 
-      {/* CTA */}
-      <motion.div style={{ opacity: ctaOp, y: ctaY }} className="flex flex-col sm:flex-row gap-3 relative z-10">
+function Scene3() {
+  return (
+    <div className="flex flex-col items-center justify-center text-center h-full px-6">
+      <motion.div className="text-[#7aab9e] text-xs font-bold uppercase tracking-[0.4em] mb-6"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
+        Breathing monitor
+      </motion.div>
+      <motion.div className="w-full max-w-xl mb-6"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+        <BreathingECG />
+      </motion.div>
+      <motion.div className="flex items-baseline gap-3 mb-6"
+        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
+        <span className="text-7xl sm:text-9xl font-bold text-white tabular-nums">44</span>
+        <div className="text-left">
+          <div className="text-white/40 text-sm">breaths</div>
+          <div className="text-white/40 text-sm">per minute</div>
+        </div>
+      </motion.div>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}
+        className="inline-flex items-center gap-2 bg-[#4a7c6f]/20 border border-[#4a7c6f]/40 rounded-full px-5 py-2">
+        <span className="w-2 h-2 rounded-full bg-[#7aab9e] inline-block animate-pulse" />
+        <span className="text-[#7aab9e] text-sm font-semibold">Normal · No alert</span>
+      </motion.div>
+    </div>
+  );
+}
+
+function Scene4() {
+  return (
+    <div className="flex flex-col items-center justify-center text-center h-full px-6">
+      <motion.div className="text-[#e8957a] text-xs font-bold uppercase tracking-[0.4em] mb-6"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
+        SpO₂ — Blood Oxygen
+      </motion.div>
+      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}>
+        <SpO2Arc />
+      </motion.div>
+      <motion.h2 className="text-3xl sm:text-5xl font-bold text-white mt-6 mb-3 leading-tight"
+        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
+        Oxygen levels.<br /><span style={{ color: '#7aab9e' }}>All night.</span>
+      </motion.h2>
+      <motion.p className="text-white/30 text-sm sm:text-base max-w-sm"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
+        Contactlessly. No clip on the foot. No rashes in India's heat.
+      </motion.p>
+    </div>
+  );
+}
+
+function Scene5() {
+  return (
+    <div className="flex flex-col items-center justify-center text-center h-full px-6">
+      <motion.div className="text-[#e8957a] text-xs font-bold uppercase tracking-[0.4em] mb-6"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
+        Cry Analysis · AI
+      </motion.div>
+      <div className="w-full max-w-sm">
+        <CryScene />
+      </div>
+    </div>
+  );
+}
+
+function Scene6() {
+  return (
+    <div className="flex flex-col items-center justify-center text-center h-full px-6 relative">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+        <div className="w-96 h-96 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(74,124,111,0.15) 0%, transparent 70%)' }} />
+      </div>
+      <motion.div className="text-6xl sm:text-8xl mb-5"
+        initial={{ opacity: 0, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}
+        animate2={{ rotate: [0, 8, -8, 0] as any }}
+      >
+        🌙
+      </motion.div>
+      <motion.h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-5"
+        initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+        Sleep tonight.<br /><span style={{ color: '#7aab9e' }}>Really.</span>
+      </motion.h2>
+      <motion.p className="text-white/40 text-base sm:text-xl max-w-md mb-8"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+        Breathing · SpO₂ · Cries · Sleep · Temperature — all night, every night.
+      </motion.p>
+      <motion.div className="flex flex-col sm:flex-row gap-3"
+        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}>
         <Button asChild size="lg" className="font-bold gap-2 text-white border-0"
-          style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 32px rgba(232,149,122,0.35)' }}
-        >
+          style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 32px rgba(232,149,122,0.35)' }}>
           <Link href="/early-access">
             <MessageCircle className="w-4 h-4" />
             Reserve your pod — No payment now
           </Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="font-bold border-white/20 text-white hover:bg-white/10">
-          <Link href="/anvaya">See all models <ArrowRight className="w-4 h-4 ml-1" /></Link>
+        <Button asChild variant="outline" size="lg"
+          className="font-bold gap-2 border-white/20 text-white bg-transparent hover:bg-white/10">
+          <Link href="/anvaya">See all models <ArrowRight className="w-4 h-4" /></Link>
         </Button>
       </motion.div>
-    </motion.div>
-  );
-}
-
-// ─── Scene background colours ────────────────────────────────────────────────
-
-const BG_COLORS = [
-  '#0a0f0d',  // scene 1: near-black
-  '#0d1a16',  // scene 2: deep forest
-  '#091210',  // scene 3: darker
-  '#120a0a',  // scene 4: deep maroon tint
-  '#0f0a0a',  // scene 5: warm dark
-  '#0d1a16',  // scene 6: back to forest
-];
-
-// ─── Chapter indicator ────────────────────────────────────────────────────────
-
-const CHAPTERS = ['2:47 AM', 'Radar', 'Breathing', 'Oxygen', 'Cries', 'Peace'];
-
-function ChapterDots({ activeScene }: { activeScene: number }) {
-  return (
-    <div className="fixed right-5 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
-      {CHAPTERS.map((ch, i) => (
-        <div key={ch} className="flex items-center gap-2 group">
-          <motion.span
-            className="text-[10px] text-white/40 font-medium hidden sm:block text-right"
-            animate={{ opacity: i === activeScene ? 1 : 0 }}
-          >
-            {ch}
-          </motion.span>
-          <motion.div
-            className="rounded-full"
-            animate={{
-              width: i === activeScene ? 20 : 6,
-              height: 6,
-              background: i === activeScene ? '#4a7c6f' : 'rgba(255,255,255,0.2)',
-            }}
-            transition={{ duration: 0.3 }}
-          />
-        </div>
-      ))}
     </div>
   );
 }
 
-// ─── Post-cinema detail sections ─────────────────────────────────────────────
+const SCENE_COMPONENTS = [Scene1, Scene2, Scene3, Scene4, Scene5, Scene6];
+
+// ─── Progress bar ────────────────────────────────────────────────────────────
+
+function ProgressBar({ isPlaying, duration, onComplete }: { isPlaying: boolean; duration: number; onComplete: () => void }) {
+  const progress = useMotionValue(0);
+  const animRef = useRef<any>(null);
+
+  useEffect(() => {
+    progress.set(0);
+    if (!isPlaying) return;
+    animRef.current = animate(progress, 1, {
+      duration: duration / 1000,
+      ease: 'linear',
+      onComplete,
+    });
+    return () => animRef.current?.stop();
+  }, [isPlaying, duration]);
+
+  return (
+    <div className="h-0.5 bg-white/10 rounded-full overflow-hidden">
+      <motion.div className="h-full bg-[#4a7c6f] rounded-full" style={{ scaleX: progress, originX: 0 }} />
+    </div>
+  );
+}
+
+// ─── Detail section ──────────────────────────────────────────────────────────
 
 function DetailSection() {
   return (
     <div className="bg-[#faf8f5]">
-      {/* Pull quote bridge */}
       <div className="bg-[#0d1a16] py-16 text-center px-6">
-        <p className="text-white/30 text-sm uppercase tracking-[0.4em] mb-4">What parents say</p>
+        <p className="text-white/30 text-xs uppercase tracking-[0.4em] mb-4">What parents say</p>
         <blockquote className="text-white text-xl sm:text-3xl font-light max-w-2xl mx-auto leading-relaxed italic">
-          "I checked on her once in the whole night.<br className="hidden sm:block" />
-          That's the first time in four months."
+          "I checked on her once in the whole night. That's the first time in four months."
         </blockquote>
         <p className="text-white/30 text-sm mt-5">— Priya R., Bengaluru · Anvaya SENSE</p>
       </div>
 
-      {/* Features grid */}
       <div className="container mx-auto px-4 py-20 max-w-5xl">
         <p className="text-center text-xs font-bold uppercase tracking-[0.3em] text-primary mb-3">What's inside</p>
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-14">Six sensors. One device.</h2>
@@ -434,11 +362,10 @@ function DetailSection() {
             { icon: '🌡️', title: 'Room Temp', desc: 'Critical for India summers. Alert when room exceeds 26°C during sleep.' },
           ].map((f, i) => (
             <motion.div key={f.title}
-              className="bg-white rounded-2xl border border-[#e2dbd4] p-6 hover:border-primary/30 transition-colors"
+              className="bg-white rounded-2xl border border-[#e2dbd4] p-6"
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-              whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(74,124,111,0.1)' }}
-            >
+              whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(74,124,111,0.1)' }}>
               <div className="text-3xl mb-3">{f.icon}</div>
               <div className="font-bold text-foreground mb-2">{f.title}</div>
               <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
@@ -447,7 +374,6 @@ function DetailSection() {
         </div>
       </div>
 
-      {/* India-specific strip */}
       <div className="bg-primary/5 border-y border-primary/15 py-14">
         <div className="container mx-auto px-4 max-w-4xl">
           <p className="text-center text-xs font-bold uppercase tracking-[0.3em] text-primary mb-10">Built for India</p>
@@ -468,13 +394,11 @@ function DetailSection() {
         </div>
       </div>
 
-      {/* Final CTA */}
       <div className="py-24 text-center px-6">
         <p className="text-muted-foreground text-sm mb-2">27 founding family spots remaining</p>
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">Ready to sleep tonight?</h2>
         <Button asChild size="lg" className="text-white font-bold gap-2"
-          style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 24px rgba(232,149,122,0.4)' }}
-        >
+          style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 24px rgba(232,149,122,0.4)' }}>
           <Link href="/early-access">
             <MessageCircle className="w-4 h-4" />
             Reserve your Anvaya pod — No payment now
@@ -489,77 +413,100 @@ function DetailSection() {
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function HowItWorksPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
+  const [scene, setScene] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const [key, setKey] = useState(0);
 
-  // 6 scenes across 0→1 scroll progress
-  const sceneSize = 1 / 6;
-  const p1 = useScrollScene(scrollYProgress, 0 * sceneSize, 1 * sceneSize);
-  const p2 = useScrollScene(scrollYProgress, 1 * sceneSize, 2 * sceneSize);
-  const p3 = useScrollScene(scrollYProgress, 2 * sceneSize, 3 * sceneSize);
-  const p4 = useScrollScene(scrollYProgress, 3 * sceneSize, 4 * sceneSize);
-  const p5 = useScrollScene(scrollYProgress, 4 * sceneSize, 5 * sceneSize);
-  const p6 = useScrollScene(scrollYProgress, 5 * sceneSize, 6 * sceneSize);
+  const goTo = useCallback((i: number) => {
+    setScene(i);
+    setKey(k => k + 1);
+    setPlaying(true);
+  }, []);
 
-  // Active scene for chapter dots
-  const [activeScene, setActiveScene] = useState(0);
-  useEffect(() => {
-    return scrollYProgress.on('change', v => {
-      setActiveScene(Math.min(5, Math.floor(v * 6)));
+  const next = useCallback(() => {
+    setScene(s => {
+      const n = (s + 1) % SCENES.length;
+      setKey(k => k + 1);
+      return n;
     });
-  }, [scrollYProgress]);
+    setPlaying(true);
+  }, []);
 
-  // Background colour interpolation
-  const bgColor = useTransform(
-    scrollYProgress,
-    [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
-    BG_COLORS
-  );
+  const togglePlay = useCallback(() => {
+    setPlaying(p => !p);
+    if (!playing) setKey(k => k + 1);
+  }, [playing]);
+
+  const SceneComponent = SCENE_COMPONENTS[scene];
 
   return (
     <>
-      {/* ── Cinematic scroll section ── */}
-      <div ref={containerRef} style={{ height: '600vh' }} className="relative">
-        <motion.div
-          className="sticky top-0 h-screen w-full overflow-hidden"
-          style={{ backgroundColor: bgColor }}
-        >
-          {/* Grain texture overlay */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-            style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")', backgroundSize: '200px' }}
-            aria-hidden="true"
-          />
+      {/* ── Cinematic player ── */}
+      <div className="relative h-screen w-full overflow-hidden" style={{ background: BG[scene] }}>
 
-          {/* Scenes — layered, each fades in/out */}
-          <Scene1 p={p1} />
-          <Scene2 p={p2} />
-          <Scene3 p={p3} />
-          <Scene4 p={p4} />
-          <Scene5 p={p5} />
-          <Scene6 p={p6} />
+        {/* Film grain */}
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none mix-blend-overlay" aria-hidden="true"
+          style={{ backgroundImage: `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4t5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92ZBsiLJEaR0dPe7gfz2akv4Ynr7hTDVEyWMYDIxuLKGjP+OPlkx6f7Y0VNy/fGJCdqSRXnkZtKFkLZFJV3FuqW/9aJoUu9yGOXrjwNe7OZMzUiV9aPqTHxSY5fxXFLz7VXDXN0XvW+d7AJ6VxMHrT2vQ2U5xtVX5lh7KDsLNUiXBb+GFMVzDx9aIpYsSnIbkf47HJfPVWoUF1kqXUKJFqb2lXmTsq/a8a+RZi7DqDHtVWcIj0xI//M8SrT0sFDHDj24r7cRLfWc4UQpb7bFnKuQJhXSmRFmHHlq1cOq5CZAqaqEJaORNagmACEBLEAb7+BFoO0Y8l/9+0HF3t14SYVdEI01INJczikAoWE9oDJ4MkXmEiL6nPf/8nFPnFRMz5RGXNkK/QBY5L6jbQ==")` }} />
 
-          {/* Chapter dots nav */}
-          <ChapterDots activeScene={activeScene} />
-
-          {/* Scroll cue (scene 1 only) */}
-          <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 text-xs flex flex-col items-center gap-1"
-            animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity }}
-            style={{ opacity: useTransform(p1, [0, 0.3, 0.7, 1], [0, 1, 1, 0]) }}
-          >
-            scroll
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
-              <rect x="5" y="1" width="6" height="10" rx="3" stroke="currentColor" strokeWidth="1.5" />
-              <motion.rect x="7" y="3" width="2" height="3" rx="1" fill="currentColor"
-                animate={{ y: [0, 3, 0] }} transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <path d="M2 15 L8 19 L14 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
+        {/* Scene */}
+        <AnimatePresence mode="wait">
+          <motion.div key={scene} className="absolute inset-0"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}>
+            <SceneComponent />
           </motion.div>
-        </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom HUD */}
+        <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-8"
+          style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }}>
+
+          {/* Progress bars */}
+          <div className="flex gap-1.5 mb-4">
+            {SCENES.map((_, i) => (
+              <button key={i} className="flex-1 group" onClick={() => goTo(i)} aria-label={`Go to scene ${i + 1}`}>
+                {i === scene ? (
+                  <ProgressBar key={key} isPlaying={playing} duration={SCENE_DURATION} onComplete={next} />
+                ) : (
+                  <div className={`h-0.5 rounded-full transition-colors ${i < scene ? 'bg-[#4a7c6f]' : 'bg-white/20'}`} />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Controls row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <button onClick={togglePlay}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                aria-label={playing ? 'Pause' : 'Play'}>
+                {playing
+                  ? <Pause className="w-3.5 h-3.5 text-white" />
+                  : <Play className="w-3.5 h-3.5 text-white ml-0.5" />}
+              </button>
+              <span className="text-white/50 text-xs font-medium">{SCENES[scene]}</span>
+            </div>
+            <div className="text-white/30 text-xs">{scene + 1} / {SCENES.length}</div>
+          </div>
+        </div>
+
+        {/* Chapter dots — right side */}
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2.5">
+          {SCENES.map((label, i) => (
+            <button key={i} onClick={() => goTo(i)} aria-label={label}
+              className="flex items-center gap-2 group">
+              <span className="text-[10px] text-white/30 hidden sm:block group-hover:text-white/60 transition-colors">
+                {i === scene ? label : ''}
+              </span>
+              <motion.div className="rounded-full"
+                animate={{ width: i === scene ? 18 : 5, height: 5, background: i === scene ? '#4a7c6f' : 'rgba(255,255,255,0.2)' }}
+                transition={{ duration: 0.25 }} />
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* ── Detail content below the film ── */}
+      {/* ── Detail content ── */}
       <DetailSection />
     </>
   );
