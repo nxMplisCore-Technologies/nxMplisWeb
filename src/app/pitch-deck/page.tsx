@@ -94,6 +94,7 @@ export default function PitchDeckPage() {
   };
 
   return (
+    <div className="bg-[#faf8f5] min-h-screen">
     <div className="container mx-auto px-4 py-16 sm:py-24">
       <header className="text-center max-w-4xl mx-auto mb-16">
         <h1 className="font-headline text-4xl md:text-5xl font-bold mb-4">
@@ -168,6 +169,7 @@ export default function PitchDeckPage() {
                 </CardContent>
             </Card>
         )}
+    </div>
     </div>
   );
 }
