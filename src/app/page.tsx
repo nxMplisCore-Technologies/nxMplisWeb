@@ -440,15 +440,23 @@ export default function Home() {
 
       {/* ════════════ HERO ════════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden mesh-hero">
-        {/* Ambient glow orbs */}
-        <div className="glow-orb w-[500px] h-[500px] -left-40 -top-20 bg-primary/20" style={{ animationDelay: '0s' }} />
-        <div className="glow-orb w-[400px] h-[400px] -right-20 top-10 bg-accent/15" style={{ animationDelay: '3s' }} />
-        <div className="glow-orb w-[300px] h-[300px] left-1/2 bottom-0 bg-primary/10" style={{ animationDelay: '6s' }} />
+        {/* Ambient glow orbs — slightly stronger */}
+        <div className="glow-orb w-[560px] h-[560px] -left-40 -top-20 bg-primary/25" style={{ animationDelay: '0s' }} />
+        <div className="glow-orb w-[440px] h-[440px] -right-20 top-10 bg-accent/20" style={{ animationDelay: '3s' }} />
+        <div className="glow-orb w-[340px] h-[340px] left-1/2 bottom-0 bg-primary/12" style={{ animationDelay: '6s' }} />
+        {/* Subtle dot grid */}
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,124,111,0.10) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
         {/* Subtle grain */}
-        <div className="absolute inset-0 noise pointer-events-none opacity-40" />
+        <div className="absolute inset-0 noise pointer-events-none opacity-30" />
         {/* Decorative rings */}
         <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border border-primary/8 pointer-events-none" />
         <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border border-primary/5 pointer-events-none" />
+        {/* Scroll indicator */}
+        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none"
+          animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-primary/40">Scroll</span>
+          <ChevronDown className="w-4 h-4 text-primary/35" />
+        </motion.div>
 
         <div className="container mx-auto px-4 py-28 lg:py-16">
           <div className="grid lg:grid-cols-[1fr_300px_1fr] gap-10 xl:gap-14 items-center">
@@ -467,9 +475,16 @@ export default function Home() {
                 </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
                 Your Baby Breathes.<br />
-                <span className="text-gradient">You Sleep.</span>
+                <span style={{
+                  background: 'linear-gradient(120deg, #2d5c52 0%, #4a7c6f 30%, #7aab9e 50%, #e8957a 70%, #4a7c6f 90%, #2d5c52 100%)',
+                  backgroundSize: '200% auto',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  animation: 'shimmer-sweep 4s linear infinite',
+                }}>You Sleep.</span>
               </h1>
 
               {/* Star rating social proof */}
@@ -487,23 +502,27 @@ export default function Home() {
               </p>
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
-                  <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-7 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
-                    Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
+                  <Button size="lg" className="gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
+                    style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)', transition: 'box-shadow .2s ease, transform .2s ease' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 36px rgba(232,149,122,0.65)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px rgba(232,149,122,0.50)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
+                  >
+                    <Sparkles className="w-4 h-4" />Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
                   </Button>
                 </LeadModalTrigger>
-                <Button asChild size="lg" variant="outline" className="border-primary/25 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass">
+                <Button asChild size="lg" variant="outline" className="border-primary/30 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass font-semibold">
                   <Link href="/anvaya">Explore Products</Link>
                 </Button>
               </div>
-              {/* Risk-reduction microcopy */}
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground animate-fade-up delay-5">
+              {/* Trust pills */}
+              <div className="flex flex-wrap items-center gap-2 animate-fade-up delay-5">
                 {[
                   { icon: Shield, text: 'No payment now' },
                   { icon: CheckCircle, text: '30-day guarantee' },
-                  { icon: Zap, text: 'Free shipping' },
-                ].map(({ icon: Icon, text }) => (
-                  <span key={text} className="flex items-center gap-1.5">
-                    <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{text}
+                  { icon: Zap, text: 'Free shipping across India' },
+                ].map(({ icon: Icon, text }, i) => (
+                  <span key={text} className="trust-pill" style={{ animationDelay: `${0.5 + i * 0.1}s` }}>
+                    <Icon className="w-3 h-3 shrink-0" />{text}
                   </span>
                 ))}
               </div>
