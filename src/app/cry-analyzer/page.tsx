@@ -162,7 +162,7 @@ export default function CryAnalyzerPage() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col"
-      style={{ background: 'linear-gradient(175deg,#041009 0%,#061410 55%,#050e09 100%)' }}>
+      style={{ background: 'linear-gradient(175deg,#080d1a 0%,#0d1428 55%,#090e1c 100%)' }}>
 
       {/* Brand ambient glow orbs */}
       <div className="absolute -left-40 -top-20 w-[500px] h-[500px] rounded-full pointer-events-none"
@@ -221,7 +221,7 @@ export default function CryAnalyzerPage() {
         {/* ── IDLE CARD ── */}
         {state === 'idle' && (
           <div className="w-full max-w-md rounded-3xl overflow-hidden shadow-2xl"
-            style={{ background: 'rgba(10,26,20,0.75)', backdropFilter: 'blur(24px)', border: '1px solid rgba(74,124,111,0.3)' }}>
+            style={{ background: 'rgba(15,23,42,0.78)', backdropFilter: 'blur(24px)', border: '1px solid rgba(74,124,111,0.3)' }}>
             {/* Tabs */}
             <div className="flex gap-1 p-3" style={{ background: 'rgba(74,124,111,0.08)' }}>
               {(['upload', 'record'] as const).map(t => (
@@ -339,13 +339,13 @@ export default function CryAnalyzerPage() {
         {/* ── PROCESSING ── */}
         {isWorking && (
           <div className="w-full max-w-md rounded-3xl p-10 text-center shadow-2xl"
-            style={{ background: 'rgba(10,26,20,0.75)', backdropFilter: 'blur(24px)', border: '1px solid rgba(74,124,111,0.3)' }}>
+            style={{ background: 'rgba(15,23,42,0.78)', backdropFilter: 'blur(24px)', border: '1px solid rgba(74,124,111,0.3)' }}>
             {/* Spinning conic orb */}
             <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
               <div className="absolute inset-0 rounded-full animate-spin"
                 style={{ background: 'conic-gradient(from 0deg, transparent 0%, #4a7c6f 30%, transparent 60%)' }} />
               <div className="w-14 h-14 rounded-full flex items-center justify-center"
-                style={{ background: 'rgba(4,16,9,0.9)' }}>
+                style={{ background: 'rgba(8,13,26,0.92)' }}>
                 <span className="text-2xl">{state === 'uploading' ? '📤' : '🧠'}</span>
               </div>
             </div>
@@ -391,7 +391,7 @@ export default function CryAnalyzerPage() {
                         </div>
                       </div>
                       {/* Advice */}
-                      <div className="px-6 py-4" style={{ background: 'rgba(10,26,20,0.8)', backdropFilter: 'blur(24px)', borderTop: `1px solid ${meta.color}20` }}>
+                      <div className="px-6 py-4" style={{ background: 'rgba(15,23,42,0.82)', backdropFilter: 'blur(24px)', borderTop: `1px solid ${meta.color}20` }}>
                         <div className="flex items-start gap-2">
                           <span className="text-base shrink-0 mt-0.5">💡</span>
                           <p className="text-white/75 text-sm leading-relaxed">{meta.advice}</p>
@@ -403,7 +403,7 @@ export default function CryAnalyzerPage() {
 
                 {/* Probabilities */}
                 <div className="rounded-3xl p-5 shadow-xl"
-                  style={{ background: 'rgba(10,26,20,0.75)', backdropFilter: 'blur(24px)', border: '1px solid rgba(74,124,111,0.3)' }}>
+                  style={{ background: 'rgba(15,23,42,0.78)', backdropFilter: 'blur(24px)', border: '1px solid rgba(74,124,111,0.3)' }}>
                   <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-3">All probabilities</p>
                   <div className="space-y-3">
                     {normToHundred(result.probabilities).map(([cls, prob]) => {
