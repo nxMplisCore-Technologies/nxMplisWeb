@@ -42,7 +42,7 @@ function Reveal({ children, variant = fadeUp, custom = 0, className = '' }: {
 }
 
 const team = [
-  { initials: 'DS', name: 'Deepak Singh', role: 'Founder & CEO', bg: '#4a7c6f' },
+  { initials: 'AS', name: 'Anvaya Founder', role: 'Founder & CEO', bg: '#4a7c6f' },
   { initials: 'RK', name: 'Research Lead', role: 'Head of Sensing Technology', bg: '#e8957a' },
   { initials: 'AM', name: 'AI & ML Lead', role: 'Head of AI & Signal Processing', bg: '#7aab9e' },
   { initials: 'PV', name: 'Design Lead', role: 'Head of Product Design', bg: '#c17a5e' },
@@ -65,12 +65,11 @@ function PersonSchema() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Person',
-      '@id': 'https://nxmplis.com/about#deepak-singh',
-      name: 'Deepak Singh',
+      '@id': 'https://nxmplis.com/about#anvaya-team',
+      name: 'Anvaya Smart Team',
       url: 'https://nxmplis.com/about',
-      jobTitle: 'Founder & CEO',
-      description: 'Engineer and parent. Built Anvaya Smart after experiencing first-hand the anxiety of monitoring a newborn. 7+ years in AI sensing systems. IIT Hyderabad alumni.',
-      alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad', url: 'https://iith.ac.in' },
+      jobTitle: 'Founders & Researchers',
+      description: 'A team of engineers and parents who built Anvaya Smart after experiencing first-hand the anxiety of monitoring a newborn. 7+ years in AI sensing systems. IIT research partnerships.',
       worksFor: { '@id': 'https://nxmplis.com/#organization' },
       knowsAbout: ['Radar Sensing', 'AI Signal Processing', 'Infant Wellness Monitoring', 'Baby Health Technology', 'Contactless Vital Sign Detection'],
       sameAs: ['https://www.linkedin.com/company/nxmliscore'],

@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, ArrowRight, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, ArrowRight, MessageCircle, CheckCircle2 } from 'lucide-react';
 
 const formSchema = z.object({
   fullName: z.string().min(2, 'Please enter your full name'),
@@ -20,7 +20,6 @@ const formSchema = z.object({
 });
 
 const contacts = [
-  { icon: Phone, label: 'Call / WhatsApp', value: '+91 79874 49366', href: 'tel:+917987449366' },
   { icon: MessageCircle, label: 'WhatsApp', value: 'Chat on WhatsApp →', href: 'https://wa.me/917987449366' },
   { icon: Mail, label: 'Email', value: 'admin@nxmplis.com', href: 'mailto:admin@nxmplis.com' },
   { icon: MapPin, label: 'Based in', value: 'Hyderabad, India', href: null },
@@ -61,11 +60,11 @@ export default function ContactPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">We'd love to hear from you.</h1>
           <p className="text-lg text-muted-foreground">Whether you're a parent, investor, partner, or just curious — reach out.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
-            <a href="tel:+917987449366" className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-colors text-sm">
-              <Phone className="w-4 h-4" /> +91 79874 49366
-            </a>
-            <a href="https://wa.me/917987449366" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-white border border-primary text-primary px-5 py-2.5 rounded-full font-semibold hover:bg-primary/5 transition-colors text-sm">
+            <a href="https://wa.me/917987449366" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-colors text-sm">
               <MessageCircle className="w-4 h-4" /> WhatsApp Us
+            </a>
+            <a href="mailto:admin@nxmplis.com" className="inline-flex items-center gap-2 bg-white border border-primary text-primary px-5 py-2.5 rounded-full font-semibold hover:bg-primary/5 transition-colors text-sm">
+              <Mail className="w-4 h-4" /> Email Us
             </a>
           </div>
         </div>
@@ -80,7 +79,7 @@ export default function ContactPage() {
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <CheckCircle2 className="w-16 h-16 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Message received!</h3>
-                <p className="text-muted-foreground mb-6">We'll reply within 24 hours. You can also reach us directly at <a href="tel:+917987449366" className="text-primary font-semibold">+91 79874 49366</a>.</p>
+                <p className="text-muted-foreground mb-6">We'll reply within 24 hours. You can also <a href="https://wa.me/917987449366" className="text-primary font-semibold">WhatsApp us</a> or email <a href="mailto:admin@nxmplis.com" className="text-primary font-semibold">admin@nxmplis.com</a>.</p>
                 <Button variant="outline" onClick={() => { setSubmitted(false); form.reset(); }}>Send another message</Button>
               </div>
             ) : (

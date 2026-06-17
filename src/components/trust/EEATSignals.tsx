@@ -6,18 +6,18 @@ import { Shield, Award, BookOpen, Users, CheckCircle, ExternalLink } from 'lucid
 export function AuthorBio({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`flex items-start gap-4 ${compact ? 'p-4 bg-[#faf8f5] rounded-xl border border-[#e2dbd4]' : 'p-6 bg-white border border-[#e2dbd4] rounded-2xl shadow-sm'}`} itemScope itemType="https://schema.org/Person">
-      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 font-bold text-primary text-lg" aria-hidden="true">DS</div>
+      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 font-bold text-primary text-lg" aria-hidden="true">AS</div>
       <div className="flex-1">
-        <div className="font-bold text-sm" itemProp="name">Deepak Singh</div>
-        <div className="text-xs text-muted-foreground" itemProp="jobTitle">Founder, Nxmliscore · IIT Alumni</div>
+        <div className="font-bold text-sm" itemProp="name">Anvaya Smart Team</div>
+        <div className="text-xs text-muted-foreground" itemProp="jobTitle">Baby Wellness Researchers · IIT Research Partners</div>
         {!compact && (
           <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed" itemProp="description">
-            Engineer and parent. Built Anvaya Smart after experiencing first-hand the anxiety of monitoring a newborn. 7+ years in AI sensing systems. IIT Hyderabad alumni.
+            A team of engineers and parents who built Anvaya Smart after experiencing first-hand the anxiety of monitoring a newborn. 7+ years in AI sensing systems. IIT research partnerships.
           </p>
         )}
         <div className="flex items-center gap-3 mt-2">
-          <span className="text-[10px] bg-primary/8 text-primary px-2 py-0.5 rounded-full font-medium border border-primary/15">IIT Alumni</span>
-          <span className="text-[10px] bg-[#fdf0ea] text-[#e8957a] px-2 py-0.5 rounded-full font-medium border border-[#f5c4a8]">AI Sensing Expert</span>
+          <span className="text-[10px] bg-primary/8 text-primary px-2 py-0.5 rounded-full font-medium border border-primary/15">IIT Research</span>
+          <span className="text-[10px] bg-[#fdf0ea] text-[#e8957a] px-2 py-0.5 rounded-full font-medium border border-[#f5c4a8]">AI Sensing Experts</span>
         </div>
       </div>
     </div>

@@ -108,7 +108,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
         image="https://nxmplis.com/anvaya-nursery.jpg"
         datePublished="2025-06-01"
         dateModified="2026-06-17"
-        author="Deepak Singh"
+        author="Anvaya Smart Team"
       />
       <SpeakableSchema cssSelectors={['h1', '.ai-snippet', 'h2']} />
 
