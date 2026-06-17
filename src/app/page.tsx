@@ -544,40 +544,41 @@ export default function Home() {
 
             {/* LEFT copy */}
             <div ref={heroRef}>
-              {/* Live family counter badge */}
-              <div className="flex flex-wrap gap-3 mb-7">
-                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm animate-fade-up backdrop-blur-sm">
-                  <Sparkles className="w-3 h-3 animate-spin-slow" />
-                  Early Access Open — Founding 100 families get exclusive pricing
+
+              {/* India-first badge */}
+              <div className="flex flex-wrap gap-2 mb-6 animate-fade-up">
+                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm backdrop-blur-sm">
+                  🇮🇳 India&apos;s First AI Baby Wellness Pod
+                </div>
+                <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-full px-3 py-1.5 text-xs text-amber-700 font-semibold shadow-sm">
+                  <Sparkles className="w-3 h-3" /> Founding 100 families · Early access open
                 </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-bold tracking-tight leading-[1.05] mb-5 animate-fade-up delay-1">
-                Your Baby Breathes.<br />
+              {/* Headline */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05] mb-4 animate-fade-up delay-1">
+                Every breath.<br />
+                Every cry.<br />
                 <span style={{
-                  background: 'linear-gradient(120deg, #2d5c52 0%, #4a7c6f 30%, #7aab9e 50%, #e8957a 70%, #4a7c6f 90%, #2d5c52 100%)',
+                  background: 'linear-gradient(120deg,#2d5c52 0%,#4a7c6f 25%,#7aab9e 45%,#e8957a 65%,#4a7c6f 85%,#2d5c52 100%)',
                   backgroundSize: '200% auto',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                   animation: 'shimmer-sweep 4s linear infinite',
-                }}>You Sleep.</span>
+                }}>Every night — understood.</span>
               </h1>
 
-              {/* Star rating social proof */}
-              <div className="flex items-center gap-3 mb-4 animate-fade-up delay-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 star-filled fill-amber-400" />)}
-                </div>
-                <span className="text-sm font-bold text-foreground">4.9/5</span>
-                <span className="text-sm text-muted-foreground">· Loved by our pilot families</span>
-                <span className="hidden sm:inline text-sm text-muted-foreground">· Paediatrician-recommended</span>
-              </div>
-
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
-                Contactless AI monitoring — breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+              {/* Emotional sub-headline */}
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-2 max-w-lg animate-fade-up delay-2">
+                Indian parents check on their baby <strong className="text-foreground">8–12 times a night.</strong> Anvaya does it 12,000 times — contactlessly, silently, while you sleep.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 mb-4 animate-fade-up delay-4">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-lg animate-fade-up delay-2">
+                Breathing · SpO₂ · Cry type · Sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+              </p>
+
+              {/* Primary CTA */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-4 animate-fade-up delay-3">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
                   <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
                     style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)', transition: 'box-shadow .2s ease, transform .2s ease' }}
@@ -589,15 +590,42 @@ export default function Home() {
                 </LeadModalTrigger>
                 <CryCtaButton />
               </div>
+
+              {/* Guide strip — tour + cinematic */}
+              <div className="flex flex-col sm:flex-row gap-2 mb-5 animate-fade-up delay-4">
+                <Link href="/tour"
+                  className="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all hover:border-primary/40 hover:bg-primary/5"
+                  style={{ borderColor: 'rgba(74,124,111,0.25)', background: 'rgba(74,124,111,0.04)', color: '#4a7c6f' }}>
+                  <span className="text-base">📱</span>
+                  <span>See it handle <em>your</em> worry — Interactive tour</span>
+                  <ArrowRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                </Link>
+                <Link href="/how-it-works"
+                  className="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all hover:border-primary/40 hover:bg-primary/5"
+                  style={{ borderColor: 'rgba(212,120,74,0.25)', background: 'rgba(212,120,74,0.04)', color: '#d4784a' }}>
+                  <span className="text-base">🎬</span>
+                  <span>Watch it in action — 60-sec film</span>
+                  <ArrowRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                </Link>
+              </div>
+
               <CryDemoStrip />
-              {/* Trust pills */}
+
+              {/* Star rating + trust pills */}
+              <div className="flex items-center gap-3 mb-3 animate-fade-up delay-5">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+                </div>
+                <span className="text-sm font-bold text-foreground">4.9/5</span>
+                <span className="text-sm text-muted-foreground">· Pilot families · Paediatrician-recommended</span>
+              </div>
               <div className="flex flex-wrap items-center gap-2 animate-fade-up delay-5">
                 {[
                   { icon: Shield, text: 'No payment now' },
                   { icon: CheckCircle, text: '30-day guarantee' },
-                  { icon: Zap, text: 'Free shipping across India' },
-                ].map(({ icon: Icon, text }, i) => (
-                  <span key={text} className="trust-pill" style={{ animationDelay: `${0.5 + i * 0.1}s` }}>
+                  { icon: Zap, text: 'Free shipping India' },
+                ].map(({ icon: Icon, text }) => (
+                  <span key={text} className="trust-pill">
                     <Icon className="w-3 h-3 shrink-0" />{text}
                   </span>
                 ))}
