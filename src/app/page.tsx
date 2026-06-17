@@ -373,7 +373,7 @@ const HOME_FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section className="py-24 bg-white">
+    <section className="py-14 lg:py-24 bg-white">
       <FAQSchema faqs={HOME_FAQS.map(f => ({ q: f.q, a: f.a }))} />
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-12">
@@ -458,8 +458,8 @@ export default function Home() {
           <ChevronDown className="w-4 h-4 text-primary/35" />
         </motion.div>
 
-        <div className="container mx-auto px-4 py-28 lg:py-16">
-          <div className="grid lg:grid-cols-[1fr_300px_1fr] gap-10 xl:gap-14 items-center">
+        <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_300px_1fr] gap-8 xl:gap-14 items-start lg:items-center">
 
             {/* LEFT copy */}
             <div ref={heroRef}>
@@ -500,9 +500,9 @@ export default function Home() {
               <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
                 Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
-              <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
+              <div className="flex flex-col sm:flex-row gap-3 mb-7 animate-fade-up delay-4">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
-                  <Button size="lg" className="gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
+                  <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
                     style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)', transition: 'box-shadow .2s ease, transform .2s ease' }}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 36px rgba(232,149,122,0.65)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px rgba(232,149,122,0.50)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
@@ -510,7 +510,7 @@ export default function Home() {
                     <Sparkles className="w-4 h-4" />Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
                   </Button>
                 </LeadModalTrigger>
-                <Button asChild size="lg" variant="outline" className="border-primary/30 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass font-semibold">
+                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto border-primary/30 text-primary hover:bg-primary/5 text-base px-7 py-6 rounded-xl glass font-semibold">
                   <Link href="/anvaya">Explore Products</Link>
                 </Button>
               </div>
@@ -529,7 +529,7 @@ export default function Home() {
             </div>
 
             {/* MIDDLE — Purple Cry Analyzer Widget */}
-            <div className="animate-fade-up delay-3 flex flex-col items-center gap-3 order-3 lg:order-2">
+            <div className="animate-fade-up delay-3 flex flex-col items-center gap-3 order-2">
               {/* Eye-catching label */}
               <div className="flex flex-col items-center gap-1.5">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
@@ -543,29 +543,25 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RIGHT — product + live widget */}
-            <div className="flex flex-col items-center gap-6 order-2 lg:order-3">
+            {/* RIGHT — product + live widget (hidden on mobile, shows on lg+) */}
+            <div className="hidden lg:flex flex-col items-center gap-6 order-3 lg:order-3">
               <div className="relative">
-                {/* Halo rings */}
-                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none hidden sm:block" />
-                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none hidden sm:block" />
-                <div className="relative w-72 lg:w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
-                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="(max-width: 768px) 288px, 320px" />
-                  {/* Overlay badge */}
+                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
+                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
+                <div className="relative w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
+                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="320px" />
                   <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
                     <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
                     <p className="text-[10px] text-muted-foreground mt-0.5">On table · On wall · On cradle</p>
                   </div>
                 </div>
-                {/* Floating trust badge */}
-                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
+                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float" style={{ animationDelay: '1s' }}>
                   <div className="flex items-center gap-1 mb-0.5">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 star-filled fill-amber-400" />)}
                   </div>
                   <div className="text-xs font-bold">Pediatrician-approved</div>
                 </div>
               </div>
-              {/* Live monitor */}
               <div className="animate-fade-up delay-4 w-full flex justify-center">
                 <LiveMonitorWidget />
               </div>
@@ -600,7 +596,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ HOW IT WORKS ════════════ */}
-      <section className="py-24 bg-[#faf8f5] overflow-hidden">
+      <section className="py-14 lg:py-14 lg:py-24 bg-[#faf8f5] overflow-hidden">
         <div className="container mx-auto px-4">
           <Reveal variant={fadeUp}>
             <div className="text-center mb-16">
@@ -633,7 +629,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ SENSOR VISUALIZATION ════════════ */}
-      <section className="py-24 bg-[#0a1a14] overflow-hidden relative">
+      <section className="py-14 lg:py-24 bg-[#0a1a14] overflow-hidden relative">
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,124,111,0.12) 0%, transparent 70%)' }} />
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-14">
@@ -710,9 +706,9 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 1 — SLEEP ANALYSIS ════════════ */}
-      <section className="py-28 bg-white overflow-hidden">
+      <section className="py-16 lg:py-28 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-primary/8 to-transparent blur-2xl" />
@@ -767,9 +763,9 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 2 — CRY ANALYSIS ════════════ */}
-      <section className="py-28 bg-[#faf8f5] overflow-hidden">
+      <section className="py-16 lg:py-28 bg-[#faf8f5] overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Cry Intelligence</p>
@@ -822,9 +818,9 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 3 — DAILY TIMELINE ════════════ */}
-      <section className="py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] overflow-hidden">
+      <section className="py-16 lg:py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-[#e4eeea] to-transparent blur-2xl" />
@@ -879,9 +875,9 @@ export default function Home() {
       </section>
 
       {/* ════════════ FEATURE 4 — LIVE + VIDEO ════════════ */}
-      <section className="py-28 bg-white overflow-hidden">
+      <section className="py-16 lg:py-28 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <Reveal variant={fadeLeft} className="lg:order-1 order-2">
               <div className="section-divider" />
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Live Monitoring</p>
@@ -936,7 +932,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ PRODUCT LINEUP ════════════ */}
-      <section className="py-24 bg-[#faf8f5]">
+      <section className="py-14 lg:py-24 bg-[#faf8f5]">
         <div className="container mx-auto px-4">
           <Reveal variant={fadeUp}>
             <div className="text-center mb-14">
@@ -981,7 +977,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ TESTIMONIALS ════════════ */}
-      <section className="py-24 bg-gradient-to-b from-white to-[#faf8f5] overflow-hidden">
+      <section className="py-14 lg:py-24 bg-gradient-to-b from-white to-[#faf8f5] overflow-hidden">
         <div className="container mx-auto px-4">
           <Reveal variant={fadeUp}>
           <div className="text-center mb-14">
@@ -1094,7 +1090,7 @@ export default function Home() {
       <FAQSection />
 
       {/* ════════════ LEAD CAPTURE ════════════ */}
-      <section className="py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] relative overflow-hidden">
         <div className="absolute inset-0 noise pointer-events-none opacity-40" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-xl mx-auto text-center">
@@ -1161,7 +1157,7 @@ export default function Home() {
       </section>
 
       {/* ════════════ CLOSING CTA ════════════ */}
-      <section className="py-28 bg-[#0d1f18] relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-[#0d1f18] relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 25% 50%, #4a7c6f 0%, transparent 60%), radial-gradient(circle at 75% 50%, #e8957a 0%, transparent 60%)' }} />
         <div className="absolute inset-0 noise pointer-events-none opacity-30" />
         <div className="container mx-auto px-4 text-center relative">
