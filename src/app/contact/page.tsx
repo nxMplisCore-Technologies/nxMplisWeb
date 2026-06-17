@@ -13,8 +13,8 @@ import { Mail, Phone, MapPin, ArrowRight, MessageCircle, CheckCircle2 } from 'lu
 
 const formSchema = z.object({
   fullName: z.string().min(2, 'Please enter your full name'),
-  email: z.string().email('Please enter a valid email'),
-  phone: z.string().optional(),
+  phone: z.string().min(7, 'Please enter a valid phone number'),
+  email: z.string().email('Please enter a valid email').optional().or(z.literal('')),
   inquiryType: z.enum(["early-access", "investor", "partner", "careers", "general"]),
   message: z.string().min(2, 'Please enter a message'),
 });
@@ -33,7 +33,7 @@ export default function ContactPage() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { fullName: "", email: "", phone: "", message: "" },
+    defaultValues: { fullName: "", phone: "", email: "", message: "" },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -94,17 +94,17 @@ export default function ContactPage() {
                     </FormItem>
                   )} />
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <FormField control={form.control} name="email" render={({ field }) => (
+                    <FormField control={form.control} name="phone" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-foreground font-medium">Email address</FormLabel>
-                        <FormControl><Input type="email" placeholder="priya@example.com" {...field} className="bg-white border-[#e2dbd4] focus:border-primary" /></FormControl>
+                        <FormLabel className="text-foreground font-medium">Phone / WhatsApp *</FormLabel>
+                        <FormControl><Input type="tel" placeholder="+91 98765 43210" {...field} className="bg-white border-[#e2dbd4] focus:border-primary" /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
-                    <FormField control={form.control} name="phone" render={({ field }) => (
+                    <FormField control={form.control} name="email" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-foreground font-medium">Phone (optional)</FormLabel>
-                        <FormControl><Input type="tel" placeholder="+91 98765 43210" {...field} className="bg-white border-[#e2dbd4] focus:border-primary" /></FormControl>
+                        <FormLabel className="text-foreground font-medium">Email (optional)</FormLabel>
+                        <FormControl><Input type="email" placeholder="priya@example.com" {...field} className="bg-white border-[#e2dbd4] focus:border-primary" /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
