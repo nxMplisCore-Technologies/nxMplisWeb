@@ -53,6 +53,7 @@ const TRUST = [
 export default function PreorderPage() {
   const [selectedKey, setSelectedKey] = useState<PodKey>('SENSE');
   const [name, setName] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [city, setCity] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -62,7 +63,7 @@ export default function PreorderPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
     try {
       await fetch('/api/lead', {
@@ -70,6 +71,7 @@ export default function PreorderPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
+          whatsapp,
           city,
           product: selectedPod.name,
           source: 'preorder',
@@ -203,6 +205,16 @@ export default function PreorderPage() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 className="bg-[#faf8f5] border-[#e2dbd4]"
+                autoComplete="name"
+              />
+              <Input
+                type="tel"
+                placeholder="WhatsApp number *"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+                required
+                className="bg-[#faf8f5] border-[#e2dbd4]"
+                autoComplete="tel"
               />
               <Input
                 placeholder="City (optional)"

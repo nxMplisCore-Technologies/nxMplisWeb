@@ -24,7 +24,7 @@ const faqs = [
 export default function NewbornCareGuidePage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title="Newborn Care Guide India 2025" description="Complete guide to newborn care for Indian parents" url="https://nxmplis.com/newborn-care-guide" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2025-04-28" author="Deepak Singh" />
+      <ArticleSchema title="Newborn Care Guide India 2025" description="Complete guide to newborn care for Indian parents" url="https://nxmplis.com/newborn-care-guide" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2025-04-28" author="Anvaya Smart Team" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Newborn Care Guide', url: 'https://nxmplis.com/newborn-care-guide' }]} />
 

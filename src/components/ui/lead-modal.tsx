@@ -14,6 +14,7 @@ export interface LeadModalProps {
 
 export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
   const [name, setName] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [city, setCity] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -46,6 +47,7 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
   useEffect(() => {
     if (open) {
       setName('');
+      setWhatsapp('');
       setCity('');
       setSuccess(false);
       setLoading(false);
@@ -54,7 +56,7 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
     try {
       await fetch('/api/lead', {
@@ -62,6 +64,7 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: name.trim(),
+          whatsapp: whatsapp.trim(),
           city: city.trim(),
           product: product ?? '',
           source,
@@ -165,6 +168,15 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
                 required
                 className="bg-[#faf8f5] border-[#e2dbd4] h-11 rounded-xl"
                 autoComplete="name"
+              />
+              <Input
+                type="tel"
+                placeholder="WhatsApp number *"
+                value={whatsapp}
+                onChange={e => setWhatsapp(e.target.value)}
+                required
+                className="bg-[#faf8f5] border-[#e2dbd4] h-11 rounded-xl"
+                autoComplete="tel"
               />
               <Input
                 placeholder="City (optional)"

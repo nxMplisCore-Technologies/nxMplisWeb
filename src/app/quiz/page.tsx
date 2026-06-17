@@ -129,6 +129,7 @@ export default function QuizPage() {
   const [result, setResult] = useState<ProductKey | null>(null);
   const [finding, setFinding] = useState(false);
   const [name, setName] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   // Animation state: 'idle' | 'exit' | 'enter'
@@ -199,7 +200,7 @@ export default function QuizPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!result || !name.trim()) return;
+    if (!result || !name.trim() || !whatsapp.trim()) return;
     setLoading(true);
     try {
       await fetch('/api/lead', {
@@ -207,6 +208,7 @@ export default function QuizPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
+          whatsapp,
           product: result,
           source: 'quiz',
         }),
@@ -310,6 +312,16 @@ export default function QuizPage() {
                   onChange={(e) => setName(e.target.value)}
                   required
                   className="bg-[#faf8f5] border-[#e2dbd4]"
+                  autoComplete="name"
+                />
+                <Input
+                  type="tel"
+                  placeholder="WhatsApp number *"
+                  value={whatsapp}
+                  onChange={(e) => setWhatsapp(e.target.value)}
+                  required
+                  className="bg-[#faf8f5] border-[#e2dbd4]"
+                  autoComplete="tel"
                 />
                 <Button
                   type="submit"

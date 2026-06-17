@@ -68,7 +68,7 @@ const faqs = [
 export default function BestBabyMonitorPage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title="Best Baby Monitor India 2026: Complete Buying Guide" description="What features really matter when choosing a baby monitor for Indian homes in 2026" url="https://nxmplis.com/blog/best-baby-monitor-india-2026" image="https://nxmplis.com/anvaya-nursery.jpg" datePublished="2026-04-28" dateModified="2026-05-01" author="Deepak Singh" />
+      <ArticleSchema title="Best Baby Monitor India 2026: Complete Buying Guide" description="What features really matter when choosing a baby monitor for Indian homes in 2026" url="https://nxmplis.com/blog/best-baby-monitor-india-2026" image="https://nxmplis.com/anvaya-nursery.jpg" datePublished="2026-04-28" dateModified="2026-05-01" author="Anvaya Smart Team" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Blog', url: 'https://nxmplis.com/blog' }, { name: 'Best Baby Monitor India 2026', url: 'https://nxmplis.com/blog/best-baby-monitor-india-2026' }]} />
 
