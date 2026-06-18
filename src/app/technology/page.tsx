@@ -1,15 +1,44 @@
-import type { Metadata } from 'next';
-export const metadata: Metadata = {
-  title: 'How Anvaya Smart Works | Contactless Baby Monitoring Technology India',
-  description: 'Discover how Anvaya Smart monitors your baby contactlessly — radar sensing, infrared imaging, AI acoustic analysis. 100% on-device privacy. No wearables ever.',
-  keywords: ['contactless baby monitoring', 'radar baby monitor India', 'how AI baby monitor works'],
-  alternates: { canonical: 'https://nxmplis.com/technology' },
-  openGraph: { title: 'How Anvaya Smart Works', url: 'https://nxmplis.com/technology', images: [{ url: '/anvaya-product.webp' }] },
-};
+'use client';
 
 import Link from 'next/link';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Radio, Thermometer, Mic } from 'lucide-react';
+
+/* ─────────────────── ANIMATION VARIANTS ─────────────────── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, delay: i * 0.1, ease: [0.22, 0.68, 0, 1.2] } }),
+};
+const fadeLeft = {
+  hidden: { opacity: 0, x: -36 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.68, 0, 1.2] } },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 36 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 0.68, 0, 1.2] } },
+};
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.92 },
+  visible: (i = 0) => ({ opacity: 1, scale: 1, transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 0.68, 0, 1.2] } }),
+};
+
+/* ─────────────────── SECTION WRAPPER ─────────────────── */
+function Reveal({ children, variant = fadeUp, custom = 0, className = '' }: {
+  children: React.ReactNode;
+  variant?: typeof fadeUp;
+  custom?: number;
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+  return (
+    <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={variant} custom={custom} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
 const principles = [
   {
@@ -91,43 +120,158 @@ const principles = [
   },
 ];
 
+const sensorStats = [
+  {
+    icon: Radio,
+    label: 'Radar Sensing',
+    stats: [
+      { value: '60 GHz', desc: 'Millimetre-wave frequency' },
+      { value: 'Sub-mm', desc: 'Motion resolution' },
+      { value: 'Zero radiation', desc: 'Safe for newborns' },
+    ],
+    accent: '#4a7c6f',
+    bg: 'from-[#e8f2ee] to-[#f5ede0]',
+  },
+  {
+    icon: Thermometer,
+    label: 'Infrared Thermal',
+    stats: [
+      { value: '±0.2°C', desc: 'Temperature accuracy' },
+      { value: 'Passive', desc: 'Detection — no emission' },
+      { value: 'Dark-ready', desc: 'Works without any light' },
+    ],
+    accent: '#e8957a',
+    bg: 'from-[#fdf0ea] to-[#faf8f5]',
+  },
+  {
+    icon: Mic,
+    label: 'AI Acoustic',
+    stats: [
+      { value: '5 types', desc: 'Cry pattern recognition' },
+      { value: 'On-device', desc: 'All AI runs locally' },
+      { value: 'No storage', desc: 'Audio never recorded' },
+    ],
+    accent: '#7aab9e',
+    bg: 'from-[#e8f2ee] to-[#eaf4f0]',
+  },
+];
+
 export default function TechnologyPage() {
   return (
-    <div className="bg-[#faf8f5] min-h-screen">
-      <section className="bg-gradient-to-br from-[#f5ede0] via-[#faf8f5] to-[#e8f2ee] py-20 text-center">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-4" style={{color:'#e8957a'}}>Our Approach</p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Technology that cares.</h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Nxmliscore is built on responsible innovation. Every decision — from sensor choice to alert logic — is guided by one question: does this make parents calmer, not more anxious?
-          </p>
+    <div className="bg-[#faf8f5] min-h-screen overflow-x-hidden">
+
+      {/* ════════════ HERO ════════════ */}
+      <section className="relative mesh-hero py-24 text-center overflow-hidden">
+        <div className="glow-orb w-[400px] h-[400px] -left-32 -top-16 bg-primary/15" style={{ animationDelay: '0s' }} />
+        <div className="glow-orb w-[300px] h-[300px] -right-16 top-8 bg-accent/10" style={{ animationDelay: '3s' }} />
+        <div className="absolute inset-0 noise pointer-events-none opacity-30" />
+
+        <div className="container mx-auto px-4 max-w-3xl relative">
+          <Reveal variant={fadeUp} custom={0}>
+            <div className="inline-flex items-center gap-2 bg-white/80 border border-primary/20 rounded-full px-4 py-1.5 mb-6 text-xs font-bold text-primary shadow-sm backdrop-blur-sm">
+              Responsible AI · Contactless Sensing · Privacy-First
+            </div>
+          </Reveal>
+          <Reveal variant={fadeUp} custom={1}>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-4" style={{ color: '#e8957a' }}>Our Approach</p>
+          </Reveal>
+          <Reveal variant={fadeUp} custom={2}>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground leading-tight">
+              Technology that cares.
+            </h1>
+          </Reveal>
+          <Reveal variant={fadeUp} custom={3}>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Nxmliscore is built on responsible innovation. Every decision — from sensor choice to alert logic — is guided by one question: does this make parents calmer, not more anxious?
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-20 space-y-16">
+      {/* ════════════ PRINCIPLES ════════════ */}
+      <div className="container mx-auto px-4 py-20 space-y-20">
         {principles.map((p, i) => (
-          <section key={p.name} className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className={`${i % 2 === 1 ? 'lg:order-last' : ''} rounded-2xl overflow-hidden bg-gradient-to-br ${p.bg} h-64 lg:h-80 flex items-center justify-center p-6`}
-              dangerouslySetInnerHTML={{ __html: p.illustration }} />
-            <div className={i % 2 === 1 ? '' : ''}>
-              <div className="inline-block text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1 rounded-full"
-                style={{background: `${p.accent}18`, color: p.accent}}>{p.tag}</div>
-              <h2 className="text-3xl font-bold mb-4">{p.name}</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">{p.desc}</p>
-            </div>
-          </section>
+          <Reveal key={p.name} variant={i % 2 === 0 ? fadeLeft : fadeRight}>
+            <section className="grid lg:grid-cols-2 gap-8 items-center">
+              <div
+                className={`${i % 2 === 1 ? 'lg:order-last' : ''} rounded-2xl overflow-hidden bg-gradient-to-br ${p.bg} h-64 lg:h-80 flex items-center justify-center p-6`}
+                dangerouslySetInnerHTML={{ __html: p.illustration }}
+              />
+              <div>
+                <div
+                  className="inline-block text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1 rounded-full"
+                  style={{ background: `${p.accent}18`, color: p.accent }}
+                >
+                  {p.tag}
+                </div>
+                <h2 className="text-3xl font-bold mb-4">{p.name}</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">{p.desc}</p>
+              </div>
+            </section>
+          </Reveal>
         ))}
       </div>
 
-      <section className="bg-primary text-white py-16 text-center">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <h2 className="text-3xl font-bold mb-4">Science you can trust. Care you can feel.</h2>
-          <p className="text-white/80 mb-8">Built in partnership with BITS Hyderabad and SASTRA University. Grounded in research, designed for real families.</p>
-          <Button asChild className="bg-white text-primary hover:bg-white/90 font-semibold gap-2">
-            <Link href="/about">About Nxmliscore <ArrowRight className="w-4 h-4" /></Link>
-          </Button>
+      {/* ════════════ HOW THE SENSORS WORK ════════════ */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <Reveal variant={fadeUp}>
+            <div className="text-center mb-14">
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#e8957a' }}>Under the Hood</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">How the sensors work.</h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">Three complementary sensing modalities working in concert — covering every dimension of your baby&apos;s wellness.</p>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {sensorStats.map((sensor, si) => (
+              <Reveal key={sensor.label} variant={scaleIn} custom={si}>
+                <div className={`rounded-2xl bg-gradient-to-br ${sensor.bg} p-6 border border-white/60 shadow-sm h-full`}>
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style={{ background: `${sensor.accent}18` }}>
+                    <sensor.icon className="w-6 h-6" style={{ color: sensor.accent }} />
+                  </div>
+                  <h3 className="font-bold text-lg mb-4" style={{ color: sensor.accent }}>{sensor.label}</h3>
+                  <div className="space-y-3">
+                    {sensor.stats.map((s) => (
+                      <div key={s.value} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ background: sensor.accent }} />
+                        <div>
+                          <span className="font-bold text-sm text-foreground">{s.value}</span>
+                          <span className="text-xs text-muted-foreground ml-2">{s.desc}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* ════════════ CLOSING CTA ════════════ */}
+      <section className="py-24 bg-[#0d1f18] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 25% 50%, #4a7c6f 0%, transparent 60%), radial-gradient(circle at 75% 50%, #e8957a 0%, transparent 60%)' }} />
+        <div className="absolute inset-0 noise pointer-events-none opacity-30" />
+        <div className="container mx-auto px-4 max-w-2xl text-center relative">
+          <Reveal variant={fadeUp} custom={0}>
+            <p className="text-sm font-bold uppercase tracking-widest text-primary mb-6">Nxmliscore Research</p>
+          </Reveal>
+          <Reveal variant={fadeUp} custom={1}>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+              Science you can trust.<br />Care you can feel.
+            </h2>
+          </Reveal>
+          <Reveal variant={fadeUp} custom={2}>
+            <p className="text-white/60 text-lg mb-10">Built in partnership with BITS Hyderabad and SASTRA University. Grounded in research, designed for real families.</p>
+          </Reveal>
+          <Reveal variant={fadeUp} custom={3}>
+            <Button asChild className="bg-primary text-white hover:bg-primary/90 font-semibold gap-2 px-7 py-6 text-base rounded-xl shadow-lg shadow-primary/30">
+              <Link href="/about">About Nxmliscore <ArrowRight className="w-4 h-4" /></Link>
+            </Button>
+          </Reveal>
+        </div>
+      </section>
+
     </div>
   );
 }

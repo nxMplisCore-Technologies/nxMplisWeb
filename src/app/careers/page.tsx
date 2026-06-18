@@ -16,7 +16,8 @@ import { MapPin, Briefcase } from "lucide-react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "Full name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().min(7, { message: "Please enter a valid phone number." }),
+  email: z.string().email({ message: "Please enter a valid email address." }).optional().or(z.literal('')),
   resume: z.any().refine(files => files?.length === 1, "Resume is required."),
   coverLetter: z.string().optional(),
 });
@@ -27,7 +28,7 @@ function ApplyForm({ jobTitle }: { jobTitle: string }) {
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { fullName: "", email: "", coverLetter: "" },
+    defaultValues: { fullName: "", phone: "", email: "", coverLetter: "" },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -69,10 +70,23 @@ function ApplyForm({ jobTitle }: { jobTitle: string }) {
             />
             <FormField
               control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone / WhatsApp *</FormLabel>
+                  <FormControl>
+                    <Input type="tel" placeholder="+91 98765 43210" autoComplete="tel" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address</FormLabel>
+                  <FormLabel>Email Address (optional)</FormLabel>
                   <FormControl>
                     <Input type="email" placeholder="e.reed@example.com" {...field} />
                   </FormControl>
@@ -116,6 +130,7 @@ function ApplyForm({ jobTitle }: { jobTitle: string }) {
 
 export default function CareersPage() {
   return (
+    <div className="bg-[#faf8f5] min-h-screen">
     <div className="container mx-auto px-4 py-16 sm:py-24">
       <header className="text-center max-w-4xl mx-auto mb-16">
         <h1 className="font-headline text-4xl md:text-5xl font-bold mb-4">
@@ -145,6 +160,7 @@ export default function CareersPage() {
           </Card>
         ))}
       </div>
+    </div>
     </div>
   );
 }

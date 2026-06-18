@@ -42,7 +42,7 @@ export default function BabyMonitoringPage() {
       <FAQSchema faqs={faqs} />
       <HowToSchema name="How to Set Up Anvaya Smart Baby Monitor" steps={howToSteps} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Baby Monitoring Guide', url: 'https://nxmplis.com/baby-monitoring' }]} />
-      <ArticleSchema title="Baby Monitoring India: Complete Guide 2025" description="The complete guide to baby monitoring for Indian parents" url="https://nxmplis.com/baby-monitoring" image="https://nxmplis.com/anvaya-nursery.jpg" datePublished="2025-01-01" dateModified="2025-04-28" author="Deepak Singh" />
+      <ArticleSchema title="Baby Monitoring India: Complete Guide 2025" description="The complete guide to baby monitoring for Indian parents" url="https://nxmplis.com/baby-monitoring" image="https://nxmplis.com/anvaya-nursery.jpg" datePublished="2025-01-01" dateModified="2025-04-28" author="Anvaya Smart Team" />
       <SpeakableSchema cssSelectors={['h1', '.ai-snippet', 'h2']} />
 
       {/* Hero */}
@@ -173,7 +173,7 @@ export default function BabyMonitoringPage() {
               </div>
             ))}
           </div>
-          <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
+          <Button asChild className="text-white font-bold gap-2 w-full sm:w-auto" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
             <Link href="/early-access">Reserve Early Access — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
           </Button>
         </section>

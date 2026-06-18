@@ -154,7 +154,7 @@
   border:1px solid rgba(255,255,255,0.6);
 }
 .glass-dark {
-  background:rgba(10,24,18,0.75);
+  background:rgba(15,23,42,0.75);
   backdrop-filter:blur(20px) saturate(180%);
   border:1px solid rgba(255,255,255,0.07);
 }
@@ -237,3 +237,100 @@
   border-radius:2px;
   margin-bottom:16px;
 }
+
+/* ─── Mesh gradient hero background ─────────── */
+.mesh-hero {
+  background-color: #faf8f5;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(232,149,122,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 15%, rgba(245,185,140,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 70% at 50% 95%, rgba(250,210,180,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 65%, rgba(212,120,74,0.07) 0%, transparent 50%);
+}
+
+/* ─── Ambient glow orbs ───────────────────────── */
+.glow-orb {
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+  opacity:0.55;
+  animation:float-slow 8s ease-in-out infinite;
+}
+
+/* ─── Star rating ─────────────────────────────── */
+.star-filled { color:#f59e0b; }
+
+/* ─── Testimonial card ────────────────────────── */
+.testimonial-card {
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(74,124,111,0.12);
+  border-radius:1.25rem;
+  transition:transform .3s cubic-bezier(.22,.68,0,1.2), box-shadow .3s ease;
+}
+.testimonial-card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 20px 60px -12px rgba(74,124,111,0.18);
+}
+
+/* ─── Gradient badge ──────────────────────────── */
+.badge-gradient {
+  background:linear-gradient(135deg, rgba(74,124,111,0.12), rgba(232,149,122,0.10));
+  border:1px solid rgba(74,124,111,0.2);
+}
+
+/* ─── Trust pill ──────────────────────────────── */
+.trust-pill {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 16px;
+  min-height:44px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.7);
+  border:1px solid rgba(74,124,111,0.15);
+  font-size:0.75rem;
+  font-weight:600;
+  color:hsl(161 36% 30%);
+  backdrop-filter:blur(8px);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.trust-pill:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px -4px rgba(74,124,111,0.15);
+}
+
+/* ─── Enhanced text-gradient variants ────────── */
+.text-gradient-warm {
+  background: linear-gradient(135deg, #e8957a 0%, #d4784a 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.text-gradient-cool {
+  background: linear-gradient(135deg, #2d5c52 0%, #4a7c6f 60%, #7aab9e 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ─── Marquee trust scroll ────────────────────── */
+@keyframes marquee {
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-50%); }
+}
+.animate-marquee { animation:marquee 28s linear infinite; }
+.animate-marquee:hover { animation-play-state:paused; }
+
+/* ─── Stagger reveal for children ────────────── */
+.stagger-children > *:nth-child(1) { animation-delay:0s; }
+.stagger-children > *:nth-child(2) { animation-delay:.1s; }
+.stagger-children > *:nth-child(3) { animation-delay:.2s; }
+.stagger-children > *:nth-child(4) { animation-delay:.3s; }
+.stagger-children > *:nth-child(5) { animation-delay:.4s; }
+.stagger-children > *:nth-child(6) { animation-delay:.5s; }
+
+/* ─── Hide scrollbar (for snap carousels) ─────── */
+.scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
+.scrollbar-hide::-webkit-scrollbar { display:none; }

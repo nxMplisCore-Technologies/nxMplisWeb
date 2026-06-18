@@ -190,8 +190,8 @@ export default function ComparePage() {
           <p className="text-xs text-muted-foreground mb-5 bg-white/60 rounded-lg px-3 py-2 border border-[#e2dbd4]">
             Anvaya Smart is a consumer wellness device. It is not a medical device and is not intended to diagnose, treat, or prevent any medical condition.
           </p>
-          <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2">
-            <Link href="/early-access">Reserve Early Access — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
+          <Button asChild size="lg" className="text-white font-bold gap-2" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)}'}}>
+            <Link href="/preorder">Reserve Early Access <ArrowRight className="w-4 h-4" /></Link>
           </Button>
           <p className="text-xs text-muted-foreground mt-3">Free shipping · 30-day guarantee · 0% EMI · No payment now</p>
         </div>

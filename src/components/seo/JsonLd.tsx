@@ -9,7 +9,7 @@ export function OrganizationSchema() {
     description: 'AI-powered contactless baby wellness pod monitoring. Anvaya Smart tracks breathing, SpO₂, cry patterns and sleep — no wearables, complete on-device privacy.',
     foundingDate: '2024',
     address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' },
-    founder: [{ '@type': 'Person', name: 'Deepak Singh', alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad' }, jobTitle: 'Founder' }],
+    founder: [{ '@type': 'Organization', name: 'Anvaya Smart Team', url: 'https://nxmplis.com/about' }],
     sameAs: ['https://www.instagram.com/anvayasmart', 'https://www.linkedin.com/company/nxmliscore', 'https://twitter.com/anvayasmart'],
     contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['English', 'Hindi', 'Telugu'], areaServed: 'IN', contactOption: 'TollFree' },
     knowsAbout: ['Baby Monitoring', 'Baby Wellness Pod Monitoring', 'Infant Health', 'Infant Vital Signs Monitoring', 'Contactless Sensing', 'AI Health Technology', 'Baby Sleep Analysis', 'Newborn Wellness Technology', 'Baby SpO2 Monitoring'],
@@ -79,7 +79,7 @@ export function BreadcrumbSchema({ items }: { items: { name: string; url: string
   })}} />;
 }
 
-export function ArticleSchema({ title, description, url, image, datePublished, dateModified, author }: { title: string; description: string; url: string; image: string; datePublished: string; dateModified: string; author: string }) {
+export function ArticleSchema({ title, description, url, image, datePublished, dateModified, author, medicalReviewer }: { title: string; description: string; url: string; image: string; datePublished: string; dateModified: string; author: string; medicalReviewer?: { name: string; credentials: string } }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org', '@type': 'Article',
     headline: title, description,
@@ -89,6 +89,7 @@ export function ArticleSchema({ title, description, url, image, datePublished, d
     publisher: { '@id': 'https://nxmplis.com/#organization' },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     inLanguage: 'en-IN',
+    ...(medicalReviewer ? { reviewedBy: { '@type': 'Person', name: medicalReviewer.name, description: medicalReviewer.credentials } } : {}),
     about: { '@type': 'Thing', name: 'Baby Monitoring India' },
   })}} />;
 }
@@ -101,6 +102,37 @@ export function HowToSchema({ name, steps }: { name: string; steps: { name: stri
     tool: [{ '@type': 'HowToTool', name: 'Anvaya Smart Pod' }, { '@type': 'HowToTool', name: 'Anvaya Smart App (iOS/Android)' }],
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'INR', value: '12999' },
     totalTime: 'PT3M',
+  })}} />;
+}
+
+export function VideoObjectSchema({ name, description, thumbnailUrl, uploadDate, duration, embedUrl }: { name: string; description: string; thumbnailUrl: string; uploadDate: string; duration: string; embedUrl: string }) {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'VideoObject',
+    name, description, thumbnailUrl,
+    uploadDate, duration, embedUrl,
+    publisher: { '@id': 'https://nxmplis.com/#organization' },
+    inLanguage: 'en-IN',
+  })}} />;
+}
+
+export function MedicalWebPageSchema({ title, description, url, dateModified, medicalReviewer }: { title: string; description: string; url: string; dateModified: string; medicalReviewer?: { name: string; credentials: string } }) {
+  const reviewer = medicalReviewer ?? { name: 'Anvaya Smart Medical Advisory Board', credentials: 'Aligned with AAP Safe Infant Sleep Guidelines' };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'MedicalWebPage',
+    '@id': url,
+    name: title, description,
+    url, dateModified,
+    inLanguage: 'en-IN',
+    audience: { '@type': 'MedicalAudience', audienceType: 'Parent', healthCondition: { '@type': 'MedicalCondition', name: 'Infant Health Monitoring' } },
+    medicalAudience: { '@type': 'MedicalAudience', audienceType: 'Parent' },
+    reviewedBy: { '@type': 'Person', name: reviewer.name, description: reviewer.credentials },
+    lastReviewed: dateModified,
+    mainContentOfPage: { '@type': 'WebPageElement', cssSelector: 'article' },
+    about: { '@type': 'MedicalCondition', name: 'Infant Respiratory Monitoring' },
+    mentions: [
+      { '@type': 'Organization', name: 'American Academy of Pediatrics', url: 'https://www.aap.org' },
+      { '@type': 'Organization', name: 'World Health Organization', url: 'https://www.who.int' },
+    ],
   })}} />;
 }
 

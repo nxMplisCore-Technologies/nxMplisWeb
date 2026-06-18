@@ -6,7 +6,9 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone, MessageCircle, Quote } from 'lucide-react';
+import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { cn } from '@/lib/utils';
 import { ProductSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
 
@@ -124,8 +126,9 @@ export default function AnvayaPage() {
     if (!name.trim() || !phone.trim()) return;
     setLoading(true);
     try {
-      await fetch('https://hook.eu1.make.com/uvjkc324zlvtm3ivlwpyaj0xm8wcg51b', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, whatsapp: phone, source: 'anvaya-product-page', product: p.fullName }),
       });
     } catch (_) {}
@@ -168,18 +171,18 @@ export default function AnvayaPage() {
 
       {/* ── Main product layout ── */}
       <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-[1fr_420px] gap-10 items-start">
+        <div className="grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-10 items-start">
 
           {/* LEFT — Image + model tabs + features */}
-          <div>
-            {/* Model selector tabs */}
-            <div className="flex gap-2 mb-6 flex-wrap">
+          <div className="order-2 lg:order-1">
+            {/* Model selector tabs — horizontally scrollable on mobile */}
+            <div className="flex gap-2 mb-6 overflow-x-auto pb-1 snap-x scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
               {products.map((prod, i) => (
                 <button
                   key={prod.id}
                   onClick={() => setSelected(i)}
                   className={cn(
-                    'flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all',
+                    'flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all snap-start shrink-0 min-h-[44px]',
                     selected === i
                       ? 'border-current shadow-md scale-105'
                       : 'border-[#e2dbd4] bg-white text-muted-foreground hover:border-gray-300'
@@ -214,17 +217,17 @@ export default function AnvayaPage() {
             </div>
 
             {/* Trust strip */}
-            <div className="grid grid-cols-3 gap-3 mt-4">
+            <div className="grid grid-cols-3 gap-2 mt-4">
               {[
                 { icon: Truck, text: 'Free shipping', sub: 'All India' },
                 { icon: RefreshCw, text: '30-day returns', sub: 'No questions' },
-                { icon: Shield, text: 'Safe for newborns', sub: 'Clinically safe. Zero emissions.' },
+                { icon: Shield, text: 'Safe for newborns', sub: 'Contactless & safe' },
               ].map(t => (
-                <div key={t.text} className="flex items-center gap-2.5 bg-white rounded-xl p-3 border border-[#e2dbd4]">
+                <div key={t.text} className="flex flex-col items-center text-center gap-1.5 bg-white rounded-xl p-2.5 border border-[#e2dbd4]">
                   <t.icon className="w-4 h-4 shrink-0" style={{color: p.color}} />
                   <div>
-                    <div className="text-xs font-semibold">{t.text}</div>
-                    <div className="text-[10px] text-muted-foreground">{t.sub}</div>
+                    <div className="text-[10px] font-semibold leading-tight">{t.text}</div>
+                    <div className="text-[9px] text-muted-foreground mt-0.5 leading-tight">{t.sub}</div>
                   </div>
                 </div>
               ))}
@@ -234,13 +237,13 @@ export default function AnvayaPage() {
             <div className="mt-8">
               <h2 className="text-xl font-bold mb-4">What your {p.fullName} baby wellness pod monitors</h2>
               <div className="grid sm:grid-cols-2 gap-3">
-                {p.features.map(f => (
-                  <div key={f.text} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-[#e2dbd4]">
+                {p.features.map((f, i) => (
+                  <motion.div key={f.text} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08, duration: 0.4 }} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-[#e2dbd4] hover:shadow-sm transition-shadow">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{background: p.bgLight}}>
-                      <f.icon className="w-4.5 h-4.5" style={{color: p.color, width: 18, height: 18}} />
+                      <f.icon style={{color: p.color, width: 18, height: 18}} />
                     </div>
                     <span className="text-sm font-medium">{f.text}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -261,28 +264,29 @@ export default function AnvayaPage() {
             {/* Reviews */}
             <div className="mt-8">
               <div className="flex items-center gap-3 mb-5">
-                <h2 className="text-xl font-bold">Customer Reviews</h2>
+                <h2 className="text-xl font-bold">Pilot Family Feedback</h2>
                 <div className="flex items-center gap-1">
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
                   <span className="text-sm font-semibold ml-1">4.9</span>
-                  <span className="text-xs text-muted-foreground">(47 reviews)</span>
+                  <span className="text-xs text-muted-foreground">· Beta testers</span>
                 </div>
               </div>
               <div className="space-y-4">
                 {reviews.map((r, i) => (
-                  <div key={i} className="bg-white rounded-2xl p-5 border border-[#e2dbd4]">
-                    <div className="flex items-start justify-between mb-2">
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="bg-white rounded-2xl p-5 border border-[#e2dbd4] hover:shadow-md transition-shadow">
+                    <Quote className="w-5 h-5 mb-2 opacity-20" style={{color: p.color}} />
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">&ldquo;{r.text}&rdquo;</p>
+                    <div className="flex items-center justify-between">
                       <div>
                         <span className="font-semibold text-sm">{r.name}</span>
                         <span className="text-xs text-muted-foreground ml-2">{r.city}</span>
                       </div>
-                      <div className="flex">
-                        {[1,2,3,4,5].map(s => <Star key={s} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
+                      <div className="flex items-center gap-1">
+                        {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{r.text}</p>
-                    <div className="mt-2 text-[10px] font-semibold" style={{color: p.color}}>Verified purchase · Anvaya {r.product}</div>
-                  </div>
+                    <div className="mt-1 text-[10px] font-semibold" style={{color: p.color}}>Beta tester · Anvaya {r.product}</div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -310,7 +314,7 @@ export default function AnvayaPage() {
           </div>
 
           {/* RIGHT — Sticky buy panel */}
-          <div className="lg:sticky lg:top-20">
+          <div className="order-1 lg:order-2 lg:sticky lg:top-20">
             <div className="bg-white rounded-2xl border border-[#e2dbd4] shadow-lg overflow-hidden">
 
               {/* Product name + rating */}
@@ -320,21 +324,19 @@ export default function AnvayaPage() {
                 <p className="text-sm font-medium" style={{color: p.color}}>{p.tagline}</p>
                 <div className="flex items-center gap-2 mt-2">
                   <div className="flex">{[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}</div>
-                  <span className="text-xs text-muted-foreground">4.9 · 47 verified reviews</span>
+                  <span className="text-xs text-muted-foreground">4.9 · Pilot family feedback</span>
                 </div>
               </div>
 
-              {/* Price */}
+              {/* Founding price panel */}
               <div className="p-6 border-b border-[#f0ece6]">
-                <div className="flex items-end gap-3 mb-1">
-                  <span className="text-4xl font-bold text-foreground">₹{p.price.toLocaleString('en-IN')}</span>
-                  <span className="text-lg text-muted-foreground line-through mb-0.5">₹{p.mrp.toLocaleString('en-IN')}</span>
-                  <span className="text-sm font-bold text-green-600 mb-0.5">{discount}% off</span>
+                <div className="bg-primary/6 border border-primary/15 rounded-xl px-4 py-4 mb-3">
+                  <p className="text-sm font-semibold text-primary mb-1">🔒 Founding family pricing</p>
+                  <p className="text-xs text-muted-foreground">Exclusive price revealed via WhatsApp within 24 hours. No payment required today.</p>
                 </div>
-                <div className="text-xs text-muted-foreground mb-2">or <strong className="text-foreground">₹{Math.round(p.price/12).toLocaleString('en-IN')}/month</strong> · 0% EMI · 12 months</div>
                 <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-green-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  In stock · Ships in 2 business days
+                  Accepting reservations now
                 </div>
               </div>
 
@@ -353,7 +355,7 @@ export default function AnvayaPage() {
                       style={selected === i ? {borderColor: prod.color, background: prod.bgLight} : {}}
                     >
                       <div className="text-xs font-bold" style={{color: selected === i ? prod.color : ''}}>{prod.name}</div>
-                      <div className="text-xs text-muted-foreground">₹{prod.price.toLocaleString('en-IN')}</div>
+                      <div className="text-xs text-muted-foreground">Founding price on sign-up</div>
                     </button>
                   ))}
                 </div>
@@ -361,6 +363,17 @@ export default function AnvayaPage() {
 
               {/* Book seat form */}
               <div className="p-6 pt-4">
+                {/* Quick WhatsApp reserve */}
+                <LeadModalTrigger source="anvaya-product" product={p.fullName}>
+                  <Button size="lg" className="w-full gap-2 text-white font-bold mb-4 cursor-pointer" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
+                    <MessageCircle className="w-4 h-4" /> Quick Reserve via WhatsApp
+                  </Button>
+                </LeadModalTrigger>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex-1 h-px bg-[#e2dbd4]" />
+                  <span className="text-xs text-muted-foreground">or fill the full form below</span>
+                  <div className="flex-1 h-px bg-[#e2dbd4]" />
+                </div>
                 {booked ? (
                   <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
                     <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
@@ -389,10 +402,10 @@ export default function AnvayaPage() {
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-12 text-base font-bold rounded-xl shadow-lg gap-2"
-                      style={{background: p.color, color: '#fff'}}
+                      className="w-full h-12 text-base font-bold rounded-xl gap-2"
+                      style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)', color: '#fff'}}
                     >
-                      {loading ? 'Booking...' : `Reserve My ${p.fullName} Pod — ₹0 Now`}
+                      {loading ? 'Booking...' : `Reserve ${p.name} Pod — ₹0 Now`}
                     </Button>
                     <button
                       type="button"
