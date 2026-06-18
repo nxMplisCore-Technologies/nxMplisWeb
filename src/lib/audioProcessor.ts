@@ -20,8 +20,8 @@ const MIN_DURATION_S = 1.5;
 /** Maximum recording duration to process (seconds) — long files are trimmed to this */
 const MAX_DURATION_S = 30;
 
-/** RMS energy below this threshold is considered silence */
-const SILENCE_RMS_THRESHOLD = 0.004;
+/** RMS energy below this threshold is considered silence — keep low to avoid rejecting quiet mic input */
+const SILENCE_RMS_THRESHOLD = 0.001;
 
 export interface AudioProcessingError {
   code: 'SILENT' | 'TOO_SHORT' | 'DECODE_FAILED' | 'UNSUPPORTED';

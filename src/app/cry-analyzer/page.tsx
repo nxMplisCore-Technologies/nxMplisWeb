@@ -99,12 +99,11 @@ export default function CryAnalyzerPage() {
 
   const analyze = useCallback(async (file: File) => {
     setFileName(file.name);
-    setState('uploading');
     setError('');
     setResult(null);
+    setState('processing');
     const form = new FormData();
     form.append('file', file);
-    setState('processing');
     try {
       const res = await fetch('/api/cry-analyze', { method: 'POST', body: form });
       const data = await res.json();
@@ -126,25 +125,47 @@ export default function CryAnalyzerPage() {
 
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } });
-      const mr = new MediaRecorder(stream);
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
+      });
+
+      // Pick the best supported MIME type — Safari needs audio/mp4, Chrome prefers webm/opus
+      const mimeType = [
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg;codecs=opus',
+        'audio/mp4',
+      ].find(t => MediaRecorder.isTypeSupported(t)) ?? '';
+
+      const mr = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
       chunksRef.current = [];
-      mr.ondataavailable = e => chunksRef.current.push(e.data);
+      // Only push non-empty chunks — prevents empty blob on very short recordings
+      mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
       mr.onstop = async () => {
         stream.getTracks().forEach(t => t.stop());
         setState('processing');
-        const result = await processRecordedAudio(new Blob(chunksRef.current));
+        // Pass explicit MIME type so decodeAudioData knows the container format
+        const blob = new Blob(chunksRef.current, { type: mr.mimeType || mimeType || 'audio/webm' });
+        const result = await processRecordedAudio(blob);
         if (!result.ok) { setError(result.error.message); setState('error'); return; }
         analyze(result.file);
       };
-      mr.start();
+      // 100ms timeslice ensures chunks flush reliably before stop() fires
+      mr.start(100);
       mediaRecorderRef.current = mr;
       setRecording(true);
       setRecSeconds(0);
       let secs = 0;
       timerRef.current = setInterval(() => { secs += 1; setRecSeconds(secs); if (secs >= 10) stopRecording(); }, 1000);
-    } catch {
-      setError('Microphone access denied. Please allow microphone permission and try again.');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : '';
+      if (/denied|NotAllowed|Permission/i.test(msg)) {
+        setError('Microphone access denied. Please allow microphone permission in your browser settings and try again.');
+      } else if (/NotFound|DevicesNotFound|not found/i.test(msg)) {
+        setError('No microphone detected. Please connect a microphone and try again.');
+      } else {
+        setError('Could not start recording. Please check your browser microphone permissions and try again.');
+      }
       setState('error');
     }
   };
