@@ -223,7 +223,7 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: Wid
       mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
       mr.onstop = async () => {
         stream.getTracks().forEach(t => t.stop());
-        setStatus('processing');
+        setStatus('analyzing');
         const rawBlob = new Blob(chunksRef.current);
         const result = await processRecordedAudio(rawBlob);
         if (!result.ok) {
