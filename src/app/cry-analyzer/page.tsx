@@ -522,9 +522,41 @@ export default function CryAnalyzerPage() {
           <div className="w-full max-w-md space-y-4">
             <div className="rounded-3xl p-8 text-center shadow-lg"
               style={{ background: '#fff5f5', border: '1px solid rgba(239,68,68,0.2)' }}>
-              <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-3" />
-              <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Analysis failed</h2>
-              <p className="text-[#6b7c74] text-sm">{error}</p>
+              {/offline|temporarily|service/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">🔌</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Service warming up</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed mb-3">
+                    Our AI service is starting up — this takes 10–15 seconds on the first request. Please wait a moment and try again.
+                  </p>
+                  <p className="text-[#aab4af] text-xs">The service auto-sleeps to save resources and wakes on demand.</p>
+                </>
+              ) : /microphone|permission|denied|not found/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">🎙️</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Microphone needed</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed">{error}</p>
+                </>
+              ) : /silent/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">🔇</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Nothing recorded</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed">{error}</p>
+                  <p className="text-[#aab4af] text-xs mt-2">Hold your phone 30–50 cm from your baby and try again.</p>
+                </>
+              ) : /short/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">⏱️</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Too short</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed">{error}</p>
+                </>
+              ) : (
+                <>
+                  <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-3" />
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Analysis failed</h2>
+                  <p className="text-[#6b7c74] text-sm">{error}</p>
+                </>
+              )}
             </div>
             <PremiumBtn onClick={reset} fullWidth>
               <RotateCcw className="w-4 h-4" /> Try again

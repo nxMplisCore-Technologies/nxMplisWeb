@@ -32,6 +32,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(result);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown error';
-    return NextResponse.json({ error: 'Failed to reach cry analysis service', detail: message }, { status: 503 });
+    const isNetworkError = /ECONNREFUSED|ENOTFOUND|fetch failed|network/i.test(message);
+    return NextResponse.json(
+      {
+        error: isNetworkError
+          ? 'Cry analysis service is temporarily offline. Please try again in a few seconds.'
+          : 'Failed to reach cry analysis service',
+        detail: message,
+      },
+      { status: 503 },
+    );
   }
 }
