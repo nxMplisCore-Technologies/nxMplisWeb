@@ -160,7 +160,7 @@ export default function AnvayaPage() {
 
       {/* ── Breadcrumb ── */}
       <div className="border-b border-[#e2dbd4] bg-white">
-        <div className="container mx-auto px-4 py-2.5 text-xs text-muted-foreground flex items-center gap-1.5">
+        <div className="container mx-auto px-3 sm:px-4 py-2.5 text-xs text-muted-foreground flex items-center gap-1.5">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span>›</span>
           <Link href="/anvaya" className="hover:text-primary">Baby Wellness Pods</Link>
@@ -170,13 +170,13 @@ export default function AnvayaPage() {
       </div>
 
       {/* ── Main product layout ── */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-10 items-start">
+      <div className="w-full px-3 sm:px-4 lg:container lg:mx-auto py-4 lg:py-8">
+        <div className="grid lg:grid-cols-[1fr_420px] gap-5 lg:gap-10 items-start">
 
           {/* LEFT — Image + model tabs + features */}
           <div className="order-2 lg:order-1">
             {/* Model selector tabs — horizontally scrollable on mobile */}
-            <div className="flex gap-2 mb-6 overflow-x-auto pb-1 snap-x scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
+            <div className="flex gap-2 mb-4 overflow-x-auto pb-1 snap-x scrollbar-hide -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
               {products.map((prod, i) => (
                 <button
                   key={prod.id}
@@ -197,7 +197,7 @@ export default function AnvayaPage() {
             </div>
 
             {/* Product Image */}
-            <div className="relative rounded-2xl overflow-hidden bg-[#f5f0e8] border border-[#e2dbd4] shadow-sm" style={{aspectRatio: '16/9', minHeight: '260px'}}>
+            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#f5f0e8] border border-[#e2dbd4] shadow-sm -mx-3 sm:mx-0" style={{aspectRatio: '4/3', minHeight: '220px'}}>
               <Image
                 src={p.image}
                 alt={`${p.fullName} — AI baby wellness pod India`}
@@ -314,8 +314,8 @@ export default function AnvayaPage() {
           </div>
 
           {/* RIGHT — Sticky buy panel */}
-          <div className="order-1 lg:order-2 lg:sticky lg:top-20">
-            <div className="bg-white rounded-2xl border border-[#e2dbd4] shadow-lg overflow-hidden">
+          <div className="order-1 lg:order-2 lg:sticky lg:top-20 -mx-3 sm:mx-0">
+            <div className="bg-white sm:rounded-2xl border-y sm:border border-[#e2dbd4] shadow-lg overflow-hidden">
 
               {/* Product name + rating */}
               <div className="p-6 border-b border-[#f0ece6]">
