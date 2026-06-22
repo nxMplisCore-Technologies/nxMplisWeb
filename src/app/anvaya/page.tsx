@@ -138,7 +138,7 @@ export default function AnvayaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="min-h-screen bg-[#faf8f5] pb-32 md:pb-0">
 
       {/* JSON-LD schemas — rendered once, not tied to selected state */}
       {products.map(prod => (
@@ -158,8 +158,41 @@ export default function AnvayaPage() {
         { name: 'Baby Wellness Pods', url: 'https://nxmplis.com/anvaya' },
       ]} />
 
-      {/* ── Breadcrumb ── */}
-      <div className="border-b border-[#e2dbd4] bg-white">
+      {/* ── Mobile full-bleed hero strip ── */}
+      <div className="md:hidden relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${p.bgLight} 0%, white 100%)`, borderBottom: `2px solid ${p.color}18` }}>
+        <div className="flex items-center justify-between px-4 py-3">
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: p.color }}>Anvaya Smart</div>
+            <div className="text-xl font-bold leading-tight">{p.fullName}</div>
+            <div className="text-xs font-medium mt-0.5" style={{ color: p.color }}>{p.tagline}</div>
+          </div>
+          <div className="text-right">
+            <div className="text-[10px] text-muted-foreground line-through">₹{p.mrp.toLocaleString('en-IN')}</div>
+            <div className="text-2xl font-black" style={{ color: p.color }}>₹{p.price.toLocaleString('en-IN')}</div>
+            <div className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full mt-0.5">
+              {discount}% off · Founding price
+            </div>
+          </div>
+        </div>
+        {/* Model quick-switch chips */}
+        <div className="flex gap-1.5 px-4 pb-3 overflow-x-auto scrollbar-hide">
+          {products.map((prod, i) => (
+            <button key={prod.id} onClick={() => setSelected(i)}
+              className="shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold border-2 transition-all"
+              style={selected === i
+                ? { borderColor: prod.color, background: prod.color, color: '#fff' }
+                : { borderColor: `${prod.color}40`, background: 'white', color: prod.color }
+              }
+            >
+              {prod.name}
+              {prod.badge && ' ⭐'}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Breadcrumb (desktop only) ── */}
+      <div className="hidden md:block border-b border-[#e2dbd4] bg-white">
         <div className="container mx-auto px-3 sm:px-4 py-2.5 text-xs text-muted-foreground flex items-center gap-1.5">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span>›</span>
@@ -329,33 +362,56 @@ export default function AnvayaPage() {
               </div>
 
               {/* Founding price panel */}
-              <div className="p-6 border-b border-[#f0ece6]">
-                <div className="bg-primary/6 border border-primary/15 rounded-xl px-4 py-4 mb-3">
-                  <p className="text-sm font-semibold text-primary mb-1">🔒 Founding family pricing</p>
-                  <p className="text-xs text-muted-foreground">Exclusive price revealed via WhatsApp within 24 hours. No payment required today.</p>
+              <div className="p-5 border-b border-[#f0ece6]">
+                <div className="flex items-end justify-between mb-3">
+                  <div>
+                    <div className="text-xs text-muted-foreground line-through">MRP ₹{p.mrp.toLocaleString('en-IN')}</div>
+                    <div className="text-3xl font-black leading-tight" style={{ color: p.color }}>₹{p.price.toLocaleString('en-IN')}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xl font-black text-green-600">{discount}% off</div>
+                    <div className="text-[10px] text-muted-foreground">Founding family price</div>
+                  </div>
                 </div>
-                <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-green-200">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  Accepting reservations now
+                <div className="bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5 mb-3 flex items-center gap-2">
+                  <span className="text-base">🔒</span>
+                  <div>
+                    <p className="text-xs font-bold text-amber-800">Price locked for founding families</p>
+                    <p className="text-[10px] text-amber-700">No payment today · We confirm via WhatsApp first</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 bg-green-50 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-green-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    Reservations open now
+                  </div>
+                  <div className="text-[11px] text-muted-foreground">· Free shipping India</div>
                 </div>
               </div>
 
               {/* Model compare */}
-              <div className="px-6 pt-4 pb-2">
-                <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Choose your model</div>
+              <div className="px-5 pt-4 pb-3">
+                <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2.5">Choose model</div>
                 <div className="grid grid-cols-2 gap-2">
                   {products.map((prod, i) => (
                     <button
                       key={prod.id}
                       onClick={() => setSelected(i)}
-                      className={cn(
-                        'text-left p-2.5 rounded-xl border-2 transition-all',
-                        selected === i ? 'border-current' : 'border-[#e2dbd4] hover:border-gray-300'
-                      )}
-                      style={selected === i ? {borderColor: prod.color, background: prod.bgLight} : {}}
+                      className={cn('text-left p-3 rounded-xl border-2 transition-all duration-150 relative overflow-hidden')}
+                      style={selected === i
+                        ? { borderColor: prod.color, background: `linear-gradient(135deg,${prod.bgLight},white)`, boxShadow: `0 2px 12px ${prod.color}25` }
+                        : { borderColor: '#e2dbd4', background: 'white' }}
                     >
-                      <div className="text-xs font-bold" style={{color: selected === i ? prod.color : ''}}>{prod.name}</div>
-                      <div className="text-xs text-muted-foreground">Founding price on sign-up</div>
+                      {prod.badge && selected === i && (
+                        <span className="absolute top-1 right-1 text-[8px] font-bold px-1.5 py-0.5 rounded-full text-white" style={{ background: prod.color }}>
+                          Best
+                        </span>
+                      )}
+                      <div className="w-5 h-5 rounded-full mb-1.5 flex items-center justify-center" style={{ background: selected === i ? prod.color : '#e2dbd4' }}>
+                        <span className="text-[9px] font-black text-white">{prod.name[0]}</span>
+                      </div>
+                      <div className="text-xs font-bold" style={{ color: selected === i ? prod.color : '#1a2e28' }}>{prod.name}</div>
+                      <div className="text-[10px] text-muted-foreground mt-0.5">₹{prod.price.toLocaleString('en-IN')}</div>
                     </button>
                   ))}
                 </div>
@@ -448,6 +504,40 @@ export default function AnvayaPage() {
           </div>
         </div>
       </div>
+
+      {/* ── Mobile sticky reserve CTA (above tab bar) ── */}
+      {!booked && (
+        <div
+          className="md:hidden fixed left-0 right-0 z-40 px-4 py-3"
+          style={{
+            bottom: 'max(66px, calc(66px + env(safe-area-inset-bottom)))',
+            background: 'rgba(255,255,255,0.97)',
+            backdropFilter: 'blur(16px)',
+            borderTop: '1px solid rgba(0,0,0,0.07)',
+            boxShadow: '0 -4px 20px rgba(0,0,0,0.06)',
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-bold truncate">{p.fullName} — Founding price</div>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <span className="text-base font-black" style={{ color: p.color }}>₹{p.price.toLocaleString('en-IN')}</span>
+                <span className="text-[10px] text-muted-foreground line-through">₹{p.mrp.toLocaleString('en-IN')}</span>
+                <span className="text-[10px] font-bold text-green-600">{discount}% off</span>
+              </div>
+            </div>
+            <LeadModalTrigger source="anvaya-product-sticky" product={p.fullName}>
+              <button
+                className="shrink-0 px-5 py-3 rounded-xl font-bold text-sm text-white flex items-center gap-2"
+                style={{ background: `linear-gradient(135deg,${p.color}dd,${p.color})`, boxShadow: `0 4px 16px ${p.color}55` }}
+              >
+                <MessageCircle className="w-4 h-4" />
+                Reserve Now
+              </button>
+            </LeadModalTrigger>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
