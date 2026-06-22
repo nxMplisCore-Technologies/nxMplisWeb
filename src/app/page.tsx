@@ -519,159 +519,105 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
 
-      {/* ════════════ HERO ════════════ */}
-      <section className="relative min-h-[85vh] md:min-h-screen flex items-start md:items-center overflow-hidden mesh-hero">
-        {/* Ambient glow orbs — warm coral/amber, no green */}
-        <div className="glow-orb w-[560px] h-[560px] -left-40 -top-20" style={{ background: 'rgba(232,149,122,0.18)', animationDelay: '0s' }} />
-        <div className="glow-orb w-[440px] h-[440px] -right-20 top-10" style={{ background: 'rgba(245,185,140,0.14)', animationDelay: '3s' }} />
-        <div className="glow-orb w-[340px] h-[340px] left-1/2 bottom-0" style={{ background: 'rgba(212,120,74,0.10)', animationDelay: '6s' }} />
-        {/* Subtle dot grid — warm neutral */}
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(180,140,110,0.12) 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
-        {/* Subtle grain */}
-        <div className="absolute inset-0 noise pointer-events-none opacity-30" />
-        {/* Decorative rings — warm tone */}
-        <div className="absolute -right-40 -top-40 w-[640px] h-[640px] rounded-full border pointer-events-none" style={{ borderColor: 'rgba(212,120,74,0.10)' }} />
-        <div className="absolute -right-20 -top-20 w-[440px] h-[440px] rounded-full border pointer-events-none" style={{ borderColor: 'rgba(212,120,74,0.07)' }} />
-        {/* Scroll indicator */}
-        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none"
-          animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-primary/40">Scroll</span>
-          <ChevronDown className="w-4 h-4 text-primary/35" />
-        </motion.div>
+      {/* ════════════ HERO — calm, clear, one job ════════════ */}
+      <section className="relative overflow-hidden" style={{ background: 'linear-gradient(160deg,#f7f4f0 0%,#fdfcfa 60%,#f0f5f2 100%)' }}>
 
-        <div className="container mx-auto px-4 pt-8 pb-14 sm:py-16 lg:py-20">
-          <div className="grid md:grid-cols-2 gap-8 xl:gap-14 items-center">
+        {/* Single soft ambient glow — not competing, just warmth */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none rounded-full"
+          style={{ background: 'radial-gradient(ellipse at top right,rgba(232,149,122,0.12) 0%,transparent 65%)', filter: 'blur(40px)' }} />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none rounded-full"
+          style={{ background: 'radial-gradient(ellipse at bottom left,rgba(74,124,111,0.09) 0%,transparent 65%)', filter: 'blur(40px)' }} />
 
-            {/* LEFT copy */}
-            <div ref={heroRef}>
+        <div className="container mx-auto px-4 pt-10 pb-8 md:pt-16 md:pb-16">
+          <div className="grid md:grid-cols-2 gap-10 xl:gap-16 items-center">
 
-              {/* India-first badge */}
-              <div className="flex flex-wrap gap-2 mb-6 animate-fade-up">
-                <div className="inline-flex items-center gap-2 bg-white/85 border border-primary/20 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm backdrop-blur-sm">
-                  🇮🇳 India&apos;s First AI That Truly Cares For Your Baby
-                </div>
-                <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-full px-3 py-1.5 text-xs text-amber-700 font-semibold shadow-sm">
-                  <Sparkles className="w-3 h-3" /> Founding 100 families · Early access open
-                </div>
+            {/* ── LEFT — copy, clean ── */}
+            <div ref={heroRef} className="flex flex-col">
+
+              {/* Single badge — no clutter */}
+              <div className="inline-flex items-center gap-2 bg-white border border-primary/15 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm self-start mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                🇮🇳 India&apos;s first AI baby wellness pod
               </div>
 
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-bold tracking-tight leading-[1.05] mb-4 animate-fade-up delay-1">
-                Every breath.<br />
-                Every cry.<br />
-                <span style={{
-                  background: 'linear-gradient(120deg,#2d5c52 0%,#4a7c6f 25%,#7aab9e 45%,#e8957a 65%,#4a7c6f 85%,#2d5c52 100%)',
-                  backgroundSize: '200% auto',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  animation: 'shimmer-sweep 4s linear infinite',
-                }}>Every night — understood.</span>
+              {/* Headline — emotional, calm, one thought */}
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-4" style={{ color: '#0f1f1b' }}>
+                Your baby is<br />
+                safe tonight.{' '}
+                <span style={{ color: '#4a7c6f' }}>🌙</span>
               </h1>
 
-              {/* Emotional sub-headline */}
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-2 max-w-lg animate-fade-up delay-2">
-                Indian parents check on their baby <strong className="text-foreground">8–12 times a night.</strong> Anvaya does it 12,000 times — contactlessly, silently, while you sleep.
-              </p>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-lg animate-fade-up delay-2">
-                Breathing · SpO₂ · Cry type · Sleep quality. Nothing on baby&apos;s skin. Nothing missed.
+              <p className="text-base sm:text-lg leading-relaxed mb-6 max-w-md" style={{ color: '#5a6e67' }}>
+                Anvaya watches every breath, every sound, every temperature change — contactlessly, while you rest. Nothing on baby&apos;s skin. Ever.
               </p>
 
-              {/* Primary CTA */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-4 animate-fade-up delay-3">
+              {/* Live monitor on mobile — shown here, not hidden below fold */}
+              <div className="md:hidden mb-6">
+                <LiveMonitorWidget />
+              </div>
+
+              {/* ONE primary CTA */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-6">
                 <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
-                  <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
-                    style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)', transition: 'box-shadow .2s ease, transform .2s ease' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 36px rgba(232,149,122,0.65)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px rgba(232,149,122,0.50)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
+                  <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-2xl cursor-pointer text-white font-bold"
+                    style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 24px rgba(232,149,122,0.42)', transition: 'box-shadow .2s,transform .2s' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; }}
                   >
-                    <Sparkles className="w-4 h-4" />Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
+                    <Sparkles className="w-4 h-4" /> Reserve Early Access
                   </Button>
                 </LeadModalTrigger>
                 <CryCtaButton />
               </div>
 
-              {/* Curiosity hook */}
-              <div className="flex items-center gap-2 mb-2.5 animate-fade-up delay-4">
-                <motion.span
-                  className="text-lg select-none"
-                  animate={{ y: [0, 4, 0] }}
-                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}>
-                  👇
-                </motion.span>
-                <span className="text-sm font-semibold text-muted-foreground">
-                  Curious how it works?{' '}
-                  <span className="text-primary">Touch to find out.</span>
+              {/* Trust row — compact, no list */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground mb-6">
+                <span className="flex items-center gap-1.5">
+                  <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}</div>
+                  <strong className="text-foreground">4.9</strong> · 47 families
                 </span>
+                <span className="flex items-center gap-1"><CheckCircle className="w-3 h-3 text-green-500" /> No payment now</span>
+                <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-primary" /> Free shipping</span>
+                <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-primary" /> 30-day guarantee</span>
               </div>
 
-              {/* Guide strip — tour + cinematic */}
-              <div className="flex flex-col sm:flex-row gap-2 mb-5 animate-fade-up delay-4">
-                <Link href="/tour"
-                  className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-primary/50 hover:bg-primary/8 hover:shadow-md hover:-translate-y-0.5"
-                  style={{ borderColor: 'rgba(74,124,111,0.35)', background: 'rgba(74,124,111,0.06)', color: '#4a7c6f' }}>
-                  <motion.span className="text-lg" animate={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}>📱</motion.span>
-                  <div className="flex-1">
-                    <div>See it handle <em>your</em> worry</div>
-                    <div className="text-[10px] opacity-60 font-normal">Interactive tour · 2 min · pick your fear</div>
-                  </div>
-                  <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+              {/* Secondary links — calm, not competing */}
+              <div className="flex flex-wrap gap-3">
+                <Link href="/tour" className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                  📱 See a live tour <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
-                <Link href="/how-it-works"
-                  className="group flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-semibold transition-all hover:border-orange-300/50 hover:bg-orange-50/60 hover:shadow-md hover:-translate-y-0.5"
-                  style={{ borderColor: 'rgba(212,120,74,0.35)', background: 'rgba(212,120,74,0.06)', color: '#d4784a' }}>
-                  <motion.span className="text-lg" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }}>🎬</motion.span>
-                  <div className="flex-1">
-                    <div>Watch it in action</div>
-                    <div className="text-[10px] opacity-60 font-normal">60-sec cinematic · auto-plays · no scroll</div>
-                  </div>
-                  <ArrowRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                <span className="text-muted-foreground">·</span>
+                <Link href="/anvaya" className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
+                  Compare models <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
-              </div>
-
-              <CryDemoStrip />
-
-              {/* Star rating + trust pills */}
-              <div className="flex items-center gap-3 mb-3 animate-fade-up delay-5">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
-                </div>
-                <span className="text-sm font-bold text-foreground">4.9/5</span>
-                <span className="text-sm text-muted-foreground">· Pilot families · Paediatrician-recommended</span>
-              </div>
-              <div className="flex flex-wrap items-center gap-2 animate-fade-up delay-5">
-                {[
-                  { icon: Shield, text: 'No payment now' },
-                  { icon: CheckCircle, text: '30-day guarantee' },
-                  { icon: Zap, text: 'Free shipping India' },
-                ].map(({ icon: Icon, text }) => (
-                  <span key={text} className="trust-pill">
-                    <Icon className="w-3 h-3 shrink-0" />{text}
-                  </span>
-                ))}
               </div>
             </div>
 
-            {/* RIGHT — product + live monitor */}
+            {/* ── RIGHT — nursery image + live monitor, desktop only ── */}
             <div className="hidden md:flex flex-col items-center gap-6">
-              <div className="relative">
-                <div className="absolute inset-[-24px] rounded-[48px] border border-primary/10 pointer-events-none" />
-                <div className="absolute inset-[-48px] rounded-[64px] border border-primary/5 pointer-events-none" />
-                <div className="relative w-80 rounded-3xl overflow-hidden shadow-2xl animate-float border-4 border-white/60" style={{ aspectRatio: '4/3' }}>
-                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery — AI-powered contactless breathing and cry monitoring India" fill className="object-cover object-center" priority sizes="320px" />
-                  <div className="absolute bottom-4 left-4 glass rounded-xl px-3 py-2 shadow-lg">
-                    <p className="text-xs font-bold text-[#172720]">Designed for Every Nursery</p>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">On table · On wall · On cradle</p>
+              <div className="relative w-full max-w-sm">
+                {/* Nursery image */}
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white" style={{ aspectRatio: '4/3' }}>
+                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery" fill className="object-cover" priority sizes="380px" />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.22) 0%,transparent 50%)' }} />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2 shadow-lg inline-flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                      <span className="text-xs font-bold text-[#172720]">Monitoring now · All vitals normal</span>
+                    </div>
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 glass rounded-2xl px-3 py-2.5 shadow-xl z-10 animate-float" style={{ animationDelay: '1s' }}>
+                {/* Floating stars badge */}
+                <div className="absolute -top-3 -right-3 bg-white rounded-2xl px-3 py-2 shadow-lg border border-amber-100">
                   <div className="flex items-center gap-1 mb-0.5">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 star-filled fill-amber-400" />)}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
                   </div>
-                  <div className="text-xs font-bold">Pediatrician-approved</div>
+                  <div className="text-[10px] font-bold">Paediatrician-approved</div>
                 </div>
               </div>
-              <div className="animate-fade-up delay-4 w-full flex justify-center">
+
+              {/* Live monitor widget */}
+              <div className="w-full flex justify-center">
                 <LiveMonitorWidget />
               </div>
             </div>
