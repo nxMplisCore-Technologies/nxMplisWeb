@@ -236,10 +236,10 @@ function CryDemoStrip() {
     <div className="mb-6">
       <AnimatePresence mode="wait">
         <motion.div key={idx}
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -10 }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35 }}
           className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-sm"
           style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${cur.color}35`, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
         >
@@ -551,9 +551,40 @@ export default function Home() {
                 Anvaya watches every breath, every sound, every temperature change — contactlessly, while you rest. Nothing on baby&apos;s skin. Ever.
               </p>
 
-              {/* Live monitor on mobile — shown here, not hidden below fold */}
+              {/* Mobile-only: cute sleeping baby card */}
               <div className="md:hidden mb-6">
-                <LiveMonitorWidget />
+                <div className="rounded-3xl overflow-hidden shadow-lg border border-white" style={{ background: 'linear-gradient(160deg,#1a2e28 0%,#0f1f1b 100%)' }}>
+                  {/* Night scene header */}
+                  <div className="relative flex items-center justify-center pt-6 pb-2" style={{ minHeight: 130 }}>
+                    {/* Soft amber glow */}
+                    <div className="absolute top-4 right-8 w-8 h-8 rounded-full pointer-events-none"
+                      style={{ background: '#ffdb6a', boxShadow: '0 0 28px 16px rgba(255,195,70,0.28), 0 0 60px 30px rgba(255,175,50,0.10)' }} />
+                    {/* Stars */}
+                    {[[12,'8%'],[22,'14%'],[68,'6%'],[82,'16%'],[90,'9%']].map(([l,t],i) => (
+                      <div key={i} className="absolute w-1 h-1 rounded-full bg-white pointer-events-none" style={{ left:`${l}%`, top:t, opacity:0.6, animation:`pulse ${1.8+i*0.3}s ease-in-out ${i*0.4}s infinite alternate` }} />
+                    ))}
+                    {/* Crib bars (subtle) */}
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-4 opacity-25">
+                      {[0,1,2,3,4].map(i => <div key={i} className="w-0.5 h-8 rounded-full bg-amber-200" />)}
+                    </div>
+                    {/* Baby */}
+                    <div style={{ position: 'relative', zIndex: 10 }}>
+                      <BabySVG />
+                    </div>
+                  </div>
+                  {/* Live stats bar */}
+                  <div className="px-4 py-3 flex items-center justify-between" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-400" style={{ animation: 'pulse 1.6s ease-in-out infinite', boxShadow: '0 0 6px #4ade80' }} />
+                      <span className="text-[10px] font-bold text-green-400 uppercase tracking-wider">Baby monitoring live</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-[10px] font-semibold text-white/70">
+                      <span>😴 Sleeping</span>
+                      <span style={{ color: '#7aab9e' }}>28 br/min</span>
+                      <span style={{ color: '#e8957a' }}>SpO₂ 98%</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* ONE primary CTA */}

@@ -192,8 +192,12 @@ export default function CryAnalyzerPage() {
     if (state !== 'idle') return;
     const t = setInterval(() => {
       setDemoVisible(false);
-      setTimeout(() => { setDemoIdx(d => (d + 1) % CRY_DEMOS.length); setDemoVisible(true); }, 300);
-    }, 2800);
+      // Wait for fade-out (300ms) to fully finish before swapping content
+      setTimeout(() => {
+        setDemoIdx(d => (d + 1) % CRY_DEMOS.length);
+        setDemoVisible(true);
+      }, 350);
+    }, 3000);
     return () => clearInterval(t);
   }, [state]);
 
@@ -266,8 +270,7 @@ export default function CryAnalyzerPage() {
                   border: `1px solid ${demo.color}35`,
                   boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
                   opacity: demoVisible ? 1 : 0,
-                  transform: demoVisible ? 'translateY(0)' : 'translateY(6px)',
-                  transition: 'opacity 0.28s ease, transform 0.28s ease',
+                  transition: 'opacity 0.3s ease',
                 }}
               >
                 <div className="flex items-center gap-1.5 shrink-0">
