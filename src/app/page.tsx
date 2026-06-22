@@ -680,6 +680,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ════════════ MOBILE QUICK ACTIONS (app-style grid, mobile only) ════════════ */}
+      <section className="md:hidden bg-white border-b border-[#e8e2da] px-4 py-5">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Quick actions</p>
+        <div className="grid grid-cols-4 gap-2">
+          {[
+            { href: '/cry-analyzer', emoji: '🎙', label: 'Cry AI',    bg: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', glow: 'rgba(74,124,111,0.3)' },
+            { href: '/anvaya',       emoji: '📦', label: 'Products',  bg: 'linear-gradient(135deg,#c96f3a,#e8957a)', glow: 'rgba(232,149,122,0.3)' },
+            { href: '/quiz',         emoji: '🎯', label: 'Find Pod',  bg: 'linear-gradient(135deg,#6d4c9e,#9b72c8)', glow: 'rgba(139,92,246,0.28)' },
+            { href: '/tour',         emoji: '📱', label: 'Tour',      bg: 'linear-gradient(135deg,#1e6fa0,#3b9fd4)', glow: 'rgba(59,159,212,0.28)' },
+          ].map(({ href, emoji, label, bg, glow }) => (
+            <Link key={href} href={href} className="flex flex-col items-center gap-1.5">
+              <span
+                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-md active:scale-95 transition-transform"
+                style={{ background: bg, boxShadow: `0 4px 16px ${glow}` }}
+              >
+                {emoji}
+              </span>
+              <span className="text-[10px] font-semibold text-center text-muted-foreground leading-tight">{label}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* ════════════ STATS ════════════ */}
       <section className="border-y border-border bg-white py-14">
         <div className="container mx-auto px-4">

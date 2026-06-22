@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { TopBar } from '@/components/layout/top-bar';
 import { MobileTabBar } from '@/components/layout/mobile-tab-bar';
+import { MobileLiveBar } from '@/components/layout/mobile-live-bar';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import { OrganizationSchema, WebsiteSchema } from '@/components/seo/JsonLd';
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="relative flex min-h-screen flex-col">
           <div className="hidden md:block"><TopBar /></div>
           <Header />
+          <MobileLiveBar />
           <main className="flex-1 md:mb-0 mb-[68px]">{children}</main>
           <Footer className="hidden md:block" />
           <MobileTabBar />
