@@ -180,26 +180,12 @@ export default function CryAnalyzerPage() {
 
   const isWorking = state === 'uploading' || state === 'processing';
 
-  const CRY_DEMOS = [
-    { emoji: '🍼', label: 'Hungry', pct: 94, color: '#f59e0b' },
-    { emoji: '😴', label: 'Tired', pct: 87, color: '#8b5cf6' },
-    { emoji: '😣', label: 'Discomfort', pct: 79, color: '#ef4444' },
-    { emoji: '😮‍💨', label: 'Needs Burping', pct: 83, color: '#10b981' },
+  const CRY_TYPES = [
+    { emoji: '🍼', label: 'Hungry',        color: '#f59e0b' },
+    { emoji: '😴', label: 'Tired',          color: '#8b5cf6' },
+    { emoji: '😣', label: 'Discomfort',     color: '#ef4444' },
+    { emoji: '😮‍💨', label: 'Needs Burping', color: '#10b981' },
   ];
-  const [demoIdx, setDemoIdx] = useState(0);
-  const [demoVisible, setDemoVisible] = useState(true);
-  useEffect(() => {
-    if (state !== 'idle') return;
-    const t = setInterval(() => {
-      setDemoVisible(false);
-      // Wait for fade-out (300ms) to fully finish before swapping content
-      setTimeout(() => {
-        setDemoIdx(d => (d + 1) % CRY_DEMOS.length);
-        setDemoVisible(true);
-      }, 350);
-    }, 3000);
-    return () => clearInterval(t);
-  }, [state]);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col" style={{ background: '#faf8f5' }}>
@@ -258,40 +244,23 @@ export default function CryAnalyzerPage() {
           <Waveform active={isWorking || recording} />
         </div>
 
-        {/* Demo cycling strip — idle only */}
-        {state === 'idle' && (() => {
-          const demo = CRY_DEMOS[demoIdx];
-          return (
-            <div className="mb-6 flex flex-col items-center gap-2">
-              <div
-                className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl"
-                style={{
-                  background: 'rgba(255,255,255,0.88)',
-                  border: `1px solid ${demo.color}35`,
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-                  opacity: demoVisible ? 1 : 0,
-                  transition: 'opacity 0.3s ease',
-                }}
-              >
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <div className="w-2 h-2 rounded-full" style={{ background: demo.color, animation: 'demo-pulse 1.2s ease-in-out infinite' }} />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI detected</span>
+        {/* What I can detect — idle only, static grid */}
+        {state === 'idle' && (
+          <div className="mb-6 w-full max-w-md">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-center mb-3" style={{ color: '#9aaba4' }}>AI detects these cry types</p>
+            <div className="grid grid-cols-2 gap-2">
+              {CRY_TYPES.map(({ emoji, label, color }) => (
+                <div key={label}
+                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl"
+                  style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${color}28`, boxShadow: '0 1px 6px rgba(0,0,0,0.04)' }}
+                >
+                  <span style={{ fontSize: 20, lineHeight: 1 }}>{emoji}</span>
+                  <span className="text-xs font-bold" style={{ color }}>{label}</span>
                 </div>
-                <div className="w-px h-4 bg-slate-200" />
-                <span style={{ fontSize: 18, lineHeight: 1 }}>{demo.emoji}</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold" style={{ color: demo.color }}>{demo.label}</span>
-                  <div className="h-1.5 w-20 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.07)' }}>
-                    <div className="h-full rounded-full transition-all duration-700" style={{ width: `${demo.pct}%`, background: demo.color }} />
-                  </div>
-                  <span className="text-xs font-bold tabular-nums" style={{ color: demo.color }}>{demo.pct}%</span>
-                </div>
-              </div>
-              <p className="text-[10px] text-muted-foreground">← example AI output · upload your recording to analyse</p>
-              <style>{`@keyframes demo-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:0.7}}`}</style>
+              ))}
             </div>
-          );
-        })()}
+          </div>
+        )}
 
         {/* ── IDLE CARD ── */}
         {state === 'idle' && (

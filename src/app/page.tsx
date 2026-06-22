@@ -624,22 +624,67 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ── RIGHT — nursery image + live monitor, desktop only ── */}
-            <div className="hidden md:flex flex-col items-center gap-6">
+            {/* ── RIGHT — in-code night scene + live monitor, desktop only ── */}
+            <div className="hidden md:flex flex-col items-center gap-5">
               <div className="relative w-full max-w-sm">
-                {/* Nursery image */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white" style={{ aspectRatio: '4/3' }}>
-                  <Image src="/anvaya-nursery.jpg" alt="Anvaya Smart baby wellness pod in nursery" fill className="object-cover" priority sizes="380px" />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.22) 0%,transparent 50%)' }} />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2 shadow-lg inline-flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                      <span className="text-xs font-bold text-[#172720]">Monitoring now · All vitals normal</span>
+                {/* Night scene card */}
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10" style={{ background: 'linear-gradient(160deg,#1a2e28 0%,#0f1f1b 100%)', aspectRatio: '4/3' }}>
+
+                  {/* Ambient moon glow top-right */}
+                  <div className="absolute top-5 right-7 w-10 h-10 rounded-full pointer-events-none"
+                    style={{ background: '#fffde7', boxShadow: '0 0 32px 20px rgba(255,218,60,0.32), 0 0 80px 40px rgba(255,175,50,0.10)' }} />
+
+                  {/* Stars */}
+                  {[[8,'10%'],[18,'5%'],[30,'13%'],[54,'7%'],[70,'11%'],[85,'5%'],[93,'15%']].map(([l,t],i) => (
+                    <div key={i} className="absolute w-1 h-1 rounded-full bg-white pointer-events-none"
+                      style={{ left:`${l}%`, top:t as string, opacity:0.55, animation:`pulse ${1.8+i*0.3}s ease-in-out ${i*0.35}s infinite alternate` }} />
+                  ))}
+
+                  {/* Crib bars (subtle) */}
+                  <div className="absolute bottom-[88px] left-1/2 -translate-x-1/2 flex gap-5 opacity-20 pointer-events-none">
+                    {[0,1,2,3,4].map(i => <div key={i} className="w-0.5 h-12 rounded-full bg-amber-200" />)}
+                  </div>
+
+                  {/* Pod on shelf — left */}
+                  <div className="absolute left-6 bottom-[88px] pointer-events-none">
+                    <div className="flex flex-col items-center justify-center gap-1.5"
+                      style={{ width:52, height:64, borderRadius:16, background:'linear-gradient(160deg,#2d5c50,#1a2e27)', border:'1.5px solid rgba(74,124,111,0.6)', boxShadow:'0 0 28px rgba(74,124,111,0.28)' }}>
+                      <Activity className="w-4 h-4 text-[#7aab9e]" />
+                      <div style={{ width:6, height:6, borderRadius:'50%', background:'#4a7c6f', boxShadow:'0 0 7px rgba(74,124,111,0.9)', animation:'pulse 1.4s ease-in-out infinite' }} />
+                    </div>
+                    <div style={{ width:70, height:6, marginTop:3, borderRadius:3, background:'rgba(74,124,111,0.25)', marginLeft:-9 }} />
+                  </div>
+
+                  {/* Baby centered */}
+                  <div className="absolute left-1/2 bottom-[82px] -translate-x-1/2 pointer-events-none">
+                    <BabySVG />
+                  </div>
+
+                  {/* LIVE pill */}
+                  <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full pointer-events-none"
+                    style={{ background:'rgba(15,23,42,0.85)', border:'1px solid rgba(74,124,111,0.45)', backdropFilter:'blur(12px)' }}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" style={{ boxShadow:'0 0 6px #4ade80' }} />
+                    <span className="text-[10px] font-bold text-green-400 uppercase tracking-wider">Live</span>
+                    <span className="text-[10px] text-white/50 ml-1">28 br/min · SpO₂ 98%</span>
+                  </div>
+
+                  {/* Floor */}
+                  <div className="absolute left-0 right-0 pointer-events-none" style={{ bottom:82, height:1, background:'rgba(74,124,111,0.14)' }} />
+
+                  {/* Bottom bar */}
+                  <div className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-center justify-between pointer-events-none"
+                    style={{ background:'rgba(0,0,0,0.35)', backdropFilter:'blur(8px)', borderTop:'1px solid rgba(255,255,255,0.06)' }}>
+                    <span className="text-[10px] font-semibold text-white/60">Sleeping peacefully 😴</span>
+                    <div className="flex items-center gap-3 text-[10px] font-semibold">
+                      <span style={{ color:'#7aab9e' }}>36.5°C</span>
+                      <span style={{ color:'#e8957a' }}>SpO₂ 98%</span>
+                      <span style={{ color:'#7aab9e' }}>28 br</span>
                     </div>
                   </div>
                 </div>
+
                 {/* Floating stars badge */}
-                <div className="absolute -top-3 -right-3 bg-white rounded-2xl px-3 py-2 shadow-lg border border-amber-100">
+                <div className="absolute -top-3 -right-3 bg-white rounded-2xl px-3 py-2 shadow-lg border border-amber-100 z-10">
                   <div className="flex items-center gap-1 mb-0.5">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
                   </div>

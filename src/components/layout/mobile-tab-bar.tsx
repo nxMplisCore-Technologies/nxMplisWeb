@@ -21,8 +21,6 @@ export function MobileTabBar() {
   return (
     <>
       <style>{`
-        @keyframes ring-spin   { to { transform: rotate(360deg); } }
-        @keyframes ring-glow   { 0%,100%{opacity:.5} 50%{opacity:1} }
         @keyframes cry-ripple  { 0%,100%{box-shadow:0 0 0 0 rgba(232,149,122,.5),0 5px 18px rgba(232,149,122,.38)}
                                   55%   {box-shadow:0 0 0 9px rgba(232,149,122,0),0 5px 18px rgba(232,149,122,.38)} }
         @keyframes teal-ripple { 0%,100%{box-shadow:0 0 0 0 rgba(74,124,111,.45),0 5px 18px rgba(74,124,111,.32)}
@@ -100,15 +98,6 @@ export function MobileTabBar() {
           }}
         >
           <div className="relative" style={{ width: 54, height: 54 }}>
-            {/* Dashed spinning ring — uses inset so it's always centred on the button */}
-            <span
-              className="absolute pointer-events-none rounded-full"
-              style={{
-                inset: -8,
-                border: isCryActive ? '2px dashed #e8957a' : '2px dashed rgba(74,124,111,0.6)',
-                animation: 'ring-spin 3.5s linear infinite, ring-glow 2s ease-in-out infinite',
-              }}
-            />
             {/* Button */}
             <span
               className="w-full h-full rounded-full flex items-center justify-center"
