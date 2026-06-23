@@ -168,16 +168,23 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } });
       chunksRef.current = [];
-      const mr = new MediaRecorder(stream);
+      const mimeType = [
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg;codecs=opus',
+        'audio/mp4',
+      ].find(t => MediaRecorder.isTypeSupported(t)) ?? '';
+      const mr = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
       mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
       mr.onstop = async () => {
         stream.getTracks().forEach(t => t.stop());
         setStatus('processing');
-        const r = await processRecordedAudio(new Blob(chunksRef.current));
+        const blob = new Blob(chunksRef.current, { type: mr.mimeType || mimeType || 'audio/webm' });
+        const r = await processRecordedAudio(blob);
         if (!r.ok) { setErrorMsg(r.error.message); setStatus('error'); return; }
         setFile(r.file); analyze(r.file);
       };
-      mr.start(); mediaRef.current = mr; setRecording(true); setRecSeconds(0);
+      mr.start(100); mediaRef.current = mr; setRecording(true); setRecSeconds(0);
       let s = 0;
       timerRef.current = setInterval(() => {
         s += 1; setRecSeconds(s);

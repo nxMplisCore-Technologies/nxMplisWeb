@@ -184,6 +184,7 @@ export default function CryAnalyzerPage() {
     { emoji: '🍼', label: 'Hungry',        color: '#f59e0b' },
     { emoji: '😴', label: 'Tired',          color: '#8b5cf6' },
     { emoji: '😣', label: 'Discomfort',     color: '#ef4444' },
+    { emoji: '🤢', label: 'Belly Pain',     color: '#dc2626' },
     { emoji: '😮‍💨', label: 'Needs Burping', color: '#10b981' },
   ];
 
@@ -248,7 +249,7 @@ export default function CryAnalyzerPage() {
         {state === 'idle' && (
           <div className="mb-6 w-full max-w-md">
             <p className="text-[10px] font-bold uppercase tracking-widest text-center mb-3" style={{ color: '#9aaba4' }}>AI detects these cry types</p>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {CRY_TYPES.map(({ emoji, label, color }) => (
                 <div key={label}
                   className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl"
