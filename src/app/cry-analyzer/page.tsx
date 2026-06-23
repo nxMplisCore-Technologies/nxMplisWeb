@@ -120,6 +120,7 @@ export default function CryAnalyzerPage() {
     const allowed = ['.wav', '.mp3', '.ogg', '.flac', '.m4a'];
     const ok = allowed.some(ext => file.name.toLowerCase().endsWith(ext));
     if (!ok) { setError('Please upload a WAV, MP3, OGG, FLAC or M4A file.'); setState('error'); return; }
+    if (file.size > 25 * 1024 * 1024) { setError('File is too large. Please upload an audio file under 25 MB.'); setState('error'); return; }
     analyze(file);
   }, [analyze]);
 

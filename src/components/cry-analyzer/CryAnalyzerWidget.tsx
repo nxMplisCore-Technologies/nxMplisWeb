@@ -157,7 +157,10 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
     }
   }, []);
 
-  const handleFile = useCallback((f: File) => { setFile(f); setStatus('idle'); setResult(null); }, []);
+  const handleFile = useCallback((f: File) => {
+    if (f.size > 25 * 1024 * 1024) { setErrorMsg('File is too large. Please upload an audio file under 25 MB.'); setStatus('error'); return; }
+    setFile(f); setStatus('idle'); setResult(null);
+  }, []);
 
   const reset = useCallback(() => {
     setFile(null); setStatus('idle'); setResult(null); setErrorMsg('');
