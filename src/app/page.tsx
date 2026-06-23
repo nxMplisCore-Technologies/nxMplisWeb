@@ -610,7 +610,22 @@ export default function Home() {
                 <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-primary" /> 30-day guarantee</span>
               </div>
 
-              {/* Secondary links — calm, not competing */}
+              {/* "How will it help me" — highlighted entry point */}
+              <Link href="/use-cases"
+                className="flex items-center justify-between gap-3 rounded-2xl px-4 py-3 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                style={{ background: 'rgba(74,124,111,0.08)', border: '1.5px solid rgba(74,124,111,0.22)' }}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-xl leading-none">🤔</span>
+                  <div>
+                    <div className="text-sm font-bold" style={{ color: '#1a2e28' }}>How will it help me?</div>
+                    <div className="text-[11px]" style={{ color: '#6b7c74' }}>See real scenarios — office, night alerts, cry analysis &amp; more</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 shrink-0" style={{ color: '#4a7c6f' }} />
+              </Link>
+
+              {/* Secondary links */}
               <div className="flex flex-wrap gap-3">
                 <Link href="/tour" className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
                   📱 See a live tour <ArrowRight className="w-3.5 h-3.5" />
@@ -618,10 +633,6 @@ export default function Home() {
                 <span className="text-muted-foreground">·</span>
                 <Link href="/anvaya" className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
                   Compare models <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-                <span className="text-muted-foreground">·</span>
-                <Link href="/use-cases" className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
-                  How will it help me? <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
