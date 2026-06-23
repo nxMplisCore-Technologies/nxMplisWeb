@@ -15,6 +15,19 @@ const footerLinks = {
     { href: '/industries', label: 'Industries' },
     { href: '/blog', label: 'Blog' },
     { href: '/careers', label: 'Careers' },
+    { href: '/contactless-baby-monitor-india', label: 'Contactless Baby Monitor' },
+    { href: '/ai-baby-monitor-india', label: 'AI Baby Monitor India' },
+    { href: '/baby-monitoring', label: 'Baby Monitoring Guide' },
+  ],
+  learn: [
+    { href: '/how-it-works', label: 'How It Works' },
+    { href: '/use-cases', label: 'Use Cases' },
+    { href: '/compare', label: 'Compare Technology' },
+    { href: '/quiz', label: 'Find My Pod' },
+    { href: '/cry-analyzer', label: 'Try Cry Analyzer' },
+    { href: '/baby-spo2-monitor-india', label: 'Baby SpO₂ Monitor' },
+    { href: '/newborn-care-guide', label: 'Newborn Care Guide' },
+    { href: '/baby-wellness-app', label: 'Baby Wellness App' },
   ],
   support: [
     { href: '/contact', label: 'Contact Us' },
@@ -29,7 +42,7 @@ export function Footer({ className = '' }: { className?: string }) {
   return (
     <footer className={`bg-[#172720] text-white ${className}`}>
       <div className="container mx-auto px-4 py-14">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-5">
           {/* Brand */}
           <div>
             <div className="text-xl font-bold mb-1">
@@ -63,6 +76,16 @@ export function Footer({ className = '' }: { className?: string }) {
             <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{color:'#7aab9e'}}>Company</h3>
             <ul className="space-y-2.5">
               {footerLinks.company.map(l => (
+                <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Learn & Compare */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{color:'#7aab9e'}}>Learn &amp; Compare</h3>
+            <ul className="space-y-2.5">
+              {footerLinks.learn.map(l => (
                 <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
               ))}
             </ul>

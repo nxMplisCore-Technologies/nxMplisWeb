@@ -4,8 +4,16 @@ import { ArrowRight, Shield, Heart } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Every Moment That Matters — Anvaya Smart Use Cases',
-  description: 'See how Anvaya Smart helps Indian parents — at work, during alerts, decoding cries, tracking breathing, sleep, milestones and growth. One app for every parenting moment.',
+  title: 'How Anvaya Helps You | Real Parent Scenarios | AI Baby Monitor India',
+  description: 'See how Anvaya Smart helps Indian parents in every moment — from the office to midnight alerts, cry decoding, breathing checks, milestones and growth tracking. Real AI. Real peace of mind.',
+  keywords: ['AI baby monitor use cases India', 'how baby monitor helps parents', 'baby cry analyzer India', 'contactless baby breathing monitor', 'baby wellness app scenarios India'],
+  alternates: { canonical: 'https://nxmplis.com/use-cases' },
+  openGraph: {
+    title: 'How Anvaya Helps You — Real Parent Scenarios',
+    description: 'From office to midnight alerts. Crying, breathing, milestones, growth. Anvaya Smart handles every parenting moment.',
+    url: 'https://nxmplis.com/use-cases',
+    type: 'website',
+  },
 };
 
 /* ── Scenario data ── */
@@ -64,7 +72,7 @@ const SCENARIOS = [
     mockupBg: 'linear-gradient(155deg,#071512 0%,#0b1c18 100%)',
     mockup: 'breathing',
     cta: { label: 'See SENSE features', href: '/anvaya' },
-    emoji: '🫁',
+    emoji: '�af1',
   },
   {
     id: 'milestone',
@@ -78,7 +86,7 @@ const SCENARIOS = [
     mockupBg: 'linear-gradient(155deg,#120920 0%,#180c2a 100%)',
     mockup: 'milestone',
     cta: { label: 'Explore OMNI', href: '/anvaya' },
-    emoji: '🌟',
+    emoji: '⭐',
   },
   {
     id: 'growth',
@@ -96,7 +104,6 @@ const SCENARIOS = [
   },
 ];
 
-/* ── Mini app screen mockups (dark — look like phone screens) ── */
 function Mockup({ type, accent }: { type: string; accent: string }) {
   if (type === 'office') return (
     <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.10)' }}>
@@ -239,7 +246,6 @@ function Mockup({ type, accent }: { type: string; accent: string }) {
     </div>
   );
 
-  // growth
   return (
     <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${accent}30` }}>
       <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: `1px solid ${accent}15` }}>
@@ -281,7 +287,6 @@ export default function UseCasesPage() {
         { name: 'Every Moment', url: 'https://nxmplis.com/use-cases' },
       ]} />
 
-      {/* Hero — light, warm, matches site */}
       <div className="px-4 pt-12 pb-10 text-center" style={{ background: 'linear-gradient(160deg,#f7f4f0 0%,#fdfcfa 60%,#f0f5f2 100%)' }}>
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6"
           style={{ background: 'rgba(74,124,111,0.10)', border: '1px solid rgba(74,124,111,0.20)', color: '#4a7c6f' }}>
@@ -295,7 +300,6 @@ export default function UseCasesPage() {
         <p className="text-base max-w-sm mx-auto leading-relaxed mb-8" style={{ color: '#5a6e67' }}>
           From the office to the NICU consult. From midnight cries to first milestones. Anvaya is there.
         </p>
-        {/* Quick scenario nav pills */}
         <div className="flex flex-wrap justify-center gap-2">
           {SCENARIOS.map(s => (
             <a key={s.id} href={`#${s.id}`}
@@ -307,7 +311,6 @@ export default function UseCasesPage() {
         </div>
       </div>
 
-      {/* Scenario cards */}
       <div className="max-w-lg mx-auto px-4 py-10 space-y-6">
         {SCENARIOS.map(s => (
           <div
@@ -316,7 +319,6 @@ export default function UseCasesPage() {
             className="rounded-3xl overflow-hidden bg-white shadow-sm"
             style={{ border: `1.5px solid ${s.accent}20` }}
           >
-            {/* Card header — light */}
             <div className="px-5 pt-5 pb-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-bold"
@@ -325,7 +327,6 @@ export default function UseCasesPage() {
                 </div>
                 <span className="text-[10px] font-mono" style={{ color: '#a8b5af' }}>{s.time}</span>
               </div>
-
               <h2 className="text-2xl sm:text-3xl font-black leading-tight mb-2" style={{ color: '#0f1f1b', whiteSpace: 'pre-line' }}>
                 {s.headline}
               </h2>
@@ -333,15 +334,11 @@ export default function UseCasesPage() {
                 {s.sub}
               </p>
             </div>
-
-            {/* App screen mockup — stays dark to look like a phone screen */}
             <div className="px-5 pb-4">
               <div className="rounded-2xl overflow-hidden p-3" style={{ background: s.mockupBg }}>
                 <Mockup type={s.mockup} accent={s.accent} />
               </div>
             </div>
-
-            {/* CTA */}
             <div className="px-5 pb-5">
               <Link
                 href={s.cta.href}
@@ -355,7 +352,6 @@ export default function UseCasesPage() {
           </div>
         ))}
 
-        {/* Bottom CTA — warm, light */}
         <div className="rounded-3xl p-6 text-center bg-white shadow-sm" style={{ border: '1.5px solid rgba(74,124,111,0.18)' }}>
           <div className="text-lg font-bold mb-1" style={{ color: '#0f1f1b' }}>One device. All of this.</div>
           <div className="text-sm mb-5" style={{ color: '#6b7c74' }}>Anvaya Smart starts at ₹8,999. Nothing on baby&apos;s skin. Ever.</div>
