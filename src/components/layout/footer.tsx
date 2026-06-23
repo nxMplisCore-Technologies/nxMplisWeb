@@ -25,9 +25,6 @@ const footerLinks = {
     { href: '/compare', label: 'Compare Technology' },
     { href: '/quiz', label: 'Find My Pod' },
     { href: '/cry-analyzer', label: 'Try Cry Analyzer' },
-    { href: '/baby-spo2-monitor-india', label: 'Baby SpO₂ Monitor' },
-    { href: '/newborn-care-guide', label: 'Newborn Care Guide' },
-    { href: '/baby-wellness-app', label: 'Baby Wellness App' },
   ],
   support: [
     { href: '/contact', label: 'Contact Us' },
