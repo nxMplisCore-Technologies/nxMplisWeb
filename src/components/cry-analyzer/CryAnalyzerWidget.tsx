@@ -165,6 +165,7 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
   const reset = useCallback(() => {
     setFile(null); setStatus('idle'); setResult(null); setErrorMsg('');
     setRecording(false); setRecSeconds(0);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   }, []);
 
   const startRec = useCallback(async () => {
