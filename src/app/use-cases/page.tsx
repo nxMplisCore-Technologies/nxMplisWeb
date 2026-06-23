@@ -13,13 +13,13 @@ const SCENARIOS = [
   {
     id: 'office',
     time: '3:14 PM',
-    tag: 'You\'re at the office',
+    tag: "You're at the office",
     tagColor: '#1e6fa0',
-    tagBg: 'rgba(30,111,160,0.10)',
-    headline: 'Baby is sleeping\npracefully while\nyou\'re in a meeting.',
+    tagBg: 'rgba(30,111,160,0.08)',
+    headline: "Baby is sleeping\npeacefully while\nyou're in a meeting.",
     sub: 'One glance at Anvaya and you\'re back to work — no guilt, no anxiety.',
-    bg: 'linear-gradient(155deg,#0f1e2e 0%,#142030 100%)',
     accent: '#3b9fd4',
+    mockupBg: 'linear-gradient(155deg,#0f1e2e 0%,#142030 100%)',
     mockup: 'office',
     cta: { label: 'See live monitoring', href: '/anvaya' },
     emoji: '👔',
@@ -29,11 +29,11 @@ const SCENARIOS = [
     time: '2:07 AM',
     tag: 'Severe alert fired',
     tagColor: '#dc2626',
-    tagBg: 'rgba(220,38,38,0.12)',
+    tagBg: 'rgba(220,38,38,0.08)',
     headline: 'Breathing\npattern changed.\nConsult now.',
     sub: 'Anvaya shares a timestamped health report your paediatrician can read in seconds.',
-    bg: 'linear-gradient(155deg,#1f0a0a 0%,#2a0e0e 100%)',
     accent: '#ef4444',
+    mockupBg: 'linear-gradient(155deg,#1f0a0a 0%,#2a0e0e 100%)',
     mockup: 'alert',
     cta: { label: 'How alerts work', href: '/how-it-works' },
     emoji: '🚨',
@@ -43,11 +43,11 @@ const SCENARIOS = [
     time: '11:43 PM',
     tag: 'Baby is crying',
     tagColor: '#d97706',
-    tagBg: 'rgba(217,119,6,0.10)',
+    tagBg: 'rgba(217,119,6,0.08)',
     headline: 'Hungry.\n94% confident.\nFeed now.',
     sub: 'AI analyses the cry in 8 seconds — no guessing, no panicking at midnight.',
-    bg: 'linear-gradient(155deg,#1c1200 0%,#241800 100%)',
     accent: '#f59e0b',
+    mockupBg: 'linear-gradient(155deg,#1c1200 0%,#241800 100%)',
     mockup: 'cry',
     cta: { label: 'Try cry analyzer free', href: '/cry-analyzer' },
     emoji: '😢',
@@ -57,11 +57,11 @@ const SCENARIOS = [
     time: '7:30 AM',
     tag: 'Morning check-in',
     tagColor: '#4a7c6f',
-    tagBg: 'rgba(74,124,111,0.10)',
+    tagBg: 'rgba(74,124,111,0.08)',
     headline: '8.5 hrs of sleep.\nBreathing steady\nall night.',
     sub: '12,000 checks while you slept. Every breath logged. Every SpO₂ spike noted.',
-    bg: 'linear-gradient(155deg,#071512 0%,#0b1c18 100%)',
     accent: '#4a7c6f',
+    mockupBg: 'linear-gradient(155deg,#071512 0%,#0b1c18 100%)',
     mockup: 'breathing',
     cta: { label: 'See SENSE features', href: '/anvaya' },
     emoji: '🫁',
@@ -71,11 +71,11 @@ const SCENARIOS = [
     time: '3 months old',
     tag: 'First milestone',
     tagColor: '#7c3aed',
-    tagBg: 'rgba(124,58,237,0.10)',
+    tagBg: 'rgba(124,58,237,0.08)',
     headline: 'First smile.\nFirst roll.\nAll captured.',
     sub: 'Anvaya prompts you when developmental milestones are due and logs the ones you mark.',
-    bg: 'linear-gradient(155deg,#120920 0%,#180c2a 100%)',
     accent: '#a78bfa',
+    mockupBg: 'linear-gradient(155deg,#120920 0%,#180c2a 100%)',
     mockup: 'milestone',
     cta: { label: 'Explore OMNI', href: '/anvaya' },
     emoji: '🌟',
@@ -85,18 +85,18 @@ const SCENARIOS = [
     time: 'Week 14',
     tag: 'Growth tracker',
     tagColor: '#059669',
-    tagBg: 'rgba(5,150,105,0.10)',
+    tagBg: 'rgba(5,150,105,0.08)',
     headline: '5.8 kg · 58 cm.\nOn track with\nWHO curve.',
     sub: 'Log weight and height weekly. Anvaya plots the curve and flags deviations early.',
-    bg: 'linear-gradient(155deg,#041510 0%,#071d16 100%)',
     accent: '#34d399',
+    mockupBg: 'linear-gradient(155deg,#041510 0%,#071d16 100%)',
     mockup: 'growth',
     cta: { label: 'See all features', href: '/anvaya' },
     emoji: '📏',
   },
 ];
 
-/* ── Mini app screen mockups ── */
+/* ── Mini app screen mockups (dark — look like phone screens) ── */
 function Mockup({ type, accent }: { type: string; accent: string }) {
   if (type === 'office') return (
     <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.10)' }}>
@@ -174,7 +174,7 @@ function Mockup({ type, accent }: { type: string; accent: string }) {
       </div>
       <div className="px-4 pb-3 mt-2">
         <div className="rounded-xl p-2.5 text-xs text-white/60 flex items-start gap-2" style={{ background: 'rgba(255,255,255,0.04)' }}>
-          💡 Try feeding now — even if it hasn't been long since the last feed.
+          💡 Try feeding now — even if it hasn&apos;t been long since the last feed.
         </div>
       </div>
     </div>
@@ -183,11 +183,10 @@ function Mockup({ type, accent }: { type: string; accent: string }) {
   if (type === 'breathing') return (
     <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${accent}30` }}>
       <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: `1px solid ${accent}15` }}>
-        <span className="text-xs font-bold text-white/80">Last night's sleep</span>
+        <span className="text-xs font-bold text-white/80">Last night&apos;s sleep</span>
         <span className="text-[10px]" style={{ color: accent }}>8h 32m ✓</span>
       </div>
       <div className="p-4">
-        {/* Sleep phases bar */}
         <div className="flex h-5 rounded-lg overflow-hidden gap-px mb-2">
           {[['20%','#1e3a5f'],['15%','#2d6b5e'],['25%','#1e3a5f'],['10%','rgba(255,255,255,0.1)'],['30%','#2d6b5e']].map(([w,c],i) => (
             <div key={i} style={{ width:w, background:c }} />
@@ -255,14 +254,11 @@ function Mockup({ type, accent }: { type: string; accent: string }) {
       </div>
       <div className="p-4">
         <div className="relative h-24 mb-3">
-          {/* WHO band */}
           <div className="absolute inset-x-0" style={{ top: '15%', bottom: '25%', background: `${accent}12`, borderRadius: 4 }} />
-          {/* Baby's curve */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 96" preserveAspectRatio="none">
             <polyline points="0,72 40,64 80,55 120,48 160,42 200,38" fill="none" stroke={accent} strokeWidth="2.5" strokeLinecap="round" />
             <circle cx="200" cy="38" r="4" fill={accent} />
           </svg>
-          {/* WHO median */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 96" preserveAspectRatio="none">
             <polyline points="0,78 40,70 80,62 120,56 160,50 200,46" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" strokeDasharray="4 3" />
           </svg>
@@ -279,64 +275,78 @@ function Mockup({ type, accent }: { type: string; accent: string }) {
 
 export default function UseCasesPage() {
   return (
-    <div style={{ background: '#080f0d' }} className="min-h-screen">
+    <div className="min-h-screen" style={{ background: '#faf8f5' }}>
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://nxmplis.com' },
         { name: 'Every Moment', url: 'https://nxmplis.com/use-cases' },
       ]} />
 
-      {/* Hero */}
-      <div className="px-4 pt-12 pb-10 text-center">
-        <div className="inline-flex items-center gap-2 bg-white/8 border border-white/10 rounded-full px-4 py-1.5 text-xs font-bold text-white/60 uppercase tracking-widest mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+      {/* Hero — light, warm, matches site */}
+      <div className="px-4 pt-12 pb-10 text-center" style={{ background: 'linear-gradient(160deg,#f7f4f0 0%,#fdfcfa 60%,#f0f5f2 100%)' }}>
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6"
+          style={{ background: 'rgba(74,124,111,0.10)', border: '1px solid rgba(74,124,111,0.20)', color: '#4a7c6f' }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
           Anvaya Smart · One app
         </div>
-        <h1 className="text-4xl sm:text-5xl font-bold leading-[1.08] mb-4 text-white">
+        <h1 className="text-4xl sm:text-5xl font-bold leading-[1.08] mb-4" style={{ color: '#0f1f1b' }}>
           Every moment<br />
           <span style={{ color: '#4a7c6f' }}>that matters.</span>
         </h1>
-        <p className="text-white/50 text-sm sm:text-base max-w-sm mx-auto leading-relaxed">
+        <p className="text-base max-w-sm mx-auto leading-relaxed mb-8" style={{ color: '#5a6e67' }}>
           From the office to the NICU consult. From midnight cries to first milestones. Anvaya is there.
         </p>
+        {/* Quick scenario nav pills */}
+        <div className="flex flex-wrap justify-center gap-2">
+          {SCENARIOS.map(s => (
+            <a key={s.id} href={`#${s.id}`}
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all hover:scale-105"
+              style={{ background: s.tagBg, border: `1px solid ${s.tagColor}25`, color: s.tagColor }}>
+              {s.emoji} {s.tag}
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* Scenario cards */}
-      <div className="max-w-lg mx-auto px-4 pb-16 space-y-5">
-        {SCENARIOS.map((s, i) => (
+      <div className="max-w-lg mx-auto px-4 py-10 space-y-6">
+        {SCENARIOS.map(s => (
           <div
             key={s.id}
-            className="rounded-3xl overflow-hidden"
-            style={{ background: s.bg, border: `1px solid ${s.accent}18` }}
+            id={s.id}
+            className="rounded-3xl overflow-hidden bg-white shadow-sm"
+            style={{ border: `1.5px solid ${s.accent}20` }}
           >
-            {/* Card header */}
+            {/* Card header — light */}
             <div className="px-5 pt-5 pb-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-bold"
-                  style={{ background: s.tagBg, color: s.tagColor, border: `1px solid ${s.tagColor}30` }}>
+                  style={{ background: s.tagBg, color: s.tagColor, border: `1px solid ${s.tagColor}25` }}>
                   {s.emoji} {s.tag}
                 </div>
-                <span className="text-[10px] font-mono text-white/30">{s.time}</span>
+                <span className="text-[10px] font-mono" style={{ color: '#a8b5af' }}>{s.time}</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2" style={{ whiteSpace: 'pre-line' }}>
+              <h2 className="text-2xl sm:text-3xl font-black leading-tight mb-2" style={{ color: '#0f1f1b', whiteSpace: 'pre-line' }}>
                 {s.headline}
               </h2>
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              <p className="text-sm leading-relaxed" style={{ color: '#6b7c74' }}>
                 {s.sub}
               </p>
             </div>
 
-            {/* App screen mockup */}
+            {/* App screen mockup — stays dark to look like a phone screen */}
             <div className="px-5 pb-4">
-              <Mockup type={s.mockup} accent={s.accent} />
+              <div className="rounded-2xl overflow-hidden p-3" style={{ background: s.mockupBg }}>
+                <Mockup type={s.mockup} accent={s.accent} />
+              </div>
             </div>
 
             {/* CTA */}
             <div className="px-5 pb-5">
               <Link
                 href={s.cta.href}
-                className="flex items-center justify-between w-full rounded-2xl px-4 py-3 text-sm font-bold transition-opacity hover:opacity-90"
-                style={{ background: `${s.accent}20`, border: `1px solid ${s.accent}35`, color: s.accent }}
+                className="flex items-center justify-between w-full rounded-2xl px-4 py-3 text-sm font-bold transition-all hover:opacity-80"
+                style={{ background: `${s.accent}12`, border: `1px solid ${s.accent}30`, color: s.accent }}
               >
                 {s.cta.label}
                 <ArrowRight className="w-4 h-4" />
@@ -345,17 +355,17 @@ export default function UseCasesPage() {
           </div>
         ))}
 
-        {/* Bottom CTA */}
-        <div className="rounded-3xl p-6 text-center" style={{ background: 'linear-gradient(135deg,rgba(74,124,111,0.15),rgba(232,149,122,0.12))', border: '1px solid rgba(255,255,255,0.08)' }}>
-          <div className="text-white font-bold text-lg mb-1">One device. All of this.</div>
-          <div className="text-white/50 text-sm mb-5">Anvaya Smart starts at ₹8,999. Nothing on baby's skin. Ever.</div>
+        {/* Bottom CTA — warm, light */}
+        <div className="rounded-3xl p-6 text-center bg-white shadow-sm" style={{ border: '1.5px solid rgba(74,124,111,0.18)' }}>
+          <div className="text-lg font-bold mb-1" style={{ color: '#0f1f1b' }}>One device. All of this.</div>
+          <div className="text-sm mb-5" style={{ color: '#6b7c74' }}>Anvaya Smart starts at ₹8,999. Nothing on baby&apos;s skin. Ever.</div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/anvaya" className="flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white"
-              style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 20px rgba(232,149,122,0.35)' }}>
+              style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 16px rgba(232,149,122,0.35)' }}>
               <Heart className="w-4 h-4" /> See all models
             </Link>
             <Link href="/cry-analyzer" className="flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold"
-              style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.8)' }}>
+              style={{ background: 'rgba(74,124,111,0.08)', border: '1.5px solid rgba(74,124,111,0.25)', color: '#4a7c6f' }}>
               <Shield className="w-4 h-4" /> Try cry analyzer free
             </Link>
           </div>

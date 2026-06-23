@@ -198,8 +198,6 @@ function CryCtaButton() {
       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 28px rgba(74,124,111,0.50)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(74,124,111,0.35)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
     >
-      {/* Subtle shimmer sweep on load */}
-      <span className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.12) 50%,transparent 70%)', animation: 'btn-shimmer 2.8s ease-in-out infinite', animationDelay: '1s' }} />
       {/* Animated sound wave bars */}
       <div className="flex items-center gap-[2px] shrink-0" style={{ height: 16 }}>
         {[0,1,2,3,4].map(i => (
@@ -212,7 +210,7 @@ function CryCtaButton() {
       </div>
       Try AI Cry Analyzer — Free
       <ArrowRight className="w-4 h-4" />
-      <style>{`@keyframes cry-wave{from{height:2px}to{height:14px}} @keyframes btn-shimmer{0%,100%{transform:translateX(-120%)} 50%{transform:translateX(120%)}}`}</style>
+      <style>{`@keyframes cry-wave{from{height:2px}to{height:14px}}`}</style>
     </Link>
   );
 }
@@ -620,6 +618,10 @@ export default function Home() {
                 <span className="text-muted-foreground">·</span>
                 <Link href="/anvaya" className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
                   Compare models <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <span className="text-muted-foreground">·</span>
+                <Link href="/use-cases" className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
+                  How will it help me? <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
