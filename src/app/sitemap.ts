@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/anvaya`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/cry-analyzer`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },
     { url: `${base}/how-it-works`, lastModified: now, changeFrequency: 'monthly', priority: 0.93 },
+    { url: `${base}/use-cases`, lastModified: now, changeFrequency: 'monthly', priority: 0.91 },
     { url: `${base}/early-access`, lastModified: now, changeFrequency: 'daily', priority: 0.90 },
     // Zero-competition SEO landing pages (own the category)
     { url: `${base}/contactless-baby-monitor-india`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },

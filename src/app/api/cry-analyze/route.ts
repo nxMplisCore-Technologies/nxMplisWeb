@@ -44,11 +44,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(result);
   } catch (err: unknown) {
     const isTimeout = err instanceof Error && err.name === 'AbortError';
-    const message = isTimeout
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    const isNetworkError = !isTimeout && /ECONNREFUSED|ENOTFOUND|fetch failed|network/i.test(message);
+    const errorMsg = isTimeout
       ? 'Cry analysis service timed out. Please try again.'
-      : err instanceof Error ? err.message : 'Unknown error';
+      : isNetworkError
+      ? 'Cry analysis service is temporarily offline. Please try again in a few seconds.'
+      : 'Failed to reach cry analysis service';
     return NextResponse.json(
-      { error: isTimeout ? 'Request timed out' : 'Failed to reach cry analysis service', detail: message },
+      { error: errorMsg, detail: message },
       { status: 503 }
     );
   }

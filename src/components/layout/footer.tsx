@@ -25,9 +25,9 @@ const footerLinks = {
   ],
 };
 
-export function Footer() {
+export function Footer({ className = '' }: { className?: string }) {
   return (
-    <footer className="bg-[#172720] text-white">
+    <footer className={`bg-[#172720] text-white ${className}`}>
       <div className="container mx-auto px-4 py-14">
         <div className="grid gap-10 md:grid-cols-4">
           {/* Brand */}

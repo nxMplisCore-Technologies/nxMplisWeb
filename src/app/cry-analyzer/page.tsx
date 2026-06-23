@@ -99,12 +99,11 @@ export default function CryAnalyzerPage() {
 
   const analyze = useCallback(async (file: File) => {
     setFileName(file.name);
-    setState('uploading');
     setError('');
     setResult(null);
+    setState('processing');
     const form = new FormData();
     form.append('file', file);
-    setState('processing');
     try {
       const res = await fetch('/api/cry-analyze', { method: 'POST', body: form });
       const data = await res.json();
@@ -126,25 +125,47 @@ export default function CryAnalyzerPage() {
 
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } });
-      const mr = new MediaRecorder(stream);
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
+      });
+
+      // Pick the best supported MIME type — Safari needs audio/mp4, Chrome prefers webm/opus
+      const mimeType = [
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg;codecs=opus',
+        'audio/mp4',
+      ].find(t => MediaRecorder.isTypeSupported(t)) ?? '';
+
+      const mr = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
       chunksRef.current = [];
-      mr.ondataavailable = e => chunksRef.current.push(e.data);
+      // Only push non-empty chunks — prevents empty blob on very short recordings
+      mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
       mr.onstop = async () => {
         stream.getTracks().forEach(t => t.stop());
         setState('processing');
-        const result = await processRecordedAudio(new Blob(chunksRef.current));
+        // Pass explicit MIME type so decodeAudioData knows the container format
+        const blob = new Blob(chunksRef.current, { type: mr.mimeType || mimeType || 'audio/webm' });
+        const result = await processRecordedAudio(blob);
         if (!result.ok) { setError(result.error.message); setState('error'); return; }
         analyze(result.file);
       };
-      mr.start();
+      // 100ms timeslice ensures chunks flush reliably before stop() fires
+      mr.start(100);
       mediaRecorderRef.current = mr;
       setRecording(true);
       setRecSeconds(0);
       let secs = 0;
       timerRef.current = setInterval(() => { secs += 1; setRecSeconds(secs); if (secs >= 10) stopRecording(); }, 1000);
-    } catch {
-      setError('Microphone access denied. Please allow microphone permission and try again.');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : '';
+      if (/denied|NotAllowed|Permission/i.test(msg)) {
+        setError('Microphone access denied. Please allow microphone permission in your browser settings and try again.');
+      } else if (/NotFound|DevicesNotFound|not found/i.test(msg)) {
+        setError('No microphone detected. Please connect a microphone and try again.');
+      } else {
+        setError('Could not start recording. Please check your browser microphone permissions and try again.');
+      }
       setState('error');
     }
   };
@@ -159,22 +180,12 @@ export default function CryAnalyzerPage() {
 
   const isWorking = state === 'uploading' || state === 'processing';
 
-  const CRY_DEMOS = [
-    { emoji: '🍼', label: 'Hungry', pct: 94, color: '#f59e0b' },
-    { emoji: '😴', label: 'Tired', pct: 87, color: '#8b5cf6' },
-    { emoji: '😣', label: 'Discomfort', pct: 79, color: '#ef4444' },
-    { emoji: '😮‍💨', label: 'Needs Burping', pct: 83, color: '#10b981' },
+  const CRY_TYPES = [
+    { emoji: '🍼', label: 'Hungry',        color: '#f59e0b' },
+    { emoji: '😴', label: 'Tired',          color: '#8b5cf6' },
+    { emoji: '😣', label: 'Discomfort',     color: '#ef4444' },
+    { emoji: '😮‍💨', label: 'Needs Burping', color: '#10b981' },
   ];
-  const [demoIdx, setDemoIdx] = useState(0);
-  const [demoVisible, setDemoVisible] = useState(true);
-  useEffect(() => {
-    if (state !== 'idle') return;
-    const t = setInterval(() => {
-      setDemoVisible(false);
-      setTimeout(() => { setDemoIdx(d => (d + 1) % CRY_DEMOS.length); setDemoVisible(true); }, 300);
-    }, 2800);
-    return () => clearInterval(t);
-  }, [state]);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col" style={{ background: '#faf8f5' }}>
@@ -233,41 +244,23 @@ export default function CryAnalyzerPage() {
           <Waveform active={isWorking || recording} />
         </div>
 
-        {/* Demo cycling strip — idle only */}
-        {state === 'idle' && (() => {
-          const demo = CRY_DEMOS[demoIdx];
-          return (
-            <div className="mb-6 flex flex-col items-center gap-2">
-              <div
-                className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl"
-                style={{
-                  background: 'rgba(255,255,255,0.88)',
-                  border: `1px solid ${demo.color}35`,
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-                  opacity: demoVisible ? 1 : 0,
-                  transform: demoVisible ? 'translateY(0)' : 'translateY(6px)',
-                  transition: 'opacity 0.28s ease, transform 0.28s ease',
-                }}
-              >
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <div className="w-2 h-2 rounded-full" style={{ background: demo.color, animation: 'demo-pulse 1.2s ease-in-out infinite' }} />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI detected</span>
+        {/* What I can detect — idle only, static grid */}
+        {state === 'idle' && (
+          <div className="mb-6 w-full max-w-md">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-center mb-3" style={{ color: '#9aaba4' }}>AI detects these cry types</p>
+            <div className="grid grid-cols-2 gap-2">
+              {CRY_TYPES.map(({ emoji, label, color }) => (
+                <div key={label}
+                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl"
+                  style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${color}28`, boxShadow: '0 1px 6px rgba(0,0,0,0.04)' }}
+                >
+                  <span style={{ fontSize: 20, lineHeight: 1 }}>{emoji}</span>
+                  <span className="text-xs font-bold" style={{ color }}>{label}</span>
                 </div>
-                <div className="w-px h-4 bg-slate-200" />
-                <span style={{ fontSize: 18, lineHeight: 1 }}>{demo.emoji}</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold" style={{ color: demo.color }}>{demo.label}</span>
-                  <div className="h-1.5 w-20 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.07)' }}>
-                    <div className="h-full rounded-full transition-all duration-700" style={{ width: `${demo.pct}%`, background: demo.color }} />
-                  </div>
-                  <span className="text-xs font-bold tabular-nums" style={{ color: demo.color }}>{demo.pct}%</span>
-                </div>
-              </div>
-              <p className="text-[10px] text-muted-foreground">← example AI output · upload your recording to analyse</p>
-              <style>{`@keyframes demo-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:0.7}}`}</style>
+              ))}
             </div>
-          );
-        })()}
+          </div>
+        )}
 
         {/* ── IDLE CARD ── */}
         {state === 'idle' && (
@@ -501,9 +494,41 @@ export default function CryAnalyzerPage() {
           <div className="w-full max-w-md space-y-4">
             <div className="rounded-3xl p-8 text-center shadow-lg"
               style={{ background: '#fff5f5', border: '1px solid rgba(239,68,68,0.2)' }}>
-              <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-3" />
-              <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Analysis failed</h2>
-              <p className="text-[#6b7c74] text-sm">{error}</p>
+              {/offline|temporarily|service/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">🔌</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Service warming up</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed mb-3">
+                    Our AI service is starting up — this takes 10–15 seconds on the first request. Please wait a moment and try again.
+                  </p>
+                  <p className="text-[#aab4af] text-xs">The service auto-sleeps to save resources and wakes on demand.</p>
+                </>
+              ) : /microphone|permission|denied|not found/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">🎙️</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Microphone needed</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed">{error}</p>
+                </>
+              ) : /silent/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">🔇</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Nothing recorded</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed">{error}</p>
+                  <p className="text-[#aab4af] text-xs mt-2">Hold your phone 30–50 cm from your baby and try again.</p>
+                </>
+              ) : /short/i.test(error) ? (
+                <>
+                  <div className="text-5xl mb-3">⏱️</div>
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Too short</h2>
+                  <p className="text-[#6b7c74] text-sm leading-relaxed">{error}</p>
+                </>
+              ) : (
+                <>
+                  <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-3" />
+                  <h2 className="text-lg font-bold mb-2" style={{ color: '#1a2e28' }}>Analysis failed</h2>
+                  <p className="text-[#6b7c74] text-sm">{error}</p>
+                </>
+              )}
             </div>
             <PremiumBtn onClick={reset} fullWidth>
               <RotateCcw className="w-4 h-4" /> Try again
