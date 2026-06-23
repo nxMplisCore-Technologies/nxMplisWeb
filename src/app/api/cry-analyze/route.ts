@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const CRY_API_URL = process.env.CRY_API_URL || 'http://localhost:8000';
+const CRY_API_URL = process.env.CRY_API_URL;
+if (!CRY_API_URL && process.env.NODE_ENV === 'production') {
+  throw new Error('CRY_API_URL environment variable is not set');
+}
 
 // 55-second timeout — generous for cold-start Cloud Run, stays within Next.js 60s limit
 const UPSTREAM_TIMEOUT_MS = 55_000;
@@ -23,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     let response: Response;
     try {
-      response = await fetch(`${CRY_API_URL}/predict`, {
+      response = await fetch(`${CRY_API_URL ?? 'http://localhost:8000'}/predict`, {
         method: 'POST',
         body: upstream,
         signal: controller.signal,
