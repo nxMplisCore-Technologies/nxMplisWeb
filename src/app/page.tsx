@@ -193,10 +193,8 @@ function BabySVG() {
 function CryCtaButton() {
   return (
     <Link href="/cry-analyzer"
-      className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
-      style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 4px 20px rgba(74,124,111,0.35)', transition: 'box-shadow .2s ease, transform .2s ease' }}
-      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 28px rgba(74,124,111,0.50)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
-      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(74,124,111,0.35)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
+      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
+      style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 4px 20px rgba(74,124,111,0.35)' }}
     >
       {/* Animated sound wave bars */}
       <div className="flex items-center gap-[2px] shrink-0" style={{ height: 16 }}>
@@ -224,46 +222,28 @@ const CRY_DEMOS = [
 ];
 
 function CryDemoStrip() {
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setIdx(d => (d + 1) % CRY_DEMOS.length), 2800);
-    return () => clearInterval(t);
-  }, []);
-  const cur = CRY_DEMOS[idx];
+  const cur = CRY_DEMOS[0];
   return (
     <div className="mb-6">
-      <AnimatePresence mode="wait">
-        <motion.div key={idx}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.35 }}
-          className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-sm"
-          style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${cur.color}35`, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
-        >
-          <div className="flex items-center gap-1.5 shrink-0">
-            <motion.div className="w-2 h-2 rounded-full" style={{ background: cur.color }}
-              animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.2, repeat: Infinity }}
-            />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI detected</span>
+      <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl backdrop-blur-sm"
+        style={{ background: 'rgba(255,255,255,0.88)', border: `1px solid ${cur.color}35`, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
+      >
+        <div className="flex items-center gap-1.5 shrink-0">
+          <div className="w-2 h-2 rounded-full" style={{ background: cur.color }} />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI detected</span>
+        </div>
+        <div className="w-px h-4 bg-slate-200" />
+        <span style={{ fontSize: 18, lineHeight: 1 }}>{cur.emoji}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold" style={{ color: cur.color }}>{cur.label}</span>
+          <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.07)' }}>
+            <div className="h-full rounded-full" style={{ background: cur.color, width: `${cur.pct}%` }} />
           </div>
-          <div className="w-px h-4 bg-slate-200" />
-          <span style={{ fontSize: 18, lineHeight: 1 }}>{cur.emoji}</span>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold" style={{ color: cur.color }}>{cur.label}</span>
-            <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.07)' }}>
-              <motion.div className="h-full rounded-full" style={{ background: cur.color }}
-                initial={{ width: 0 }}
-                animate={{ width: `${cur.pct}%` }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              />
-            </div>
-            <span className="text-[10px] font-mono text-muted-foreground">{cur.pct}%</span>
-          </div>
-          <div className="w-px h-4 bg-slate-200" />
-          <Link href="/cry-analyzer" className="text-[10px] font-bold text-[#4a7c6f] hover:text-[#2d5c52] transition-colors shrink-0 whitespace-nowrap">Try free →</Link>
-        </motion.div>
-      </AnimatePresence>
+          <span className="text-[10px] font-mono text-muted-foreground">{cur.pct}%</span>
+        </div>
+        <div className="w-px h-4 bg-slate-200" />
+        <Link href="/cry-analyzer" className="text-[10px] font-bold text-[#4a7c6f] hover:text-[#2d5c52] transition-colors shrink-0 whitespace-nowrap">Try free →</Link>
+      </div>
     </div>
   );
 }
