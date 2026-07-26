@@ -182,7 +182,7 @@ export default function TechnologyPage() {
           </Reveal>
           <Reveal variant={fadeUp} custom={3}>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Nxmliscore is built on responsible innovation. Every decision — from sensor choice to alert logic — is guided by one question: does this make parents calmer, not more anxious?
+              Nxmpliscore is built on responsible innovation. Every decision — from sensor choice to alert logic — is guided by one question: does this make parents calmer, not more anxious?
             </p>
           </Reveal>
         </div>
@@ -254,7 +254,7 @@ export default function TechnologyPage() {
         <div className="absolute inset-0 noise pointer-events-none opacity-30" />
         <div className="container mx-auto px-4 max-w-2xl text-center relative">
           <Reveal variant={fadeUp} custom={0}>
-            <p className="text-sm font-bold uppercase tracking-widest text-primary mb-6">Nxmliscore Research</p>
+            <p className="text-sm font-bold uppercase tracking-widest text-primary mb-6">Nxmpliscore Research</p>
           </Reveal>
           <Reveal variant={fadeUp} custom={1}>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
@@ -266,7 +266,7 @@ export default function TechnologyPage() {
           </Reveal>
           <Reveal variant={fadeUp} custom={3}>
             <Button asChild className="bg-primary text-white hover:bg-primary/90 font-semibold gap-2 px-7 py-6 text-base rounded-xl shadow-lg shadow-primary/30">
-              <Link href="/about">About Nxmliscore <ArrowRight className="w-4 h-4" /></Link>
+              <Link href="/about">About Nxmpliscore <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </Reveal>
         </div>

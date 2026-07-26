@@ -79,7 +79,7 @@ export default function AboutPage() {
               </Reveal>
               <Reveal variant={fadeUp} custom={2}>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Nxmliscore is a wellness technology company focused on understanding human signals across every stage of life. Founded by IIT alumni, we combine deep engineering expertise, applied research, and human-centered design.
+                  Nxmpliscore is a wellness technology company focused on understanding human signals across every stage of life. Founded by IIT alumni, we combine deep engineering expertise, applied research, and human-centered design.
                 </p>
               </Reveal>
               <Reveal variant={fadeUp} custom={3}>
@@ -97,7 +97,7 @@ export default function AboutPage() {
               <div className="relative rounded-2xl overflow-hidden shadow-md" style={{ minHeight: '320px' }}>
                 <Image
                   src="/anvaya-product.webp"
-                  alt="Nxmliscore team — IIT alumni building Anvaya Smart, India's best AI baby monitor"
+                  alt="Nxmpliscore team — IIT alumni building Anvaya Smart, India's best AI baby monitor"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

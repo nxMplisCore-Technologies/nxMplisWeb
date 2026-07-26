@@ -4,13 +4,13 @@ export function OrganizationSchema() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org', '@type': ['Organization', 'MedicalOrganization'],
     '@id': 'https://nxmplis.com/#organization',
-    name: 'Nxmliscore', alternateName: ['Anvaya Smart', 'Nxmliscore Technologies'],
+    name: 'Nxmpliscore', alternateName: ['Anvaya Smart', 'Nxmpliscore Technologies'],
     url: 'https://nxmplis.com', logo: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-logo.webp', width: 200, height: 200 },
     description: 'AI-powered contactless baby wellness pod monitoring. Anvaya Smart tracks breathing, SpO₂, cry patterns and sleep — no wearables, complete on-device privacy.',
     foundingDate: '2024',
     address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' },
     founder: [{ '@type': 'Person', name: 'Deepak Singh', alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad' }, jobTitle: 'Founder' }],
-    sameAs: ['https://www.instagram.com/anvayasmart', 'https://www.linkedin.com/company/nxmliscore', 'https://twitter.com/anvayasmart'],
+    sameAs: ['https://www.instagram.com/anvayasmart', 'https://www.linkedin.com/company/nxmpliscore', 'https://twitter.com/anvayasmart'],
     contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['English', 'Hindi', 'Telugu'], areaServed: 'IN', contactOption: 'TollFree' },
     knowsAbout: ['Baby Monitoring', 'Baby Wellness Pod Monitoring', 'Infant Health', 'Infant Vital Signs Monitoring', 'Contactless Sensing', 'AI Health Technology', 'Baby Sleep Analysis', 'Newborn Wellness Technology', 'Baby SpO2 Monitoring'],
   })}} />;
@@ -20,7 +20,7 @@ export function WebsiteSchema() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org', '@type': 'WebSite',
     '@id': 'https://nxmplis.com/#website',
-    name: 'Anvaya Smart by Nxmliscore', url: 'https://nxmplis.com',
+    name: 'Anvaya Smart by Nxmpliscore', url: 'https://nxmplis.com',
     description: "India's most advanced contactless AI baby wellness pod",
     inLanguage: 'en-IN',
     potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: 'https://nxmplis.com/blog?q={search_term_string}' }, 'query-input': 'required name=search_term_string' },
@@ -118,7 +118,7 @@ export function LocalBusinessSchema() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org', '@type': ['LocalBusiness', 'Store'],
     '@id': 'https://nxmplis.com/#localbusiness',
-    name: 'Nxmliscore — Anvaya Smart', description: 'AI-powered contactless baby wellness monitor. Smart Care. Gentle Beginnings.',
+    name: 'Nxmpliscore — Anvaya Smart', description: 'AI-powered contactless baby wellness monitor. Smart Care. Gentle Beginnings.',
     url: 'https://nxmplis.com', telephone: '+91-98765-43210', email: 'hello@nxmplis.com',
     address: { '@type': 'PostalAddress', streetAddress: 'BITS Hyderabad Research Park', addressLocality: 'Hyderabad', addressRegion: 'Telangana', postalCode: '500078', addressCountry: 'IN' },
     geo: { '@type': 'GeoCoordinates', latitude: 17.385, longitude: 78.4867 },
