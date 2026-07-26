@@ -106,7 +106,7 @@ export function Footer({ className = '' }: { className?: string }) {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/30">
-          <p>© {new Date().getFullYear()} Nxmliscore, Inc. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nxmpliscore, Inc. All rights reserved.</p>
           <p>Anvaya Smart™ — Made with care in India 🇮🇳</p>
         </div>
       </div>

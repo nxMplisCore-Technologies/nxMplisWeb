@@ -25,21 +25,21 @@ export const seoConfig = {
     canonical: 'https://nxmplis.com/technology',
   },
   about: {
-    title: 'About Nxmliscore | IIT Alumni Building India\'s Best Baby Wellness Pod',
-    description: 'Nxmliscore is a wellness technology company founded by IIT alumni. We build Anvaya Smart — India\'s most advanced contactless AI baby wellness pod. Based in Hyderabad.',
-    keywords: 'Nxmliscore company, Anvaya Smart founders, baby wellness pod startup India Hyderabad',
+    title: 'About Nxmpliscore | IIT Alumni Building India\'s Best Baby Wellness Pod',
+    description: 'Nxmpliscore is a wellness technology company founded by IIT alumni. We build Anvaya Smart — India\'s most advanced contactless AI baby wellness pod. Based in Hyderabad.',
+    keywords: 'Nxmpliscore company, Anvaya Smart founders, baby wellness pod startup India Hyderabad',
     canonical: 'https://nxmplis.com/about',
   },
   industries: {
-    title: 'Baby Care, Adult Care & Elder Care | Nxmliscore Wellness Technology',
-    description: 'From baby wellness pod monitoring to adult wellness and elder care — Nxmliscore builds contactless AI monitoring for every stage of life.',
+    title: 'Baby Care, Adult Care & Elder Care | Nxmpliscore Wellness Technology',
+    description: 'From baby wellness pod monitoring to adult wellness and elder care — Nxmpliscore builds contactless AI monitoring for every stage of life.',
     keywords: 'baby wellness pod monitoring India, infant wellness monitoring India, elder care technology India, adult health monitoring, newborn wellness monitoring',
     canonical: 'https://nxmplis.com/industries',
   },
   contact: {
     title: 'Contact Anvaya Smart | WhatsApp Support | Hyderabad India',
     description: 'Get in touch with Anvaya Smart. WhatsApp support, investor relations, partnerships. Based in Hyderabad, India.',
-    keywords: 'contact Anvaya Smart, Nxmliscore support, baby wellness pod customer service India',
+    keywords: 'contact Anvaya Smart, Nxmpliscore support, baby wellness pod customer service India',
     canonical: 'https://nxmplis.com/contact',
   },
   blog: {
