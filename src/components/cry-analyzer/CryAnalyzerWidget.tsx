@@ -6,6 +6,11 @@ import Link from 'next/link';
 import { processRecordedAudio } from '@/lib/audioProcessor';
 import CryFeedback from './CryFeedback';
 
+// Capture more than the model's 10s input window so the backend's
+// sliding-window gate/ensemble scan (preprocess.generate_sliding_windows)
+// has real material to pick the best 10s of cry from.
+const REC_SECONDS = 20;
+
 interface PredictResult {
   is_cry: boolean;
   prediction: string;
@@ -202,7 +207,7 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
       let s = 0;
       timerRef.current = setInterval(() => {
         s += 1; setRecSeconds(s);
-        if (s >= 10) { mr.stop(); clearInterval(timerRef.current!); setRecording(false); }
+        if (s >= REC_SECONDS) { mr.stop(); clearInterval(timerRef.current!); setRecording(false); }
       }, 1000);
     } catch { setErrorMsg('Microphone access denied.'); setStatus('error'); }
   }, [analyze]);
@@ -303,12 +308,12 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
                     <circle cx="32" cy="32" r="28" fill="none" stroke={accent} strokeWidth="5"
                       strokeLinecap="round"
                       strokeDasharray={`${2 * Math.PI * 28}`}
-                      strokeDashoffset={`${2 * Math.PI * 28 * (1 - recSeconds / 10)}`}
+                      strokeDashoffset={`${2 * Math.PI * 28 * (1 - recSeconds / REC_SECONDS)}`}
                       style={{ transition: 'stroke-dashoffset 1s linear' }} />
                   </svg>
-                  <span className="text-lg font-black text-slate-700">{10 - recSeconds}</span>
+                  <span className="text-lg font-black text-slate-700">{REC_SECONDS - recSeconds}</span>
                 </div>
-                <p className="text-xs text-slate-500 font-medium">Recording… {recSeconds}s / 10s</p>
+                <p className="text-xs text-slate-500 font-medium">Recording… {recSeconds}s / {REC_SECONDS}s</p>
                 <button onClick={stopRec}
                   className="flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold text-red-600 transition-all"
                   style={{ background: 'rgba(239,68,68,0.08)', border: '1.5px solid rgba(239,68,68,0.25)' }}>
@@ -317,9 +322,9 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
               </>
             ) : (
               <>
-                <p className="text-xs text-slate-500 text-center">Tap mic to record 10 seconds</p>
+                <p className="text-xs text-slate-500 text-center">Tap mic to record {REC_SECONDS} seconds</p>
                 <MicBtn onClick={startRec} glowColor={glowColor} btnColor={`linear-gradient(135deg,#4a7c6f,#2d6b5e)`} />
-                <p className="text-[10px] text-slate-400 text-center">Hold near baby · Auto-stops at 10s</p>
+                <p className="text-[10px] text-slate-400 text-center">Hold near baby · Auto-stops at {REC_SECONDS}s</p>
               </>
             )}
           </div>

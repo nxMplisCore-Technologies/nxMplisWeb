@@ -8,6 +8,12 @@ import CryFeedback from '@/components/cry-analyzer/CryFeedback';
 
 type AppState = 'idle' | 'uploading' | 'processing' | 'result' | 'error';
 
+// Capture more than the model's 10s input window so the backend's
+// sliding-window gate/ensemble scan (preprocess.generate_sliding_windows)
+// has real material to pick the best 10s of cry from, instead of forcing
+// the whole cry to happen inside a single fixed 10s take.
+const REC_SECONDS = 20;
+
 interface PredictionResult {
   is_cry: boolean;
   prediction: string;
@@ -166,7 +172,7 @@ export default function CryAnalyzerClient() {
       setRecording(true);
       setRecSeconds(0);
       let secs = 0;
-      timerRef.current = setInterval(() => { secs += 1; setRecSeconds(secs); if (secs >= 10) stopRecording(); }, 1000);
+      timerRef.current = setInterval(() => { secs += 1; setRecSeconds(secs); if (secs >= REC_SECONDS) stopRecording(); }, 1000);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : '';
       if (/denied|NotAllowed|Permission/i.test(msg)) {
@@ -237,7 +243,7 @@ export default function CryAnalyzerClient() {
             {state === 'error'      && 'Something went wrong'}
           </h1>
           <p className="text-[#6b7c74] text-sm max-w-md mx-auto leading-relaxed">
-            {state === 'idle'       && "Upload a WAV/MP3 or record 10 seconds of your baby's cry for an instant AI analysis."}
+            {state === 'idle'       && `Upload a WAV/MP3 or record up to ${REC_SECONDS} seconds of your baby's cry for an instant AI analysis.`}
             {state === 'uploading'  && `Sending "${fileName}" to our AI...`}
             {state === 'processing' && 'Running 3-stage AI — cry gate, quality check, and 4-model ensemble...'}
             {(state === 'result' || state === 'error') && ''}
@@ -313,7 +319,7 @@ export default function CryAnalyzerClient() {
                 <div className="flex flex-col items-center gap-5 py-3">
                   {!recording ? (
                     <>
-                      <p className="text-sm text-[#6b7c74] text-center">Tap to start a 10-second recording</p>
+                      <p className="text-sm text-[#6b7c74] text-center">Tap to start a {REC_SECONDS}-second recording</p>
                       <div className="relative flex items-center justify-center">
                         <div className="absolute w-28 h-28 rounded-full animate-ping opacity-10"
                           style={{ background: 'radial-gradient(circle,#e8957a,transparent)' }} />
@@ -336,7 +342,7 @@ export default function CryAnalyzerClient() {
                           <Mic className="w-8 h-8" />
                         </button>
                       </div>
-                      <p className="text-[11px] text-[#aab4af] text-center">Auto-analyzes after 10 seconds · Hold near baby</p>
+                      <p className="text-[11px] text-[#aab4af] text-center">Auto-analyzes after {REC_SECONDS} seconds · Hold near baby</p>
                       <style>{`@keyframes mic-ring{0%,100%{transform:scale(1);opacity:.2}50%{transform:scale(1.15);opacity:.1}}`}</style>
                     </>
                   ) : (
@@ -347,17 +353,17 @@ export default function CryAnalyzerClient() {
                           <circle cx="48" cy="48" r="40" fill="none" stroke="#e8957a" strokeWidth="6"
                             strokeLinecap="round"
                             strokeDasharray={`${2 * Math.PI * 40}`}
-                            strokeDashoffset={`${2 * Math.PI * 40 * (1 - recSeconds / 10)}`}
+                            strokeDashoffset={`${2 * Math.PI * 40 * (1 - recSeconds / REC_SECONDS)}`}
                             style={{ transition: 'stroke-dashoffset 1s linear' }} />
                         </svg>
                         <div className="text-center">
-                          <div className="text-2xl font-black" style={{ color: '#1a2e28' }}>{10 - recSeconds}</div>
+                          <div className="text-2xl font-black" style={{ color: '#1a2e28' }}>{REC_SECONDS - recSeconds}</div>
                           <div className="text-[9px] font-semibold uppercase tracking-wider" style={{ color: '#9aaba4' }}>sec left</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: '#4a7c6f' }}>
                         <div className="w-2 h-2 rounded-full bg-[#e8957a] animate-pulse" />
-                        Recording… {recSeconds}s / 10s
+                        Recording… {recSeconds}s / {REC_SECONDS}s
                       </div>
                       <button onClick={stopRecording}
                         className="flex items-center gap-2.5 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-150 select-none"
