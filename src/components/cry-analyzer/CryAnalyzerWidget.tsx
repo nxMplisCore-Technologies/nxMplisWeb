@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { Mic, Upload, Square, Loader2, AlertCircle, ChevronRight, RotateCcw, Brain } from 'lucide-react';
 import Link from 'next/link';
 import { processRecordedAudio } from '@/lib/audioProcessor';
+import CryFeedback from './CryFeedback';
 
 interface PredictResult {
   is_cry: boolean;
@@ -13,6 +14,8 @@ interface PredictResult {
   reliability: string;
   reason: string;
   gate_score: number;
+  prediction_id: string;
+  user_message: string;
 }
 
 const CLASS_META: Record<string, { emoji: string; label: string; advice: string; color: string }> = {
@@ -166,7 +169,11 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
 
   const startRec = useCallback(async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } });
+      // AGC/noise-suppression/echo-cancellation are voice-call DSP tuned to
+      // preserve speech while suppressing "non-speech" transients — a baby
+      // cry's high-pitched harmonics are a plausible target for exactly that
+      // suppression, so these are explicitly off rather than on.
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
       chunksRef.current = [];
       const mr = new MediaRecorder(stream);
       mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
@@ -349,7 +356,7 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
               <div className="p-3 rounded-xl bg-amber-50 border border-amber-100 text-center">
                 <p className="text-2xl mb-1">🔇</p>
                 <p className="text-xs font-bold text-amber-700">No cry detected</p>
-                <p className="text-[11px] text-amber-600 mt-0.5">Try a clearer recording closer to baby.</p>
+                <p className="text-[11px] text-amber-600 mt-0.5">{result.user_message}</p>
               </div>
             ) : (
               <>
@@ -379,6 +386,7 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
                 </div>
               </>
             )}
+            <CryFeedback predictionId={result.prediction_id} wasBlocked={!result.is_cry} variant="widget" />
             <p className="text-[10px] text-slate-400 text-center leading-relaxed border-t border-slate-50 pt-2.5">
               ⚠️ Demo only · Not a medical device · Consult a paediatrician for health concerns
             </p>

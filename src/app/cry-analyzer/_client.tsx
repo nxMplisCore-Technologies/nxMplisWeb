@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Upload, Mic, Loader2, RotateCcw, AlertTriangle, Sparkles } from 'lucide-react';
 import { processRecordedAudio } from '@/lib/audioProcessor';
+import CryFeedback from '@/components/cry-analyzer/CryFeedback';
 
 type AppState = 'idle' | 'uploading' | 'processing' | 'result' | 'error';
 
@@ -16,6 +17,8 @@ interface PredictionResult {
   stage_blocked?: string | null;
   reason: string;
   gate_score: number;
+  prediction_id: string;
+  user_message: string;
 }
 
 const CLASS_META: Record<string, { emoji: string; label: string; advice: string; color: string }> = {
@@ -123,8 +126,12 @@ export default function CryAnalyzerClient() {
 
   const startRecording = async () => {
     try {
+      // AGC/noise-suppression/echo-cancellation are voice-call DSP tuned to
+      // preserve speech while suppressing "non-speech" transients — a baby
+      // cry's high-pitched harmonics are a plausible target for exactly that
+      // suppression, so these are explicitly off rather than on.
       const stream = await navigator.mediaDevices.getUserMedia({
-        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
+        audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 },
       });
 
       const mimeType = [
@@ -446,12 +453,13 @@ export default function CryAnalyzerClient() {
                 style={{ background: '#fffbeb', border: '1px solid rgba(245,158,11,0.25)' }}>
                 <AlertTriangle className="w-14 h-14 text-amber-400 mx-auto mb-4" />
                 <h2 className="text-xl font-bold mb-2" style={{ color: '#1a2e28' }}>No baby cry detected</h2>
-                <p className="text-[#6b7c74] text-sm leading-relaxed mb-2">
-                  Our AI couldn&apos;t detect a baby cry in this recording (gate score: {(result.gate_score * 100).toFixed(0)}%).
-                </p>
-                <p className="text-[#9aaba4] text-xs">Try a clearer recording, closer to your baby, with less background noise.</p>
+                <p className="text-[#6b7c74] text-sm leading-relaxed">{result.user_message}</p>
               </div>
             )}
+
+            <div className="rounded-2xl p-3 text-center" style={{ background: 'rgba(74,124,111,0.04)', border: '1px solid rgba(74,124,111,0.12)' }}>
+              <CryFeedback predictionId={result.prediction_id} wasBlocked={!result.is_cry} variant="client" />
+            </div>
 
             <div className="rounded-2xl p-4 text-center" style={{ background: 'rgba(74,124,111,0.06)', border: '1px solid rgba(74,124,111,0.15)' }}>
               <p className="text-[#6b7c74] text-xs leading-relaxed">

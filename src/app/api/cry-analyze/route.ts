@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
     let response: Response;
     try {
-      response = await fetch(`${CRY_API_URL}/predict`, {
+      response = await fetch(`${CRY_API_URL}/predict?source=website`, {
         method: 'POST',
         body: upstream,
         signal: controller.signal,
