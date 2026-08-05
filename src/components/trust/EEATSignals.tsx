@@ -24,6 +24,20 @@ export function AuthorBio({ compact = false }: { compact?: boolean }) {
   );
 }
 
+// Named medical reviewer — Google rewards named, credentialed reviewers on YMYL health content
+export function MedicalReviewerBio({ name, credentials }: { name: string; credentials: string }) {
+  return (
+    <div className="flex items-center gap-2.5 bg-green-50 border border-green-200 rounded-xl px-4 py-2.5" itemScope itemType="https://schema.org/Person">
+      <Shield className="w-4 h-4 text-green-600 shrink-0" aria-hidden="true" />
+      <div className="text-xs">
+        <span className="text-green-700">Medically reviewed by </span>
+        <span className="font-bold text-green-800" itemProp="name">{name}</span>
+        <span className="text-green-700" itemProp="jobTitle">, {credentials}</span>
+      </div>
+    </div>
+  );
+}
+
 // Pediatrician review badge — critical trust signal for YMYL health products
 export function PediatricianBadge() {
   return (

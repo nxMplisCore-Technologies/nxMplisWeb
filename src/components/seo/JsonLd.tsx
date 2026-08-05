@@ -93,6 +93,22 @@ export function ArticleSchema({ title, description, url, image, datePublished, d
   })}} />;
 }
 
+export function MedicalWebPageSchema({ title, description, url, dateModified, medicalReviewer }: { title: string; description: string; url: string; dateModified: string; medicalReviewer?: { name: string; credentials: string } }) {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'MedicalWebPage',
+    name: title, headline: title, description,
+    url, dateModified,
+    lastReviewed: dateModified,
+    mainContentOfPage: { '@type': 'WebPageElement' },
+    ...(medicalReviewer && {
+      reviewedBy: { '@type': 'Person', name: medicalReviewer.name, jobTitle: medicalReviewer.credentials },
+    }),
+    medicalAudience: { '@type': 'MedicalAudience', audienceType: 'Patient' },
+    publisher: { '@id': 'https://nxmplis.com/#organization' },
+    inLanguage: 'en-IN',
+  })}} />;
+}
+
 export function HowToSchema({ name, steps }: { name: string; steps: { name: string; text: string }[] }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org', '@type': 'HowTo',
