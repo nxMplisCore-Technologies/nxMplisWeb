@@ -175,7 +175,21 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
       // suppression, so these are explicitly off rather than on.
       const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 } });
       chunksRef.current = [];
-      const mr = new MediaRecorder(stream);
+      // Uploaded files reach the backend byte-for-byte; a live recording
+      // always passes through this encoder first, so a low default bitrate
+      // measurably degrades the cry's harmonic detail before it's even
+      // analyzed. 256kbps is comfortably above what mono voice-range audio
+      // needs to be effectively lossless at this duration/file size.
+      const mimeType = [
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg;codecs=opus',
+        'audio/mp4',
+      ].find(t => MediaRecorder.isTypeSupported(t)) ?? '';
+      const mr = new MediaRecorder(stream, {
+        ...(mimeType ? { mimeType } : {}),
+        audioBitsPerSecond: 256000,
+      });
       mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
       mr.onstop = async () => {
         stream.getTracks().forEach(t => t.stop());

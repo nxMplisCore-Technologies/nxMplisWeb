@@ -141,7 +141,16 @@ export default function CryAnalyzerClient() {
         'audio/mp4',
       ].find(t => MediaRecorder.isTypeSupported(t)) ?? '';
 
-      const mr = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+      // Uploaded files reach the backend byte-for-byte; a live recording
+      // always passes through this encoder first, so a low default bitrate
+      // (Opus commonly defaults well under 64kbps for a mono mic stream)
+      // measurably degrades the cry's harmonic detail before it's even
+      // analyzed. 256kbps is comfortably above what mono voice-range audio
+      // needs to be effectively lossless at this duration/file size.
+      const mr = new MediaRecorder(stream, {
+        ...(mimeType ? { mimeType } : {}),
+        audioBitsPerSecond: 256000,
+      });
       chunksRef.current = [];
       mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
       mr.onstop = async () => {
