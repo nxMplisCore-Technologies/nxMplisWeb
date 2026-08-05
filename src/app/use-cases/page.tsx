@@ -16,7 +16,6 @@ export const metadata: Metadata = {
   },
 };
 
-/* ── Scenario data ── */
 const SCENARIOS = [
   {
     id: 'office',
@@ -72,7 +71,7 @@ const SCENARIOS = [
     mockupBg: 'linear-gradient(155deg,#071512 0%,#0b1c18 100%)',
     mockup: 'breathing',
     cta: { label: 'See SENSE features', href: '/anvaya' },
-    emoji: '�af1',
+    emoji: '🫁',
   },
   {
     id: 'milestone',
