@@ -74,6 +74,12 @@ export default function CryFeedback({ predictionId, wasBlocked = false, variant 
     void postFeedback({ prediction_id: predictionId, is_correct: false, corrected_label: label });
   }, [predictionId]);
 
+  // Skip does NOT re-post — the initial 👎 already recorded is_correct:false.
+  // Posting corrected_label:null here would be indistinguishable from "it was
+  // a cry, unsure of type" (a real signal, only shown when wasBlocked), which
+  // would corrupt that bucket with skips that carry no information.
+  const skip = useCallback(() => setPhase('done'), []);
+
   if (phase === 'done') {
     return (
       <p className="text-xs text-center" style={{ color: t.muted }}>
@@ -101,7 +107,7 @@ export default function CryFeedback({ predictionId, wasBlocked = false, variant 
           ))}
           {wasBlocked && (
             <button
-              onClick={() => submitCorrection(null)}
+              onClick={() => submitCorrection('unsure')}
               className="px-2.5 py-1 rounded-full text-[11px] font-medium border transition-colors"
               style={{ borderColor: t.border, color: t.text }}
               onMouseEnter={e => (e.currentTarget.style.background = t.hoverBg)}
@@ -111,7 +117,7 @@ export default function CryFeedback({ predictionId, wasBlocked = false, variant 
             </button>
           )}
           <button
-            onClick={() => submitCorrection(null)}
+            onClick={skip}
             className="px-2.5 py-1 rounded-full text-[11px] font-medium border transition-colors"
             style={{ borderColor: t.border, color: t.muted }}
             onMouseEnter={e => (e.currentTarget.style.background = t.hoverBg)}
@@ -127,7 +133,7 @@ export default function CryFeedback({ predictionId, wasBlocked = false, variant 
   return (
     <div className="flex items-center justify-center gap-3">
       <span className="text-xs" style={{ color: t.muted }}>
-        {wasBlocked ? 'Was this actually a cry?' : 'Was this right?'}
+        Was this right?
       </span>
       <div className="flex gap-2">
         <button
