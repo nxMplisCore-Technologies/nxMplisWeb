@@ -21,12 +21,19 @@ export async function POST(req: NextRequest) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
 
+    // This route runs server-side, so the backend's own User-Agent header
+    // would otherwise describe the Next.js server's fetch client, not the
+    // actual visitor's browser/device -- forward the real one explicitly so
+    // predictions can be traced back to a device/browser in storage.
+    const clientUserAgent = req.headers.get('user-agent') || '';
+
     let response: Response;
     try {
       response = await fetch(`${CRY_API_URL}/predict?source=website`, {
         method: 'POST',
         body: upstream,
         signal: controller.signal,
+        headers: { 'X-Client-User-Agent': clientUserAgent },
       });
     } finally {
       clearTimeout(timeoutId);
