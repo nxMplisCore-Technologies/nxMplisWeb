@@ -427,7 +427,7 @@ export default function CryAnalyzerClient() {
                             <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wide ${rel.bg} ${rel.text}`}>{rel.label}</span>
                           </div>
                           <div className="text-3xl font-black" style={{ color: meta.color }}>
-                            {(result.confidence * 100).toFixed(1)}%
+                            {result.confidence.toFixed(1)}%
                           </div>
                         </div>
                       </div>
