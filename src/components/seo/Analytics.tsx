@@ -1,7 +1,7 @@
 // GA4 + Performance analytics component
 // Replace GA_MEASUREMENT_ID with your actual G-XXXXXXXXXX code
 export const GA_MEASUREMENT_ID = 'G-CSW2FEKTDB';
-export const META_PIXEL_ID = '1034565026066669';
+export const META_PIXEL_ID = '2351064885629808';
 
 export function GoogleAnalytics() {
   if (process.env.NODE_ENV !== 'production') return null;
