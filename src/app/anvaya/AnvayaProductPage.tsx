@@ -50,8 +50,8 @@ export function AnvayaProductPage({ products, faqs }: Props) {
   const cfg = products[selected];
   const shopify = cfg.shopify;
 
-  // Use live Shopify variants if available, fall back to static
-  const variants = shopify?.variants ?? [];
+  // Use live Shopify variants if available, fall back to static fallbackVariants
+  const variants = shopify?.variants ?? cfg.fallbackVariants;
   const currentVariant = variants[variantIdx];
 
   // Price display
@@ -361,9 +361,10 @@ export function AnvayaProductPage({ products, faqs }: Props) {
                     </div>
                     {prod.name}
                     <div className="text-[9px] font-normal mt-0.5 opacity-60">
-                      {prod.shopify?.variants[0]
-                        ? `₹${Math.round(parseFloat(prod.shopify.variants[0].price) / 1000)}k`
-                        : '—'}
+                      {(() => {
+                        const v = prod.shopify?.variants[0] ?? prod.fallbackVariants[0];
+                        return v ? `₹${Math.round(parseFloat(v.price) / 1000)}k` : '—';
+                      })()}
                     </div>
                   </button>
                 ))}

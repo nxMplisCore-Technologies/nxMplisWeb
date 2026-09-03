@@ -67,16 +67,21 @@ const PRODUCT_FRAGMENT = `
 `;
 
 export async function getProductByHandle(handle: string): Promise<ShopifyProduct | null> {
-  const data = await storefrontFetch<{ product: RawProduct | null }>(
-    `${PRODUCT_FRAGMENT}
-    query GetProduct($handle: String!) {
-      product(handle: $handle) { ...ProductFields }
-    }`,
-    { handle }
-  );
-
-  if (!data.product) return null;
-  return normalizeProduct(data.product);
+  if (!DOMAIN || !TOKEN) return null; // env vars not set — fall back to static data
+  try {
+    const data = await storefrontFetch<{ product: RawProduct | null }>(
+      `${PRODUCT_FRAGMENT}
+      query GetProduct($handle: String!) {
+        product(handle: $handle) { ...ProductFields }
+      }`,
+      { handle }
+    );
+    if (!data.product) return null;
+    return normalizeProduct(data.product);
+  } catch {
+    console.warn(`[shopify] Failed to fetch product: ${handle}`);
+    return null;
+  }
 }
 
 export async function getProductsByHandles(handles: string[]): Promise<(ShopifyProduct | null)[]> {

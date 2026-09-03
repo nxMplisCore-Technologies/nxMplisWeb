@@ -4,7 +4,7 @@ import { AnvayaProductPage } from './AnvayaProductPage';
 import { FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
 
 // Static product config — marketing copy, colors, features (lives on website)
-// Prices + variants + availability come live from Shopify
+// Prices + variants + availability come live from Shopify; fallbackVariants used when Shopify is unreachable
 export const productConfig = [
   {
     id: 'core',
@@ -16,6 +16,10 @@ export const productConfig = [
     bgLight: '#fffbeb',
     badge: null as string | null,
     handle: 'anvaya-smart-core-audio-and-video-baby-monitor',
+    fallbackVariants: [
+      { id: 'fallback-core-1', numericId: '50746014892255', title: 'Without Display', price: '8999.00', compareAtPrice: '14999.00', availableForSale: true },
+      { id: 'fallback-core-2', numericId: '50817486258399', title: 'With 5" Display', price: '12999.00', compareAtPrice: '14999.00', availableForSale: true },
+    ],
     localImages: ['/anvaya-core-1.jpg', '/anvaya-core-2.jpg', '/anvaya-core-3.jpg', '/anvaya-core-4.jpg', '/anvaya-core-5.jpg'],
     features: [
       { icon: 'Video', text: 'HD Video', sub: 'Live view from anywhere' },
@@ -37,6 +41,10 @@ export const productConfig = [
     badge: '⭐ Best Seller' as string | null,
     handle: 'anvaya-smart-sense-audio-and-video-baby-monitor',
     localImages: ['/anvaya-sense.jpg', '/anvaya-nursery.jpg', '/anvaya-device-baby.webp', '/anvaya-nursery-center.webp', '/anvaya-lifestyle.webp'],
+    fallbackVariants: [
+      { id: 'fallback-sense-1', numericId: '50745192939743', title: 'Without Display', price: '14999.00', compareAtPrice: '19999.00', availableForSale: true },
+      { id: 'fallback-sense-2', numericId: '50817450934495', title: 'With 5" Display', price: '17999.00', compareAtPrice: '19999.00', availableForSale: true },
+    ],
     features: [
       { icon: 'Activity', text: 'Breathing Rate', sub: 'Contactless monitoring' },
       { icon: 'Heart', text: 'Heart Rate', sub: 'Real-time tracking' },
@@ -57,6 +65,10 @@ export const productConfig = [
     badge: null as string | null,
     handle: 'anvaya-smart-pulse-video-and-audio-baby-monitor',
     localImages: ['/anvaya-pulse.jpg', '/anvaya-room.webp', '/anvaya-nursery-center.webp', '/anvaya-device-baby.webp', '/anvaya-lifestyle.webp'],
+    fallbackVariants: [
+      { id: 'fallback-pulse-1', numericId: '50745881690335', title: 'Without Display', price: '17999.00', compareAtPrice: '22999.00', availableForSale: true },
+      { id: 'fallback-pulse-2', numericId: '50817349419231', title: 'With 5" Display', price: '21999.00', compareAtPrice: '22999.00', availableForSale: true },
+    ],
     features: [
       { icon: 'Activity', text: 'Movement Tracking', sub: 'Activity detection' },
       { icon: 'Thermometer', text: 'Temperature', sub: 'Perfect sleep env' },
@@ -77,6 +89,10 @@ export const productConfig = [
     badge: '🏆 Most Advanced' as string | null,
     handle: 'anvaya-smart-omni-baby-monitor',
     localImages: ['/anvaya-omni.jpg', '/anvaya-core-6.jpg', '/anvaya-core-7.jpg', '/anvaya-nursery.jpg', '/anvaya-room.webp'],
+    fallbackVariants: [
+      { id: 'fallback-omni-1', numericId: '50744670486751', title: 'Without Display', price: '20999.00', compareAtPrice: '29999.00', availableForSale: true },
+      { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5" Display', price: '24999.00', compareAtPrice: '29999.00', availableForSale: true },
+    ],
     features: [
       { icon: 'Activity', text: 'Breathing + SpO₂', sub: 'All contactless' },
       { icon: 'Heart', text: 'Heart Rate', sub: 'Continuous tracking' },
@@ -103,9 +119,10 @@ export default async function AnvayaPage() {
   );
 
   // Merge: static config (copy/features/colors) + live Shopify data (prices/variants/availability)
+  // When Shopify is unreachable, shopify is null and the client uses fallbackVariants
   const products = productConfig.map((cfg, i) => ({
     ...cfg,
-    shopify: shopifyProducts[i], // null if fetch failed — page falls back gracefully
+    shopify: shopifyProducts[i],
   }));
 
   return (
