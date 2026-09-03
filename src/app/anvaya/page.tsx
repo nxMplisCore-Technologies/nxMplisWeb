@@ -4,13 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
-import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone, MessageCircle, Quote } from 'lucide-react';
-import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
+import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone, Quote } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ProductSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
+
+const SHOPIFY_DOMAIN = 'anvayasmart.myshopify.com';
 
 const products = [
   {
@@ -25,6 +24,11 @@ const products = [
     badge: null,
     color: '#d97706',
     bgLight: '#fffbeb',
+    shopifyHandle: 'anvaya-smart-core-audio-and-video-baby-monitor',
+    variants: [
+      { label: 'Without Display', variantId: '50746014892255', price: 8999 },
+      { label: 'With 5" Display', variantId: '50817486258399', price: 12999 },
+    ],
     features: [
       { icon: Video, text: 'HD Video — live view from anywhere' },
       { icon: Baby, text: 'Cry detection — 5 cry types identified' },
@@ -38,12 +42,17 @@ const products = [
     fullName: 'Anvaya SENSE',
     tagline: 'The Wellness Pod That Watches Every Breath.',
     desc: 'India\'s most loved baby wellness pod. Tracks breathing, SpO₂, heart rate and cry type — completely contactlessly. Nothing touches your baby. Nothing is missed.',
-    price: 12999,
+    price: 14999,
     mrp: 19999,
     image: '/anvaya-sense.jpg',
     badge: '⭐ Best Seller',
     color: '#4a7c6f',
     bgLight: '#f0faf6',
+    shopifyHandle: 'anvaya-smart-sense-audio-and-video-baby-monitor',
+    variants: [
+      { label: 'Without Display', variantId: '50745192939743', price: 14999 },
+      { label: 'With 5" Display', variantId: '50817450934495', price: 17999 },
+    ],
     features: [
       { icon: Activity, text: 'Breathing & Heart Rate — contactless' },
       { icon: Baby, text: 'Cry analysis — hungry / tired / pain / discomfort' },
@@ -57,12 +66,17 @@ const products = [
     fullName: 'Anvaya PULSE',
     tagline: 'Stay Connected to Every Moment.',
     desc: 'Advanced environment and wellness monitoring. Know your baby\'s complete world — temperature, humidity, movement and real-time safety alerts.',
-    price: 15999,
+    price: 17999,
     mrp: 22999,
     image: '/anvaya-pulse.jpg',
     badge: null,
     color: '#3b82f6',
     bgLight: '#eff6ff',
+    shopifyHandle: 'anvaya-smart-pulse-video-and-audio-baby-monitor',
+    variants: [
+      { label: 'Without Display', variantId: '50745881690335', price: 17999 },
+      { label: 'With 5" Display', variantId: '50817349419231', price: 21999 },
+    ],
     features: [
       { icon: Activity, text: 'Activity & movement tracking' },
       { icon: Thermometer, text: 'Temp & humidity — perfect sleep environment' },
@@ -76,12 +90,17 @@ const products = [
     fullName: 'Anvaya OMNI',
     tagline: 'Total Awareness. Complete Peace of Mind.',
     desc: 'India\'s most advanced baby wellness pod. 360° intelligent monitoring with Predictive AI — weekly health reports, SpO₂ tracking, and alerts before problems arise.',
-    price: 19999,
+    price: 20999,
     mrp: 29999,
     image: '/anvaya-omni.jpg',
     badge: '🏆 Most Advanced',
     color: '#7c3aed',
     bgLight: '#f5f3ff',
+    shopifyHandle: 'anvaya-smart-omni-baby-monitor',
+    variants: [
+      { label: 'Without Display', variantId: '50744670486751', price: 20999 },
+      { label: 'With 5" Display', variantId: '50817578696927', price: 24999 },
+    ],
     features: [
       { icon: Activity, text: 'Breathing, Heart Rate & SpO₂ — all contactless' },
       { icon: BrainCircuit, text: 'Predictive AI — alerts before risk escalates' },
@@ -109,32 +128,22 @@ const faqs = [
 const included = ['Anvaya Smart pod', 'Magnetic mounting bracket', 'USB-C cable + adapter', 'Anvaya app (iOS & Android)', '1-year premium subscription FREE', 'Quick setup guide'];
 
 export default function AnvayaPage() {
-  const { toast } = useToast();
   const [selected, setSelected] = useState(1); // SENSE default
-  const [qty, setQty] = useState(1);
+  const [variantIdx, setVariantIdx] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [booked, setBooked] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const p = products[selected];
-  const discount = Math.round((1 - p.price / p.mrp) * 100);
+  const variant = p.variants[variantIdx];
+  const discount = Math.round((1 - variant.price / p.mrp) * 100);
 
-  async function handleBook(e: React.FormEvent) {
-    e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
-    setLoading(true);
-    try {
-      await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, whatsapp: phone, source: 'anvaya-product-page', product: p.fullName }),
-      });
-    } catch (_) {}
-    setLoading(false);
-    setBooked(true);
-    toast({ title: 'Seat booked! 🎉', description: `We'll WhatsApp you within 24 hours with your ${p.fullName} details.` });
+  function handleBuyNow() {
+    const url = `https://${SHOPIFY_DOMAIN}/cart/${variant.variantId}:1?storefront=true`;
+    window.open(url, '_blank');
+  }
+
+  function handleSelectProduct(i: number) {
+    setSelected(i);
+    setVariantIdx(0);
   }
 
   return (
@@ -177,7 +186,7 @@ export default function AnvayaPage() {
         {/* Model quick-switch chips */}
         <div className="flex gap-1.5 px-4 pb-3 overflow-x-auto scrollbar-hide">
           {products.map((prod, i) => (
-            <button key={prod.id} onClick={() => setSelected(i)}
+            <button key={prod.id} onClick={() => handleSelectProduct(i)}
               className="shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold border-2 transition-all"
               style={selected === i
                 ? { borderColor: prod.color, background: prod.color, color: '#fff' }
@@ -213,7 +222,7 @@ export default function AnvayaPage() {
               {products.map((prod, i) => (
                 <button
                   key={prod.id}
-                  onClick={() => setSelected(i)}
+                  onClick={() => handleSelectProduct(i)}
                   className={cn(
                     'flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all snap-start shrink-0 min-h-[44px]',
                     selected === i
@@ -438,7 +447,7 @@ export default function AnvayaPage() {
                   {products.map((prod, i) => (
                     <button
                       key={prod.id}
-                      onClick={() => setSelected(i)}
+                      onClick={() => handleSelectProduct(i)}
                       className={cn('text-left p-3 rounded-xl border-2 transition-all duration-150 relative overflow-hidden')}
                       style={selected === i
                         ? { borderColor: prod.color, background: `linear-gradient(135deg,${prod.bgLight},white)`, boxShadow: `0 2px 12px ${prod.color}25` }
@@ -459,67 +468,47 @@ export default function AnvayaPage() {
                 </div>
               </div>
 
-              {/* Book seat form */}
-              <div className="p-6 pt-4">
-                {/* Quick WhatsApp reserve */}
-                <LeadModalTrigger source="anvaya-product" product={p.fullName}>
-                  <Button size="lg" className="w-full gap-2 text-white font-bold mb-4 cursor-pointer" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
-                    <MessageCircle className="w-4 h-4" /> Quick Reserve via WhatsApp
-                  </Button>
-                </LeadModalTrigger>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="flex-1 h-px bg-[#e2dbd4]" />
-                  <span className="text-xs text-muted-foreground">or fill the full form below</span>
-                  <div className="flex-1 h-px bg-[#e2dbd4]" />
-                </div>
-                {booked ? (
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
-                    <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                    <div className="font-bold text-green-800">Seat booked! 🎉</div>
-                    <div className="text-xs text-green-700 mt-1">We'll WhatsApp you within 24 hours with your early access details and payment link.</div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleBook} className="space-y-3">
-                    <div className="text-sm font-bold text-foreground mb-1">Book your early access seat</div>
-                    <div className="text-xs text-muted-foreground mb-3">No payment now · We'll confirm via WhatsApp first</div>
-                    <Input
-                      placeholder="Your name *"
-                      value={name}
-                      onChange={e => setName(e.target.value)}
-                      required
-                      className="bg-[#faf8f5] border-[#e2dbd4] h-11"
-                    />
-                    <Input
-                      placeholder="WhatsApp number *"
-                      type="tel"
-                      value={phone}
-                      onChange={e => setPhone(e.target.value)}
-                      required
-                      className="bg-[#faf8f5] border-[#e2dbd4] h-11"
-                    />
-                    <Button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full h-12 text-base font-bold rounded-xl gap-2"
-                      style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)', color: '#fff'}}
+              {/* Variant picker */}
+              <div className="px-5 pt-4 pb-3 border-b border-[#f0ece6]">
+                <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2.5">Display option</div>
+                <div className="grid grid-cols-2 gap-2">
+                  {p.variants.map((v, i) => (
+                    <button key={v.variantId} onClick={() => setVariantIdx(i)}
+                      className="text-left p-3 rounded-xl border-2 transition-all"
+                      style={variantIdx === i
+                        ? { borderColor: p.color, background: p.bgLight }
+                        : { borderColor: '#e2dbd4', background: 'white' }}
                     >
-                      {loading ? 'Booking...' : `Reserve ${p.name} Pod — ₹0 Now`}
-                    </Button>
-                    <button
-                      type="button"
-                      className="w-full h-11 text-sm font-semibold rounded-xl border-2 flex items-center justify-center gap-2 hover:bg-green-50 transition-colors"
-                      style={{borderColor: '#25D366', color: '#25D366'}}
-                      onClick={() => window.open('https://wa.me/919876543210?text=Hi! I want to know more about Anvaya ' + p.name, '_blank')}
-                    >
-                      <Phone className="w-4 h-4" /> Chat on WhatsApp
+                      <div className="text-xs font-bold" style={{ color: variantIdx === i ? p.color : '#1a2e28' }}>{v.label}</div>
+                      <div className="text-sm font-black mt-0.5" style={{ color: variantIdx === i ? p.color : undefined }}>₹{v.price.toLocaleString('en-IN')}</div>
                     </button>
-                  </form>
-                )}
+                  ))}
+                </div>
+              </div>
+
+              {/* Buy panel */}
+              <div className="p-6 pt-5">
+                <Button
+                  size="lg"
+                  onClick={handleBuyNow}
+                  className="w-full gap-2 text-white font-bold mb-3 h-14 text-base rounded-xl"
+                  style={{ background: `linear-gradient(135deg,${p.color}dd,${p.color})`, boxShadow: `0 4px 20px ${p.color}45` }}
+                >
+                  🛒 Buy Now — ₹{variant.price.toLocaleString('en-IN')}
+                </Button>
+                <p className="text-center text-[11px] text-muted-foreground mb-4">Secure checkout on Anvaya Smart store · Razorpay / UPI / Cards</p>
+                <button
+                  className="w-full h-11 text-sm font-semibold rounded-xl border-2 flex items-center justify-center gap-2 hover:bg-green-50 transition-colors mb-4"
+                  style={{ borderColor: '#25D366', color: '#25D366' }}
+                  onClick={() => window.open(`https://wa.me/919876543210?text=Hi! I want to order Anvaya ${p.name}`, '_blank')}
+                >
+                  <Phone className="w-4 h-4" /> Order via WhatsApp
+                </button>
 
                 {/* Trust signals */}
-                <div className="mt-4 space-y-2 pt-4 border-t border-[#f0ece6]">
+                <div className="space-y-1.5 pt-3 border-t border-[#f0ece6]">
                   {[
-                    '✓ No payment charged now',
+                    '✓ Secure Shopify checkout',
                     '✓ Free shipping across India',
                     '✓ 30-day money-back guarantee',
                     '✓ 1-year warranty included',
@@ -547,39 +536,35 @@ export default function AnvayaPage() {
         </div>
       </div>
 
-      {/* ── Mobile sticky reserve CTA (above tab bar) ── */}
-      {!booked && (
-        <div
-          className="md:hidden fixed left-0 right-0 z-40 px-4 py-3"
-          style={{
-            bottom: 'max(66px, calc(66px + env(safe-area-inset-bottom)))',
-            background: 'rgba(255,255,255,0.97)',
-            backdropFilter: 'blur(16px)',
-            borderTop: '1px solid rgba(0,0,0,0.07)',
-            boxShadow: '0 -4px 20px rgba(0,0,0,0.06)',
-          }}
-        >
-          <div className="flex items-center gap-3">
-            <div className="flex-1 min-w-0">
-              <div className="text-xs font-bold truncate">{p.fullName} — Founding price</div>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-base font-black" style={{ color: p.color }}>₹{p.price.toLocaleString('en-IN')}</span>
-                <span className="text-[10px] text-muted-foreground line-through">₹{p.mrp.toLocaleString('en-IN')}</span>
-                <span className="text-[10px] font-bold text-green-600">{discount}% off</span>
-              </div>
+      {/* ── Mobile sticky buy CTA (above tab bar) ── */}
+      <div
+        className="md:hidden fixed left-0 right-0 z-40 px-4 py-3"
+        style={{
+          bottom: 'max(66px, calc(66px + env(safe-area-inset-bottom)))',
+          background: 'rgba(255,255,255,0.97)',
+          backdropFilter: 'blur(16px)',
+          borderTop: '1px solid rgba(0,0,0,0.07)',
+          boxShadow: '0 -4px 20px rgba(0,0,0,0.06)',
+        }}
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-bold truncate">{p.fullName} — {variant.label}</div>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <span className="text-base font-black" style={{ color: p.color }}>₹{variant.price.toLocaleString('en-IN')}</span>
+              <span className="text-[10px] text-muted-foreground line-through">₹{p.mrp.toLocaleString('en-IN')}</span>
+              <span className="text-[10px] font-bold text-green-600">{discount}% off</span>
             </div>
-            <LeadModalTrigger source="anvaya-product-sticky" product={p.fullName}>
-              <button
-                className="shrink-0 px-5 py-3 rounded-xl font-bold text-sm text-white flex items-center gap-2"
-                style={{ background: `linear-gradient(135deg,${p.color}dd,${p.color})`, boxShadow: `0 4px 16px ${p.color}55` }}
-              >
-                <MessageCircle className="w-4 h-4" />
-                Reserve Now
-              </button>
-            </LeadModalTrigger>
           </div>
+          <button
+            onClick={handleBuyNow}
+            className="shrink-0 px-5 py-3 rounded-xl font-bold text-sm text-white flex items-center gap-2"
+            style={{ background: `linear-gradient(135deg,${p.color}dd,${p.color})`, boxShadow: `0 4px 16px ${p.color}55` }}
+          >
+            🛒 Buy Now
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 }
