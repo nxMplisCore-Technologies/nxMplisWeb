@@ -21,7 +21,7 @@ const products = [
     price: 8999,
     mrp: 14999,
     image: '/anvaya-core-1.jpg',
-    gallery: ['/anvaya-core-1.jpg', '/anvaya-core-1.jpg', '/anvaya-core-1.jpg'],
+    gallery: ['/anvaya-core-1.jpg', '/anvaya-core-2.jpg', '/anvaya-core-3.jpg', '/anvaya-core-4.jpg', '/anvaya-core-5.jpg'],
     badge: null,
     color: '#d97706',
     bgLight: '#fffbeb',
@@ -48,7 +48,7 @@ const products = [
     price: 14999,
     mrp: 19999,
     image: '/anvaya-sense.jpg',
-    gallery: ['/anvaya-sense.jpg', '/anvaya-sense.jpg', '/anvaya-sense.jpg'],
+    gallery: ['/anvaya-sense.jpg', '/anvaya-nursery.jpg', '/anvaya-device-baby.webp', '/anvaya-nursery-center.webp', '/anvaya-lifestyle.webp'],
     badge: '⭐ Best Seller',
     color: '#4a7c6f',
     bgLight: '#f0faf6',
@@ -75,7 +75,7 @@ const products = [
     price: 17999,
     mrp: 22999,
     image: '/anvaya-pulse.jpg',
-    gallery: ['/anvaya-pulse.jpg', '/anvaya-pulse.jpg', '/anvaya-pulse.jpg'],
+    gallery: ['/anvaya-pulse.jpg', '/anvaya-room.webp', '/anvaya-nursery-center.webp', '/anvaya-device-baby.webp', '/anvaya-lifestyle.webp'],
     badge: null,
     color: '#3b82f6',
     bgLight: '#eff6ff',
@@ -102,7 +102,7 @@ const products = [
     price: 20999,
     mrp: 29999,
     image: '/anvaya-omni.jpg',
-    gallery: ['/anvaya-omni.jpg', '/anvaya-omni.jpg', '/anvaya-omni.jpg'],
+    gallery: ['/anvaya-omni.jpg', '/anvaya-core-6.jpg', '/anvaya-core-7.jpg', '/anvaya-nursery.jpg', '/anvaya-room.webp'],
     badge: '🏆 Most Advanced',
     color: '#7c3aed',
     bgLight: '#f5f3ff',
@@ -186,50 +186,91 @@ export default function AnvayaPage() {
           {/* LEFT — Image gallery */}
           <div className="order-2 lg:order-1">
 
-            {/* Main image */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${selected}-${galleryIdx}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="relative rounded-2xl overflow-hidden bg-[#f7f5f2] border border-gray-100"
-                style={{ aspectRatio: '1/1' }}
-              >
-                <Image
-                  src={p.gallery[galleryIdx]}
-                  alt={`${p.fullName} baby wellness pod`}
-                  fill
-                  className="object-contain p-6"
-                  sizes="(max-width: 1024px) 100vw, 55vw"
-                  priority
-                />
-                {p.badge && (
-                  <div className="absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow" style={{ background: p.color }}>
-                    {p.badge}
-                  </div>
-                )}
-                <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur text-xs font-medium text-gray-700 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 flex items-center gap-1.5">
-                  <Shield className="w-3 h-3 text-green-500" /> Nothing touches baby
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            {/* Gallery: vertical thumbs on desktop, horizontal strip on mobile */}
+            <div className="flex flex-col gap-3 lg:flex-row lg:gap-4">
 
-            {/* Thumbnail strip */}
-            <div className="flex gap-2.5 mt-3">
-              {p.gallery.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setGalleryIdx(i)}
-                  className={cn(
-                    'relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-[#f7f5f2]',
-                    galleryIdx === i ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'
-                  )}
-                >
-                  <Image src={img} alt="" fill className="object-contain p-2" sizes="80px" />
-                </button>
-              ))}
+              {/* Thumbnail column — desktop left, mobile bottom strip */}
+              <div className="order-2 lg:order-1 flex flex-row lg:flex-col gap-2 overflow-x-auto pb-1 lg:pb-0 lg:overflow-visible scrollbar-hide">
+                {p.gallery.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setGalleryIdx(i)}
+                    className={cn(
+                      'relative rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-[#f7f5f2]',
+                      'w-16 h-16 lg:w-[72px] lg:h-[72px]',
+                      galleryIdx === i
+                        ? 'border-gray-900 shadow-sm'
+                        : 'border-gray-200 hover:border-gray-400 opacity-60 hover:opacity-100'
+                    )}
+                  >
+                    <Image src={img} alt="" fill className="object-contain p-1.5" sizes="72px" />
+                  </button>
+                ))}
+              </div>
+
+              {/* Main image */}
+              <div className="order-1 lg:order-2 flex-1">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`${selected}-${galleryIdx}`}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative rounded-2xl overflow-hidden bg-[#f7f5f2] border border-gray-100"
+                    style={{ aspectRatio: '1/1' }}
+                  >
+                    <Image
+                      src={p.gallery[galleryIdx]}
+                      alt={`${p.fullName} baby wellness pod`}
+                      fill
+                      className="object-contain p-8"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority
+                    />
+                    {p.badge && (
+                      <div className="absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow" style={{ background: p.color }}>
+                        {p.badge}
+                      </div>
+                    )}
+                    <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm text-xs font-medium text-gray-700 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 flex items-center gap-1.5">
+                      <Shield className="w-3 h-3 text-green-500" /> Nothing touches baby
+                    </div>
+
+                    {/* Prev / Next arrows */}
+                    {p.gallery.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => setGalleryIdx(g => (g - 1 + p.gallery.length) % p.gallery.length)}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-white transition-colors"
+                        >
+                          ‹
+                        </button>
+                        <button
+                          onClick={() => setGalleryIdx(g => (g + 1) % p.gallery.length)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-white transition-colors"
+                        >
+                          ›
+                        </button>
+                      </>
+                    )}
+
+                    {/* Dot indicators */}
+                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5">
+                      {p.gallery.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setGalleryIdx(i)}
+                          className={cn(
+                            'w-1.5 h-1.5 rounded-full transition-all',
+                            galleryIdx === i ? 'bg-gray-800 w-4' : 'bg-gray-400/60'
+                          )}
+                        />
+                      ))}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* Trust row */}
