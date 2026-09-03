@@ -281,6 +281,32 @@ export default function AnvayaPage() {
               </div>
             </div>
 
+            {/* Product videos — Omni only */}
+            {selected === 3 && (
+              <div className="mt-8">
+                <h2 className="text-xl font-bold mb-1">See Anvaya OMNI in action</h2>
+                <p className="text-sm text-muted-foreground mb-4">Watch the 3D product demo and AI features walkthrough.</p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="rounded-2xl overflow-hidden border border-[#e2dbd4] shadow-sm bg-black" style={{aspectRatio:'16/9'}}>
+                    <iframe
+                      src="https://drive.google.com/file/d/1B0-ROWAAYijHkPadKA3vst7MlvCPzkPC/preview"
+                      className="w-full h-full"
+                      allow="autoplay"
+                      title="Anvaya OMNI Series — Product Demo"
+                    />
+                  </div>
+                  <div className="rounded-2xl overflow-hidden border border-[#e2dbd4] shadow-sm bg-black" style={{aspectRatio:'16/9'}}>
+                    <iframe
+                      src="https://drive.google.com/file/d/1P6k7z4eVs4g4XU3Bg__kVbLdSQ-uVh39/preview"
+                      className="w-full h-full"
+                      allow="autoplay"
+                      title="Anvaya OMNI AI Features"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* What's included */}
             <div className="mt-8 bg-white rounded-2xl p-6 border border-[#e2dbd4]">
               <h2 className="text-lg font-bold mb-4">What's in the box</h2>
@@ -322,6 +348,22 @@ export default function AnvayaPage() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+
+            {/* Cross-links */}
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { href: '/how-it-works', label: 'How it works', sub: 'Radar + AI explained', icon: '🔬' },
+                { href: '/compare', label: 'Compare models', sub: 'CORE vs SENSE vs OMNI', icon: '⚖️' },
+                { href: '/technology', label: 'Technology', sub: 'Contactless sensing', icon: '⚡' },
+                { href: '/cry-analyzer', label: 'Cry Analyzer', sub: 'AI cry detection demo', icon: '👶' },
+              ].map(({ href, label, sub, icon }) => (
+                <Link key={href} href={href} className="flex flex-col items-center text-center gap-1.5 bg-white rounded-xl p-3 border border-[#e2dbd4] hover:shadow-md hover:border-primary/30 transition-all group">
+                  <span className="text-2xl">{icon}</span>
+                  <div className="text-xs font-bold group-hover:text-primary transition-colors">{label}</div>
+                  <div className="text-[10px] text-muted-foreground leading-tight">{sub}</div>
+                </Link>
+              ))}
             </div>
 
             {/* FAQ */}
