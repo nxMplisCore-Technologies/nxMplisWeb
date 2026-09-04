@@ -22,7 +22,7 @@ export const productConfig = [
       { id: 'fallback-core-1', numericId: '50746014892255', title: 'Without Display', price: '8999.00', compareAtPrice: '14999.00', availableForSale: true },
       { id: 'fallback-core-2', numericId: '50817486258399', title: 'With 5" Display', price: '12999.00', compareAtPrice: '14999.00', availableForSale: true },
     ],
-    localImages: ['/anvaya-core-1.jpg', '/anvaya-core-2.jpg', '/anvaya-core-3.jpg', '/anvaya-core-4.jpg', '/anvaya-core-5.jpg'],
+    localImages: ['/anvaya-core-1.jpg', '/anvaya-core-2.jpg', '/anvaya-core-3.jpg', '/anvaya-core-4.jpg', '/anvaya-core-5.jpg', '/anvaya-core-6.jpg', '/anvaya-core-7.jpg'],
     features: [
       { icon: 'Video', text: '1080P Camera', sub: 'Pan 355° · Tilt 120°' },
       { icon: 'Baby', text: 'Cry & Noise', sub: 'Instant detection' },
