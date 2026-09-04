@@ -72,7 +72,7 @@ export const productConfig = [
       { id: 'fallback-omni-1', numericId: '50744670486751', title: 'Without Display', price: '20999.00', compareAtPrice: '29999.00', availableForSale: true },
       { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5.5" Display', price: '24999.00', compareAtPrice: '29999.00', availableForSale: true },
     ],
-    localImages: ['/anvaya-omni.jpg', '/anvaya-core-6.jpg', '/anvaya-core-7.jpg', '/anvaya-nursery.jpg', '/anvaya-room.webp'],
+    localImages: ['/anvaya-omni-01-hero-nursery.jpg', '/anvaya-omni-09-vitals-heart-breathing.png', '/anvaya-omni-10-ai-safety-alerts.png', '/anvaya-omni-05-sleep-report.png', '/anvaya-omni-07-monitor-anywhere.png', '/anvaya-omni-06-danger-zones.png', '/anvaya-omni-11-product-hero-specs.png', '/anvaya-omni-08-trust-certifications.png'],
     features: [
       { icon: 'Activity', text: 'Respiration Monitor', sub: 'Contactless, real-time' },
       { icon: 'Heart', text: 'Heart Rate', sub: 'No wearable needed' },
