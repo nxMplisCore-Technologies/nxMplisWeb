@@ -19,7 +19,7 @@ type ProductEntry = typeof productConfig[number] & { shopify: ShopifyProduct | n
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Video, Baby, Music, Thermometer, Wifi, Shield, Activity, Heart,
-  Wind, Zap, BrainCircuit, GitBranch,
+  Wind, Zap, BrainCircuit, GitBranch, Phone,
 };
 
 const reviews = [
@@ -42,7 +42,7 @@ interface Props {
 }
 
 export function AnvayaProductPage({ products, faqs }: Props) {
-  const [selected, setSelected] = useState(1); // SENSE default
+  const [selected, setSelected] = useState(1); // PULSE default (Most Popular)
   const [variantIdx, setVariantIdx] = useState(0);
   const [galleryIdx, setGalleryIdx] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -216,7 +216,7 @@ export function AnvayaProductPage({ products, faqs }: Props) {
             </div>
 
             {/* Videos — OMNI only */}
-            {selected === 3 && (
+            {selected === 2 && (
               <div className="mt-10">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">See it in action</div>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -297,7 +297,7 @@ export function AnvayaProductPage({ products, faqs }: Props) {
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
                 { href: '/how-it-works', label: 'How it works', sub: 'Radar + AI explained', emoji: '🔬' },
-                { href: '/compare', label: 'Compare models', sub: 'CORE vs SENSE vs OMNI', emoji: '⚖️' },
+                { href: '/compare', label: 'Compare models', sub: 'CORE vs PULSE vs OMNI', emoji: '⚖️' },
                 { href: '/technology', label: 'Technology', sub: 'Contactless sensing', emoji: '⚡' },
                 { href: '/cry-analyzer', label: 'Cry Analyzer', sub: 'AI cry demo', emoji: '👶' },
               ].map(({ href, label, sub, emoji }) => (
@@ -351,7 +351,7 @@ export function AnvayaProductPage({ products, faqs }: Props) {
               <div className="text-xs font-semibold text-gray-700 mb-2.5">
                 Model: <span style={{ color: cfg.color }} className="font-bold">{cfg.fullName}</span>
               </div>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {products.map((prod, i) => (
                   <button key={prod.id} onClick={() => handleSelectProduct(i)}
                     className={cn('flex flex-col items-center py-2.5 px-1 rounded-xl border-2 text-[11px] font-bold transition-all', selected === i ? 'shadow-sm' : 'border-gray-200 text-gray-400 hover:border-gray-300')}
@@ -414,10 +414,9 @@ export function AnvayaProductPage({ products, faqs }: Props) {
               <div className="text-xs font-bold text-gray-700 mb-3">Not sure which model?</div>
               <div className="space-y-2">
                 {[
-                  { name: 'CORE', desc: 'Basic video + cry detection', color: '#d97706' },
-                  { name: 'SENSE ⭐', desc: 'Breathing + SpO₂ + Cry AI', color: '#4a7c6f' },
-                  { name: 'PULSE', desc: 'Environment + Activity focus', color: '#3b82f6' },
-                  { name: 'OMNI', desc: 'All + Predictive AI reports', color: '#7c3aed' },
+                  { name: 'CORE', desc: 'HD video + cry detection', color: '#d97706' },
+                  { name: 'PULSE ⭐', desc: 'AI safety · face cover + prone', color: '#3b82f6' },
+                  { name: 'OMNI', desc: 'Breathing + heart rate + AI', color: '#7c3aed' },
                 ].map(m => (
                   <div key={m.name} className="flex items-center gap-2 text-xs text-gray-600">
                     <span className="font-bold w-16 shrink-0" style={{ color: m.color }}>{m.name}</span>

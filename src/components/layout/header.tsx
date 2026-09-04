@@ -13,7 +13,7 @@ const productLines = [
   {
     href: '/anvaya',
     label: 'Anvaya Smart',
-    sub: 'Baby wellness pods · CORE · SENSE · OMNI',
+    sub: 'Baby wellness pods · CORE · PULSE · OMNI',
     emoji: '👶',
     color: '#4a7c6f',
   },
