@@ -22,6 +22,12 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Wind, Zap, BrainCircuit, GitBranch, Phone,
 };
 
+// Not yet available for purchase — shown as a teaser alongside the live CORE/PULSE/OMNI lineup
+const UPCOMING_MODELS = [
+  { name: 'Smart Care' },
+  { name: 'Smart Analyzer' },
+];
+
 const reviews = [
   { name: 'Priya M.', city: 'Bangalore', rating: 5, text: 'Finally slept through the night knowing Anvaya is watching. The cry alert is incredibly accurate — it caught a hungry cry before I even got up.', product: 'CORE', avatar: 'PM' },
   { name: 'Rahul K.', city: 'Mumbai', rating: 5, text: 'Worth every rupee. The contactless breathing monitor gave us so much peace of mind in the first two months. Setup took literally 3 minutes.', product: 'OMNI', avatar: 'RK' },
@@ -396,6 +402,15 @@ export function AnvayaProductPage({ products, faqs }: Props) {
                       })()}
                     </div>
                   </button>
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-2 mt-2">
+                {UPCOMING_MODELS.map(m => (
+                  <div key={m.name} className="flex flex-col items-center py-2.5 px-1 rounded-xl border-2 border-dashed border-gray-200 text-[11px] font-bold text-gray-400">
+                    <div className="w-6 h-6 rounded-full mb-1 flex items-center justify-center text-[9px] font-black text-white bg-gray-300">{m.name[0]}</div>
+                    {m.name}
+                    <div className="text-[9px] font-normal mt-0.5 opacity-70">Coming Soon</div>
+                  </div>
                 ))}
               </div>
             </div>
