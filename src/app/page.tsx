@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, ChevronDown, Quote, Shield, Zap, Lock, Wifi, Camera, Music, Bell } from 'lucide-react';
+import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, Heart, Phone, Star, ChevronDown, Quote, Shield, Zap, Lock, Wifi, Camera, Music, Bell, BrainCircuit } from 'lucide-react';
 import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { useToast } from '@/hooks/use-toast';
 import { FAQSchema } from '@/components/seo/JsonLd';
@@ -74,12 +74,11 @@ function LiveMonitorWidget() {
     <div className="glass rounded-2xl p-4 shadow-xl border-white/70 w-full max-w-[300px]">
       <div className="flex items-center justify-between mb-3">
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Anvaya Smart</p>
-          <p className="text-sm font-semibold">Sleeping peacefully 😴</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Anvaya app</p>
+          <p className="text-sm font-semibold">What you'll see on screen</p>
         </div>
-        <div className="flex items-center gap-1.5 bg-green-50 px-2.5 py-1 rounded-full">
-          <div className="live-dot w-1.5 h-1.5" />
-          <span className="text-[11px] font-bold text-green-600">Live</span>
+        <div className="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-full">
+          <span className="text-[11px] font-bold text-muted-foreground">Preview</span>
         </div>
       </div>
       {/* Waveform */}
@@ -628,75 +627,35 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ── RIGHT — in-code night scene + live monitor, desktop only ── */}
+            {/* ── RIGHT — clean product photography on a quiet ground, desktop only ── */}
             <div className="hidden md:flex flex-col items-center gap-5">
               <div className="relative w-full max-w-sm">
-                {/* Night scene card */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10" style={{ background: 'linear-gradient(160deg,#1a2e28 0%,#0f1f1b 100%)', aspectRatio: '4/3' }}>
-
-                  {/* Ambient moon glow top-right */}
-                  <div className="absolute top-5 right-7 w-10 h-10 rounded-full pointer-events-none"
-                    style={{ background: '#fffde7', boxShadow: '0 0 32px 20px rgba(255,218,60,0.32), 0 0 80px 40px rgba(255,175,50,0.10)' }} />
-
-                  {/* Stars */}
-                  {[[8,'10%'],[18,'5%'],[30,'13%'],[54,'7%'],[70,'11%'],[85,'5%'],[93,'15%']].map(([l,t],i) => (
-                    <div key={i} className="absolute w-1 h-1 rounded-full bg-white pointer-events-none"
-                      style={{ left:`${l}%`, top:t as string, opacity:0.55, animation:`pulse ${1.8+i*0.3}s ease-in-out ${i*0.35}s infinite alternate` }} />
-                  ))}
-
-                  {/* Crib bars (subtle) */}
-                  <div className="absolute bottom-[88px] left-1/2 -translate-x-1/2 flex gap-5 opacity-20 pointer-events-none">
-                    {[0,1,2,3,4].map(i => <div key={i} className="w-0.5 h-12 rounded-full bg-amber-200" />)}
-                  </div>
-
-                  {/* Pod on shelf — left */}
-                  <div className="absolute left-6 bottom-[88px] pointer-events-none">
-                    <div className="flex flex-col items-center justify-center gap-1.5"
-                      style={{ width:52, height:64, borderRadius:16, background:'linear-gradient(160deg,#2d5c50,#1a2e27)', border:'1.5px solid rgba(74,124,111,0.6)', boxShadow:'0 0 28px rgba(74,124,111,0.28)' }}>
-                      <Activity className="w-4 h-4 text-[#7aab9e]" />
-                      <div style={{ width:6, height:6, borderRadius:'50%', background:'#4a7c6f', boxShadow:'0 0 7px rgba(74,124,111,0.9)', animation:'pulse 1.4s ease-in-out infinite' }} />
-                    </div>
-                    <div style={{ width:70, height:6, marginTop:3, borderRadius:3, background:'rgba(74,124,111,0.25)', marginLeft:-9 }} />
-                  </div>
-
-                  {/* Baby centered */}
-                  <div className="absolute left-1/2 bottom-[82px] -translate-x-1/2 pointer-events-none">
-                    <BabySVG />
-                  </div>
-
-                  {/* LIVE pill */}
-                  <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full pointer-events-none"
-                    style={{ background:'rgba(15,23,42,0.85)', border:'1px solid rgba(74,124,111,0.45)', backdropFilter:'blur(12px)' }}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" style={{ boxShadow:'0 0 6px #4ade80' }} />
-                    <span className="text-[10px] font-bold text-green-400 uppercase tracking-wider">Live</span>
-                    <span className="text-[10px] text-white/50 ml-1">28 br/min · SpO₂ 98%</span>
-                  </div>
-
-                  {/* Floor */}
-                  <div className="absolute left-0 right-0 pointer-events-none" style={{ bottom:82, height:1, background:'rgba(74,124,111,0.14)' }} />
-
-                  {/* Bottom bar */}
-                  <div className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-center justify-between pointer-events-none"
-                    style={{ background:'rgba(0,0,0,0.35)', backdropFilter:'blur(8px)', borderTop:'1px solid rgba(255,255,255,0.06)' }}>
-                    <span className="text-[10px] font-semibold text-white/60">Sleeping peacefully 😴</span>
-                    <div className="flex items-center gap-3 text-[10px] font-semibold">
-                      <span style={{ color:'#7aab9e' }}>36.5°C</span>
-                      <span style={{ color:'#e8957a' }}>SpO₂ 98%</span>
-                      <span style={{ color:'#7aab9e' }}>28 br</span>
-                    </div>
-                  </div>
+                <div className="relative rounded-3xl overflow-hidden flex items-end justify-center"
+                  style={{ aspectRatio: '4/5', background: 'linear-gradient(180deg,#ffffff 0%,#f2ede5 100%)', boxShadow: '0 20px 50px -18px rgba(74,124,111,0.28)' }}
+                >
+                  <Image
+                    src="/homepage-hero-pod.png"
+                    alt="The Anvaya Smart Core pod"
+                    width={480}
+                    height={740}
+                    className="object-contain w-[62%] h-auto mb-0"
+                    sizes="(max-width: 1024px) 60vw, 384px"
+                    priority
+                  />
                 </div>
 
-                {/* Floating stars badge */}
-                <div className="absolute -top-3 -right-3 bg-white rounded-2xl px-3 py-2 shadow-lg border border-amber-100 z-10">
-                  <div className="flex items-center gap-1 mb-0.5">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
-                  </div>
-                  <div className="text-[10px] font-bold">Paediatrician-approved</div>
+                {/* Single quiet credential badge — verified claims only */}
+                <div className="absolute -top-3 -right-3 bg-white rounded-2xl px-3.5 py-2.5 shadow-lg border border-[#eee6db] z-10">
+                  <div className="text-[10px] font-bold uppercase tracking-wide text-primary mb-0.5">CE · FCC Certified</div>
+                  <div className="text-[10px] text-muted-foreground">Built by IIT engineers</div>
+                </div>
+                <div className="absolute -bottom-3 -left-3 bg-white rounded-2xl px-3.5 py-2.5 shadow-lg border border-[#eee6db] z-10">
+                  <div className="text-[10px] font-bold text-foreground">No wearables. No wires.</div>
+                  <div className="text-[10px] text-muted-foreground">Contactless, from day one</div>
                 </div>
               </div>
 
-              {/* Live monitor widget */}
+              {/* Preview of the app — clearly labeled as a preview, not a live baby feed */}
               <div className="w-full flex justify-center">
                 <LiveMonitorWidget />
               </div>
@@ -1283,48 +1242,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════════ TRUST BAR ════════════ */}
-      <section className="py-12 bg-white border-y border-border overflow-hidden">
+      {/* ════════════ TRUST BAR — quiet, verified, no marquee gimmick ════════════ */}
+      <section className="py-14 bg-white border-y border-border">
         <div className="container mx-auto px-4">
-          {/* Trust pills */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          <p className="text-center text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-7">Engineering you can verify</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 max-w-3xl mx-auto">
             {[
-              { icon: Shield, label: 'Safe AI Monitoring' },
-              { icon: Moon, label: 'Healthy Sleep Support' },
-              { icon: Zap, label: 'Instant Alerts' },
+              { icon: Shield, label: 'CE · FCC Certified' },
+              { icon: BrainCircuit, label: '30+ Patents Filed' },
               { icon: Lock, label: 'On-Device Privacy' },
-              { icon: Heart, label: 'Paediatrician-approved' },
               { icon: CheckCircle, label: '30-Day Guarantee' },
             ].map(({ icon: Icon, label }) => (
-              <div key={label} className="trust-pill">
-                <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{label}
+              <div key={label} className="flex flex-col items-center text-center gap-2">
+                <div className="w-11 h-11 rounded-full flex items-center justify-center bg-primary/8">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
+                <span className="text-xs font-semibold text-foreground/80 leading-snug">{label}</span>
               </div>
             ))}
-          </div>
-          {/* Scrolling marquee of trust stats */}
-          <div className="relative overflow-hidden">
-            <div className="flex gap-16 animate-marquee whitespace-nowrap">
-              {[
-                '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from pilot families',
-                '🩺 Recommended by Paediatricians',
-                '🔒 Zero health data leaves your home',
-                '🚀 Ships free across India',
-                '💰 0% EMI available',
-                '🛡️ 30-day money-back guarantee',
-                '👶 Safe for newborns from day 1',
-                '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from pilot families',
-                '🩺 Recommended by Paediatricians',
-                '🔒 Zero health data leaves your home',
-                '🚀 Ships free across India',
-                '💰 0% EMI available',
-                '🛡️ 30-day money-back guarantee',
-                '👶 Safe for newborns from day 1',
-              ].map((item, i) => (
-                <span key={i} className="text-sm font-semibold text-muted-foreground shrink-0">{item}</span>
-              ))}
-            </div>
           </div>
         </div>
       </section>
