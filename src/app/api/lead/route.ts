@@ -13,6 +13,10 @@ export async function POST(req: NextRequest) {
     source?: string;
     babyAge?: string;
     message?: string;
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    landingPage?: string;
   };
 
   try {
@@ -21,24 +25,27 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { name = '', whatsapp = '', city = '', product = '', source = '', babyAge = '', message = '' } = body;
+  const {
+    name = '', whatsapp = '', city = '', product = '', source = '', babyAge = '', message = '',
+    utmSource = '', utmMedium = '', utmCampaign = '', landingPage = '',
+  } = body;
 
   // ── Log everything so it appears in Vercel logs ────────────────────────────
   console.log('=== NEW LEAD SUBMISSION ===');
-  console.log({ name, whatsapp, city, product, source, babyAge, message });
+  console.log({ name, whatsapp, city, product, source, babyAge, message, utmSource, utmMedium, utmCampaign, landingPage });
 
   // ── Fire-and-forget: Make.com webhook ─────────────────────────────────────
   fetch(MAKE_WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, whatsapp, city, product, source, babyAge, message }),
+    body: JSON.stringify({ name, whatsapp, city, product, source, babyAge, message, utmSource, utmMedium, utmCampaign, landingPage }),
   }).catch((err) => console.error('[lead] Make.com webhook error:', err));
 
   // ── Fire-and-forget: Google Sheets via Apps Script ─────────────────────────
   fetch(GOOGLE_SHEET_WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, whatsapp, city, product, source, babyAge, message, timestamp: new Date().toISOString() }),
+    body: JSON.stringify({ name, whatsapp, city, product, source, babyAge, message, utmSource, utmMedium, utmCampaign, landingPage, timestamp: new Date().toISOString() }),
   })
     .then(async (r) => {
       const text = await r.text();
@@ -70,6 +77,7 @@ export async function POST(req: NextRequest) {
             ${city ? `<tr><td style="padding:8px 0;color:#888;font-size:13px">City</td><td style="padding:8px 0">${city}</td></tr>` : ''}
             ${product ? `<tr><td style="padding:8px 0;color:#888;font-size:13px">Product</td><td style="padding:8px 0;font-weight:600;color:#4a7c6f">${product}</td></tr>` : ''}
             <tr><td style="padding:8px 0;color:#888;font-size:13px">Source</td><td style="padding:8px 0">${source || '—'}</td></tr>
+            ${utmSource ? `<tr><td style="padding:8px 0;color:#888;font-size:13px">Traffic source</td><td style="padding:8px 0;font-weight:600">${utmSource}${utmMedium ? ` / ${utmMedium}` : ''}${utmCampaign ? ` · ${utmCampaign}` : ''}</td></tr>` : ''}
             ${babyAge ? `<tr><td style="padding:8px 0;color:#888;font-size:13px">Baby Age</td><td style="padding:8px 0">${babyAge}</td></tr>` : ''}
             ${message ? `<tr><td style="padding:8px 0;color:#888;font-size:13px;vertical-align:top">Message</td><td style="padding:8px 0">${message.replace(/\n/g, '<br/>')}</td></tr>` : ''}
           </table>

@@ -10,6 +10,7 @@ import { ArrowRight, CheckCircle, Sparkles, Activity, Thermometer, Baby, Moon, H
 import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
 import { useToast } from '@/hooks/use-toast';
 import { FAQSchema } from '@/components/seo/JsonLd';
+import { trackLead, trackCtaClick, getAttribution } from '@/lib/tracking';
 
 /* ─────────────────── ANIMATION VARIANTS ─────────────────── */
 const fadeUp = {
@@ -193,6 +194,7 @@ function BabySVG() {
 function CryCtaButton() {
   return (
     <Link href="/cry-analyzer"
+      onClick={() => trackCtaClick('homepage-hero-cry-analyzer')}
       className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-base px-7 py-3.5 rounded-xl font-bold text-white select-none"
       style={{ background: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', boxShadow: '0 4px 20px rgba(74,124,111,0.35)' }}
     >
@@ -483,13 +485,22 @@ export default function Home() {
     e.preventDefault();
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
+    const { first, last } = getAttribution();
+    const attribution = last || first;
     try {
       await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, whatsapp, source: 'homepage', product: 'Anvaya Smart' }),
+        body: JSON.stringify({
+          name, whatsapp, source: 'homepage-bottom', product: 'Anvaya Smart',
+          utmSource: attribution?.source ?? '',
+          utmMedium: attribution?.medium ?? '',
+          utmCampaign: attribution?.campaign ?? '',
+          landingPage: attribution?.landingPage ?? '',
+        }),
       });
     } catch (_) { }
+    trackLead({ productName: 'Anvaya Smart', extra: { source: 'homepage-bottom' } });
     setLoading(false); setSubmitted(true);
     toast({ title: "You're on the list!", description: "We'll WhatsApp you within 24 hours." });
   }

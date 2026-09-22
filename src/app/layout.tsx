@@ -10,6 +10,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 import { OrganizationSchema, WebsiteSchema } from '@/components/seo/JsonLd';
 import { GoogleAnalytics, MetaPixel } from '@/components/seo/Analytics';
+import { AttributionInit } from '@/components/seo/AttributionInit';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-poppins', display: 'swap' });
 
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={cn('min-h-screen bg-background antialiased', poppins.variable)} style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
         <OrganizationSchema />
         <WebsiteSchema />
+        <AttributionInit />
         <div className="relative flex min-h-screen flex-col">
           <div className="hidden md:block"><TopBar /></div>
           <Header />

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -13,6 +13,7 @@ import {
 import { cn } from '@/lib/utils';
 import { cartUrl } from '@/lib/shopify';
 import type { ShopifyProduct } from '@/lib/shopify';
+import { trackViewContent, trackAddToCart, trackInitiateCheckout, withAttribution } from '@/lib/tracking';
 import type { productConfig } from './page';
 
 type ProductEntry = typeof productConfig[number] & { shopify: ShopifyProduct | null };
@@ -70,25 +71,29 @@ export function AnvayaProductPage({ products, faqs }: Props) {
     ? shopify.images.map(img => img.url)
     : cfg.localImages;
 
+  // Fires once whenever the visible product/variant changes — the "someone is
+  // actually looking at this product" signal for the funnel.
+  useEffect(() => {
+    if (!currentVariant) return;
+    trackViewContent({
+      productId: currentVariant.numericId,
+      productName: cfg.fullName,
+      value: parseFloat(currentVariant.price),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cfg.fullName, currentVariant?.numericId]);
+
   function handleBuyNow() {
     if (!currentVariant) return;
 
     const value = parseFloat(currentVariant.price);
-    const w = window as unknown as { fbq?: (...args: unknown[]) => void; gtag?: (...args: unknown[]) => void };
-    w.fbq?.('track', 'AddToCart', {
-      content_name: cfg.fullName,
-      content_ids: [currentVariant.numericId],
-      content_type: 'product',
-      value,
-      currency: 'INR',
-    });
-    w.gtag?.('event', 'add_to_cart', {
-      currency: 'INR',
-      value,
-      items: [{ item_id: currentVariant.numericId, item_name: cfg.fullName, price: value }],
-    });
+    const opts = { productId: currentVariant.numericId, productName: cfg.fullName, value };
+    trackAddToCart(opts);
+    // Buy Now jumps straight to Shopify's hosted checkout — no separate cart
+    // page — so this click is also the InitiateCheckout moment.
+    trackInitiateCheckout(opts);
 
-    window.open(cartUrl(currentVariant.numericId), '_blank');
+    window.open(withAttribution(cartUrl(currentVariant.numericId)), '_blank');
   }
 
   function handleSelectProduct(i: number) {

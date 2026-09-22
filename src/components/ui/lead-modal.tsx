@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { CheckCircle, X, MessageCircle } from 'lucide-react';
+import { trackLead, getAttribution } from '@/lib/tracking';
 
 export interface LeadModalProps {
   open: boolean;
@@ -58,6 +59,8 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
     e.preventDefault();
     if (!name.trim() || !whatsapp.trim()) return;
     setLoading(true);
+    const { first, last } = getAttribution();
+    const attribution = last || first;
     try {
       await fetch('/api/lead', {
         method: 'POST',
@@ -68,11 +71,16 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
           city: city.trim(),
           product: product ?? '',
           source,
+          utmSource: attribution?.source ?? '',
+          utmMedium: attribution?.medium ?? '',
+          utmCampaign: attribution?.campaign ?? '',
+          landingPage: attribution?.landingPage ?? '',
         }),
       });
     } catch (_) {
       // Fail silently — still show success so user doesn't feel punished
     }
+    trackLead({ productName: product, extra: { source, city: city.trim() || null } });
     setLoading(false);
     setSuccess(true);
   }
