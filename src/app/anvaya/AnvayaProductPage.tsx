@@ -264,7 +264,20 @@ export function AnvayaProductPage({ products, faqs }: Props) {
                     {compareAt && <span className="text-base text-gray-400 line-through">{compareAt}</span>}
                     {discount && <span className="text-base font-bold text-green-600">{discount}% off</span>}
                   </div>
-                  <p className="text-xs text-gray-400 mt-0.5">Inclusive of all taxes · Free shipping across India</p>
+                  <p className="text-xs text-gray-400 mt-0.5 mb-3">Inclusive of all taxes · Free shipping across India</p>
+                  <a
+                    href="https://www.amazon.in/stores/AnvayaSmart/page/4E8B6271-F5B1-4D84-A055-E6A5E2DCE3D7?lp_asin=B0HK85L2XB&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto&bl_grd_status=override"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#FF9900]/40 bg-[#FFF8EE] hover:bg-[#FFF0D6] transition-colors"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M2 8.5C2 8.5 6.5 3 12 3C17.5 3 22 8.5 22 8.5" stroke="#FF9900" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M3.5 15C7 19.5 17 19.5 20.5 15" stroke="#FF9900" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M12 3V21M12 21L9 18M12 21L15 18" stroke="#FF9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span className="text-xs font-semibold text-[#B45309]">Now available on Amazon</span>
+                  </a>
                 </div>
 
                 {/* Variant picker */}
