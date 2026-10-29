@@ -1,543 +1,117 @@
-'use client';
+import { getProductsByHandles } from '@/lib/shopify';
+import type { ShopifyProduct } from '@/lib/shopify';
+import { AnvayaProductPage } from './AnvayaProductPage';
+import { FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
-import { motion } from 'framer-motion';
-import { CheckCircle, Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp, Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer, BrainCircuit, Zap, Phone, MessageCircle, Quote } from 'lucide-react';
-import { LeadModalTrigger } from '@/components/ui/lead-modal-trigger';
-import { cn } from '@/lib/utils';
-import { ProductSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
-
-const products = [
+// Static product config — marketing copy, colors, features (lives on website)
+// Prices + variants + availability come live from Shopify; fallbackVariants used when Shopify is unreachable
+// 3-product lineup: CORE → PULSE → OMNI (SENSE retired)
+export const productConfig = [
   {
     id: 'core',
     name: 'CORE',
     fullName: 'Anvaya CORE',
     tagline: 'Simple. Smart. Reliable.',
-    desc: 'Everything a new parent needs. HD video, cry detection, lullabies and temperature monitoring — in one quietly intelligent baby wellness pod.',
-    price: 8999,
-    mrp: 14999,
-    image: '/anvaya-core-1.jpg',
-    badge: null,
+    desc: 'Your first step into smart baby monitoring. A crisp 1080P camera, 5-inch parent display, pan & tilt coverage — reliable all night, simple to set up.',
     color: '#d97706',
     bgLight: '#fffbeb',
-    features: [
-      { icon: Video, text: 'HD Video — live view from anywhere' },
-      { icon: Baby, text: 'Cry detection — 5 cry types identified' },
-      { icon: Music, text: 'Built-in lullabies & white noise' },
-      { icon: Thermometer, text: 'Room temperature monitoring' },
+    badge: null as string | null,
+    handle: 'anvaya-smart-core-audio-and-video-baby-monitor',
+    specs: '5" · 1080P · 3200mAh · Pan 355° Tilt 120°',
+    fallbackVariants: [
+      { id: 'fallback-core-1', numericId: '50746014892255', title: 'Without Display', price: '6800.00', compareAtPrice: null, availableForSale: true },
     ],
-  },
-  {
-    id: 'sense',
-    name: 'SENSE',
-    fullName: 'Anvaya SENSE',
-    tagline: 'The Wellness Pod That Watches Every Breath.',
-    desc: 'India\'s most loved baby wellness pod. Tracks breathing, SpO₂, heart rate and cry type — completely contactlessly. Nothing touches your baby. Nothing is missed.',
-    price: 12999,
-    mrp: 19999,
-    image: '/anvaya-sense.jpg',
-    badge: '⭐ Best Seller',
-    color: '#4a7c6f',
-    bgLight: '#f0faf6',
+    localImages: ['/anvaya-core-01-hero-1080p-day-night.png', '/anvaya-core-02-pan-tilt-whole-home.png', '/anvaya-core-03-trust-safety-badges.png', '/anvaya-core-04-two-way-talk.png', '/anvaya-core-05-room-comfort-lullaby.png', '/anvaya-core-06-monitor-anywhere.png', '/anvaya-core-07-feeding-reminder.png'],
     features: [
-      { icon: Activity, text: 'Breathing & Heart Rate — contactless' },
-      { icon: Baby, text: 'Cry analysis — hungry / tired / pain / discomfort' },
-      { icon: Wind, text: 'Air quality & humidity alerts' },
-      { icon: Shield, text: 'Face cover detection — safety alert' },
+      { icon: 'Video', text: 'Crystal-clear 1080P', sub: 'See every detail, day or night' },
+      { icon: 'RotateCcw', text: 'No blind spots', sub: '355° pan · 120° tilt, full room' },
+      { icon: 'Baby', text: 'Cry alert in seconds', sub: 'Noise + motion detection' },
+      { icon: 'Volume2', text: 'Talk back instantly', sub: 'Two-way audio + 8 lullabies' },
+      { icon: 'Thermometer', text: 'Room conditions', sub: 'Temp & humidity at a glance' },
+      { icon: 'Smartphone', text: 'App and monitor', sub: 'Watch your way, any time' },
     ],
   },
   {
     id: 'pulse',
     name: 'PULSE',
     fullName: 'Anvaya PULSE',
-    tagline: 'Stay Connected to Every Moment.',
-    desc: 'Advanced environment and wellness monitoring. Know your baby\'s complete world — temperature, humidity, movement and real-time safety alerts.',
-    price: 15999,
-    mrp: 22999,
-    image: '/anvaya-pulse.jpg',
-    badge: null,
+    tagline: 'AI Safety That Never Blinks.',
+    desc: 'Upgraded to 4MP clarity, AI detects face covering and prone sleep — automatically. Danger zones, geofencing, and timeline album. Safety beyond basic monitoring.',
     color: '#3b82f6',
     bgLight: '#eff6ff',
+    badge: '⭐ Most Popular' as string | null,
+    handle: 'anvaya-smart-pulse-video-and-audio-baby-monitor',
+    specs: '5.5" · 4MP · 4000mAh · AI Safety Detection',
+    fallbackVariants: [
+      { id: 'fallback-pulse-1', numericId: '50745881690335', title: 'Without Display', price: '8900.00', compareAtPrice: null, availableForSale: true },
+      { id: 'fallback-pulse-2', numericId: '50817349419231', title: 'With 5.5" Display', price: '15999.00', compareAtPrice: null, availableForSale: true },
+    ],
+    localImages: ['/anvaya-pulse-07-product-hero.png', '/anvaya-pulse-01-hero-anywhere.png', '/anvaya-pulse-02-ai-safety-alerts.png', '/anvaya-pulse-04-danger-zone-fence.png', '/anvaya-pulse-03-room-comfort-lullaby.png', '/anvaya-pulse-05-feeding-reminder.png', '/anvaya-pulse-06-night-light.png'],
     features: [
-      { icon: Activity, text: 'Activity & movement tracking' },
-      { icon: Thermometer, text: 'Temp & humidity — perfect sleep environment' },
-      { icon: Shield, text: 'Instant safety alerts' },
-      { icon: Zap, text: 'Real-time push notifications' },
+      { icon: 'Shield', text: 'Face covered — alert sent', sub: 'AI detects the moment it happens' },
+      { icon: 'Baby', text: 'Rolled onto tummy — you know', sub: 'Prone sleep auto-detected' },
+      { icon: 'Zap', text: 'Draw a danger zone', sub: 'Baby crosses it, you\'re notified' },
+      { icon: 'Video', text: 'Ultra-sharp 4MP view', sub: '355° pan · 120° tilt clarity' },
+      { icon: 'Heart', text: 'Milestones, captured', sub: 'Auto timeline album as they grow' },
+      { icon: 'Thermometer', text: 'Environment on watch', sub: 'Temp & humidity alerts' },
     ],
   },
   {
     id: 'omni',
     name: 'OMNI',
     fullName: 'Anvaya OMNI',
-    tagline: 'Total Awareness. Complete Peace of Mind.',
-    desc: 'India\'s most advanced baby wellness pod. 360° intelligent monitoring with Predictive AI — weekly health reports, SpO₂ tracking, and alerts before problems arise.',
-    price: 19999,
-    mrp: 29999,
-    image: '/anvaya-omni.jpg',
-    badge: '🏆 Most Advanced',
+    tagline: 'Breathes. Heart beats. You sleep.',
+    desc: 'India\'s only baby monitor with contactless respiration and heart rate detection. Deep sleep analysis, one-click calling, and every PULSE feature — the complete picture.',
     color: '#7c3aed',
     bgLight: '#f5f3ff',
+    badge: '🏆 Most Advanced' as string | null,
+    handle: 'anvaya-smart-omni-baby-monitor',
+    specs: '5.5" · 4MP · 4000mAh · Respiration + Heart Rate',
+    fallbackVariants: [
+      { id: 'fallback-omni-1', numericId: '50744670486751', title: 'Without Display', price: '12999.00', compareAtPrice: null, availableForSale: true },
+      { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5.5" Display', price: '17999.00', compareAtPrice: null, availableForSale: true },
+    ],
+    localImages: ['/anvaya-omni-01-hero-nursery.jpg', '/anvaya-omni-09-vitals-heart-breathing.png', '/anvaya-omni-10-ai-safety-alerts.png', '/anvaya-omni-05-sleep-report.png', '/anvaya-omni-07-monitor-anywhere.png', '/anvaya-omni-06-danger-zones.png', '/anvaya-omni-11-product-hero-specs.png', '/anvaya-omni-08-trust-certifications.png'],
     features: [
-      { icon: Activity, text: 'Breathing, Heart Rate & SpO₂ — all contactless' },
-      { icon: BrainCircuit, text: 'Predictive AI — alerts before risk escalates' },
-      { icon: GitBranch, text: '360° room coverage' },
-      { icon: Heart, text: 'Weekly AI baby health reports' },
+      { icon: 'Activity', text: 'Breathing, watched live', sub: 'Contactless — nothing on your baby' },
+      { icon: 'Heart', text: 'Heart rate, always on', sub: 'No chest strap. No wearable. Ever.' },
+      { icon: 'BrainCircuit', text: 'Sleep decoded nightly', sub: 'Deep report, every morning' },
+      { icon: 'Phone', text: 'One tap, partner\'s phone rings', sub: '3am? No fumbling.' },
+      { icon: 'Shield', text: 'Face cover + tummy roll', sub: 'AI catches both — you just sleep' },
+      { icon: 'Zap', text: 'Invisible fence, real alerts', sub: 'Set zones, get notified instantly' },
     ],
   },
 ];
 
-const reviews = [
-  { name: 'Priya M.', city: 'Bangalore', rating: 5, text: 'Finally slept through the night knowing Anvaya is watching. The cry analysis is incredibly accurate — it identified a hungry cry before I even got up. A must-have baby wellness pod for new parents.', product: 'SENSE' },
-  { name: 'Rahul K.', city: 'Mumbai', rating: 5, text: 'Worth every rupee. The breathing monitor gave us so much peace of mind in the first two months. Setup took literally 3 minutes. The SpO₂ monitoring alone is worth it.', product: 'SENSE' },
-  { name: 'Ananya S.', city: 'Hyderabad', rating: 5, text: 'The sleep score feature is genius. We knew exactly when our baby hit deep sleep and stopped tiptoeing around! The weekly health report is eye-opening.', product: 'OMNI' },
-  { name: 'Meera R.', city: 'Chennai', rating: 5, text: 'As a first-time mother, I was anxious every night. Anvaya OMNI changed everything — real-time breathing alerts, SpO₂ tracking, and AI insights. Best investment we made for our newborn.', product: 'OMNI' },
-];
-
 const faqs = [
-  { q: 'Does anything touch my baby?', a: 'No. Anvaya is completely contactless. The wellness pod sits beside the crib on a shelf or table. It uses radar and infrared sensing — nothing attaches to your baby\'s skin, making it the safest baby wellness pod available in India.' },
-  { q: 'When will I receive my order?', a: 'Anvaya Smart is currently in pre-order. Once your spot is confirmed, we\'ll reach out via WhatsApp with your estimated dispatch date. Delivery across India takes 3–7 working days after dispatch. Free shipping on all orders.' },
+  { q: 'Does anything touch my baby?', a: 'No. Anvaya is completely contactless. The wellness pod sits beside the crib on a shelf or table. It uses radar and infrared sensing — nothing attaches to your baby\'s skin.' },
+  { q: 'When will I receive my order?', a: 'Anvaya Smart is currently in pre-order. Delivery across India takes 3–7 working days after dispatch. Free shipping on all orders.' },
   { q: 'What if I\'m not happy?', a: '30-day money-back guarantee — no questions asked. If Anvaya doesn\'t give you peace of mind, we\'ll refund every rupee including return shipping.' },
-  { q: 'Which model should I buy?', a: 'SENSE is our most popular for new parents — it covers breathing, SpO2, cry analysis and sleep. If you want the complete picture with AI health reports, go with OMNI.' },
-  { q: 'Is my data private?', a: 'All processing happens on the device. No health data, video or audio is ever sent to external servers. Your family\'s privacy is a design principle, not an afterthought.' },
+  { q: 'Which model should I buy?', a: 'SENSE is our most popular for new parents — it covers breathing, SpO₂, cry analysis and sleep. For the complete picture with AI health reports, go with OMNI.' },
+  { q: 'Is my data private?', a: 'All processing happens on the device. No health data, video or audio is ever sent to external servers. Your family\'s privacy is a design principle.' },
 ];
 
-const included = ['Anvaya Smart pod', 'Magnetic mounting bracket', 'USB-C cable + adapter', 'Anvaya app (iOS & Android)', '1-year premium subscription FREE', 'Quick setup guide'];
+export default async function AnvayaPage() {
+  // Fetch all 4 products from Shopify in parallel
+  const shopifyProducts = await getProductsByHandles(
+    productConfig.map(p => p.handle)
+  );
 
-export default function AnvayaPage() {
-  const { toast } = useToast();
-  const [selected, setSelected] = useState(1); // SENSE default
-  const [qty, setQty] = useState(1);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [booked, setBooked] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const p = products[selected];
-  const discount = Math.round((1 - p.price / p.mrp) * 100);
-
-  async function handleBook(e: React.FormEvent) {
-    e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
-    setLoading(true);
-    try {
-      await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, whatsapp: phone, source: 'anvaya-product-page', product: p.fullName }),
-      });
-    } catch (_) {}
-    setLoading(false);
-    setBooked(true);
-    toast({ title: 'Seat booked! 🎉', description: `We'll WhatsApp you within 24 hours with your ${p.fullName} details.` });
-  }
+  // Merge: static config (copy/features/colors) + live Shopify data (prices/variants/availability)
+  // When Shopify is unreachable, shopify is null and the client uses fallbackVariants
+  const products = productConfig.map((cfg, i) => ({
+    ...cfg,
+    shopify: shopifyProducts[i],
+  }));
 
   return (
-    <div className="min-h-screen bg-[#faf8f5] pb-32 md:pb-0">
-
-      {/* JSON-LD schemas — rendered once, not tied to selected state */}
-      {products.map(prod => (
-        <ProductSchema
-          key={prod.id}
-          name={`${prod.fullName} — AI Baby Wellness Pod`}
-          description={prod.desc}
-          price={prod.price.toString()}
-          sku={prod.id.toUpperCase()}
-          image={`https://nxmplis.com${prod.image}`}
-          features={prod.features.map(f => f.text)}
-        />
-      ))}
+    <>
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://nxmplis.com' },
         { name: 'Baby Wellness Pods', url: 'https://nxmplis.com/anvaya' },
       ]} />
-
-      {/* ── Mobile full-bleed hero strip ── */}
-      <div className="md:hidden relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${p.bgLight} 0%, white 100%)`, borderBottom: `2px solid ${p.color}18` }}>
-        <div className="flex items-center justify-between px-4 py-3">
-          <div>
-            <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: p.color }}>Anvaya Smart</div>
-            <div className="text-xl font-bold leading-tight">{p.fullName}</div>
-            <div className="text-xs font-medium mt-0.5" style={{ color: p.color }}>{p.tagline}</div>
-          </div>
-          <div className="text-right">
-            <div className="text-[10px] text-muted-foreground line-through">₹{p.mrp.toLocaleString('en-IN')}</div>
-            <div className="text-2xl font-black" style={{ color: p.color }}>₹{p.price.toLocaleString('en-IN')}</div>
-            <div className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full mt-0.5">
-              {discount}% off · Founding price
-            </div>
-          </div>
-        </div>
-        {/* Model quick-switch chips */}
-        <div className="flex gap-1.5 px-4 pb-3 overflow-x-auto scrollbar-hide">
-          {products.map((prod, i) => (
-            <button key={prod.id} onClick={() => setSelected(i)}
-              className="shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold border-2 transition-all"
-              style={selected === i
-                ? { borderColor: prod.color, background: prod.color, color: '#fff' }
-                : { borderColor: `${prod.color}40`, background: 'white', color: prod.color }
-              }
-            >
-              {prod.name}
-              {prod.badge && ' ⭐'}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Breadcrumb (desktop only) ── */}
-      <div className="hidden md:block border-b border-[#e2dbd4] bg-white">
-        <div className="container mx-auto px-3 sm:px-4 py-2.5 text-xs text-muted-foreground flex items-center gap-1.5">
-          <Link href="/" className="hover:text-primary">Home</Link>
-          <span>›</span>
-          <Link href="/anvaya" className="hover:text-primary">Baby Wellness Pods</Link>
-          <span>›</span>
-          <span className="text-foreground font-medium">{p.fullName}</span>
-        </div>
-      </div>
-
-      {/* ── Main product layout ── */}
-      <div className="w-full px-3 sm:px-4 lg:container lg:mx-auto py-4 lg:py-8">
-        <div className="grid lg:grid-cols-[1fr_420px] gap-5 lg:gap-10 items-start">
-
-          {/* LEFT — Image + model tabs + features */}
-          <div className="order-2 lg:order-1">
-            {/* Model selector tabs — horizontally scrollable on mobile */}
-            <div className="flex gap-2 mb-4 overflow-x-auto pb-1 snap-x scrollbar-hide -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
-              {products.map((prod, i) => (
-                <button
-                  key={prod.id}
-                  onClick={() => setSelected(i)}
-                  className={cn(
-                    'flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all snap-start shrink-0 min-h-[44px]',
-                    selected === i
-                      ? 'border-current shadow-md scale-105'
-                      : 'border-[#e2dbd4] bg-white text-muted-foreground hover:border-gray-300'
-                  )}
-                  style={selected === i ? { borderColor: prod.color, color: prod.color, background: prod.bgLight } : {}}
-                >
-                  {prod.badge && <span className="text-[10px]">{prod.badge.split(' ')[0]}</span>}
-                  Anvaya {prod.name}
-                  {prod.badge && <span className="text-[10px] hidden sm:inline opacity-70">{prod.badge.split(' ').slice(1).join(' ')}</span>}
-                </button>
-              ))}
-            </div>
-
-            {/* Product Image */}
-            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#f5f0e8] border border-[#e2dbd4] shadow-sm -mx-3 sm:mx-0" style={{aspectRatio: '4/3', minHeight: '220px'}}>
-              <Image
-                src={p.image}
-                alt={`${p.fullName} — AI baby wellness pod India`}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 55vw"
-                priority
-              />
-              {p.badge && (
-                <div className="absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{background: p.color}}>
-                  {p.badge}
-                </div>
-              )}
-              <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2 text-xs font-medium text-foreground shadow">
-                ✓ Nothing touches baby's skin
-              </div>
-            </div>
-
-            {/* Trust strip */}
-            <div className="grid grid-cols-3 gap-2 mt-4">
-              {[
-                { icon: Truck, text: 'Free shipping', sub: 'All India' },
-                { icon: RefreshCw, text: '30-day returns', sub: 'No questions' },
-                { icon: Shield, text: 'Safe for newborns', sub: 'Contactless & safe' },
-              ].map(t => (
-                <div key={t.text} className="flex flex-col items-center text-center gap-1.5 bg-white rounded-xl p-2.5 border border-[#e2dbd4]">
-                  <t.icon className="w-4 h-4 shrink-0" style={{color: p.color}} />
-                  <div>
-                    <div className="text-[10px] font-semibold leading-tight">{t.text}</div>
-                    <div className="text-[9px] text-muted-foreground mt-0.5 leading-tight">{t.sub}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Features */}
-            <div className="mt-8">
-              <h2 className="text-xl font-bold mb-4">What your {p.fullName} baby wellness pod monitors</h2>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {p.features.map((f, i) => (
-                  <motion.div key={f.text} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08, duration: 0.4 }} className="flex items-center gap-3 bg-white rounded-xl p-4 border border-[#e2dbd4] hover:shadow-sm transition-shadow">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{background: p.bgLight}}>
-                      <f.icon style={{color: p.color, width: 18, height: 18}} />
-                    </div>
-                    <span className="text-sm font-medium">{f.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* What's included */}
-            <div className="mt-8 bg-white rounded-2xl p-6 border border-[#e2dbd4]">
-              <h2 className="text-lg font-bold mb-4">What's in the box</h2>
-              <div className="grid sm:grid-cols-2 gap-2">
-                {included.map(item => (
-                  <div key={item} className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle className="w-4 h-4 shrink-0 text-primary" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Reviews */}
-            <div className="mt-8">
-              <div className="flex items-center gap-3 mb-5">
-                <h2 className="text-xl font-bold">Pilot Family Feedback</h2>
-                <div className="flex items-center gap-1">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
-                  <span className="text-sm font-semibold ml-1">4.9</span>
-                  <span className="text-xs text-muted-foreground">· Beta testers</span>
-                </div>
-              </div>
-              <div className="space-y-4">
-                {reviews.map((r, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }} className="bg-white rounded-2xl p-5 border border-[#e2dbd4] hover:shadow-md transition-shadow">
-                    <Quote className="w-5 h-5 mb-2 opacity-20" style={{color: p.color}} />
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">&ldquo;{r.text}&rdquo;</p>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-semibold text-sm">{r.name}</span>
-                        <span className="text-xs text-muted-foreground ml-2">{r.city}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
-                      </div>
-                    </div>
-                    <div className="mt-1 text-[10px] font-semibold" style={{color: p.color}}>Beta tester · Anvaya {r.product}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* FAQ */}
-            <div className="mt-8">
-              <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
-              <div className="space-y-2">
-                {faqs.map((faq, i) => (
-                  <div key={i} className="bg-white rounded-xl border border-[#e2dbd4] overflow-hidden">
-                    <button
-                      className="w-full flex items-center justify-between p-4 text-left hover:bg-[#faf8f5] transition-colors"
-                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    >
-                      <span className="font-semibold text-sm pr-4">{faq.q}</span>
-                      {openFaq === i ? <ChevronUp className="w-4 h-4 shrink-0 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 shrink-0 text-muted-foreground" />}
-                    </button>
-                    {openFaq === i && (
-                      <div className="px-4 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-[#f0ece6] pt-3">{faq.a}</div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT — Sticky buy panel */}
-          <div className="order-1 lg:order-2 lg:sticky lg:top-20 -mx-3 sm:mx-0">
-            <div className="bg-white sm:rounded-2xl border-y sm:border border-[#e2dbd4] shadow-lg overflow-hidden">
-
-              {/* Product name + rating */}
-              <div className="p-6 border-b border-[#f0ece6]">
-                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{color: p.color}}>Anvaya Smart</div>
-                <h1 className="text-2xl font-bold mb-1">{p.fullName} — Baby Wellness Pod</h1>
-                <p className="text-sm font-medium" style={{color: p.color}}>{p.tagline}</p>
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="flex">{[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}</div>
-                  <span className="text-xs text-muted-foreground">4.9 · Pilot family feedback</span>
-                </div>
-              </div>
-
-              {/* Founding price panel */}
-              <div className="p-5 border-b border-[#f0ece6]">
-                <div className="flex items-end justify-between mb-3">
-                  <div>
-                    <div className="text-xs text-muted-foreground line-through">MRP ₹{p.mrp.toLocaleString('en-IN')}</div>
-                    <div className="text-3xl font-black leading-tight" style={{ color: p.color }}>₹{p.price.toLocaleString('en-IN')}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xl font-black text-green-600">{discount}% off</div>
-                    <div className="text-[10px] text-muted-foreground">Founding family price</div>
-                  </div>
-                </div>
-                <div className="bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5 mb-3 flex items-center gap-2">
-                  <span className="text-base">🔒</span>
-                  <div>
-                    <p className="text-xs font-bold text-amber-800">Price locked for founding families</p>
-                    <p className="text-[10px] text-amber-700">No payment today · We confirm via WhatsApp first</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1.5 bg-green-50 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-green-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    Reservations open now
-                  </div>
-                  <div className="text-[11px] text-muted-foreground">· Free shipping India</div>
-                </div>
-              </div>
-
-              {/* Model compare */}
-              <div className="px-5 pt-4 pb-3">
-                <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2.5">Choose model</div>
-                <div className="grid grid-cols-2 gap-2">
-                  {products.map((prod, i) => (
-                    <button
-                      key={prod.id}
-                      onClick={() => setSelected(i)}
-                      className={cn('text-left p-3 rounded-xl border-2 transition-all duration-150 relative overflow-hidden')}
-                      style={selected === i
-                        ? { borderColor: prod.color, background: `linear-gradient(135deg,${prod.bgLight},white)`, boxShadow: `0 2px 12px ${prod.color}25` }
-                        : { borderColor: '#e2dbd4', background: 'white' }}
-                    >
-                      {prod.badge && selected === i && (
-                        <span className="absolute top-1 right-1 text-[8px] font-bold px-1.5 py-0.5 rounded-full text-white" style={{ background: prod.color }}>
-                          Best
-                        </span>
-                      )}
-                      <div className="w-5 h-5 rounded-full mb-1.5 flex items-center justify-center" style={{ background: selected === i ? prod.color : '#e2dbd4' }}>
-                        <span className="text-[9px] font-black text-white">{prod.name[0]}</span>
-                      </div>
-                      <div className="text-xs font-bold" style={{ color: selected === i ? prod.color : '#1a2e28' }}>{prod.name}</div>
-                      <div className="text-[10px] text-muted-foreground mt-0.5">₹{prod.price.toLocaleString('en-IN')}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Book seat form */}
-              <div className="p-6 pt-4">
-                {/* Quick WhatsApp reserve */}
-                <LeadModalTrigger source="anvaya-product" product={p.fullName}>
-                  <Button size="lg" className="w-full gap-2 text-white font-bold mb-4 cursor-pointer" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
-                    <MessageCircle className="w-4 h-4" /> Quick Reserve via WhatsApp
-                  </Button>
-                </LeadModalTrigger>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="flex-1 h-px bg-[#e2dbd4]" />
-                  <span className="text-xs text-muted-foreground">or fill the full form below</span>
-                  <div className="flex-1 h-px bg-[#e2dbd4]" />
-                </div>
-                {booked ? (
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
-                    <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                    <div className="font-bold text-green-800">Seat booked! 🎉</div>
-                    <div className="text-xs text-green-700 mt-1">We'll WhatsApp you within 24 hours with your early access details and payment link.</div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleBook} className="space-y-3">
-                    <div className="text-sm font-bold text-foreground mb-1">Book your early access seat</div>
-                    <div className="text-xs text-muted-foreground mb-3">No payment now · We'll confirm via WhatsApp first</div>
-                    <Input
-                      placeholder="Your name *"
-                      value={name}
-                      onChange={e => setName(e.target.value)}
-                      required
-                      className="bg-[#faf8f5] border-[#e2dbd4] h-11"
-                    />
-                    <Input
-                      placeholder="WhatsApp number *"
-                      type="tel"
-                      value={phone}
-                      onChange={e => setPhone(e.target.value)}
-                      required
-                      className="bg-[#faf8f5] border-[#e2dbd4] h-11"
-                    />
-                    <Button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full h-12 text-base font-bold rounded-xl gap-2"
-                      style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)', color: '#fff'}}
-                    >
-                      {loading ? 'Booking...' : `Reserve ${p.name} Pod — ₹0 Now`}
-                    </Button>
-                    <button
-                      type="button"
-                      className="w-full h-11 text-sm font-semibold rounded-xl border-2 flex items-center justify-center gap-2 hover:bg-green-50 transition-colors"
-                      style={{borderColor: '#25D366', color: '#25D366'}}
-                      onClick={() => window.open('https://wa.me/919876543210?text=Hi! I want to know more about Anvaya ' + p.name, '_blank')}
-                    >
-                      <Phone className="w-4 h-4" /> Chat on WhatsApp
-                    </button>
-                  </form>
-                )}
-
-                {/* Trust signals */}
-                <div className="mt-4 space-y-2 pt-4 border-t border-[#f0ece6]">
-                  {[
-                    '✓ No payment charged now',
-                    '✓ Free shipping across India',
-                    '✓ 30-day money-back guarantee',
-                    '✓ 1-year warranty included',
-                  ].map(t => (
-                    <div key={t} className="text-xs text-muted-foreground">{t}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Compare models card */}
-            <div className="mt-4 bg-white rounded-2xl border border-[#e2dbd4] p-5">
-              <div className="text-sm font-bold mb-3">Not sure which model?</div>
-              <div className="space-y-2 text-xs text-muted-foreground">
-                <div><strong className="text-amber-700">CORE</strong> — Basic monitoring, great value</div>
-                <div><strong className="text-primary">SENSE</strong> — Breathing + SpO2 + Cry AI ⭐ Most popular</div>
-                <div><strong className="text-blue-600">PULSE</strong> — Environment + Activity focus</div>
-                <div><strong className="text-purple-700">OMNI</strong> — Everything + Predictive AI</div>
-              </div>
-              <Link href="/compare" className="text-xs text-primary hover:underline mt-3 block font-semibold">
-                See full comparison →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Mobile sticky reserve CTA (above tab bar) ── */}
-      {!booked && (
-        <div
-          className="md:hidden fixed left-0 right-0 z-40 px-4 py-3"
-          style={{
-            bottom: 'max(66px, calc(66px + env(safe-area-inset-bottom)))',
-            background: 'rgba(255,255,255,0.97)',
-            backdropFilter: 'blur(16px)',
-            borderTop: '1px solid rgba(0,0,0,0.07)',
-            boxShadow: '0 -4px 20px rgba(0,0,0,0.06)',
-          }}
-        >
-          <div className="flex items-center gap-3">
-            <div className="flex-1 min-w-0">
-              <div className="text-xs font-bold truncate">{p.fullName} — Founding price</div>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-base font-black" style={{ color: p.color }}>₹{p.price.toLocaleString('en-IN')}</span>
-                <span className="text-[10px] text-muted-foreground line-through">₹{p.mrp.toLocaleString('en-IN')}</span>
-                <span className="text-[10px] font-bold text-green-600">{discount}% off</span>
-              </div>
-            </div>
-            <LeadModalTrigger source="anvaya-product-sticky" product={p.fullName}>
-              <button
-                className="shrink-0 px-5 py-3 rounded-xl font-bold text-sm text-white flex items-center gap-2"
-                style={{ background: `linear-gradient(135deg,${p.color}dd,${p.color})`, boxShadow: `0 4px 16px ${p.color}55` }}
-              >
-                <MessageCircle className="w-4 h-4" />
-                Reserve Now
-              </button>
-            </LeadModalTrigger>
-          </div>
-        </div>
-      )}
-    </div>
+      <AnvayaProductPage products={products} faqs={faqs} />
+    </>
   );
 }
