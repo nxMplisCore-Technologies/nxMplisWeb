@@ -10,7 +10,7 @@ const TABS = [
   { href: '/anvaya',   label: 'Products', icon: ShoppingBag, color: '#d97706', activeBg: 'rgba(217,119,6,0.09)'  },
   null, /* spacer column for the floating center button */
   { href: '/cry-analyzer', label: 'Try It', icon: null,    color: '#4a7c6f', activeBg: 'rgba(74,124,111,0.10)'  },
-  { href: '/preorder', label: 'Buy',       icon: Sparkles,  color: '#e8957a', activeBg: 'rgba(232,149,122,0.10)' },
+  { href: 'https://www.amazon.in/stores/AnvayaSmart', label: 'Buy', icon: Sparkles, color: '#e8957a', activeBg: 'rgba(232,149,122,0.10)', external: true },
 ];
 
 export function MobileTabBar() {
@@ -43,34 +43,25 @@ export function MobileTabBar() {
           boxShadow: '0 -4px 24px rgba(0,0,0,0.07)',
         }}
       >
-        {TABS.map((tab, i) =>
-          tab === null ? (
-            /* Col 3 spacer — center button floats here */
-            <div key="spacer" />
-          ) : (
-            <Link
-              key={tab.href}
-              href={tab.href}
-              className="flex flex-col items-center justify-end gap-0.5 pb-1.5 relative"
-              style={{ color: isActive(tab.href) ? tab.color : '#a8b5af' }}
-            >
-              {/* Top active indicator pill */}
-              {isActive(tab.href) && (
+        {TABS.map((tab, i) => {
+          if (tab === null) return <div key="spacer" />;
+          const active = !tab.external && isActive(tab.href);
+          const inner = (
+            <>
+              {active && (
                 <span
                   className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full"
                   style={{ width: 20, height: 3, background: tab.color }}
                 />
               )}
-              {/* Icon with active tint bg */}
               <span
                 className="rounded-xl p-1.5 transition-all duration-150"
                 style={{
-                  background: isActive(tab.href) ? tab.activeBg : 'transparent',
-                  transform: isActive(tab.href) ? 'scale(1.08)' : 'scale(1)',
+                  background: active ? tab.activeBg : 'transparent',
+                  transform: active ? 'scale(1.08)' : 'scale(1)',
                 }}
               >
                 {tab.icon && <tab.icon className="w-5 h-5" />}
-                {/* Try It: small waveform icon */}
                 {!tab.icon && (
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                     <line x1="4"  y1="12" x2="4"  y2="12" />
@@ -82,9 +73,30 @@ export function MobileTabBar() {
                 )}
               </span>
               <span className="text-[9px] font-semibold tracking-wide leading-none">{tab.label}</span>
+            </>
+          );
+          return tab.external ? (
+            <a
+              key={tab.href}
+              href={tab.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-end gap-0.5 pb-1.5 relative"
+              style={{ color: tab.color }}
+            >
+              {inner}
+            </a>
+          ) : (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              className="flex flex-col items-center justify-end gap-0.5 pb-1.5 relative"
+              style={{ color: active ? tab.color : '#a8b5af' }}
+            >
+              {inner}
             </Link>
-          )
-        )}
+          );
+        })}
 
         {/* ── Floating centre button — absolutely centred over col 3 ── */}
         <Link

@@ -190,10 +190,10 @@ export default function ComparePage() {
           <p className="text-xs text-muted-foreground mb-5 bg-white/60 rounded-lg px-3 py-2 border border-[#e2dbd4]">
             Anvaya Smart is a consumer wellness device. It is not a medical device and is not intended to diagnose, treat, or prevent any medical condition.
           </p>
-          <Button asChild size="lg" className="text-white font-bold gap-2" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)}'}}>
-            <Link href="/preorder">Reserve Early Access <ArrowRight className="w-4 h-4" /></Link>
+          <Button asChild size="lg" className="text-white font-bold gap-2" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
+            <a href="https://www.amazon.in/stores/AnvayaSmart" target="_blank" rel="noopener noreferrer">Buy on Amazon <ArrowRight className="w-4 h-4" /></a>
           </Button>
-          <p className="text-xs text-muted-foreground mt-3">Free shipping · 30-day guarantee · 0% EMI · No payment now</p>
+          <p className="text-xs text-muted-foreground mt-3">Available now on Amazon India · Free shipping · 30-day guarantee</p>
         </div>
 
         {/* FAQs */}
