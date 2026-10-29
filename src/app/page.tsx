@@ -1173,11 +1173,11 @@ export default function Home() {
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-            [
-              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#C96A00', features: ['1080P HD Camera', 'Cry Detection', 'Two-way Audio', 'Temp & Humidity'], price: '₹8,999' },
-              { name: 'PULSE', tagline: 'AI Safety That Never Blinks.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#1D57D1', features: ['AI Face Cover Alert', 'Prone Sleep Detection', 'Danger Zones', '4MP Camera'], popular: true, price: '₹17,999' },
-              { name: 'OMNI', tagline: 'Breathes. Heart beats. You sleep.', bg: '', border: '#2d4a3e', color: '#A87FFF', features: ['Contactless Breathing', 'Heart Rate Monitor', 'Nightly Sleep Report', 'One-tap Calling'], dark: true, price: '₹20,999' },
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+            {[
+              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#C96A00', features: ['1080P HD Camera', 'Cry Detection', 'Two-way Audio', 'Temp & Humidity'], price: '₹6,800' },
+              { name: 'PULSE', tagline: 'AI Safety That Never Blinks.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#1D57D1', features: ['AI Face Cover Alert', 'Prone Sleep Detection', 'Danger Zones', '4MP Camera'], popular: true, price: '₹8,900' },
+              { name: 'OMNI', tagline: 'Breathes. Heart beats. You sleep.', bg: '', border: '#2d4a3e', color: '#A87FFF', features: ['Contactless Breathing', 'Heart Rate Monitor', 'Nightly Sleep Report', 'One-tap Calling'], dark: true, price: '₹12,999' },
             ].map((p, i) => (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
               <Link href={`/anvaya#${p.name.toLowerCase()}`}
