@@ -10,6 +10,7 @@ import {
   BrainCircuit, Zap, Phone, CheckCircle, Lock, MessageCircle, ArrowRight,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { cartUrl } from '@/lib/shopify';
 import type { ShopifyProduct } from '@/lib/shopify';
 import type { productConfig } from './page';
 
@@ -46,9 +47,10 @@ interface Props {
 }
 
 /* ─── Gallery ─── */
-function Gallery({ images, color }: { images: string[]; color: string }) {
+function Gallery({ images }: { images: string[] }) {
   const [idx, setIdx] = useState(0);
   const [dir, setDir] = useState(0);
+  const [showGrid, setShowGrid] = useState(false);
   const dragX = useMotionValue(0);
   const dragOpacity = useTransform(dragX, [-120, 0, 120], [0.8, 1, 0.8]);
   const DRAG_THRESHOLD = 45;
@@ -71,17 +73,17 @@ function Gallery({ images, color }: { images: string[]; color: string }) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-3 lg:gap-4">
-      {/* Thumbnail column — desktop left, mobile bottom */}
+      {/* Thumbnail column — desktop left, mobile bottom row */}
       {images.length > 1 && (
-        <div className="order-2 lg:order-1 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto scrollbar-hide lg:max-h-[480px] shrink-0">
+        <div className="order-2 lg:order-1 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto scrollbar-hide lg:max-h-[480px] shrink-0 pb-1 lg:pb-0">
           {images.map((img, i) => (
             <button
               key={i}
-              onClick={() => go(i, i > idx ? 1 : -1)}
+              onClick={() => { go(i, i > idx ? 1 : -1); setShowGrid(false); }}
               className={cn(
                 'relative shrink-0 rounded-lg overflow-hidden border-2 transition-all bg-gray-50',
                 'w-14 h-14 lg:w-16 lg:h-16',
-                idx === i ? 'border-gray-800' : 'border-gray-200 opacity-50 hover:opacity-80 hover:border-gray-300'
+                idx === i ? 'border-gray-900' : 'border-gray-200 opacity-50 hover:opacity-80 hover:border-gray-400'
               )}
             >
               <Image src={img} alt="" fill className="object-contain p-1.5" sizes="64px" draggable={false} />
@@ -90,61 +92,102 @@ function Gallery({ images, color }: { images: string[]; color: string }) {
         </div>
       )}
 
-      {/* Main image */}
+      {/* Main image area */}
       <div className="order-1 lg:order-2 flex-1">
-        <motion.div
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.12}
-          onDragEnd={handleDragEnd}
-          style={{ x: dragX, opacity: dragOpacity, aspectRatio: '4/3' }}
-          className="relative overflow-hidden rounded-xl lg:rounded-2xl bg-[#f8f7f5] cursor-grab active:cursor-grabbing touch-pan-y"
-        >
-          <AnimatePresence custom={dir} mode="wait">
+        <AnimatePresence mode="wait">
+          {showGrid ? (
+            /* ── Photo grid view ── */
             <motion.div
-              key={idx}
-              custom={dir}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
-              className="absolute inset-0"
+              key="grid"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.18 }}
+              className="relative rounded-xl lg:rounded-2xl overflow-hidden bg-[#f8f7f5]"
+              style={{ aspectRatio: '4/3' }}
             >
-              <Image
-                src={images[idx]}
-                alt="product"
-                fill
-                className="object-contain p-6 lg:p-10"
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                priority
-                draggable={false}
-              />
+              <div className="absolute inset-0 grid grid-cols-3 gap-1 p-2 overflow-auto">
+                {images.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { go(i); setShowGrid(false); }}
+                    className={cn(
+                      'relative rounded-lg overflow-hidden bg-white border-2 transition-all hover:border-gray-400',
+                      idx === i ? 'border-gray-900 ring-2 ring-gray-900 ring-offset-1' : 'border-transparent'
+                    )}
+                    style={{ aspectRatio: '1/1' }}
+                  >
+                    <Image src={img} alt={`Photo ${i + 1}`} fill className="object-contain p-1" sizes="120px" />
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setShowGrid(false)}
+                className="absolute top-2 right-2 z-10 w-7 h-7 rounded-full bg-white shadow text-gray-600 flex items-center justify-center text-sm hover:bg-gray-50"
+              >✕</button>
             </motion.div>
-          </AnimatePresence>
+          ) : (
+            /* ── Single image swipe view ── */
+            <motion.div
+              key="single"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <motion.div
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.12}
+                onDragEnd={handleDragEnd}
+                style={{ x: dragX, opacity: dragOpacity, aspectRatio: '4/3' }}
+                className="relative overflow-hidden rounded-xl lg:rounded-2xl bg-[#f8f7f5] cursor-grab active:cursor-grabbing touch-pan-y"
+              >
+                <AnimatePresence custom={dir} mode="wait">
+                  <motion.div
+                    key={idx}
+                    custom={dir}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={images[idx]}
+                      alt="product"
+                      fill
+                      className="object-contain p-6 lg:p-10"
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                      priority
+                      draggable={false}
+                    />
+                  </motion.div>
+                </AnimatePresence>
 
-          {/* Progress dots */}
-          {images.length > 1 && (
-            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 pointer-events-none z-10">
-              {images.map((_, i) => (
-                <div key={i} className={cn('h-1 rounded-full transition-all duration-300', idx === i ? 'w-5 bg-gray-700' : 'w-1.5 bg-gray-300')} />
-              ))}
-            </div>
+                {/* Counter + "all photos" tap target */}
+                {images.length > 1 && (
+                  <button
+                    onClick={() => setShowGrid(true)}
+                    className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 bg-black/50 hover:bg-black/70 text-white text-xs font-medium px-2.5 py-1.5 rounded-full backdrop-blur-sm transition-colors"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    {idx + 1}/{images.length}
+                  </button>
+                )}
+
+                {/* Desktop arrows */}
+                {images.length > 1 && (
+                  <>
+                    <button onClick={prev} aria-label="Prev" className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow items-center justify-center text-gray-600 hover:shadow-md transition-shadow z-10">‹</button>
+                    <button onClick={next} aria-label="Next" className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow items-center justify-center text-gray-600 hover:shadow-md transition-shadow z-10">›</button>
+                  </>
+                )}
+              </motion.div>
+            </motion.div>
           )}
-
-          {/* Desktop arrows */}
-          {images.length > 1 && (
-            <>
-              <button onClick={prev} aria-label="Prev" className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow items-center justify-center text-gray-600 hover:shadow-md transition-shadow z-10">‹</button>
-              <button onClick={next} aria-label="Next" className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow items-center justify-center text-gray-600 hover:shadow-md transition-shadow z-10">›</button>
-            </>
-          )}
-        </motion.div>
-
-        {/* Image counter — mobile */}
-        {images.length > 1 && (
-          <p className="lg:hidden text-center text-xs text-gray-400 mt-2">{idx + 1} / {images.length}</p>
-        )}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -168,7 +211,11 @@ export function AnvayaProductPage({ products, faqs }: Props) {
   const AMAZON_URL = 'https://www.amazon.in/stores/AnvayaSmart/page/4E8B6271-F5B1-4D84-A055-E6A5E2DCE3D7?lp_asin=B0HK85L2XB&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto&bl_grd_status=override';
 
   function handleBuyNow() {
-    window.open(AMAZON_URL, '_blank');
+    if (currentVariant?.numericId) {
+      window.open(cartUrl(currentVariant.numericId), '_blank');
+    } else {
+      window.open(AMAZON_URL, '_blank');
+    }
   }
 
   const discount = currentVariant?.compareAtPrice
@@ -208,7 +255,7 @@ export function AnvayaProductPage({ products, faqs }: Props) {
             <AnimatePresence mode="wait">
               <motion.div key={`g-${selected}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
                 <div className="px-4 sm:px-0 pt-4 pb-0 lg:py-0">
-                  <Gallery images={gallery} color={cfg.color} />
+                  <Gallery images={gallery} />
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -315,18 +362,20 @@ export function AnvayaProductPage({ products, faqs }: Props) {
                 <div className="flex gap-3 mb-5">
                   <button
                     onClick={handleBuyNow}
-                    className="flex-1 h-12 rounded-xl text-sm font-bold text-white transition-opacity"
-                    style={{ background: '#fb641b' }}
+                    disabled={!available && !currentVariant?.numericId}
+                    className="flex-1 h-13 py-3.5 rounded-xl text-sm font-bold text-white transition-opacity disabled:opacity-40"
+                    style={{ background: cfg.color }}
                   >
-                    Buy on Amazon
+                    {available ? 'Buy Now' : 'Out of Stock'}
                   </button>
-                  <button
-                    onClick={handleBuyNow}
-                    className="flex-1 h-12 rounded-xl text-sm font-bold transition-opacity border border-gray-200"
-                    style={{ color: cfg.color }}
+                  <a
+                    href={AMAZON_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center px-5 h-13 py-3.5 rounded-xl text-sm font-bold border border-[#FF9900] text-[#B45309] bg-[#FFF8EE] hover:bg-[#FFF0D6] transition-colors whitespace-nowrap"
                   >
-                    Order Now
-                  </button>
+                    Amazon
+                  </a>
                 </div>
 
                 {/* WhatsApp */}
@@ -518,10 +567,11 @@ export function AnvayaProductPage({ products, faqs }: Props) {
           </button>
           <button
             onClick={handleBuyNow}
-            className="flex-1 h-11 rounded-xl text-sm font-bold text-white"
-            style={{ background: '#fb641b' }}
+            disabled={!available && !currentVariant?.numericId}
+            className="flex-1 h-11 rounded-xl text-sm font-bold text-white disabled:opacity-40"
+            style={{ background: cfg.color }}
           >
-            Buy on Amazon · {price}
+            {available ? `Buy Now · ${price}` : 'Out of Stock'}
           </button>
         </div>
       </div>
