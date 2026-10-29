@@ -10,7 +10,6 @@ import {
   BrainCircuit, Zap, Phone, CheckCircle, Lock, MessageCircle, ArrowRight,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { cartUrl } from '@/lib/shopify';
 import type { ShopifyProduct } from '@/lib/shopify';
 import type { productConfig } from './page';
 
@@ -166,9 +165,10 @@ export function AnvayaProductPage({ products, faqs }: Props) {
   const available = currentVariant?.availableForSale ?? true;
   const gallery = shopify?.images.length ? shopify.images.map(img => img.url) : cfg.localImages;
 
+  const AMAZON_URL = 'https://www.amazon.in/stores/AnvayaSmart/page/4E8B6271-F5B1-4D84-A055-E6A5E2DCE3D7?lp_asin=B0HK85L2XB&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto&bl_grd_status=override';
+
   function handleBuyNow() {
-    if (!currentVariant) return;
-    window.open(cartUrl(currentVariant.numericId), '_blank');
+    window.open(AMAZON_URL, '_blank');
   }
 
   const discount = currentVariant?.compareAtPrice
@@ -302,19 +302,17 @@ export function AnvayaProductPage({ products, faqs }: Props) {
                 <div className="flex gap-3 mb-5">
                   <button
                     onClick={handleBuyNow}
-                    disabled={!available || !currentVariant}
-                    className="flex-1 h-12 rounded-xl text-sm font-bold text-white disabled:opacity-40 transition-opacity"
+                    className="flex-1 h-12 rounded-xl text-sm font-bold text-white transition-opacity"
                     style={{ background: '#fb641b' }}
                   >
-                    Buy Now
+                    Buy on Amazon
                   </button>
                   <button
                     onClick={handleBuyNow}
-                    disabled={!available || !currentVariant}
-                    className="flex-1 h-12 rounded-xl text-sm font-bold disabled:opacity-40 transition-opacity border border-gray-200"
+                    className="flex-1 h-12 rounded-xl text-sm font-bold transition-opacity border border-gray-200"
                     style={{ color: cfg.color }}
                   >
-                    Add to Cart
+                    Order Now
                   </button>
                 </div>
 
@@ -507,11 +505,10 @@ export function AnvayaProductPage({ products, faqs }: Props) {
           </button>
           <button
             onClick={handleBuyNow}
-            disabled={!available || !currentVariant}
-            className="flex-1 h-11 rounded-xl text-sm font-bold text-white disabled:opacity-40"
+            className="flex-1 h-11 rounded-xl text-sm font-bold text-white"
             style={{ background: '#fb641b' }}
           >
-            {available ? `Buy Now · ${price}` : 'Out of Stock'}
+            Buy on Amazon · {price}
           </button>
         </div>
       </div>
