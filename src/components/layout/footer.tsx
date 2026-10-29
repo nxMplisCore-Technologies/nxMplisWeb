@@ -96,7 +96,7 @@ export function Footer({ className = '' }: { className?: string }) {
                 <li key={l.label}><Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors">{l.label}</Link></li>
               ))}
             </ul>
-            <Link href="/early-access" className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-lg" style={{background:'#4a7c6f',color:'#fff'}}>
+            <Link href="/anvaya" className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-lg" style={{background:'#4a7c6f',color:'#fff'}}>
               ✦ Get Early Access
             </Link>
           </div>

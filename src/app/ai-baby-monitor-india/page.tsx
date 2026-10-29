@@ -140,7 +140,7 @@ export default function AIBabyMonitorIndiaPage() {
               Explore Anvaya Smart <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/early-access"
+              href="/anvaya"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold border-2 transition-all hover:bg-primary/5"
               style={{ borderColor: '#4a7c6f', color: '#4a7c6f' }}
             >
@@ -264,7 +264,7 @@ export default function AIBabyMonitorIndiaPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/early-access"
+                  href="/anvaya"
                   className="block text-center py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-all"
                   style={{ background: m.badge ? '#4a7c6f' : '#f0f5f3', color: m.badge ? '#fff' : '#4a7c6f' }}
                 >
@@ -300,7 +300,7 @@ export default function AIBabyMonitorIndiaPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/early-access"
+              href="/anvaya"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white shadow-xl hover:opacity-90 transition-all"
               style={{ background: '#e8957a' }}
             >

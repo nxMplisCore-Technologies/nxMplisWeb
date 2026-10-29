@@ -82,9 +82,16 @@ export function MobileTabBar() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-end gap-0.5 pb-1.5 relative"
-              style={{ color: tab.color }}
+              style={{ color: '#fff' }}
             >
-              {inner}
+              <span
+                className="absolute top-1 left-1/2 -translate-x-1/2 rounded-full"
+                style={{ width: 38, height: 28, background: 'linear-gradient(135deg,#e8957a,#d4784a)', zIndex: 0 }}
+              />
+              <span className="relative z-10 rounded-xl p-1.5" style={{ transform: 'scale(1.08)' }}>
+                <Sparkles className="w-5 h-5" style={{ color: '#fff' }} />
+              </span>
+              <span className="text-[9px] font-bold tracking-wide leading-none" style={{ color: tab.color }}>{tab.label}</span>
             </a>
           ) : (
             <Link

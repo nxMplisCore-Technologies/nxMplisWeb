@@ -466,7 +466,7 @@ export default function SomaPage() {
                     </Button>
                     <button type="button" className="w-full h-11 text-sm font-semibold rounded-xl border-2 flex items-center justify-center gap-2 hover:bg-green-50 transition-colors"
                       style={{ borderColor: '#25D366', color: '#25D366' }}
-                      onClick={() => window.open(`https://wa.me/919876543210?text=Hi! I want to know more about Soma ${p.name}`, '_blank')}>
+                      onClick={() => window.open(`https://wa.me/917987449366?text=Hi! I want to know more about Soma ${p.name}`, '_blank')}>
                       <Phone className="w-4 h-4" /> Chat on WhatsApp
                     </button>
                   </form>

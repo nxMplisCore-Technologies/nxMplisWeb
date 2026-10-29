@@ -296,7 +296,7 @@ function Scene6() {
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}>
         <Button asChild size="lg" className="font-bold gap-2 text-white border-0"
           style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 32px rgba(232,149,122,0.35)' }}>
-          <Link href="/early-access">
+          <Link href="/anvaya">
             <MessageCircle className="w-4 h-4" />
             Reserve your pod — No payment now
           </Link>
@@ -399,7 +399,7 @@ function DetailSection() {
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">Ready to sleep tonight?</h2>
         <Button asChild size="lg" className="text-white font-bold gap-2"
           style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 24px rgba(232,149,122,0.4)' }}>
-          <Link href="/early-access">
+          <Link href="/anvaya">
             <MessageCircle className="w-4 h-4" />
             Reserve your Anvaya pod — No payment now
           </Link>

@@ -127,7 +127,7 @@ export default function BabyBreathingPage() {
             ))}
           </ul>
           <Button asChild className="mt-4 bg-primary text-white hover:bg-primary/90 gap-2" size="sm">
-            <Link href="/early-access">Reserve Anvaya Smart — Free Shipping <ArrowRight className="w-3.5 h-3.5" /></Link>
+            <Link href="/anvaya">Reserve Anvaya Smart — Free Shipping <ArrowRight className="w-3.5 h-3.5" /></Link>
           </Button>
         </div>
 
