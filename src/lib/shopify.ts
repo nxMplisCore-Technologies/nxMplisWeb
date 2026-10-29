@@ -1,4 +1,4 @@
-const DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN!;
+const DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN ?? 'anvayasmart.myshopify.com';
 const TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!;
 const API_URL = `https://${DOMAIN}/api/2024-01/graphql.json`;
 
@@ -129,7 +129,6 @@ function normalizeProduct(raw: RawProduct): ShopifyProduct {
 
 // ── Cart URL helper ────────────────────────────────────────────────────────
 
-export function cartUrl(variantNumericId: string, domain = DOMAIN): string | null {
-  if (!domain || domain === 'undefined') return null;
+export function cartUrl(variantNumericId: string, domain = DOMAIN): string {
   return `https://${domain}/cart/${variantNumericId}:1?storefront=true`;
 }
