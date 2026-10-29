@@ -58,10 +58,16 @@ const QUESTIONS = [
 
 type AnswerMap = Partial<Record<string, string>>;
 
+const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN ?? 'anvayasmart.myshopify.com';
+function shopifyCartUrl(variantId: string) {
+  return `https://${SHOPIFY_DOMAIN}/cart/${variantId}:1?storefront=true`;
+}
+
 const PRODUCTS = {
   CORE: {
     name: 'CORE',
     price: 6800,
+    variantId: '50746014892255',
     bullets: [
       '1080P camera — crystal-clear night view',
       'Cry & noise detection — instant alerts',
@@ -72,6 +78,7 @@ const PRODUCTS = {
   PULSE: {
     name: 'PULSE',
     price: 8900,
+    variantId: '50745881690335',
     bullets: [
       'AI face cover + prone sleep detection',
       '4MP ultra-sharp camera, 5.5" display',
@@ -82,6 +89,7 @@ const PRODUCTS = {
   OMNI: {
     name: 'OMNI',
     price: 12999,
+    variantId: '50744670486751',
     bullets: [
       'Contactless breathing & heart rate — no wearable',
       'Deep sleep analysis — nightly report',
@@ -251,21 +259,32 @@ export default function QuizClient() {
               </ul>
 
               <div className="mt-5 pt-5 border-t border-[#f0ece6] text-center">
-                <div className="bg-primary/6 border border-primary/15 rounded-xl px-4 py-3">
-                  <p className="text-sm font-semibold text-primary mb-0.5">🔒 Founding family pricing</p>
-                  <p className="text-xs text-muted-foreground">Exclusive founding price — no payment today</p>
-                </div>
+                <div className="text-lg font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">incl. taxes · free shipping India</div>
               </div>
             </div>
 
+            {/* Primary CTA — Shopify direct */}
+            <Button
+              size="lg"
+              className="w-full h-14 text-base font-bold text-white rounded-xl mb-3 shadow-lg gap-2"
+              style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 20px rgba(232,149,122,0.4)' }}
+              onClick={() => window.open(shopifyCartUrl(product.variantId), '_blank')}
+            >
+              Buy Anvaya {product.name} — ₹{product.price.toLocaleString('en-IN')} <ArrowRight className="w-4 h-4" />
+            </Button>
+            <p className="text-center text-xs text-muted-foreground mb-5">Free shipping · 30-day returns · Secure checkout</p>
+
+            <div className="text-center text-xs text-muted-foreground mb-3">or get a callback first</div>
+
             {submitted ? (
-              <div className="bg-white border border-[#e2dbd4] rounded-2xl p-10 text-center shadow-sm">
-                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-7 h-7 text-primary" />
+              <div className="bg-white border border-[#e2dbd4] rounded-2xl p-8 text-center shadow-sm">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle className="w-6 h-6 text-primary" />
                 </div>
-                <h2 className="text-xl font-bold mb-2">✅ You&apos;re reserved!</h2>
+                <h2 className="text-lg font-bold mb-1">✅ We&apos;ll call you back!</h2>
                 <p className="text-muted-foreground text-sm">
-                  We&apos;ll reach out within 1 hour with your <span className="font-semibold text-primary">{product.name}</span> pod details.
+                  Our team will WhatsApp you within 1 hour about your <span className="font-semibold text-primary">{product.name}</span>.
                 </p>
               </div>
             ) : (
@@ -301,13 +320,13 @@ export default function QuizClient() {
                     'Reserving...'
                   ) : (
                     <>
-                      Join Founding Families — {product.name}{' '}
+                      Get a Callback — {product.name}{' '}
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
                 </Button>
                 <p className="text-center text-xs text-muted-foreground">
-                  We&apos;ll reach out to confirm within 1 hour
+                  We&apos;ll WhatsApp you within 1 hour
                 </p>
               </form>
             )}

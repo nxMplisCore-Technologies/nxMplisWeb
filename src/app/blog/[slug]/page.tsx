@@ -126,7 +126,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <h3 className="text-xl font-bold mb-2">Monitor your baby with Anvaya Smart</h3>
               <p className="text-muted-foreground text-sm mb-4">India's only contactless AI baby monitor. Breathing, SpO2, cry analysis, sleep tracking. Starting ₹8,999.</p>
               <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
-                <Link href="/early-access">Get Early Access — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
+                <Link href="/anvaya">Get Early Access — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
               </Button>
             </div>
 
@@ -203,7 +203,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <div className="font-bold text-lg mb-1">Anvaya Smart</div>
                 <div className="text-xs opacity-80 mb-4">Contactless baby monitoring. Save ₹7,000 now.</div>
                 <Button asChild size="sm" className="bg-white text-primary hover:bg-white/90 w-full font-semibold text-xs">
-                  <Link href="/early-access">Reserve — ₹12,999</Link>
+                  <Link href="/anvaya">Reserve — ₹12,999</Link>
                 </Button>
               </div>
 

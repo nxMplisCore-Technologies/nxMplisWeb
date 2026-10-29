@@ -532,7 +532,7 @@ export function AnvayaProductPage({ products, faqs }: Props) {
                 <button
                   className="w-full h-12 text-sm font-semibold rounded-xl border-2 flex items-center justify-center gap-2 transition-colors hover:bg-green-50 mb-4"
                   style={{ borderColor: '#25D366', color: '#25D366' }}
-                  onClick={() => window.open(`https://wa.me/919876543210?text=Hi! I want to order Anvaya ${cfg.name}`, '_blank')}
+                  onClick={() => window.open(`https://wa.me/917987449366?text=Hi! I want to order Anvaya ${cfg.name}`, '_blank')}
                 >
                   <Phone className="w-4 h-4" /> Order via WhatsApp
                 </button>

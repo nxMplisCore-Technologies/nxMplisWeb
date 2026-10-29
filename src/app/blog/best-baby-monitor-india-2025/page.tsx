@@ -163,7 +163,7 @@ export default function BestBabyMonitorPage() {
               <div className="text-xs text-muted-foreground mt-0.5">Early access price · Limited spots</div>
             </div>
             <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
-              <Link href="/early-access">Reserve My Anvaya Smart — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
+              <Link href="/anvaya">Reserve My Anvaya Smart — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </div>
         </div>

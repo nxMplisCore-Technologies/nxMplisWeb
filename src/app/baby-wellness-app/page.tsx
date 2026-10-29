@@ -47,7 +47,7 @@ export default function BabyWellnessAppPage() {
           <p className="text-xl text-muted-foreground mb-6">Breathing. Sleep. Cries. SpO2. Temperature. Daily timeline. AI insights. All in one app — free with every Anvaya Smart pod.</p>
           <div className="flex gap-3 flex-wrap">
             <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
-              <Link href="/early-access">Get Anvaya Smart — App Included Free <ArrowRight className="w-4 h-4" /></Link>
+              <Link href="/anvaya">Get Anvaya Smart — App Included Free <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </div>
         </div>

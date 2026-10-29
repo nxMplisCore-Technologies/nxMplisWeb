@@ -567,15 +567,10 @@ export default function Home() {
 
               {/* ONE primary CTA */}
               <div className="flex flex-col sm:flex-row gap-3 mb-6">
-                <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
-                  <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-2xl cursor-pointer text-white font-bold"
-                    style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 24px rgba(232,149,122,0.42)', transition: 'box-shadow .2s,transform .2s' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; }}
-                  >
-                    <Sparkles className="w-4 h-4" /> Reserve Early Access
-                  </Button>
-                </LeadModalTrigger>
+                <Button size="lg" asChild className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-2xl cursor-pointer text-white font-bold"
+                  style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 24px rgba(232,149,122,0.42)' }}>
+                  <Link href="/anvaya"><Sparkles className="w-4 h-4" /> Shop Now</Link>
+                </Button>
                 <CryCtaButton />
               </div>
 
@@ -957,11 +952,9 @@ export default function Home() {
                   </motion.div>
                 ))}
               </div>
-              <LeadModalTrigger source="homepage-feature-sleep" product="Anvaya Smart">
-                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
-                  Reserve Anvaya Smart <ArrowRight className="w-4 h-4" />
-                </Button>
-              </LeadModalTrigger>
+              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
+                <Link href="/anvaya">Shop Anvaya Smart <ArrowRight className="w-4 h-4" /></Link>
+              </Button>
             </Reveal>
           </div>
         </div>
@@ -1022,11 +1015,9 @@ export default function Home() {
                     </button>
                   </Link>
                 </div>
-                <LeadModalTrigger source="homepage-feature-cry" product="Anvaya Smart">
-                  <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
-                    Get Early Access <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </LeadModalTrigger>
+              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
+                <Link href="/anvaya">Shop Now <ArrowRight className="w-4 h-4" /></Link>
+              </Button>
               </div>
             </Reveal>
             <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
@@ -1096,11 +1087,9 @@ export default function Home() {
                   </motion.div>
                 ))}
               </div>
-              <LeadModalTrigger source="homepage-feature-timeline" product="Anvaya Smart">
-                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
-                  Reserve Your Anvaya <ArrowRight className="w-4 h-4" />
-                </Button>
-              </LeadModalTrigger>
+              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
+                <Link href="/anvaya">Shop Your Anvaya <ArrowRight className="w-4 h-4" /></Link>
+              </Button>
             </Reveal>
           </div>
         </div>
@@ -1134,11 +1123,9 @@ export default function Home() {
                   </motion.div>
                 ))}
               </div>
-              <LeadModalTrigger source="homepage-feature-live" product="Anvaya Smart">
-                <Button className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6 cursor-pointer">
-                  Get Early Access <ArrowRight className="w-4 h-4" />
-                </Button>
-              </LeadModalTrigger>
+              <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2 rounded-xl px-6">
+                <Link href="/anvaya">Shop Now <ArrowRight className="w-4 h-4" /></Link>
+              </Button>
             </Reveal>
             <Reveal variant={fadeRight} className="lg:order-2 order-1 flex justify-center lg:justify-end">
               <div className="relative">
@@ -1400,11 +1387,9 @@ export default function Home() {
             India&apos;s most trusted baby wellness pod. Peace of mind for every parent. A safer world for every baby. 🇮🇳
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <LeadModalTrigger source="homepage-closing-cta" product="Anvaya Smart">
-              <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
-                Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
-              </Button>
-            </LeadModalTrigger>
+            <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30">
+              <Link href="/anvaya">Shop Anvaya Smart <ArrowRight className="w-4 h-4" /></Link>
+            </Button>
             <Button asChild size="lg" variant="ghost" className="text-white/80 border border-white/15 hover:bg-white/8 text-base px-8 py-6 rounded-xl">
               <Link href="/anvaya">Explore All Products</Link>
             </Button>
