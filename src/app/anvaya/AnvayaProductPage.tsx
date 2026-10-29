@@ -211,11 +211,8 @@ export function AnvayaProductPage({ products, faqs }: Props) {
   const AMAZON_URL = 'https://www.amazon.in/stores/AnvayaSmart/page/4E8B6271-F5B1-4D84-A055-E6A5E2DCE3D7?lp_asin=B0HK85L2XB&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto&bl_grd_status=override';
 
   function handleBuyNow() {
-    if (currentVariant?.numericId) {
-      window.open(cartUrl(currentVariant.numericId), '_blank');
-    } else {
-      window.open(AMAZON_URL, '_blank');
-    }
+    const url = currentVariant?.numericId ? cartUrl(currentVariant.numericId) : null;
+    window.open(url ?? AMAZON_URL, '_blank');
   }
 
   const discount = currentVariant?.compareAtPrice
