@@ -61,42 +61,32 @@ type AnswerMap = Partial<Record<string, string>>;
 const PRODUCTS = {
   CORE: {
     name: 'CORE',
-    price: 8999,
+    price: 6800,
     bullets: [
-      'Contactless breathing rate monitoring',
-      'AI-powered cry analysis (hungry, tired, pain)',
-      'Sleep cycle tracking',
-      'Instant app alerts',
-    ],
-  },
-  SENSE: {
-    name: 'SENSE',
-    price: 11999,
-    bullets: [
-      'Everything in CORE',
-      'Blood oxygen (SpO₂) monitoring',
-      'Room & ambient temperature sensing',
-      'Multi-zone sleep analysis',
+      '1080P camera — crystal-clear night view',
+      'Cry & noise detection — instant alerts',
+      'Two-way audio + 8 built-in lullabies',
+      'Temp & humidity monitoring',
     ],
   },
   PULSE: {
     name: 'PULSE',
-    price: 14999,
+    price: 8900,
     bullets: [
-      'Everything in SENSE',
-      'Heart rate monitoring',
-      'Advanced cardiac pattern alerts',
-      'Trend reports for pediatric visits',
+      'AI face cover + prone sleep detection',
+      '4MP ultra-sharp camera, 5.5" display',
+      'Electronic danger zones & geofencing',
+      'Timeline milestone album — auto-captured',
     ],
   },
   OMNI: {
     name: 'OMNI',
-    price: 19999,
+    price: 12999,
     bullets: [
-      'Everything in PULSE',
-      'HD live video with night vision',
-      'Two-way audio',
-      'The complete Anvaya experience',
+      'Contactless breathing & heart rate — no wearable',
+      'Deep sleep analysis — nightly report',
+      'One-tap partner calling at 3am',
+      'Every PULSE AI safety feature included',
     ],
   },
 } as const;
@@ -106,12 +96,11 @@ type ProductKey = keyof typeof PRODUCTS;
 function recommend(answers: AnswerMap): ProductKey {
   const budget = answers['budget'];
   const worry = answers['worry'];
-  const video = answers['video'];
 
   if (budget === 'under10k') return 'CORE';
-  if (budget === 'best' || video === 'yes') return 'OMNI';
-  if (budget === '15-20k') return 'PULSE';
-  if (budget === '10-15k' || worry === 'spo2' || worry === 'temp') return 'SENSE';
+  if (budget === 'best') return 'OMNI';
+  if (worry === 'breathing') return 'OMNI';
+  if (budget === '15-20k' || budget === '10-15k') return 'PULSE';
   return 'PULSE';
 }
 

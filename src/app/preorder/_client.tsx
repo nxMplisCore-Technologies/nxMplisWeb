@@ -9,35 +9,27 @@ const PODS = [
   {
     key: 'CORE',
     name: 'CORE',
-    price: 8999,
-    tag: 'Breathing + Cry analysis',
-    dotColor: '#7aab9e',
-    chips: ['🫱 Breathing', '😢 Cry'],
-  },
-  {
-    key: 'SENSE',
-    name: 'SENSE',
-    price: 11999,
-    tag: '+ SpO₂ + Temperature',
-    dotColor: '#4a7c6f',
-    popular: true,
-    chips: ['🫱 Breathing', '😢 Cry', '💉 SpO₂', '🌡️ Temp'],
+    price: 6800,
+    tag: '1080P · Cry · Two-way audio',
+    dotColor: '#C96A00',
+    chips: ['📹 1080P', '😢 Cry', '🔊 Two-way', '🌡️ Temp'],
   },
   {
     key: 'PULSE',
     name: 'PULSE',
-    price: 14999,
-    tag: '+ Heart Rate',
-    dotColor: '#e8957a',
-    chips: ['🫱 Breathing', '😢 Cry', '💉 SpO₂', '🌡️ Temp', '❤️ Heart Rate'],
+    price: 8900,
+    tag: '4MP · AI face cover · Danger zones',
+    dotColor: '#1D57D1',
+    popular: true,
+    chips: ['🤖 AI Safety', '📹 4MP', '🚧 Zones', '📸 Album'],
   },
   {
     key: 'OMNI',
     name: 'OMNI',
-    price: 19999,
-    tag: 'All sensors + Video',
-    dotColor: '#c0674f',
-    chips: ['🫱 Breathing', '😢 Cry', '💉 SpO₂', '🌡️ Temp', '❤️ Heart Rate', '📹 Video'],
+    price: 12999,
+    tag: 'Breathing · Heart rate · Sleep report',
+    dotColor: '#5B21B6',
+    chips: ['🫁 Breathing', '❤️ Heart Rate', '🌙 Sleep', '🤖 AI Safety'],
   },
 ] as const;
 
@@ -51,7 +43,7 @@ const TRUST = [
 ];
 
 export default function PreorderClient() {
-  const [selectedKey, setSelectedKey] = useState<PodKey>('SENSE');
+  const [selectedKey, setSelectedKey] = useState<PodKey>('PULSE');
   const [name, setName] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [city, setCity] = useState('');

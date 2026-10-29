@@ -423,9 +423,9 @@ const HOME_FAQS = [
   { q: 'What is Anvaya Smart baby wellness pod?', a: 'Anvaya Smart is India\'s most advanced AI baby wellness pod. It monitors your baby\'s breathing, SpO₂, cry patterns, heart rate, temperature, and sleep — contactlessly, without anything on your baby\'s skin. It uses low-power radar, infrared sensing, and AI acoustic analysis to watch over your baby 24/7.' },
   { q: 'Is the Anvaya baby monitor safe for newborns?', a: 'Yes. Anvaya Smart is completely contactless — nothing is attached to your baby. The radar sensing uses power levels thousands of times lower than a Wi-Fi router. It is safe for premature babies and newborns from day one.' },
   { q: 'How does contactless baby breathing monitoring work?', a: 'Anvaya uses low-power radar to detect the micro-movements of your baby\'s chest caused by breathing — from up to 90cm away. No wearable, no skin contact. The AI identifies breathing rate, pattern, and alerts you if anything deviates from your baby\'s personal baseline.' },
-  { q: 'What is the price of Anvaya baby wellness pod in India?', a: 'Anvaya Smart is available in four models: CORE (₹8,999), SENSE (₹12,999), PULSE (₹15,999), and OMNI (₹19,999). Early access pricing includes ₹2,000 off, free shipping across India, and a 30-day money-back guarantee.' },
-  { q: 'Does Anvaya work without Wi-Fi?', a: 'Anvaya processes all data on-device. Core monitoring functions (breathing detection, cry alerts, temperature) work without Wi-Fi. Wi-Fi is required for live video streaming and app sync.' },
-  { q: 'What is the difference between Anvaya CORE, SENSE, PULSE, and OMNI?', a: 'CORE covers HD video, cry detection, lullabies, and temperature. SENSE adds contactless breathing, SpO₂, heart rate, and air quality monitoring. PULSE adds activity tracking, real-time alerts, and humidity sensing. OMNI includes predictive AI, 360° coverage, health reports, and all SENSE+ features.' },
+  { q: 'What is the price of Anvaya baby monitor in India?', a: 'Anvaya Smart is available in three models: CORE from ₹6,800, PULSE from ₹8,900, and OMNI from ₹12,999. Each model also comes with an optional dedicated 5.5-inch parent monitor. Free shipping across India, 30-day money-back guarantee.' },
+  { q: 'Does Anvaya work without Wi-Fi?', a: 'Anvaya processes all data on-device. Core monitoring functions (cry alerts, temperature, motion) work without Wi-Fi. Wi-Fi is required for live video streaming and smartphone app sync.' },
+  { q: 'What is the difference between Anvaya CORE, PULSE, and OMNI?', a: 'CORE covers 1080P HD video, cry detection, two-way audio, and temperature monitoring — your first step into smart monitoring. PULSE adds 4MP clarity, AI face cover and prone sleep detection, and electronic danger zones. OMNI includes everything in PULSE plus contactless respiration monitoring, heart rate detection, deep sleep analysis, and one-click partner calling — India\'s most advanced baby monitor.' },
   { q: 'Is Anvaya Smart available across India?', a: 'Yes. Anvaya Smart ships free across India. EMI is available at 0% through major cards and UPI platforms. Our team is based in Hyderabad with pan-India customer support in English, Hindi, and Telugu.' },
 ];
 
@@ -1169,16 +1169,15 @@ export default function Home() {
           <Reveal variant={fadeUp}>
             <div className="text-center mb-14">
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
-              <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
+              <h2 className="text-4xl font-bold mb-3">Three baby monitors. One right for your family.</h2>
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
             </div>
           </Reveal>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-            {[
-              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
-              { name: 'SENSE', tagline: 'Understand more than sound.', bg: 'from-[#e8f2ee] to-[#f5ede0]', border: '#a7d9c8', color: '#4a7c6f', features: ['Breathing & SpO2', 'Heart Rate', 'Cry Analysis', 'Air Quality'], popular: true },
-              { name: 'PULSE', tagline: 'Stay connected always.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#3b82f6', features: ['Activity Tracking', 'Temp & Humidity', 'Safety Alerts', 'Real-Time Alerts'] },
-              { name: 'OMNI', tagline: 'Total awareness.', bg: '', border: '#2d4a3e', color: '#fbbf24', features: ['Predictive AI', '360° Coverage', 'Health Reports', 'All SENSE+'], dark: true },
+            [
+              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#C96A00', features: ['1080P HD Camera', 'Cry Detection', 'Two-way Audio', 'Temp & Humidity'], price: '₹8,999' },
+              { name: 'PULSE', tagline: 'AI Safety That Never Blinks.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#1D57D1', features: ['AI Face Cover Alert', 'Prone Sleep Detection', 'Danger Zones', '4MP Camera'], popular: true, price: '₹17,999' },
+              { name: 'OMNI', tagline: 'Breathes. Heart beats. You sleep.', bg: '', border: '#2d4a3e', color: '#A87FFF', features: ['Contactless Breathing', 'Heart Rate Monitor', 'Nightly Sleep Report', 'One-tap Calling'], dark: true, price: '₹20,999' },
             ].map((p, i) => (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
               <Link href={`/anvaya#${p.name.toLowerCase()}`}

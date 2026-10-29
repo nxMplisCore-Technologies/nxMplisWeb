@@ -22,22 +22,22 @@ type PodRec = {
 
 const POD_REC: Record<Worry, PodRec> = {
   breathing: {
-    name: 'Anvaya SENSE',
-    badge: '🫁 Best match for breathing & SpO₂',
-    why: 'SENSE is built for exactly this — contactless breathing + SpO₂ monitoring, 24/7, with alerts in under 3 seconds.',
-    features: ['✅ Contactless breathing rate (radar)', '✅ SpO₂ oxygen monitoring', '✅ Alert in under 3 seconds', '✅ 9-hour overnight report', '✅ Nothing touches your baby'],
+    name: 'Anvaya OMNI',
+    badge: '🫁 Best match for breathing & vitals',
+    why: 'OMNI is built for exactly this — contactless respiration and heart rate monitoring, 24/7, with instant alerts. Nothing touches your baby.',
+    features: ['✅ Contactless breathing rate monitoring', '✅ Heart rate tracking — no wearable', '✅ Deep sleep analysis — nightly report', '✅ Alert in under 3 seconds', '✅ Nothing touches your baby'],
   },
   crying: {
-    name: 'Anvaya SENSE',
-    badge: '🍼 Best match for cry analysis',
-    why: 'SENSE includes the full AI cry classifier — hunger, pain, discomfort, fatigue — so you always know what your baby needs.',
-    features: ['✅ AI cry classifier (5 cry types)', '✅ Real-time cry pattern analysis', '✅ 7-day cry history & trends', '✅ Breathing + SpO₂ included', '✅ Nothing touches your baby'],
+    name: 'Anvaya PULSE',
+    badge: '🍼 Best match for AI safety & cry detection',
+    why: 'PULSE\'s AI detects face covering and prone sleep the moment they happen — plus cry alerts, motion detection, and a 4MP camera.',
+    features: ['✅ AI face cover detection', '✅ Prone sleep auto-alert', '✅ Cry & noise detection', '✅ 4MP crystal-clear camera', '✅ Nothing touches your baby'],
   },
   sleep: {
-    name: 'Anvaya PULSE',
-    badge: '💜 Best match for sleep tracking',
-    why: 'PULSE maps deep sleep, REM, and light cycles all night — plus smart alerts that wait for self-settling so you\'re not woken needlessly.',
-    features: ['✅ Deep / REM / light sleep staging', '✅ Smart 90s self-settle window', '✅ Sleep quality score nightly', '✅ 30-day sleep trend reports', '✅ Nothing touches your baby'],
+    name: 'Anvaya OMNI',
+    badge: '💜 Best match for sleep analysis',
+    why: 'OMNI tracks deep sleep and generates a full nightly report — so you wake up knowing exactly how your baby slept.',
+    features: ['✅ Deep sleep analysis every night', '✅ Nightly sleep quality report', '✅ Contactless breathing + heart rate', '✅ One-tap partner calling', '✅ Nothing touches your baby'],
   },
 };
 

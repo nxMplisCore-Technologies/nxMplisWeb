@@ -19,10 +19,9 @@ export const productConfig = [
     handle: 'anvaya-smart-core-audio-and-video-baby-monitor',
     specs: '5" · 1080P · 3200mAh · Pan 355° Tilt 120°',
     fallbackVariants: [
-      { id: 'fallback-core-1', numericId: '50746014892255', title: 'Without Display', price: '8999.00', compareAtPrice: '14999.00', availableForSale: true },
-      { id: 'fallback-core-2', numericId: '50817486258399', title: 'With 5" Display', price: '12999.00', compareAtPrice: '14999.00', availableForSale: true },
+      { id: 'fallback-core-1', numericId: '50746014892255', title: 'Without Display', price: '6800.00', compareAtPrice: null, availableForSale: true },
     ],
-    localImages: ['/anvaya-core-1.jpg', '/anvaya-core-2.jpg', '/anvaya-core-3.jpg', '/anvaya-core-4.jpg', '/anvaya-core-5.jpg', '/anvaya-core-6.jpg', '/anvaya-core-7.jpg'],
+    localImages: ['/anvaya-core-01-hero-1080p-day-night.png', '/anvaya-core-02-pan-tilt-whole-home.png', '/anvaya-core-03-trust-safety-badges.png', '/anvaya-core-04-two-way-talk.png', '/anvaya-core-05-room-comfort-lullaby.png', '/anvaya-core-06-monitor-anywhere.png', '/anvaya-core-07-feeding-reminder.png'],
     features: [
       { icon: 'Video', text: 'Crystal-clear 1080P', sub: 'See every detail, day or night' },
       { icon: 'RotateCcw', text: 'No blind spots', sub: '355° pan · 120° tilt, full room' },
@@ -44,10 +43,10 @@ export const productConfig = [
     handle: 'anvaya-smart-pulse-video-and-audio-baby-monitor',
     specs: '5.5" · 4MP · 4000mAh · AI Safety Detection',
     fallbackVariants: [
-      { id: 'fallback-pulse-1', numericId: '50745881690335', title: 'Without Display', price: '17999.00', compareAtPrice: '22999.00', availableForSale: true },
-      { id: 'fallback-pulse-2', numericId: '50817349419231', title: 'With 5.5" Display', price: '21999.00', compareAtPrice: '22999.00', availableForSale: true },
+      { id: 'fallback-pulse-1', numericId: '50745881690335', title: 'Without Display', price: '8900.00', compareAtPrice: null, availableForSale: true },
+      { id: 'fallback-pulse-2', numericId: '50817349419231', title: 'With 5.5" Display', price: '15999.00', compareAtPrice: null, availableForSale: true },
     ],
-    localImages: ['/anvaya-pulse.jpg', '/anvaya-room.webp', '/anvaya-nursery-center.webp', '/anvaya-device-baby.webp', '/anvaya-lifestyle.webp'],
+    localImages: ['/anvaya-pulse-07-product-hero.png', '/anvaya-pulse-01-hero-anywhere.png', '/anvaya-pulse-02-ai-safety-alerts.png', '/anvaya-pulse-04-danger-zone-fence.png', '/anvaya-pulse-03-room-comfort-lullaby.png', '/anvaya-pulse-05-feeding-reminder.png', '/anvaya-pulse-06-night-light.png'],
     features: [
       { icon: 'Shield', text: 'Face covered — alert sent', sub: 'AI detects the moment it happens' },
       { icon: 'Baby', text: 'Rolled onto tummy — you know', sub: 'Prone sleep auto-detected' },
@@ -69,8 +68,8 @@ export const productConfig = [
     handle: 'anvaya-smart-omni-baby-monitor',
     specs: '5.5" · 4MP · 4000mAh · Respiration + Heart Rate',
     fallbackVariants: [
-      { id: 'fallback-omni-1', numericId: '50744670486751', title: 'Without Display', price: '20999.00', compareAtPrice: '29999.00', availableForSale: true },
-      { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5.5" Display', price: '24999.00', compareAtPrice: '29999.00', availableForSale: true },
+      { id: 'fallback-omni-1', numericId: '50744670486751', title: 'Without Display', price: '12999.00', compareAtPrice: null, availableForSale: true },
+      { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5.5" Display', price: '17999.00', compareAtPrice: null, availableForSale: true },
     ],
     localImages: ['/anvaya-omni-01-hero-nursery.jpg', '/anvaya-omni-09-vitals-heart-breathing.png', '/anvaya-omni-10-ai-safety-alerts.png', '/anvaya-omni-05-sleep-report.png', '/anvaya-omni-07-monitor-anywhere.png', '/anvaya-omni-06-danger-zones.png', '/anvaya-omni-11-product-hero-specs.png', '/anvaya-omni-08-trust-certifications.png'],
     features: [
