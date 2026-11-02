@@ -1094,41 +1094,75 @@ export default function Home() {
           <Reveal variant={fadeUp}>
             <div className="text-center mb-14">
               <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Products</p>
-              <h2 className="text-4xl font-bold mb-3">Four baby wellness pods. One promise.</h2>
-              <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns. Pick the level of intelligence that&apos;s right for your family.</p>
+              <h2 className="text-4xl font-bold mb-3">Three pods. One promise.</h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">Every model is contactless, on-device private, and safe for newborns from day one.</p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
             {[
-              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#d97706', features: ['HD Video', 'Cry Detection', 'Lullabies', 'Temperature'] },
-              { name: 'SENSE', tagline: 'Understand more than sound.', bg: 'from-[#e8f2ee] to-[#f5ede0]', border: '#a7d9c8', color: '#4a7c6f', features: ['Breathing & SpO2', 'Heart Rate', 'Cry Analysis', 'Air Quality'], popular: true },
-              { name: 'PULSE', tagline: 'Stay connected always.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#3b82f6', features: ['Activity Tracking', 'Temp & Humidity', 'Safety Alerts', 'Real-Time Alerts'] },
-              { name: 'OMNI', tagline: 'Total awareness.', bg: '', border: '#2d4a3e', color: '#fbbf24', features: ['Predictive AI', '360° Coverage', 'Health Reports', 'All SENSE+'], dark: true },
+              {
+                name: 'CORE',
+                tagline: 'Simple. Smart. Reliable.',
+                desc: 'The essentials — HD video, cry detection, lullabies and temperature monitoring. Everything a new parent needs.',
+                bg: 'from-amber-50 to-orange-50',
+                border: '#f0d9a0',
+                color: '#d97706',
+                features: ['HD Video Monitor', 'AI Cry Detection', 'Lullabies & White Noise', 'Temperature Sensor'],
+              },
+              {
+                name: 'PULSE',
+                tagline: 'Stay connected always.',
+                desc: 'Adds contactless breathing and SpO₂ monitoring, activity tracking, real-time safety alerts and humidity sensing.',
+                bg: 'from-[#e8f2ee] to-[#f5ede0]',
+                border: '#a7d9c8',
+                color: '#4a7c6f',
+                features: ['Contactless Breathing', 'Activity Tracking', 'Temp & Humidity', 'Real-Time Alerts'],
+                popular: true,
+              },
+              {
+                name: 'OMNI',
+                tagline: 'Total awareness.',
+                desc: 'The complete picture — contactless respiration, heart rate, deep sleep analysis, AI health reports and every PULSE feature.',
+                bg: '',
+                border: '#2d4a3e',
+                color: '#fbbf24',
+                features: ['Contactless SpO₂ & HR', 'Deep Sleep Analysis', 'AI Health Reports', 'All PULSE features'],
+                dark: true,
+              },
             ].map((p, i) => (
-              <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
-              <Link href={`/anvaya#${p.name.toLowerCase()}`}
-                className={`card-hover group block rounded-2xl border p-4 sm:p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
-                style={{ borderColor: p.border }}>
-                {p.popular && (
-                  <div className="absolute top-3 right-3 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Best Seller</div>
-                )}
-                <div className="text-[9px] font-bold uppercase tracking-widest mb-1.5 opacity-50" style={{ color: p.dark ? '#fbbf24' : p.color }}>Anvaya</div>
-                <h3 className={`text-lg sm:text-2xl font-bold mb-1 ${p.dark ? 'text-white' : ''}`}>{p.name}</h3>
-                <p className="text-[10px] sm:text-xs font-semibold mb-3 leading-snug" style={{ color: p.color }}>{p.tagline}</p>
-                <ul className="space-y-1.5 mb-4">
-                  {p.features.map(f => (
-                    <li key={f} className={`flex items-center gap-1.5 text-[10px] sm:text-xs ${p.dark ? 'text-gray-300' : 'text-muted-foreground'}`}>
-                      <CheckCircle className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" style={{ color: p.color }} />{f}
-                    </li>
-                  ))}
-                </ul>
-                <div className={`text-[9px] sm:text-xs font-semibold mt-2 ${p.dark ? 'text-yellow-300/70' : 'text-muted-foreground'}`}>Founding price — on sign-up</div>
-                <div className={`mt-1.5 text-[10px] sm:text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all ${p.dark ? 'text-yellow-400' : 'text-primary'}`}>
-                  Explore <ArrowRight className="w-3 h-3" />
+              <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}
+                className="flex flex-col">
+                <div
+                  className={`relative rounded-2xl border p-6 flex flex-col flex-1 ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
+                  style={{ borderColor: p.border }}>
+                  {p.popular && (
+                    <div className="absolute top-3 right-3 bg-primary text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full">Most Popular</div>
+                  )}
+                  <div className="text-[9px] font-bold uppercase tracking-widest mb-1.5 opacity-50" style={{ color: p.dark ? '#fbbf24' : p.color }}>Anvaya</div>
+                  <h3 className={`text-2xl font-bold mb-1 ${p.dark ? 'text-white' : ''}`}>{p.name}</h3>
+                  <p className="text-xs font-semibold mb-3" style={{ color: p.color }}>{p.tagline}</p>
+                  <p className={`text-xs leading-relaxed mb-5 ${p.dark ? 'text-gray-400' : 'text-muted-foreground'}`}>{p.desc}</p>
+                  <ul className="space-y-2 mb-6 flex-1">
+                    {p.features.map(f => (
+                      <li key={f} className={`flex items-center gap-2 text-xs ${p.dark ? 'text-gray-300' : 'text-foreground'}`}>
+                        <CheckCircle className="w-3.5 h-3.5 shrink-0" style={{ color: p.color }} />{f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={`/anvaya#${p.name.toLowerCase()}`}
+                    className="block text-center text-sm font-bold py-2.5 px-4 rounded-xl transition-all"
+                    style={{
+                      background: p.dark ? '#fbbf24' : p.color,
+                      color: p.dark ? '#172720' : '#fff',
+                    }}>
+                    View &amp; Buy →
+                  </Link>
                 </div>
-              </Link>
               </motion.div>
             ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/anvaya" className="text-sm font-semibold text-primary hover:underline">Compare all models in detail →</Link>
           </div>
         </div>
       </section>
