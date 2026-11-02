@@ -527,7 +527,7 @@ export default function Home() {
                   🇮🇳 India&apos;s First AI That Truly Cares For Your Baby
                 </div>
                 <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-full px-3 py-1.5 text-xs text-amber-700 font-semibold shadow-sm">
-                  <Sparkles className="w-3 h-3" /> Founding 100 families · Early access open
+                  <Sparkles className="w-3 h-3" /> Now available in India · Free shipping
                 </div>
               </div>
 
@@ -555,15 +555,10 @@ export default function Home() {
 
               {/* Primary CTA */}
               <div className="flex flex-col sm:flex-row gap-3 mb-4 animate-fade-up delay-3">
-                <LeadModalTrigger source="homepage-hero" product="Anvaya Smart">
-                  <Button size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl cursor-pointer text-white font-bold"
-                    style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)', transition: 'box-shadow .2s ease, transform .2s ease' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 36px rgba(232,149,122,0.65)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px rgba(232,149,122,0.50)'; (e.currentTarget as HTMLElement).style.transform = 'none'; }}
-                  >
-                    <Sparkles className="w-4 h-4" />Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </LeadModalTrigger>
+                <Button asChild size="lg" className="w-full sm:w-auto gap-2 text-base px-7 py-6 rounded-xl text-white font-bold"
+                  style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)' }}>
+                  <Link href="/anvaya">Buy Now <ArrowRight className="w-4 h-4" /></Link>
+                </Button>
                 <CryCtaButton />
               </div>
 
@@ -772,7 +767,7 @@ export default function Home() {
           {/* FOMO line */}
           <motion.p className="text-center text-xs text-white/20 mt-8"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-            147 families joined this week. Founding pricing ends when the first batch ships.
+            Ships free across India · 30-day money-back guarantee · 0% EMI available.
           </motion.p>
         </div>
       </section>
@@ -1218,14 +1213,14 @@ export default function Home() {
         <div className="container mx-auto px-4 relative">
           <div className="max-w-xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/80 border border-primary/20 rounded-full px-4 py-1.5 mb-7 text-xs text-primary font-bold shadow-sm">
-              <Sparkles className="w-3 h-3 animate-spin-slow" />
-              47 of 100 early access spots remaining
+              <Sparkles className="w-3 h-3" />
+              Now available · Free shipping across India
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              Be among the<br />
-              <span className="text-gradient">first 100 families.</span>
+              Ready to sleep<br />
+              <span className="text-gradient">peacefully again?</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-10">Founding families get exclusive pricing, priority shipping, and a free 1-year premium app subscription — revealed over WhatsApp.</p>
+            <p className="text-lg text-muted-foreground mb-10">Get notified on WhatsApp when your order ships. We'll confirm availability and answer any questions within 24 hours.</p>
             {submitted ? (
               <div className="glass rounded-2xl p-10 shadow-xl border-white/70 text-center">
                 <CheckCircle className="w-12 h-12 text-primary mx-auto mb-3" />
@@ -1292,13 +1287,12 @@ export default function Home() {
             India&apos;s most trusted baby wellness pod. Peace of mind for every parent. A safer world for every baby. 🇮🇳
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <LeadModalTrigger source="homepage-closing-cta" product="Anvaya Smart">
-              <Button size="lg" className="bg-primary text-white hover:bg-primary/90 gap-2 text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30 animate-pulse-halo cursor-pointer">
-                Join the Founding 100 Families <ArrowRight className="w-4 h-4" />
-              </Button>
-            </LeadModalTrigger>
+            <Button asChild size="lg" className="gap-2 text-base px-8 py-6 rounded-xl text-white font-bold shadow-lg"
+              style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 6px 28px rgba(232,149,122,0.50)' }}>
+              <Link href="/anvaya">Buy Now <ArrowRight className="w-4 h-4" /></Link>
+            </Button>
             <Button asChild size="lg" variant="ghost" className="text-white/80 border border-white/15 hover:bg-white/8 text-base px-8 py-6 rounded-xl">
-              <Link href="/anvaya">Explore All Products</Link>
+              <Link href="/anvaya">View All Models</Link>
             </Button>
           </div>
           <p className="text-white/30 text-sm mt-7">Free shipping across India · 30-day guarantee · 0% EMI</p>
