@@ -203,17 +203,7 @@ export default function Home() {
                 <span className="text-gradient">You Sleep.</span>
               </h1>
 
-              {/* Star rating social proof */}
-              <div className="flex items-center gap-3 mb-4 animate-fade-up delay-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 star-filled fill-amber-400" />)}
-                </div>
-                <span className="text-sm font-bold text-foreground">4.9/5</span>
-                <span className="text-sm text-muted-foreground">· Loved by our pilot families</span>
-                <span className="hidden sm:inline text-sm text-muted-foreground">· Paediatrician-recommended</span>
-              </div>
-
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
+<p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-fade-up delay-3">
                 Most breathing irregularities happen silently at night — while you&apos;re asleep. Anvaya&apos;s AI wellness pod watches breathing, SpO₂, cry type and sleep quality. Nothing on baby&apos;s skin. Nothing missed.
               </p>
               <div className="flex gap-4 flex-wrap mb-7 animate-fade-up delay-4">
@@ -600,69 +590,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════════ TESTIMONIALS ════════════ */}
-      <section className="py-24 bg-gradient-to-b from-white to-[#faf8f5] overflow-hidden">
-        <div className="container mx-auto px-4">
-          <Reveal variant={fadeUp}>
-          <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Parent Stories</p>
-            <h2 className="text-4xl font-bold mb-3">What our pilot families are saying.</h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 star-filled fill-amber-400" />)}
-              <span className="text-lg font-bold ml-1">4.9/5</span>
-              <span className="text-muted-foreground text-sm">· Pilot family feedback</span>
-            </div>
-          </div>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'Priya Sharma',
-                location: 'Bangalore',
-                role: 'Mother of 3-month-old',
-                text: "Anvaya caught a breathing dip at 2am that I would have completely missed. The alert woke me up before it became anything serious. I genuinely don't know how I parented without this.",
-                rating: 5,
-                avatar: '👩🏽',
-              },
-              {
-                name: 'Rajesh & Meera',
-                location: 'Mumbai',
-                role: 'First-time parents',
-                text: "We were so anxious bringing our baby home. Anvaya changed that completely. Seeing her breathing live on the app the first night was the most reassuring thing we've ever experienced.",
-                rating: 5,
-                avatar: '👨🏽‍👩🏽',
-                featured: true,
-              },
-              {
-                name: 'Dr. Kavitha Nair',
-                location: 'Chennai',
-                role: 'Paediatrician · MBBS',
-                text: "As a paediatrician, I recommend Anvaya to parents who need reassurance. The contactless monitoring approach is exactly right — nothing on the baby's skin, accurate vitals, no false alarms.",
-                rating: 5,
-                avatar: '👩🏾‍⚕️',
-              },
-            ].map((t, i) => (
-              <motion.div key={t.name} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6, ease: [0.22, 0.68, 0, 1.2] }} className={`testimonial-card p-6 relative ${t.featured ? 'ring-2 ring-primary/30' : ''}`}>
-                {t.featured && (
-                  <div className="absolute -top-3 left-6 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full">Most Helpful</div>
-                )}
-                <Quote className="w-7 h-7 text-primary/20 mb-3" />
-                <p className="text-sm leading-relaxed text-foreground mb-4">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex mb-3">
-                  {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 star-filled fill-amber-400" />)}
-                </div>
-                <div className="flex items-center gap-3 pt-3 border-t border-border/50">
-                  <span className="text-2xl">{t.avatar}</span>
-                  <div>
-                    <div className="font-bold text-sm">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role} · {t.location}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ════════════ TRUST BAR ════════════ */}
       <section className="py-12 bg-white border-y border-border overflow-hidden">
@@ -686,17 +613,13 @@ export default function Home() {
           <div className="relative overflow-hidden">
             <div className="flex gap-16 animate-marquee whitespace-nowrap">
               {[
-                '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from pilot families',
-                '🩺 Recommended by Paediatricians',
+                '🏆 India\'s First AI Baby Wellness Pod',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
                 '🛡️ 30-day money-back guarantee',
                 '👶 Safe for newborns from day 1',
-                '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from pilot families',
-                '🩺 Recommended by Paediatricians',
+                '🏆 India\'s First AI Baby Wellness Pod',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
