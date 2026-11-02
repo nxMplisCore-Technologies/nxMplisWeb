@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: 'Anvaya Smart <onboarding@resend.dev>',
-      to: ['nxmpliscore@gmail.com', 'admin@nxmplis.com'],
+      to: ['nxmpliscore@gmail.com', 'nxmpliscore@gmail.com'],
       replyTo: [email],
       subject: `[${inquiryLabels[inquiryType] || 'Contact'}] from ${fullName}`,
       html,

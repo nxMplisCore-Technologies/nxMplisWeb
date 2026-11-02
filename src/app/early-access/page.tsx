@@ -183,7 +183,7 @@ export default function EarlyAccessPage() {
                       </ul>
                       <hr className="my-3 border-[#f0ece6]" />
                       <p className="text-xs text-muted-foreground mt-2 text-center">
-                        Questions? <a href="https://wa.me/917987449366" className="text-primary hover:underline">WhatsApp us</a> or <a href="mailto:admin@nxmplis.com" className="text-primary hover:underline">email us</a>
+                        Questions? <a href="https://wa.me/917987449366" className="text-primary hover:underline">WhatsApp us</a> or <a href="mailto:nxmpliscore@gmail.com" className="text-primary hover:underline">email us</a>
                       </p>
                     </div>
                   </>

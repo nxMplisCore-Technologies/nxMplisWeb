@@ -21,7 +21,7 @@ const formSchema = z.object({
 
 const contacts = [
   { icon: MessageCircle, label: 'WhatsApp', value: 'Chat on WhatsApp →', href: 'https://wa.me/917987449366' },
-  { icon: Mail, label: 'Email', value: 'admin@nxmplis.com', href: 'mailto:admin@nxmplis.com' },
+  { icon: Mail, label: 'Email', value: 'nxmpliscore@gmail.com', href: 'mailto:nxmpliscore@gmail.com' },
   { icon: MapPin, label: 'Based in', value: 'Hyderabad, India', href: null },
 ];
 
@@ -46,7 +46,7 @@ export default function ContactPage() {
       if (!res.ok) throw new Error('Failed');
       setSubmitted(true);
     } catch {
-      toast({ title: "Something went wrong", description: "Please try emailing admin@nxmplis.com directly.", variant: "destructive" });
+      toast({ title: "Something went wrong", description: "Please try emailing nxmpliscore@gmail.com directly.", variant: "destructive" });
     } finally {
       setLoading(false);
     }
@@ -63,7 +63,7 @@ export default function ContactPage() {
             <a href="https://wa.me/917987449366" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-colors text-sm">
               <MessageCircle className="w-4 h-4" /> WhatsApp Us
             </a>
-            <a href="mailto:admin@nxmplis.com" className="inline-flex items-center gap-2 bg-white border border-primary text-primary px-5 py-2.5 rounded-full font-semibold hover:bg-primary/5 transition-colors text-sm">
+            <a href="mailto:nxmpliscore@gmail.com" className="inline-flex items-center gap-2 bg-white border border-primary text-primary px-5 py-2.5 rounded-full font-semibold hover:bg-primary/5 transition-colors text-sm">
               <Mail className="w-4 h-4" /> Email Us
             </a>
           </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <CheckCircle2 className="w-16 h-16 text-primary mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Message received!</h3>
-                <p className="text-muted-foreground mb-6">We'll reply within 24 hours. You can also <a href="https://wa.me/917987449366" className="text-primary font-semibold">WhatsApp us</a> or email <a href="mailto:admin@nxmplis.com" className="text-primary font-semibold">admin@nxmplis.com</a>.</p>
+                <p className="text-muted-foreground mb-6">We'll reply within 24 hours. You can also <a href="https://wa.me/917987449366" className="text-primary font-semibold">WhatsApp us</a> or email <a href="mailto:nxmpliscore@gmail.com" className="text-primary font-semibold">nxmpliscore@gmail.com</a>.</p>
                 <Button variant="outline" onClick={() => { setSubmitted(false); form.reset(); }}>Send another message</Button>
               </div>
             ) : (
