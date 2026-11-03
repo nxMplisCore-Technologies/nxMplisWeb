@@ -1212,22 +1212,18 @@ export default function Home() {
           <div className="relative overflow-hidden">
             <div className="flex gap-16 animate-marquee whitespace-nowrap">
               {[
-                '🏆 India\'s #1 Baby Wellness Pod',
                 '🛡️ 30-day money-back guarantee',
-                '🩺 Recommended by Paediatricians',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
-                '🛡️ 30-day money-back guarantee',
                 '👶 Safe for newborns from day 1',
-                '🏆 India\'s #1 Baby Wellness Pod',
+                '📱 iOS & Android app included',
                 '🛡️ 30-day money-back guarantee',
-                '🩺 Recommended by Paediatricians',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
-                '🛡️ 30-day money-back guarantee',
                 '👶 Safe for newborns from day 1',
+                '📱 iOS & Android app included',
               ].map((item, i) => (
                 <span key={i} className="text-sm font-semibold text-muted-foreground shrink-0">{item}</span>
               ))}
