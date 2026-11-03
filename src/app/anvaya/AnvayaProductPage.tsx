@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import {
-  Star, Shield, Truck, RefreshCw, ChevronDown, ChevronUp,
+  Shield, Truck, RefreshCw, ChevronDown, ChevronUp,
   Activity, Baby, GitBranch, Heart, Wind, Video, Music, Thermometer,
   BrainCircuit, Zap, Phone, CheckCircle, Lock, MessageCircle, ArrowRight,
 } from 'lucide-react';
@@ -21,11 +21,6 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Wind, Zap, BrainCircuit, GitBranch, Phone,
 };
 
-const reviews = [
-  { name: 'Priya M.', city: 'Bangalore', rating: 5, text: 'The cry analysis is incredibly accurate — identified a hungry cry before I even got up. First good night of sleep in months.' },
-  { name: 'Rahul K.', city: 'Mumbai', rating: 5, text: 'The breathing monitor gave us real peace of mind in the first two months. Setup took three minutes.' },
-  { name: 'Meera R.', city: 'Chennai', rating: 5, text: 'Real-time breathing alerts and AI insights changed our nights entirely. As a first-time mother, this removed almost all the anxiety.' },
-];
 
 const included = [
   'Anvaya Smart pod',
@@ -222,24 +217,52 @@ export function AnvayaProductPage({ products, faqs }: Props) {
   return (
     <div className="min-h-screen bg-white pb-20 lg:pb-0">
 
-      {/* ── Top model switcher — Flipkart-style pill row ── */}
-      <div className="sticky top-0 z-30 bg-white border-b border-gray-100 shadow-sm">
+      {/* ── Model picker ── */}
+      <div className="bg-gray-50 border-b border-gray-100 py-4">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-0 overflow-x-auto scrollbar-hide">
-            {products.map((prod, i) => (
-              <button
-                key={prod.id}
-                onClick={() => { setSelected(i); setVariantIdx(0); }}
-                className={cn(
-                  'shrink-0 px-5 py-3.5 text-sm font-medium border-b-2 transition-all whitespace-nowrap',
-                  selected === i
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                )}
-              >
-                {prod.name}
-              </button>
-            ))}
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Choose your model</p>
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1">
+            {products.map((prod, i) => {
+              const shopifyProd = prod.shopify;
+              const vts = shopifyProd?.variants ?? prod.fallbackVariants;
+              const startPrice = vts.length ? formatINR(vts[0].price) : null;
+              const thumb = shopifyProd?.images?.[0]?.url ?? prod.localImages?.[0] ?? null;
+              const isActive = selected === i;
+              return (
+                <button
+                  key={prod.id}
+                  onClick={() => { setSelected(i); setVariantIdx(0); }}
+                  className={cn(
+                    'relative shrink-0 flex items-center gap-3 rounded-2xl border-2 bg-white px-4 py-3 text-left transition-all w-[200px] sm:w-[220px]',
+                    isActive ? 'border-gray-900 shadow-md' : 'border-gray-200 hover:border-gray-400 hover:shadow-sm'
+                  )}
+                >
+                  {/* Thumbnail */}
+                  {thumb && (
+                    <div className="w-14 h-14 shrink-0 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center">
+                      <Image src={thumb} alt={prod.name} width={56} height={56} className="object-contain w-full h-full p-1" />
+                    </div>
+                  )}
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <span className="text-sm font-bold text-gray-900">{prod.name}</span>
+                      {prod.badge && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full text-white leading-none shrink-0" style={{ background: prod.color }}>
+                          {prod.badge.replace(/^[^\s]+\s/, '')}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-gray-500 leading-tight line-clamp-2 mb-1">{prod.tagline}</p>
+                    {startPrice && <p className="text-xs font-bold" style={{ color: prod.color }}>from {startPrice}</p>}
+                  </div>
+                  {isActive && (
+                    <div className="absolute top-2 right-2 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: prod.color }}>
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3 5.5L6.5 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -248,7 +271,7 @@ export function AnvayaProductPage({ products, faqs }: Props) {
         <div className="lg:grid lg:grid-cols-[1fr_420px] lg:gap-12 items-start">
 
           {/* ── LEFT: Gallery ── */}
-          <div className="lg:sticky lg:top-[57px]">
+          <div className="lg:sticky lg:top-[140px]">
             <AnimatePresence mode="wait">
               <motion.div key={`g-${selected}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
                 <div className="px-4 sm:px-0 pt-4 pb-0 lg:py-0">
@@ -290,16 +313,6 @@ export function AnvayaProductPage({ products, faqs }: Props) {
 
                 <h1 className="text-xl font-bold text-gray-900 leading-snug mb-1">{cfg.fullName}</h1>
                 <p className="text-sm font-medium mb-3" style={{ color: cfg.color }}>{cfg.tagline}</p>
-
-                {/* Rating row */}
-                <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
-                  <div className="flex items-center gap-1 bg-green-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                    4.9 <Star className="w-3 h-3 fill-white" />
-                  </div>
-                  <span className="text-xs text-gray-500">73 ratings</span>
-                  <span className="text-gray-200 text-sm">|</span>
-                  <span className="text-xs text-blue-600 font-medium cursor-pointer hover:underline">Verified families</span>
-                </div>
 
                 {/* Price block */}
                 <div className="mb-4">
@@ -474,30 +487,6 @@ export function AnvayaProductPage({ products, faqs }: Props) {
                     </div>
                   </div>
                 )}
-
-                {/* Reviews */}
-                <div className="mb-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-base font-bold text-gray-900">Ratings & Reviews</h2>
-                    <div className="flex items-center gap-1.5 bg-green-600 text-white text-sm font-bold px-2.5 py-1 rounded-lg">
-                      4.9 <Star className="w-3.5 h-3.5 fill-white" />
-                    </div>
-                  </div>
-                  <div className="divide-y divide-gray-100">
-                    {reviews.map((r, i) => (
-                      <div key={i} className="py-4 first:pt-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-1 bg-green-600 text-white text-xs font-bold px-1.5 py-0.5 rounded">
-                            {r.rating} <Star className="w-2.5 h-2.5 fill-white" />
-                          </div>
-                          <span className="text-xs font-semibold text-gray-700">{r.name}</span>
-                          <span className="text-xs text-gray-400">{r.city}</span>
-                        </div>
-                        <p className="text-sm text-gray-600 leading-relaxed">{r.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
                 {/* FAQ */}
                 <div className="mb-6">
