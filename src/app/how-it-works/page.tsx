@@ -403,7 +403,7 @@ function DetailSection() {
             Reserve your Anvaya pod — No payment now
           </Link>
         </Button>
-        <p className="text-xs text-muted-foreground mt-4">No payment today · Pay on delivery · 30-day returns</p>
+        <p className="text-xs text-muted-foreground mt-4">No payment today · Pay on delivery · 7-day returns</p>
       </div>
     </div>
   );

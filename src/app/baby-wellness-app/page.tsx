@@ -22,7 +22,7 @@ const features = [
 ];
 
 const faqs = [
-  { q: 'Is the Anvaya Smart app free?', a: 'The app is free to download on iOS and Android. A 1-year premium subscription (including sleep analysis, health trends, and AI insights) is included free with every Anvaya Smart pod purchase.' },
+  { q: 'Is the Anvaya Smart app free?', a: 'The app is free to download on iOS and Android.' },
   { q: 'Does the Anvaya app work without the pod?', a: 'The app requires the Anvaya Smart pod to receive monitoring data. The pod does all the sensing; the app displays the data and sends alerts to your phone.' },
   { q: 'Can multiple family members use the app?', a: 'Yes. The Anvaya Smart app supports family sharing — grandparents, the other parent, or a caregiver can all receive alerts and view the dashboard in real time.' },
   { q: 'Does the app store my baby\'s health data in the cloud?', a: 'No. All sensing and processing happens on the Anvaya Smart pod. The app receives only the data needed to display your dashboard. Health data is never uploaded to external servers.' },
@@ -54,7 +54,7 @@ export default function BabyWellnessAppPage() {
       </section>
 
       <div className="container mx-auto px-4 max-w-5xl py-16">
-        <AISnippet question="What does the Anvaya Smart baby wellness app track?" answer="The Anvaya Smart app tracks breathing rate, SpO2, body and room temperature, cry type and frequency, sleep cycles and sleep score, activity events, and daily timeline — all displayed in real time on iOS and Android. A 1-year premium subscription is included free with the pod." />
+        <AISnippet question="What does the Anvaya Smart baby wellness app track?" answer="The Anvaya Smart app tracks breathing rate, SpO2, body and room temperature, cry type and frequency, sleep cycles and sleep score, activity events, and daily timeline — all displayed in real time on iOS and Android." />
 
         <div className="space-y-20 mt-12">
           {features.map((f, i) => (

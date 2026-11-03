@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle, ShieldCheck, Wifi, Zap, Heart, Eye, EyeOff } f
 
 export const metadata: Metadata = {
   title: 'Contactless Baby Monitor India 2026 — No Wearables, No Patches | Anvaya Smart',
-  description: 'India\'s first contactless baby monitor. Track breathing, SpO₂ & cries without attaching anything to your baby. AI-powered radar sensing. Free shipping. 30-day guarantee. Starting ₹8,999.',
+  description: 'India\'s first contactless baby monitor. Track breathing, SpO₂ & cries without attaching anything to your baby. AI-powered radar sensing. Free shipping. 7-day return. Starting ₹8,999.',
   keywords: [
     'contactless baby monitor India', 'baby monitor without wearable India', 'non contact baby monitor India',
     'baby breathing monitor without wearable', 'radar baby monitor India', 'no wearable baby monitor',
@@ -267,7 +267,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
           </div>
 
           <p className="text-center text-xs text-muted-foreground mt-6">
-            Free shipping across India · 30-day money-back guarantee · Pre-order now, pay on dispatch
+            Free shipping across India · 7-day return policy · Pre-order now, pay on dispatch
           </p>
         </div>
       </section>
@@ -332,7 +332,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
         <div className="container mx-auto px-4 max-w-3xl text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">India's First Contactless Baby Monitor</h2>
           <p className="mb-8 opacity-90 leading-relaxed">
-            Join 2,400+ Indian parents who've already reserved their Anvaya Smart. Limited early-access slots available. Free shipping. 30-day guarantee.
+            Join 2,400+ Indian parents who've already reserved their Anvaya Smart. Limited early-access slots available. Free shipping. 7-day return.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

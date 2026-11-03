@@ -19,7 +19,7 @@ const features = [
 const included = [
   'Anvaya Smart pod', '1-year premium app subscription (free)',
   'Magnetic mount + USB-C power', 'Priority shipping across India',
-  '30-day money-back guarantee', 'WhatsApp onboarding support',
+  '7-day return policy', 'WhatsApp onboarding support',
 ];
 
 const trust = [

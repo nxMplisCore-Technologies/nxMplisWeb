@@ -423,7 +423,7 @@ const HOME_FAQS = [
   { q: 'What is Anvaya Smart baby wellness pod?', a: 'Anvaya Smart is India\'s most advanced AI baby wellness pod. It monitors your baby\'s breathing, SpO₂, cry patterns, heart rate, temperature, and sleep — contactlessly, without anything on your baby\'s skin. It uses low-power radar, infrared sensing, and AI acoustic analysis to watch over your baby 24/7.' },
   { q: 'Is the Anvaya baby monitor safe for newborns?', a: 'Yes. Anvaya Smart is completely contactless — nothing is attached to your baby. The radar sensing uses power levels thousands of times lower than a Wi-Fi router. It is safe for premature babies and newborns from day one.' },
   { q: 'How does contactless baby breathing monitoring work?', a: 'Anvaya uses low-power radar to detect the micro-movements of your baby\'s chest caused by breathing — from up to 90cm away. No wearable, no skin contact. The AI identifies breathing rate, pattern, and alerts you if anything deviates from your baby\'s personal baseline.' },
-  { q: 'What is the price of Anvaya baby monitor in India?', a: 'Anvaya Smart is available in three models: CORE from ₹6,800, PULSE from ₹8,900, and OMNI from ₹12,999. Each model also comes with an optional dedicated 5.5-inch parent monitor. Free shipping across India, 30-day money-back guarantee.' },
+  { q: 'What is the price of Anvaya baby monitor in India?', a: 'Anvaya Smart is available in three models: CORE from ₹6,800, PULSE from ₹8,900, and OMNI from ₹12,999. Each model also comes with an optional dedicated 5.5-inch parent monitor. Free shipping across India, 7-day return policy.' },
   { q: 'Does Anvaya work without Wi-Fi?', a: 'Anvaya processes all data on-device. Core monitoring functions (cry alerts, temperature, motion) work without Wi-Fi. Wi-Fi is required for live video streaming and smartphone app sync.' },
   { q: 'What is the difference between Anvaya CORE, PULSE, and OMNI?', a: 'CORE covers 1080P HD video, cry detection, two-way audio, and temperature monitoring — your first step into smart monitoring. PULSE adds 4MP clarity, AI face cover and prone sleep detection, and electronic danger zones. OMNI includes everything in PULSE plus contactless respiration monitoring, heart rate detection, deep sleep analysis, and one-click partner calling — India\'s most advanced baby monitor.' },
   { q: 'Is Anvaya Smart available across India?', a: 'Yes. Anvaya Smart ships free across India. EMI is available at 0% through major cards and UPI platforms. Our team is based in Hyderabad with pan-India customer support in English, Hindi, and Telugu.' },
@@ -578,7 +578,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground mb-6">
                 <span className="flex items-center gap-1"><CheckCircle className="w-3 h-3 text-green-500" /> Free shipping India</span>
                 <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-primary" /> 0% EMI available</span>
-                <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-primary" /> 30-day guarantee</span>
+                <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-primary" /> 7-day return</span>
               </div>
 
               {/* "How will it help me" — highlighted entry point */}
@@ -838,7 +838,7 @@ export default function Home() {
           {/* FOMO line */}
           <motion.p className="text-center text-xs text-white/20 mt-8"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-            Ships free across India · 30-day guarantee · 0% EMI.
+            Ships free across India · 7-day return · 0% EMI.
           </motion.p>
         </div>
       </section>
@@ -1163,7 +1163,7 @@ export default function Home() {
               { name: 'OMNI', tagline: 'Breathes. Heart beats. You sleep.', bg: '', border: '#2d4a3e', color: '#A87FFF', features: ['Contactless Breathing', 'Heart Rate Monitor', 'Nightly Sleep Report', 'One-tap Calling'], dark: true, price: '₹12,999' },
             ].map((p, i) => (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
-              <Link href={`/anvaya#${p.name.toLowerCase()}`}
+              <Link href={`/anvaya?p=${p.name.toLowerCase()}`}
                 className={`card-hover group block rounded-2xl border p-4 sm:p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
                 style={{ borderColor: p.border }}>
                 {p.popular && (
@@ -1212,13 +1212,13 @@ export default function Home() {
           <div className="relative overflow-hidden">
             <div className="flex gap-16 animate-marquee whitespace-nowrap">
               {[
-                '🛡️ 30-day money-back guarantee',
+                '🛡️ 7-day return policy',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
                 '👶 Safe for newborns from day 1',
                 '📱 iOS & Android app included',
-                '🛡️ 30-day money-back guarantee',
+                '🛡️ 7-day return policy',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
@@ -1264,7 +1264,7 @@ export default function Home() {
                     {loading ? 'Saving...' : 'Claim Spot'}
                   </Button>
                 </form>
-                <p className="text-xs text-muted-foreground">No payment now · Free shipping · 30-day money-back guarantee · EMI available</p>
+                <p className="text-xs text-muted-foreground">No payment now · Free shipping · 7-day return policy · EMI available</p>
               </div>
             )}
           </div>
@@ -1322,7 +1322,7 @@ export default function Home() {
               <Link href="/anvaya">Explore All Products</Link>
             </Button>
           </div>
-          <p className="text-white/30 text-sm mt-7">Free shipping across India · 30-day guarantee · 0% EMI</p>
+          <p className="text-white/30 text-sm mt-7">Free shipping across India · 7-day return · 0% EMI</p>
         </div>
       </section>
 

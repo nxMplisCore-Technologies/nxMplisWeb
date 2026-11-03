@@ -27,7 +27,6 @@ const included = [
   'Magnetic mounting bracket',
   'USB-C cable + adapter',
   'Anvaya app (iOS & Android)',
-  '1-year premium subscription FREE',
   'Quick setup guide',
 ];
 
@@ -233,7 +232,7 @@ function ProductDetail({ products, selected, onBack, faqs }: {
               <div className="hidden lg:grid grid-cols-3 gap-px bg-gray-100 mt-6 rounded-xl overflow-hidden border border-gray-100">
                 {[
                   { icon: Truck, label: 'Free delivery', sub: 'All India' },
-                  { icon: RefreshCw, label: '30-day returns', sub: 'No questions' },
+                  { icon: RefreshCw, label: '7-day returns', sub: 'No questions' },
                   { icon: Lock, label: 'Secure payment', sub: 'Razorpay · UPI' },
                 ].map(t => (
                   <div key={t.label} className="flex items-center gap-3 bg-white px-4 py-3">
@@ -319,7 +318,7 @@ function ProductDetail({ products, selected, onBack, faqs }: {
               <div className="grid grid-cols-3 gap-2 mb-6">
                 {[
                   { icon: Truck, label: 'Free delivery' },
-                  { icon: RefreshCw, label: '30-day returns' },
+                  { icon: RefreshCw, label: '7-day returns' },
                   { icon: Shield, label: '1-year warranty' },
                 ].map(item => (
                   <div key={item.label} className="flex flex-col items-center gap-1.5 bg-gray-50 rounded-xl p-3 text-center">

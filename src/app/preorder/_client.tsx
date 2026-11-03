@@ -38,7 +38,7 @@ type PodKey = (typeof PODS)[number]['key'];
 const TRUST = [
   { icon: '🔒', label: 'No payment now' },
   { icon: '🚚', label: 'Free shipping India' },
-  { icon: '↩️', label: '30-day returns' },
+  { icon: '↩️', label: '7-day returns' },
   { icon: '💬', label: 'WhatsApp support' },
 ];
 
@@ -222,7 +222,7 @@ export default function PreorderClient() {
               </Button>
 
               <p className="text-center text-xs text-muted-foreground pt-1">
-                No payment now · Pay on delivery · 30-day guarantee
+                No payment now · Pay on delivery · 7-day return
               </p>
             </form>
           )}
