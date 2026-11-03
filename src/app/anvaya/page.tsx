@@ -39,7 +39,7 @@ export const productConfig = [
     desc: 'Upgraded to 4MP clarity, AI detects face covering and prone sleep — automatically. Danger zones, geofencing, and timeline album. Safety beyond basic monitoring.',
     color: '#3b82f6',
     bgLight: '#eff6ff',
-    badge: '⭐ Most Popular' as string | null,
+    badge: null as string | null,
     handle: 'anvaya-smart-pulse-video-and-audio-baby-monitor',
     specs: '5.5" · 4MP · 4000mAh · AI Safety Detection',
     fallbackVariants: [
@@ -64,14 +64,14 @@ export const productConfig = [
     desc: 'India\'s only baby monitor with contactless respiration and heart rate detection. Deep sleep analysis, one-click calling, and every PULSE feature — the complete picture.',
     color: '#7c3aed',
     bgLight: '#f5f3ff',
-    badge: '🏆 Most Advanced' as string | null,
+    badge: '⭐ Most Popular' as string | null,
     handle: 'anvaya-smart-omni-baby-monitor',
     specs: '5.5" · 4MP · 4000mAh · Respiration + Heart Rate',
     fallbackVariants: [
       { id: 'fallback-omni-1', numericId: '50744670486751', title: 'Without Display', price: '12999.00', compareAtPrice: null, availableForSale: true },
       { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5.5" Display', price: '17999.00', compareAtPrice: null, availableForSale: true },
     ],
-    localImages: ['/anvaya-omni-01-hero-nursery.jpg', '/anvaya-omni-09-vitals-heart-breathing.png', '/anvaya-omni-10-ai-safety-alerts.png', '/anvaya-omni-05-sleep-report.png', '/anvaya-omni-07-monitor-anywhere.png', '/anvaya-omni-06-danger-zones.png', '/anvaya-omni-11-product-hero-specs.png', '/anvaya-omni-08-trust-certifications.png'],
+    localImages: ['/anvaya-omni-11-product-hero-specs.png', '/anvaya-omni-01-hero-nursery.jpg', '/anvaya-omni-09-vitals-heart-breathing.png', '/anvaya-omni-10-ai-safety-alerts.png', '/anvaya-omni-05-sleep-report.png', '/anvaya-omni-07-monitor-anywhere.png', '/anvaya-omni-06-danger-zones.png', '/anvaya-omni-08-trust-certifications.png'],
     features: [
       { icon: 'Activity', text: 'Breathing, watched live', sub: 'Contactless — nothing on your baby' },
       { icon: 'Heart', text: 'Heart rate, always on', sub: 'No chest strap. No wearable. Ever.' },
