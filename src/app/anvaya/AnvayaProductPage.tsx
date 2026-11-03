@@ -115,35 +115,41 @@ function ProductCard({ prod, onSelect }: { prod: ProductEntry; onSelect: () => v
 
   return (
     <button onClick={onSelect}
-      className="w-full flex items-center gap-4 bg-white px-4 py-4 border-b border-gray-100 text-left hover:bg-gray-50 active:bg-gray-100 transition-colors">
-      {/* Product image */}
-      {thumb && (
-        <div className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-          <Image src={thumb} alt={prod.fullName} width={96} height={96} className="w-full h-full object-contain p-2" />
-        </div>
-      )}
+      className="w-full flex items-stretch gap-0 bg-white border-b border-gray-100 text-left hover:bg-gray-50 active:bg-gray-100 transition-colors">
+
+      {/* Image — tall square, brand-tinted bg */}
+      <div className="w-32 shrink-0 self-stretch relative overflow-hidden" style={{ background: prod.bgLight }}>
+        {thumb && (
+          <Image src={thumb} alt={prod.fullName} fill className="object-contain p-3" sizes="128px" />
+        )}
+        {/* Left color accent bar */}
+        <div className="absolute left-0 top-0 bottom-0 w-1 rounded-r" style={{ background: prod.color }} />
+      </div>
 
       {/* Info */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 mb-0.5">
-          <span className="text-xs font-bold uppercase tracking-wide" style={{ color: prod.color }}>{prod.name}</span>
+      <div className="flex-1 min-w-0 px-4 py-4 flex flex-col justify-center">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: prod.color }}>{prod.name}</span>
           {prod.badge && (
-            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full text-white leading-none" style={{ background: prod.color }}>
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white leading-none" style={{ background: prod.color }}>
               {prod.badge.replace(/^[\u{1F300}-\u{1FFFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]\s*/u, '')}
             </span>
           )}
         </div>
-        <p className="text-sm font-bold text-gray-900 mb-0.5">{prod.fullName}</p>
-        <p className="text-xs text-gray-500 leading-snug line-clamp-2 mb-2">{prod.tagline}</p>
+        <p className="text-sm font-bold text-gray-900 leading-tight mb-1">{prod.fullName}</p>
+        <p className="text-xs text-gray-500 leading-snug line-clamp-2 mb-2.5">{prod.tagline}</p>
         {minPrice !== null && (
           <p className="text-sm font-bold text-gray-900">
-            {formatINR(minPrice)}{maxPrice ? <span className="font-normal text-gray-400"> – {formatINR(maxPrice)}</span> : null}
+            {formatINR(minPrice)}
+            {maxPrice ? <span className="text-xs font-normal text-gray-400"> – {formatINR(maxPrice)}</span> : null}
           </p>
         )}
       </div>
 
       {/* Chevron */}
-      <ChevronLeft className="w-5 h-5 text-gray-300 shrink-0 rotate-180" />
+      <div className="flex items-center pr-4">
+        <ChevronLeft className="w-4 h-4 text-gray-300 rotate-180" />
+      </div>
     </button>
   );
 }
