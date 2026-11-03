@@ -183,7 +183,7 @@ function ProductDetail({
   return (
     <motion.div key="detail" initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
       transition={{ type: 'tween', duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
-      className="absolute inset-0 bg-white overflow-y-auto">
+      className="fixed inset-0 z-50 bg-white overflow-y-auto">
 
       {/* Sticky header */}
       <div className="sticky top-0 z-30 bg-white border-b border-gray-100 flex items-center gap-3 px-4 py-3">
@@ -435,7 +435,7 @@ export function AnvayaProductPage({ products, faqs }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
-    <div className="relative min-h-screen bg-white overflow-hidden">
+    <div className="relative min-h-screen bg-white">
       {/* ── List view ── */}
       <AnimatePresence>
         {selected === null && (
