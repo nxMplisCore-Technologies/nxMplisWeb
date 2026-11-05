@@ -32,6 +32,10 @@ const nextConfig: NextConfig = {
       { source: '/buy', destination: '/early-access', permanent: true },
       { source: '/shop', destination: '/early-access', permanent: true },
       { source: '/monitor', destination: '/anvaya', permanent: true },
+      // ?p=X → /anvaya/X  (crawler-friendly SSR routes)
+      { source: '/anvaya', has: [{ type: 'query', key: 'p', value: 'core' }], destination: '/anvaya/core', permanent: false },
+      { source: '/anvaya', has: [{ type: 'query', key: 'p', value: 'pulse' }], destination: '/anvaya/pulse', permanent: false },
+      { source: '/anvaya', has: [{ type: 'query', key: 'p', value: 'omni' }], destination: '/anvaya/omni', permanent: false },
     ];
   },
 };

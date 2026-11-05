@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useCallback, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import {
   Shield, Truck, RefreshCw, ChevronDown, ChevronUp, ChevronLeft, ChevronRight,
@@ -466,91 +466,42 @@ function ProductDetail({ products, selected, onBack, faqs }: {
   );
 }
 
-/* ─── Inner component (uses useSearchParams) ─── */
+/* ─── Inner component ─── */
 function AnvayaInner({ products, faqs }: Props) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const productId = searchParams.get('p');
-  const selected = productId ? products.findIndex(p => p.id === productId) : -1;
 
   function openProduct(i: number) {
-    router.push(`/anvaya?p=${products[i].id}`, { scroll: false });
-  }
-
-  function goBack() {
-    router.back();
+    router.push(`/anvaya/${products[i].id}`);
   }
 
   return (
     <div className="min-h-screen bg-white">
-      {/* List view */}
-      <AnimatePresence>
-        {selected === -1 && (
-          <motion.div key="list" initial={{ opacity: 1 }}
-            exit={{ x: '-25%', opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.25, ease: [0.32, 0.72, 0, 1] }}>
+      {/* Header */}
+      <div className="px-4 pt-6 pb-5">
+        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Anvaya Smart</p>
+        <h1 className="text-2xl font-bold text-gray-900">Baby Monitors</h1>
+        <p className="text-sm text-gray-500 mt-1">3 models · tap to explore</p>
+      </div>
 
-            {/* Header */}
-            <div className="px-4 pt-6 pb-5">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Anvaya Smart</p>
-              <h1 className="text-2xl font-bold text-gray-900">Baby Monitors</h1>
-              <p className="text-sm text-gray-500 mt-1">3 models · tap to explore</p>
-            </div>
+      {/* Cards */}
+      <div className="divide-y divide-gray-100 border-t border-gray-100">
+        {products.map((prod, i) => (
+          <ProductCard key={prod.id} prod={prod} onSelect={() => openProduct(i)} />
+        ))}
+      </div>
 
-            {/* Cards */}
-            <div className="divide-y divide-gray-100 border-t border-gray-100">
-              {products.map((prod, i) => (
-                <ProductCard key={prod.id} prod={prod} onSelect={() => openProduct(i)} />
-              ))}
-            </div>
-
-            {/* Compare strip */}
-            <div className="mx-4 mt-5 mb-8 p-4 rounded-2xl border border-blue-100 bg-blue-50">
-              <p className="text-sm font-bold text-gray-800 mb-1">Not sure which to pick?</p>
-              <p className="text-xs text-gray-500 mb-3">See CORE, PULSE and OMNI side-by-side.</p>
-              <Link href="/compare" className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:underline">
-                Full comparison <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Detail view */}
-      <AnimatePresence>
-        {selected >= 0 && (
-          <ProductDetail
-            products={products}
-            selected={selected}
-            onBack={goBack}
-            faqs={faqs}
-          />
-        )}
-      </AnimatePresence>
+      {/* Compare strip */}
+      <div className="mx-4 mt-5 mb-8 p-4 rounded-2xl border border-blue-100 bg-blue-50">
+        <p className="text-sm font-bold text-gray-800 mb-1">Not sure which to pick?</p>
+        <p className="text-xs text-gray-500 mb-3">See CORE, PULSE and OMNI side-by-side.</p>
+        <Link href="/compare" className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:underline">
+          Full comparison <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
     </div>
   );
 }
 
-/* ─── Export (Suspense wrapper required for useSearchParams) ─── */
 export function AnvayaProductPage({ products, faqs }: Props) {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-white px-4 pt-6">
-        <div className="h-6 w-32 bg-gray-100 rounded animate-pulse mb-4" />
-        {[0, 1, 2].map(i => (
-          <div key={i} className="flex gap-4 border-b border-gray-100 py-4">
-            <div className="w-32 h-28 bg-gray-100 rounded-xl animate-pulse shrink-0" />
-            <div className="flex-1 space-y-2 py-1">
-              <div className="h-3 w-16 bg-gray-100 rounded animate-pulse" />
-              <div className="h-4 w-40 bg-gray-100 rounded animate-pulse" />
-              <div className="h-3 w-full bg-gray-100 rounded animate-pulse" />
-              <div className="h-4 w-20 bg-gray-100 rounded animate-pulse" />
-            </div>
-          </div>
-        ))}
-      </div>
-    }>
-      <AnvayaInner products={products} faqs={faqs} />
-    </Suspense>
-  );
+  return <AnvayaInner products={products} faqs={faqs} />;
 }
