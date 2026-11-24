@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Instagram, Linkedin, ShoppingBag } from 'lucide-react';
 
 const footerLinks = {
   products: [
@@ -29,9 +29,9 @@ const footerLinks = {
   support: [
     { href: '/contact', label: 'Contact Us' },
     { href: '/contact', label: 'WhatsApp Support' },
-    { href: '#', label: 'Privacy Policy' },
-    { href: '#', label: 'Terms of Service' },
-    { href: '#', label: 'Shipping Policy' },
+    { href: 'https://anvayasmart.myshopify.com/policies/privacy-policy', label: 'Privacy Policy' },
+    { href: 'https://www.amazon.in/stores/AnvayaSmart', label: 'Buy on Amazon' },
+    { href: 'https://anvayasmart.myshopify.com/', label: 'Official Store' },
   ],
 };
 
@@ -50,10 +50,14 @@ export function Footer({ className = '' }: { className?: string }) {
               Contactless AI baby monitoring. Because every breath matters.
             </p>
             <div className="flex gap-3">
-              {[Instagram, Twitter, Linkedin].map((Icon, i) => (
-                <Link key={i} href="#" className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors" style={{background:'rgba(255,255,255,0.06)'}}>
+              {[
+                { Icon: Instagram, href: 'https://www.instagram.com/nxmpliscore/', label: 'Anvaya Smart on Instagram' },
+                { Icon: ShoppingBag, href: 'https://www.amazon.in/stores/AnvayaSmart', label: 'Anvaya Smart on Amazon' },
+                { Icon: Linkedin, href: 'https://www.linkedin.com/company/nxmpliscore', label: 'Nxmpliscore on LinkedIn' },
+              ].map(({ Icon, href, label }) => (
+                <a key={href} href={href} target="_blank" rel="noopener" aria-label={label} title={label} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors" style={{background:'rgba(255,255,255,0.06)'}}>
                   <Icon className="w-4 h-4 text-white/60" />
-                </Link>
+                </a>
               ))}
             </div>
           </div>

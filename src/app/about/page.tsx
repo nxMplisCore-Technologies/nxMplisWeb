@@ -72,7 +72,7 @@ function PersonSchema() {
       description: 'A team of engineers and parents who built Anvaya Smart after experiencing first-hand the anxiety of monitoring a newborn. 7+ years in AI sensing systems. IIT research partnerships.',
       worksFor: { '@id': 'https://nxmplis.com/#organization' },
       knowsAbout: ['Radar Sensing', 'AI Signal Processing', 'Infant Wellness Monitoring', 'Baby Health Technology', 'Contactless Vital Sign Detection'],
-      sameAs: ['https://www.linkedin.com/company/nxmliscore'],
+      sameAs: ['https://www.linkedin.com/company/nxmpliscore'],
     })}} />
   );
 }
