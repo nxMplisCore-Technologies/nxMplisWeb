@@ -20,7 +20,7 @@ export const sections: Section[] = [
     title: 'Camera & Display',
     rows: [
       { label: 'Camera resolution', core: '1080P HD', pulse: '4MP Ultra', omni: '4MP Ultra' },
-      { label: 'Parent display', core: '5" screen', pulse: '5.5" screen', omni: '5.5" screen' },
+      { label: 'Parent display', core: 'App only', pulse: 'Optional 5.5" screen', omni: 'Optional 5.5" screen' },
       { label: 'Pan & tilt coverage', core: '355° · 120°', pulse: '355° · 120°', omni: '355° · 120°' },
       { label: 'Night vision', core: true, pulse: true, omni: true },
     ],
@@ -60,7 +60,9 @@ export const sections: Section[] = [
   {
     title: 'Hardware',
     rows: [
-      { label: 'Battery', core: '3200mAh', pulse: '4000mAh', omni: '4000mAh' },
+      { label: 'Parent monitor battery', core: '—', pulse: '4000mAh', omni: '4000mAh' },
+      { label: 'Certification', core: 'CE, FCC, RoHS', pulse: 'CE, FCC, RoHS', omni: 'CE, FCC, RoHS' },
+      { label: 'Subscription needed', core: 'No', pulse: 'No', omni: 'No' },
       { label: 'Warranty', core: '1 year', pulse: '1 year', omni: '1 year' },
       { label: 'Free shipping', core: true, pulse: true, omni: true },
       { label: '7-day returns', core: true, pulse: true, omni: true },

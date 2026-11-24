@@ -31,7 +31,7 @@ const faqs = [
   { q: 'Which Anvaya baby monitor tracks breathing?', a: 'Only OMNI. It tracks breathing and heart rate contactlessly from beside the cot, with nothing attached to your baby. CORE and PULSE are camera monitors and do not measure breathing.' },
   { q: 'Is PULSE worth it over CORE?', a: 'Choose PULSE if you want the monitor to alert you when your baby\'s face is covered or they roll onto their tummy, or if you want a sharper 4MP picture. If you mainly want to see and hear your baby, CORE is enough.' },
   { q: 'Do all models work with the app?', a: 'Yes. CORE, PULSE and OMNI all work with the Anvaya app on Android and iPhone. PULSE and OMNI are also sold with a 5.5-inch parent display so you can watch without your phone.' },
-  { q: 'What about delivery and returns?', a: 'All models ship free across India, Cash on Delivery is available, and there is a 7-day return window.' },
+  { q: 'What about delivery, warranty and returns?', a: 'All models ship free across India with Cash on Delivery, come with a 1-year warranty and a 7-day return window, and are CE, FCC and RoHS certified. No subscription is needed for any feature.' },
 ];
 
 function cell(v: RowValue) {

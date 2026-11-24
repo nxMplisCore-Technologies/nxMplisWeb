@@ -199,7 +199,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: '#1a2e28' }}>How Contactless Breathing Tracking Works</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Every breath moves your baby&apos;s chest and tummy by a few millimetres. A contactless monitor picks up these tiny, repeating movements from beside the cot and turns them into a breathing rate, without anything touching your baby. OMNI tracks heart rate contactlessly as well.
+            Every breath moves your baby&apos;s chest and tummy by a few millimetres. A contactless monitor picks up these tiny, repeating movements from beside the cot and turns them into a breathing rate, without anything touching your baby. Anvaya OMNI does this with radar-based sensing. OMNI tracks heart rate contactlessly as well.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Anvaya OMNI shows these readings live in the app, so you can check on your baby from the next room without opening the door. In the morning it gives a sleep report, so you can see how the night went instead of guessing from memory.
