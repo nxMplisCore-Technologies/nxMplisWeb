@@ -1201,7 +1201,7 @@ export default function Home() {
               { icon: Zap, label: 'Instant Alerts' },
               { icon: Lock, label: 'On-Device Privacy' },
               { icon: Heart, label: 'Safe for newborns' },
-              { icon: CheckCircle, label: '30-Day Guarantee' },
+              { icon: CheckCircle, label: '7-Day Returns' },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="trust-pill">
                 <Icon className="w-3.5 h-3.5 text-primary shrink-0" />{label}
