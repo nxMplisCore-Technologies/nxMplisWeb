@@ -49,14 +49,14 @@ function Reveal({ children, variant = fadeUp, custom = 0, className = '', style 
 /* ─────────────────── LIVE MONITOR ─────────────────── */
 function LiveMonitorWidget() {
   const [bpm, setBpm] = useState(28);
-  const [spo2, setSpo2] = useState(98);
+  const [hr, setHr] = useState(122);
   const [temp, setTemp] = useState(36.5);
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
     const t = setInterval(() => {
       setBpm(v => Math.max(24, Math.min(32, v + (Math.random() > .5 ? 1 : -1))));
-      setSpo2(v => Math.max(96, Math.min(99, v + (Math.random() > .7 ? 1 : Math.random() > .5 ? 0 : -1))));
+      setHr(v => Math.max(112, Math.min(132, v + (Math.random() > .5 ? 2 : -2))));
       setTemp(v => parseFloat((Math.max(36.2, Math.min(36.9, v + (Math.random() - .5) * .1))).toFixed(1)));
       setTick(p => p + 1);
     }, 2000);
@@ -92,7 +92,7 @@ function LiveMonitorWidget() {
       <div className="grid grid-cols-3 gap-2">
         {[
           { label: 'Breaths', value: bpm, unit: '/min', color: '#4a7c6f', icon: Activity },
-          { label: 'SpO2', value: spo2, unit: '%', color: '#7aab9e', icon: Heart },
+          { label: 'Heart', value: hr, unit: ' bpm', color: '#7aab9e', icon: Heart },
           { label: 'Temp', value: temp, unit: '°C', color: '#e8957a', icon: Thermometer },
         ].map(m => (
           <div key={m.label} className="bg-white/80 rounded-xl p-2 text-center">
@@ -395,7 +395,7 @@ function SensorViz() {
             style={{ fontSize: 10, fontWeight: 700, background: 'rgba(15,23,42,0.92)', border: '1px solid rgba(74,124,111,0.52)', color: '#7aab9e', backdropFilter: 'blur(12px)', boxShadow: '0 4px 24px rgba(0,0,0,0.5)' }}>
             <motion.div style={{ width: 7, height: 7, borderRadius: '50%', background: '#4a7c6f', boxShadow: '0 0 7px rgba(74,124,111,0.9)' }} animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
             <span style={{ color: '#e8957a', fontWeight: 900, letterSpacing: '0.06em' }}>LIVE</span>
-            <span style={{ color: 'rgba(122,171,158,0.9)' }}>28 br/min · SpO₂ 98% · 36.5°C</span>
+            <span style={{ color: 'rgba(122,171,158,0.9)' }}>28 br/min · 122 bpm · 36.5°C</span>
           </div>
         </motion.div>
       </div>
@@ -420,10 +420,10 @@ function SensorViz() {
 
 /* ─────────────────── FAQ ─────────────────── */
 const HOME_FAQS = [
-  { q: 'What is Anvaya Smart baby wellness pod?', a: 'Anvaya Smart is India\'s most advanced AI baby wellness pod. It monitors your baby\'s breathing, SpO₂, cry patterns, heart rate, temperature, and sleep — contactlessly, without anything on your baby\'s skin. It uses low-power radar, infrared sensing, and AI acoustic analysis to watch over your baby 24/7.' },
-  { q: 'Is the Anvaya baby monitor safe for newborns?', a: 'Yes. Anvaya Smart is completely contactless — nothing is attached to your baby. The radar sensing uses power levels thousands of times lower than a Wi-Fi router. It is safe for premature babies and newborns from day one.' },
-  { q: 'How does contactless baby breathing monitoring work?', a: 'Anvaya uses low-power radar to detect the micro-movements of your baby\'s chest caused by breathing — from up to 90cm away. No wearable, no skin contact. The AI identifies breathing rate, pattern, and alerts you if anything deviates from your baby\'s personal baseline.' },
-  { q: 'What is the price of Anvaya baby monitor in India?', a: 'Anvaya Smart is available in three models: CORE from ₹6,800, PULSE from ₹8,900, and OMNI from ₹12,999. Each model also comes with an optional dedicated 5.5-inch parent monitor. Free shipping across India, 7-day return policy.' },
+  { q: 'What is Anvaya Smart baby wellness pod?', a: 'Anvaya Smart is India\'s most advanced AI baby wellness pod. It is a family of smart baby monitors: CORE (1080P camera with cry alerts), PULSE (4MP with AI face-cover and tummy-sleep alerts) and OMNI, which adds contactless breathing and heart-rate tracking with nothing on your baby\'s skin.' },
+  { q: 'Is the Anvaya baby monitor safe for newborns?', a: 'Yes. Anvaya Smart is completely contactless — nothing is attached to your baby. The monitor sits beside the cot and watches from a distance, so there are no straps, socks or wires on your baby. It is a wellness and convenience monitor, not a medical device.' },
+  { q: 'How does contactless baby breathing monitoring work?', a: 'Anvaya OMNI senses the tiny chest movements your baby makes while breathing, from beside the cot. No wearable, no skin contact. You see breathing and heart-rate readings live in the app and a sleep report every morning.' },
+  { q: 'What is the price of Anvaya baby monitor in India?', a: 'Anvaya Smart is available in three models: CORE from ₹5,999, PULSE from ₹8,900, and OMNI from ₹12,999. Each model also comes with an optional dedicated 5.5-inch parent monitor. Free shipping across India, 7-day return policy.' },
   { q: 'Does Anvaya work without Wi-Fi?', a: 'Anvaya processes all data on-device. Core monitoring functions (cry alerts, temperature, motion) work without Wi-Fi. Wi-Fi is required for live video streaming and smartphone app sync.' },
   { q: 'What is the difference between Anvaya CORE, PULSE, and OMNI?', a: 'CORE covers 1080P HD video, cry detection, two-way audio, and temperature monitoring — your first step into smart monitoring. PULSE adds 4MP clarity, AI face cover and prone sleep detection, and electronic danger zones. OMNI includes everything in PULSE plus contactless respiration monitoring, heart rate detection, deep sleep analysis, and one-click partner calling — India\'s most advanced baby monitor.' },
   { q: 'Is Anvaya Smart available across India?', a: 'Yes. Anvaya Smart ships free across India. EMI is available at 0% through major cards and UPI platforms. Our team is based in Hyderabad with pan-India customer support in English, Hindi, and Telugu.' },
@@ -559,7 +559,7 @@ export default function Home() {
                     <div className="flex items-center gap-3 text-[10px] font-semibold text-white/70">
                       <span>😴 Sleeping</span>
                       <span style={{ color: '#7aab9e' }}>28 br/min</span>
-                      <span style={{ color: '#e8957a' }}>SpO₂ 98%</span>
+                      <span style={{ color: '#e8957a' }}>♥ 122 bpm</span>
                     </div>
                   </div>
                 </div>
@@ -598,8 +598,8 @@ export default function Home() {
 
               {/* Secondary links */}
               <div className="flex flex-wrap gap-3">
-                <Link href="/tour" className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-                  📱 See a live tour <ArrowRight className="w-3.5 h-3.5" />
+                <Link href="/compare" className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                  📱 Compare CORE, PULSE &amp; OMNI <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
                 <span className="text-muted-foreground">·</span>
                 <Link href="/anvaya" className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
@@ -649,7 +649,7 @@ export default function Home() {
                     style={{ background:'rgba(15,23,42,0.85)', border:'1px solid rgba(74,124,111,0.45)', backdropFilter:'blur(12px)' }}>
                     <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" style={{ boxShadow:'0 0 6px #4ade80' }} />
                     <span className="text-[10px] font-bold text-green-400 uppercase tracking-wider">Live</span>
-                    <span className="text-[10px] text-white/50 ml-1">28 br/min · SpO₂ 98%</span>
+                    <span className="text-[10px] text-white/50 ml-1">28 br/min · ♥ 122 bpm</span>
                   </div>
 
                   {/* Floor */}
@@ -661,7 +661,7 @@ export default function Home() {
                     <span className="text-[10px] font-semibold text-white/60">Sleeping peacefully 😴</span>
                     <div className="flex items-center gap-3 text-[10px] font-semibold">
                       <span style={{ color:'#7aab9e' }}>36.5°C</span>
-                      <span style={{ color:'#e8957a' }}>SpO₂ 98%</span>
+                      <span style={{ color:'#e8957a' }}>♥ 122 bpm</span>
                       <span style={{ color:'#7aab9e' }}>28 br</span>
                     </div>
                   </div>
@@ -694,7 +694,7 @@ export default function Home() {
             { href: '/cry-analyzer', emoji: '🎙', label: 'Cry AI',    bg: 'linear-gradient(135deg,#2d6b5e,#4a7c6f)', glow: 'rgba(74,124,111,0.3)' },
             { href: '/anvaya',       emoji: '📦', label: 'Products',  bg: 'linear-gradient(135deg,#c96f3a,#e8957a)', glow: 'rgba(232,149,122,0.3)' },
             { href: '/quiz',         emoji: '🎯', label: 'Find Pod',  bg: 'linear-gradient(135deg,#6d4c9e,#9b72c8)', glow: 'rgba(139,92,246,0.28)' },
-            { href: '/tour',         emoji: '📱', label: 'Tour',      bg: 'linear-gradient(135deg,#1e6fa0,#3b9fd4)', glow: 'rgba(59,159,212,0.28)' },
+            { href: '/compare',      emoji: '📱', label: 'Compare',      bg: 'linear-gradient(135deg,#1e6fa0,#3b9fd4)', glow: 'rgba(59,159,212,0.28)' },
           ].map(({ href, emoji, label, bg, glow }) => (
             <Link key={href} href={href} className="flex flex-col items-center gap-1.5">
               <span
@@ -714,7 +714,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { n: 6, suffix: '+', label: 'Vital Signs Tracked', sub: 'Breathing, SpO₂, cry, sleep, temp & heart rate' },
+              { n: 6, suffix: '+', label: 'Things Tracked', sub: 'Breathing, heart rate, cry, sleep, motion & room temp' },
               { n: 0, suffix: '', label: 'Zero Contact', sub: 'Nothing on baby\'s skin. Ever.' },
               { n: 100, suffix: '%', label: 'On-Device Privacy', sub: 'No health data ever leaves your home' },
               { n: 24, suffix: '/7', label: 'Silent Watch', sub: 'Continuous. Non-invasive. Always on.' },
@@ -748,7 +748,7 @@ export default function Home() {
             <div className="hidden md:block absolute top-10 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
             {[
               { step: '01', icon: Wifi, title: 'Place & Connect', desc: 'Set Anvaya on a shelf, table, or wall bracket — point it at your baby. Connect to your home Wi-Fi in the app. Done.' },
-              { step: '02', icon: Activity, title: 'AI Starts Watching', desc: 'Anvaya\'s sensors begin tracking breathing, SpO₂, temperature, sound and movement. Instantly. Contactlessly.' },
+              { step: '02', icon: Activity, title: 'AI Starts Watching', desc: 'Anvaya\'s sensors begin tracking breathing, heart rate, temperature, sound and movement. Instantly. Contactlessly.' },
               { step: '03', icon: Bell, title: 'You Sleep. Anvaya Watches', desc: 'Get real-time alerts only when needed. See live vitals, cry analysis, and a full daily timeline — all in the app.' },
             ].map((s, i) => (
               <Reveal key={s.step} variant={fadeUp} custom={i} className="relative">
@@ -784,19 +784,19 @@ export default function Home() {
             {/* Tour card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.1 }}>
-              <Link href="/tour" className="group block h-full rounded-2xl border border-emerald-400/20 p-6 transition-all hover:border-emerald-400/50 hover:bg-white/3"
+              <Link href="/compare" className="group block h-full rounded-2xl border border-emerald-400/20 p-6 transition-all hover:border-emerald-400/50 hover:bg-white/3"
                 style={{ background: 'rgba(74,124,111,0.08)' }}>
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgba(74,124,111,0.2)' }}>
                     <span className="text-xl">📱</span>
                   </div>
                   <div className="flex-1">
-                    <div className="text-[9px] font-bold uppercase tracking-widest text-emerald-400/70 mb-1">Interactive · 2 min</div>
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-emerald-400/70 mb-1">Side by side · 1 min</div>
                     <div className="text-base font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors">
-                      Take the Product Tour →
+                      Compare the 3 Models →
                     </div>
                     <p className="text-xs text-white/40 leading-relaxed">
-                      Pick your biggest worry — breathing, crying, or sleep. We'll walk you through exactly how Anvaya handles it. Live app screens. Real data.
+                      Camera, AI safety alerts or contactless breathing and heart rate? See exactly what CORE, PULSE and OMNI each do, and pick the right one.
                     </p>
                     <div className="flex flex-wrap gap-1.5 mt-3">
                       {['Is she breathing?', 'Why is he crying?', 'Enough sleep?'].map(t => (
@@ -908,7 +908,7 @@ export default function Home() {
             <Reveal variant={fadeLeft} className="flex justify-center lg:justify-start">
               <div className="relative">
                 <div className="absolute -inset-8 rounded-[56px] bg-gradient-to-br from-primary/8 to-transparent blur-2xl" />
-                <PhoneMockup src="/app-trends.jpg" alt="Anvaya Smart app — Sleep & Health Trends showing heart rate, temperature and SpO2" className="animate-float-slow relative z-10" objectPosition="top" />
+                <PhoneMockup src="/app-trends.jpg" alt="Anvaya Smart app — Sleep & Health Trends showing heart rate, temperature and breathing" className="animate-float-slow relative z-10" objectPosition="top" />
                 <div className="absolute -right-8 top-16 glass rounded-2xl px-4 py-3 shadow-xl z-20 animate-float hidden sm:block" style={{ animationDelay: '1s' }}>
                   <div className="text-xs text-muted-foreground font-medium mb-1">Sleep Score</div>
                   <div className="text-3xl font-bold text-primary leading-none">85</div>
@@ -929,13 +929,13 @@ export default function Home() {
                 <span className="text-gradient">not just soundly.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Anvaya&apos;s wellness pod tracks heart rate, SpO₂, and temperature every night — building a complete picture of your baby&apos;s sleep health across days and weeks. Not just tonight. Always.
+                Anvaya&apos;s wellness pod tracks breathing, heart rate and room temperature every night — building a complete picture of your baby&apos;s sleep health across days and weeks. Not just tonight. Always.
               </p>
               <div className="space-y-4 mb-10">
                 {[
                   { icon: Moon, title: 'Deep sleep detection', desc: 'Know when your baby enters and exits each sleep cycle.' },
                   { icon: Heart, title: 'Heart rate trends', desc: 'Weekly averages, highs and lows — all tracked automatically.' },
-                  { icon: Activity, title: 'SpO2 monitoring', desc: 'Blood oxygen tracked contactlessly. Alerts when it matters.' },
+                  { icon: Activity, title: 'Breathing tracking', desc: 'Breathing rate tracked contactlessly on OMNI, all night.' },
                 ].map((f, i) => (
                   <motion.div key={f.title} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.5 }} className="flex items-start gap-4">
                     <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -1158,7 +1158,7 @@ export default function Home() {
           </Reveal>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
             {[
-              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#C96A00', features: ['1080P HD Camera', 'Cry Detection', 'Two-way Audio', 'Temp & Humidity'], price: '₹6,800' },
+              { name: 'CORE', tagline: 'Simple. Smart. Reliable.', bg: 'from-amber-50 to-orange-50', border: '#f0d9a0', color: '#C96A00', features: ['1080P HD Camera', 'Cry Detection', 'Two-way Audio', 'Temp & Humidity'], price: '₹5,999' },
               { name: 'PULSE', tagline: 'AI Safety That Never Blinks.', bg: 'from-blue-50 to-sky-50', border: '#bfdbfe', color: '#1D57D1', features: ['AI Face Cover Alert', 'Prone Sleep Detection', 'Danger Zones', '4MP Camera'], popular: true, price: '₹8,900' },
               { name: 'OMNI', tagline: 'Breathes. Heart beats. You sleep.', bg: '', border: '#2d4a3e', color: '#A87FFF', features: ['Contactless Breathing', 'Heart Rate Monitor', 'Nightly Sleep Report', 'One-tap Calling'], dark: true, price: '₹12,999' },
             ].map((p, i) => (
@@ -1286,7 +1286,7 @@ export default function Home() {
               { title: 'Baby Wellness App', desc: 'All app features explained — sleep score, trends, live monitoring.', href: '/baby-wellness-app', icon: '📱' },
               { title: 'Baby Breathing Patterns', desc: "What's normal, what's not, and when to call the doctor.", href: '/blog/baby-breathing-patterns', icon: '🫁' },
               { title: 'Baby Cry Types', desc: 'Hungry vs tired vs uncomfortable — how to tell the difference.', href: '/blog/types-of-baby-cries', icon: '🎵' },
-              { title: 'AI Baby Monitor India 2026', desc: 'How AI is changing infant safety — cry analysis, radar breathing & more.', href: '/blog/ai-baby-monitor-india-2026', icon: '🤖' },
+              { title: 'AI Baby Monitor India 2026', desc: 'How AI is changing infant safety — cry analysis, contactless breathing & more.', href: '/blog/ai-baby-monitor-india-2026', icon: '🤖' },
               { title: 'Monitor Without Wearable', desc: 'Why contactless beats wearable in India\'s heat — complete guide.', href: '/blog/baby-breathing-monitor-without-wearable', icon: '📡' },
               { title: 'Compare Baby Monitors 2026', desc: 'Anvaya vs Motorola vs Owlet — honest India comparison 2026.', href: '/compare', icon: '⚖️' },
             ].map(item => (

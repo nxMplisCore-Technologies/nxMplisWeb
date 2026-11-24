@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FAQSchema, BreadcrumbSchema, ArticleSchema } from '@/components/seo/JsonLd';
-import { AuthorBio, AISnippet, TrustBar, PediatricianBadge, LastUpdated, ExpertQuote } from '@/components/trust/EEATSignals';
+import { AuthorBio, AISnippet, TrustBar, PediatricianBadge, LastUpdated } from '@/components/trust/EEATSignals';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -66,7 +66,6 @@ export default function NewbornCareGuidePage() {
           </section>
         ))}
 
-        <ExpertQuote quote="The first 30 days are the most critical monitoring window. Parents who understand what normal looks like — and have continuous monitoring — respond faster and panic less. Both outcomes are better for the baby." author="Dr. Meena Krishnan" title="Paediatrician, Rainbow Children's Hospital Hyderabad" />
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-5">Frequently Asked Questions</h2>
@@ -84,7 +83,7 @@ export default function NewbornCareGuidePage() {
           <h2 className="text-2xl font-bold mb-2">Monitor your newborn with confidence</h2>
           <p className="text-muted-foreground mb-5 max-w-xl mx-auto">Anvaya Smart tracks breathing, temperature, cries and sleep contactlessly — giving you the data to respond confidently, not anxiously.</p>
           <Button asChild className="text-white font-bold gap-2 w-full sm:w-auto" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
-            <Link href="/anvaya">Get Anvaya Smart — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
+            <Link href="/anvaya">Explore Anvaya Smart <ArrowRight className="w-4 h-4" /></Link>
           </Button>
         </div>
 

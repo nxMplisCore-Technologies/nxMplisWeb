@@ -7,7 +7,7 @@ import { Clock, Tag, ArrowRight, TrendingUp, Mic, Activity, Brain } from 'lucide
 
 export const metadata: Metadata = {
   title: 'Baby Wellness Blog | Sleep, Breathing, Cry Analysis | Anvaya Smart India',
-  description: 'Expert guides on baby breathing patterns, cry types, sleep schedules, SpO2 monitoring and infant wellness — written by IIT engineers, updated 2026. For Indian parents.',
+  description: 'Expert guides on baby breathing patterns, cry types, sleep schedules, choosing a baby monitor and newborn care — updated 2026. For Indian parents.',
   keywords: ['baby wellness blog India', 'baby breathing guide', 'baby sleep tips India', 'infant monitoring guide', 'baby cry types India', 'newborn care India'],
   alternates: { canonical: 'https://nxmplis.com/blog' },
   openGraph: { title: 'Baby Wellness Blog | Anvaya Smart', description: 'Expert baby health and wellness guides for Indian parents.', url: 'https://nxmplis.com/blog', images: [{ url: '/anvaya-lifestyle.webp' }] },
@@ -38,7 +38,7 @@ export default function BlogPage() {
           <div className="grid sm:grid-cols-3 gap-3">
             {[
               { icon: Mic, label: 'AI Cry Analyzer', desc: 'Decode your baby\'s cry in 10 seconds', href: '/cry-analyzer', cta: 'Try Free' },
-              { icon: Activity, label: 'Contactless Monitor', desc: 'Breathing, SpO₂ & cries without wearables', href: '/contactless-baby-monitor-india', cta: 'Learn More' },
+              { icon: Activity, label: 'Contactless Monitor', desc: 'Breathing & heart rate without wearables', href: '/contactless-baby-monitor-india', cta: 'Learn More' },
               { icon: Brain, label: 'Baby Wellness Quiz', desc: 'Which Anvaya model is right for you?', href: '/quiz', cta: 'Take Quiz' },
             ].map(t => (
               <Link key={t.label} href={t.href} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-primary/10 hover:border-primary/30 hover:shadow-sm transition-all group">
@@ -110,7 +110,7 @@ export default function BlogPage() {
               { topic: 'What Does Baby Cry Mean?', href: '/blog/what-does-baby-cry-mean', desc: '7 cry types decoded with AI tool' },
               { topic: 'Baby Breathing', href: '/blog/baby-breathing-patterns', desc: 'Normal rates, warning signs, monitoring' },
               { topic: 'Baby Sleep', href: '/blog/baby-sleep-guide-india', desc: 'Schedules, regressions, sleep tracking' },
-              { topic: 'Baby SpO₂', href: '/blog/baby-spo2-monitoring-india', desc: 'What it is, normal ranges, India guide' },
+              { topic: 'Best Baby Monitor', href: '/blog/best-baby-monitor-india-2025', desc: 'How to choose, with prices, India 2026' },
               { topic: 'Contactless Monitoring', href: '/contactless-baby-monitor-india', desc: 'No wearables — how it works' },
               { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india-2026', desc: 'Compare all India options 2026' },
             ].map(t => (

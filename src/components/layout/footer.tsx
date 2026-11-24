@@ -4,10 +4,10 @@ import { Instagram, Linkedin, Twitter } from 'lucide-react';
 const footerLinks = {
   products: [
     { href: '/anvaya#core', label: 'Anvaya CORE' },
-    { href: '/anvaya#sense', label: 'Anvaya SENSE' },
+    { href: '/compare', label: 'Compare Models' },
     { href: '/anvaya#pulse', label: 'Anvaya PULSE' },
     { href: '/anvaya#omni', label: 'Anvaya OMNI' },
-    { href: '/early-access', label: 'Early Access' },
+    { href: '/anvaya', label: 'Shop Monitors' },
   ],
   company: [
     { href: '/about', label: 'About Us' },

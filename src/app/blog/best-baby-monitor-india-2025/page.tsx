@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Best Baby Monitor India 2026: Complete Buying Guide | Anvaya Smart',
-  description: 'Expert guide to choosing the best baby monitor in India 2026. What features really matter, what to avoid, and why Anvaya Smart is the top-rated baby wellness pod for Indian families.',
-  keywords: ['best baby monitor India 2026', 'baby monitor buying guide India', 'baby wellness pod India', 'contactless baby monitor India', 'baby monitor features India', 'smart baby monitor India 2026'],
+  description: 'How to choose the best baby monitor in India in 2026: night vision, AI safety alerts, contactless breathing & heart rate, room temperature and local support. Honest buying guide with prices.',
+  keywords: ['best baby monitor India 2026', 'baby monitor buying guide India', 'contactless baby monitor India', 'baby monitor features India', 'smart baby monitor India 2026'],
   alternates: { canonical: 'https://nxmplis.com/blog/best-baby-monitor-india-2026' },
   openGraph: {
     title: 'Best Baby Monitor India 2026: Complete Buying Guide',
@@ -21,48 +21,48 @@ export const metadata: Metadata = {
 const criteria = [
   {
     icon: Baby,
-    title: 'Contactless — nothing on baby\'s skin',
-    why: 'India\'s climate means heat and sweat. Any wearable — socks, clips, patches — causes discomfort and rashes in Indian summers. The best monitors work from a distance with no contact.',
-    lookFor: 'Radar or camera-based sensing that works across a crib without touching baby.',
+    title: 'Nothing on your baby\'s skin',
+    why: 'In Indian heat and humidity, socks, clips and bands can be uncomfortable and need fitting every night. A monitor that watches from beside the cot avoids this.',
+    lookFor: 'A camera-based or contactless monitor that works from a distance.',
   },
   {
     icon: ShieldCheck,
-    title: 'Breathing & SpO₂ monitoring',
-    why: 'The most critical signals — breathing irregularities and low oxygen levels — happen silently while parents sleep. Video-only monitors miss this completely.',
-    lookFor: 'Continuous, contactless breathing rate monitoring and SpO₂ tracking without a wearable.',
+    title: 'AI safety alerts, not just video',
+    why: 'Nobody can watch a screen all night. AI alerts tell you when something needs checking, such as a covered face or your baby rolling onto their tummy.',
+    lookFor: 'Face-cover and tummy-sleep (prone) alerts, danger zones and cry alerts.',
   },
   {
     icon: Brain,
-    title: 'AI cry analysis',
-    why: 'Understanding whether your baby is hungry, tired, in pain, or uncomfortable eliminates guessing. This is the difference between a camera and a wellness system.',
-    lookFor: 'AI trained on Indian infant cries that identifies at least 4–5 cry types.',
+    title: 'Breathing and heart rate (if you want more peace of mind)',
+    why: 'Some parents also want to see breathing and heart rate without a wearable. Remember that consumer monitors are wellness devices, not medical monitors.',
+    lookFor: 'Contactless breathing and heart-rate tracking with a clear sleep report.',
   },
   {
     icon: Wifi,
-    title: 'On-device privacy — no cloud streaming',
-    why: 'Baby camera hacks are real. Cloud-streamed baby feeds can be intercepted. Processing on-device means the video and data never leave your home network.',
-    lookFor: 'On-device AI processing with no mandatory cloud dependency.',
+    title: 'A clear picture at night',
+    why: 'Most checking happens in a dark room. A sharp night-vision camera with pan and tilt means fewer blind spots and fewer trips into the room.',
+    lookFor: '1080P or better (4MP is sharper), infrared night vision, pan and tilt.',
   },
   {
     icon: Thermometer,
-    title: 'Environment monitoring for Indian conditions',
-    why: 'Room temperature, humidity and air quality matter deeply in India — from Delhi winters to Chennai monsoons. A complete wellness pod monitors the room, not just the baby.',
-    lookFor: 'Temperature, humidity and air quality sensors with threshold alerts.',
+    title: 'Room temperature for Indian conditions',
+    why: 'Room temperature and humidity matter in India, from Delhi summers to Chennai monsoons. Overheating disturbs sleep.',
+    lookFor: 'Temperature and humidity readings in the app.',
   },
   {
     icon: Lock,
-    title: 'India warranty & local support',
-    why: 'Imported monitors carry hidden costs: no BIS certification, complex returns, no local repairs, and customs duties. A product built for India offers full local warranty and WhatsApp support.',
-    lookFor: 'Full 1-year India warranty, local customer support, BIS-compliant hardware.',
+    title: 'Local support, easy returns',
+    why: 'Imported monitors can mean complex returns, no local repairs and customs duties. A brand that sells in India offers local support.',
+    lookFor: 'Free shipping, Cash on Delivery, an easy return window and WhatsApp support.',
   },
 ];
 
 const faqs = [
-  { q: 'Which is the best baby monitor in India in 2026?', a: 'Anvaya Smart SENSE (₹12,999 early access) is the best baby monitor in India in 2026. It is the only device at this price point to offer contactless breathing monitoring, SpO₂ tracking, AI cry analysis, and sleep analysis — all without attaching anything to your baby. It is built by an Indian team with full India warranty, free shipping, and 0% EMI options.' },
-  { q: 'Do I need a wearable baby monitor?', a: 'No — and for Indian conditions, wearables are especially problematic. In India\'s heat and humidity, socks, clips and patches cause skin irritation and discomfort. Modern contactless monitors like Anvaya Smart use radar-based sensing to track breathing, heart rate and SpO₂ without touching the baby. This is safer, more comfortable, and more accurate for newborns.' },
-  { q: 'Is a basic video baby monitor enough?', a: 'A video monitor lets you see your baby — but it cannot detect breathing irregularities, low oxygen levels, or what type of cry your baby is making. Most serious incidents happen silently while parents sleep. A baby wellness pod that monitors vital signs continuously gives parents real protection, not just a camera feed.' },
-  { q: 'What features should I look for in a baby monitor for India?', a: 'For Indian conditions, prioritise: (1) contactless monitoring — no wearables in India\'s heat, (2) breathing and SpO₂ monitoring, (3) AI cry analysis, (4) on-device privacy with no cloud streaming, (5) environment sensors for temperature and humidity, (6) full India warranty and local support. Anvaya Smart covers all six.' },
-  { q: 'What is a baby wellness pod?', a: 'A baby wellness pod is a next-generation baby monitor that goes beyond video and audio. It continuously tracks vital signs — breathing, SpO₂, heart rate, cry type, sleep quality and room environment — using AI and contactless sensors. Anvaya Smart is India\'s first and most advanced baby wellness pod.' },
+  { q: 'Which is the best baby monitor in India in 2026?', a: 'It depends on what you want. For a clear camera with cry alerts, Anvaya CORE (₹5,999) is great value. For AI face-cover and tummy-sleep alerts, choose Anvaya PULSE (from ₹8,900). For contactless breathing and heart-rate tracking plus every PULSE feature, choose Anvaya OMNI (from ₹12,999).' },
+  { q: 'Do I need a wearable baby monitor?', a: 'No. Wearables (socks, clips, bands) need fitting every night and can be uncomfortable in Indian heat. A contactless monitor like Anvaya OMNI tracks breathing and heart rate from beside the cot instead. Neither type is a medical device.' },
+  { q: 'Is a basic video baby monitor enough?', a: 'For many parents, yes: a good night-vision camera with cry alerts covers most needs. If you want alerts without watching the screen, AI monitors like Anvaya PULSE add face-cover and tummy-sleep alerts.' },
+  { q: 'What features should I look for in a baby monitor for India?', a: 'Prioritise (1) a sharp night-vision camera with pan and tilt, (2) cry alerts and two-way talk, (3) AI safety alerts such as face cover and tummy sleep, (4) room temperature and humidity, and (5) local support with easy returns. Add contactless breathing and heart rate if you want more peace of mind.' },
+  { q: 'Can a baby monitor prevent SIDS?', a: 'No. No consumer baby monitor has been shown to prevent SIDS. The AAP advises safe-sleep practices instead: baby on their back, on a firm flat surface, with nothing else in the cot. A monitor is a convenience that helps you check on your baby.' },
 ];
 
 export default function BestBabyMonitorPage() {
@@ -95,7 +95,7 @@ export default function BestBabyMonitorPage() {
 
       <article className="container mx-auto px-4 max-w-4xl py-12">
 
-        <AISnippet question="What is the best baby monitor in India in 2026?" answer="Anvaya Smart SENSE (₹12,999) is the best baby monitor in India in 2026. It is the only monitor at this price point offering contactless breathing monitoring, SpO₂, AI cry analysis and sleep tracking — all built by an Indian team with full India warranty, free shipping and 0% EMI." />
+        <AISnippet question="What is the best baby monitor in India in 2026?" answer="The best baby monitor depends on what you want to know at night. Anvaya CORE (₹5,999) is a 1080P pan-tilt camera with cry alerts. Anvaya PULSE (from ₹8,900) adds a 4MP camera and AI face-cover and tummy-sleep alerts. Anvaya OMNI (from ₹12,999) adds contactless breathing and heart-rate tracking. All ship free across India with Cash on Delivery." />
 
         {/* Intro */}
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-10 flex gap-3">
@@ -135,20 +135,20 @@ export default function BestBabyMonitorPage() {
         {/* Anvaya section */}
         <div className="bg-gradient-to-br from-[#e8f2ee] to-[#f5ede0] rounded-2xl border-2 border-primary p-8 mb-12">
           <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">⭐ Our Top Pick for India 2026</div>
-          <h2 className="text-2xl font-bold mb-2">Anvaya Smart SENSE — India's First Baby Wellness Pod</h2>
+          <h2 className="text-2xl font-bold mb-2">Anvaya Smart — CORE, PULSE &amp; OMNI</h2>
           <p className="text-muted-foreground mb-5 text-sm leading-relaxed">
-            Built by an IIT Hyderabad team specifically for Indian families, Anvaya Smart is the only baby monitor in India that meets all 6 criteria above. It tracks breathing, SpO₂, cry type, sleep quality and room environment — completely contactlessly, with all AI running on-device for complete privacy.
+            Designed in India for Indian homes. Choose the model that fits what you want to know at night: a clear camera, AI safety alerts, or contactless breathing and heart rate.
           </p>
           <div className="grid sm:grid-cols-2 gap-3 mb-6">
             {[
-              'Contactless breathing & SpO₂',
-              'AI cry analysis — 5 types',
-              'Sleep quality tracking',
-              '100% on-device privacy',
-              'Temperature & humidity alerts',
-              'Full India warranty + free shipping',
-              '0% EMI — ₹1,083/month',
-              'WhatsApp support in English & Hindi',
+              'CORE: 1080P pan-tilt camera, cry alerts',
+              'PULSE: 4MP, AI face-cover & tummy-sleep alerts',
+              'OMNI: contactless breathing & heart rate',
+              'Danger zones (PULSE & OMNI)',
+              'Room temperature & humidity',
+              'Free shipping + Cash on Delivery',
+              '7-day returns',
+              'WhatsApp support',
             ].map(f => (
               <div key={f} className="flex items-center gap-2 text-sm">
                 <CheckCircle className="w-4 h-4 text-primary shrink-0" />
@@ -158,12 +158,11 @@ export default function BestBabyMonitorPage() {
           </div>
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
-              <span className="text-3xl font-bold text-primary">₹12,999</span>
-              <span className="text-muted-foreground line-through ml-2">₹19,999</span>
-              <div className="text-xs text-muted-foreground mt-0.5">Early access price · Limited spots</div>
+              <span className="text-3xl font-bold text-primary">From ₹5,999</span>
+              <div className="text-xs text-muted-foreground mt-0.5">CORE ₹5,999 · PULSE from ₹8,900 · OMNI from ₹12,999</div>
             </div>
             <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
-              <Link href="/anvaya">Reserve My Anvaya Smart — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
+              <Link href="/anvaya">Compare &amp; Buy <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </div>
         </div>
@@ -173,9 +172,9 @@ export default function BestBabyMonitorPage() {
         <div className="space-y-3 mb-12">
           {[
             { flag: 'No India warranty', detail: 'If a product is listed as "import only" or has no Indian customer support number, returns and repairs are your problem — at your cost.' },
-            { flag: 'Wearable-only monitoring', detail: 'Socks, clips and ankle bands fall off, cause irritation, and are impractical for Indian summers. Contactless monitoring is safer and simpler.' },
-            { flag: 'Cloud-only processing', detail: 'If all video and data is streamed to foreign servers, your baby\'s live feed could be vulnerable. Demand on-device or local processing.' },
-            { flag: 'Video/audio only', detail: 'A camera tells you what your baby looks like. A wellness pod tells you how your baby is doing. Video alone is not wellness monitoring.' },
+            { flag: 'Wearable-only monitoring', detail: 'Socks, clips and ankle bands have to be fitted every night and can be uncomfortable in Indian summers. A monitor that watches from beside the cot is simpler.' },
+            { flag: 'No account security', detail: 'Choose a monitor whose app needs a password-protected account, and change any default passwords. Only share access with people you trust.' },
+            { flag: '"Prevents SIDS" claims', detail: 'No consumer baby monitor has been shown to prevent SIDS. Be wary of any brand that claims it does, and follow safe-sleep advice from your paediatrician.' },
           ].map(item => (
             <div key={item.flag} className="flex gap-3 bg-white rounded-xl border border-[#e2dbd4] p-4">
               <div className="text-red-500 font-bold text-sm shrink-0 w-5">✗</div>

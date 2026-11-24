@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 // ─── constants ───────────────────────────────────────────────────────────────
 
 const SCENE_DURATION = 5000; // ms per scene
-const SCENES = ['2:47 AM', 'Radar', 'Breathing', 'Oxygen', 'Cries', 'Peace'] as const;
+const SCENES = ['2:47 AM', 'Watching', 'Breathing', 'Heart rate', 'Cries', 'Peace'] as const;
 const BG = ['#0a0f0d', '#0d1a16', '#091210', '#120a0a', '#0f0a0a', '#0d1a16'];
 
 // ─── Radar rings ─────────────────────────────────────────────────────────────
@@ -64,22 +64,22 @@ function BreathingECG() {
   );
 }
 
-// ─── SpO2 arc ────────────────────────────────────────────────────────────────
+// ─── Heart-rate arc ────────────────────────────────────────────────────────────────
 
-function SpO2Arc() {
+function HeartRateArc() {
   const [val, setVal] = useState(70);
   useEffect(() => {
     let v = 70;
     const id = setInterval(() => {
-      v = Math.min(v + 0.7, 98);
+      v = Math.min(v + 1.5, 124);
       setVal(Math.round(v));
-      if (v >= 98) clearInterval(id);
+      if (v >= 124) clearInterval(id);
     }, 40);
     return () => clearInterval(id);
   }, []);
-  const color = val >= 95 ? '#7aab9e' : val >= 90 ? '#e8957a' : '#ef4444';
+  const color = '#7aab9e';
   const circ = 2 * Math.PI * 90;
-  const pct = (val - 70) / 28;
+  const pct = (val - 70) / 70;
   return (
     <div className="relative w-52 h-52 sm:w-64 sm:h-64">
       <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90" aria-hidden="true">
@@ -92,7 +92,7 @@ function SpO2Arc() {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <div className="text-5xl sm:text-6xl font-bold tabular-nums" style={{ color }}>{val}</div>
-        <div className="text-white/30 text-base">%  SpO₂</div>
+        <div className="text-white/30 text-base">bpm · heart rate</div>
       </div>
     </div>
   );
@@ -201,7 +201,7 @@ function Scene2() {
       </motion.h2>
       <motion.p className="text-white/40 text-base sm:text-xl max-w-md"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
-        Low-power radar. From across the room. Nothing on your baby.
+        From beside the cot. Nothing on your baby.
       </motion.p>
     </div>
   );
@@ -240,18 +240,18 @@ function Scene4() {
     <div className="flex flex-col items-center justify-center text-center h-full px-6">
       <motion.div className="text-[#e8957a] text-xs font-bold uppercase tracking-[0.4em] mb-6"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-        SpO₂ — Blood Oxygen
+        Heart rate · OMNI
       </motion.div>
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}>
-        <SpO2Arc />
+        <HeartRateArc />
       </motion.div>
       <motion.h2 className="text-3xl sm:text-5xl font-bold text-white mt-6 mb-3 leading-tight"
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-        Oxygen levels.<br /><span style={{ color: '#7aab9e' }}>All night.</span>
+        Heart rate.<br /><span style={{ color: '#7aab9e' }}>All night.</span>
       </motion.h2>
       <motion.p className="text-white/30 text-sm sm:text-base max-w-sm"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
-        Contactlessly. No clip on the foot. No rashes in India's heat.
+        Contactlessly on OMNI. No clip on the foot. No rashes in India's heat.
       </motion.p>
     </div>
   );
@@ -290,7 +290,7 @@ function Scene6() {
       </motion.h2>
       <motion.p className="text-white/40 text-base sm:text-xl max-w-md mb-8"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
-        Breathing · SpO₂ · Cries · Sleep · Temperature — all night, every night.
+        Camera · AI alerts · Cries · Breathing & heart rate (OMNI) — all night, every night.
       </motion.p>
       <motion.div className="flex flex-col sm:flex-row gap-3"
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}>
@@ -342,23 +342,23 @@ function DetailSection() {
   return (
     <div className="bg-[#faf8f5]">
       <div className="bg-[#0d1a16] py-16 text-center px-6">
-        <p className="text-white/30 text-xs uppercase tracking-[0.4em] mb-4">What parents say</p>
+        <p className="text-white/30 text-xs uppercase tracking-[0.4em] mb-4">Why we built it</p>
         <blockquote className="text-white text-xl sm:text-3xl font-light max-w-2xl mx-auto leading-relaxed italic">
-          "I checked on her once in the whole night. That's the first time in four months."
+          So you can check on your baby from your phone, without opening the door and waking them.
         </blockquote>
       </div>
 
       <div className="container mx-auto px-4 py-20 max-w-5xl">
         <p className="text-center text-xs font-bold uppercase tracking-[0.3em] text-primary mb-3">What's inside</p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-14">Six sensors. One device.</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-14">What each model does.</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { icon: '🫁', title: 'Breathing', desc: 'Radar detects every chest movement. Rate, rhythm, pattern. Alerts on apnea > 20 sec.' },
-            { icon: '💉', title: 'SpO₂', desc: 'Contactless optical oxygen sensing. Normal is 95–100%. Alert below 94% for > 60 sec.' },
-            { icon: '❤️', title: 'Heart Rate', desc: 'PULSE & OMNI models. Resting rate, variability, sleep-stage correlation.' },
-            { icon: '😢', title: 'Cry Analysis', desc: '5 cry types. Hunger, pain, tired, discomfort, overstimulation. 92% accuracy after 3 nights.' },
-            { icon: '😴', title: 'Sleep Stages', desc: 'Deep, light, REM — mapped every night. Spot patterns. End the guesswork.' },
-            { icon: '🌡️', title: 'Room Temp', desc: 'Critical for India summers. Alert when room exceeds 26°C during sleep.' },
+            { icon: '📹', title: 'Camera & night vision', desc: 'All models. CORE 1080P, PULSE and OMNI 4MP. Pan 355°, tilt 120°, infrared night vision.' },
+            { icon: '😢', title: 'Cry & motion alerts', desc: 'All models. Your phone or parent display alerts you when your baby cries or moves.' },
+            { icon: '🛡️', title: 'AI safety alerts', desc: 'PULSE & OMNI. Alerts when the face is covered or your baby rolls onto their tummy, plus danger zones.' },
+            { icon: '🫁', title: 'Breathing', desc: 'OMNI. Breathing tracked contactlessly from beside the cot and shown live in the app.' },
+            { icon: '❤️', title: 'Heart rate', desc: 'OMNI. Heart rate tracked contactlessly, with a sleep report every morning.' },
+            { icon: '🌡️', title: 'Room temperature', desc: 'All models. Temperature and humidity at a glance, important in Indian summers.' },
           ].map((f, i) => (
             <motion.div key={f.title}
               className="bg-white rounded-2xl border border-[#e2dbd4] p-6"
@@ -378,10 +378,10 @@ function DetailSection() {
           <p className="text-center text-xs font-bold uppercase tracking-[0.3em] text-primary mb-10">Built for India</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             {[
-              { icon: '⚡', label: 'Works during power cuts', sub: 'On-device AI — no internet needed' },
+              { icon: '🗣️', label: 'Two-way talk', sub: 'Soothe your baby from another room' },
               { icon: '🥵', label: 'Made for 40°C summers', sub: 'Nothing on baby\'s skin — no rashes' },
-              { icon: '🛡️', label: 'India warranty', sub: '1 year · Free shipping' },
-              { icon: '💳', label: '0% EMI available', sub: '₹8,999 starting · No subscription' },
+              { icon: '🚚', label: 'Free shipping', sub: 'Cash on Delivery · 7-day returns' },
+              { icon: '💳', label: 'From ₹5,999', sub: 'CORE · PULSE from ₹8,900 · OMNI from ₹12,999' },
             ].map(item => (
               <div key={item.label}>
                 <div className="text-3xl mb-2">{item.icon}</div>

@@ -66,11 +66,11 @@ const SCENARIOS = [
     tagColor: '#4a7c6f',
     tagBg: 'rgba(74,124,111,0.08)',
     headline: '8.5 hrs of sleep.\nBreathing steady\nall night.',
-    sub: '12,000 checks while you slept. Every breath logged. Every SpO₂ spike noted.',
+    sub: 'OMNI tracked breathing and heart rate all night, with nothing on your baby. Your sleep report is ready.',
     accent: '#4a7c6f',
     mockupBg: 'linear-gradient(155deg,#071512 0%,#0b1c18 100%)',
     mockup: 'breathing',
-    cta: { label: 'See SENSE features', href: '/anvaya' },
+    cta: { label: 'See OMNI features', href: '/anvaya/omni' },
     emoji: '🫁',
   },
   {
@@ -114,7 +114,7 @@ function Mockup({ type, accent }: { type: string; accent: string }) {
         <span className="text-[10px] text-white/40">3:14 PM</span>
       </div>
       <div className="p-4 grid grid-cols-3 gap-3">
-        {[{ l: 'Breathing', v: '28', u: '/min', c: '#3b9fd4' }, { l: 'SpO₂', v: '98', u: '%', c: '#4ade80' }, { l: 'Temp', v: '36.5', u: '°C', c: '#f59e0b' }].map(m => (
+        {[{ l: 'Breathing', v: '28', u: '/min', c: '#3b9fd4' }, { l: 'Heart', v: '122', u: ' bpm', c: '#4ade80' }, { l: 'Temp', v: '36.5', u: '°C', c: '#f59e0b' }].map(m => (
           <div key={m.l} className="rounded-xl p-2.5 text-center" style={{ background: 'rgba(255,255,255,0.05)' }}>
             <div className="text-lg font-black" style={{ color: m.c }}>{m.v}<span className="text-[10px] font-normal">{m.u}</span></div>
             <div className="text-[9px] text-white/40 mt-0.5">{m.l}</div>
@@ -204,7 +204,7 @@ function Mockup({ type, accent }: { type: string; accent: string }) {
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm inline-block" style={{background:'rgba(255,255,255,0.1)'}} /> Awake</span>
         </div>
         <div className="grid grid-cols-3 gap-2 text-center">
-          {[{l:'Avg Breathing',v:'27/min',c:accent},{l:'SpO₂ Low',v:'96%',c:'#4ade80'},{l:'Awake times',v:'2×',c:'#f59e0b'}].map(m => (
+          {[{l:'Avg Breathing',v:'27/min',c:accent},{l:'Avg heart rate',v:'121',c:'#4ade80'},{l:'Awake times',v:'2×',c:'#f59e0b'}].map(m => (
             <div key={m.l} className="rounded-xl p-2" style={{ background: 'rgba(255,255,255,0.04)' }}>
               <div className="text-sm font-black" style={{ color: m.c }}>{m.v}</div>
               <div className="text-[8px] text-white/35 mt-0.5 leading-tight">{m.l}</div>
@@ -297,7 +297,7 @@ export default function UseCasesPage() {
           <span style={{ color: '#4a7c6f' }}>that matters.</span>
         </h1>
         <p className="text-base max-w-sm mx-auto leading-relaxed mb-8" style={{ color: '#5a6e67' }}>
-          From the office to the NICU consult. From midnight cries to first milestones. Anvaya is there.
+          From the office to the grandparents' house. From midnight cries to first milestones. Anvaya is there.
         </p>
         <div className="flex flex-wrap justify-center gap-2">
           {SCENARIOS.map(s => (
@@ -353,7 +353,7 @@ export default function UseCasesPage() {
 
         <div className="rounded-3xl p-6 text-center bg-white shadow-sm" style={{ border: '1.5px solid rgba(74,124,111,0.18)' }}>
           <div className="text-lg font-bold mb-1" style={{ color: '#0f1f1b' }}>One device. All of this.</div>
-          <div className="text-sm mb-5" style={{ color: '#6b7c74' }}>Anvaya Smart starts at ₹8,999. Nothing on baby&apos;s skin. Ever.</div>
+          <div className="text-sm mb-5" style={{ color: '#6b7c74' }}>Anvaya Smart starts at ₹5,999. Nothing on baby&apos;s skin. Ever.</div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/anvaya" className="flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white"
               style={{ background: 'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow: '0 4px 16px rgba(232,149,122,0.35)' }}>

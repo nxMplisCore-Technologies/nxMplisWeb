@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArticleSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
-import { AuthorBio, PediatricianBadge, LastUpdated, ResearchCitations, AISnippet, ExpertQuote } from '@/components/trust/EEATSignals';
+import { AuthorBio, PediatricianBadge, LastUpdated, ResearchCitations, AISnippet } from '@/components/trust/EEATSignals';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 const faqs = [
   { q: 'What is a normal breathing rate for a newborn?', a: 'A healthy newborn breathes 40–60 times per minute. This can seem fast compared to adults (12–20 breaths/min) but is completely normal. The rate typically slows to 25–40 breaths/min by 6–12 months.' },
   { q: 'What is periodic breathing in babies?', a: 'Periodic breathing is when a baby\'s breathing briefly pauses for 5–10 seconds, then resumes normally. It is completely normal in newborns and does not require any intervention. Anvaya Smart distinguishes periodic breathing from true apnea events.' },
-  { q: 'When should I worry about my baby\'s breathing?', a: 'Seek immediate medical attention if: breathing pauses last more than 20 seconds, breathing rate is consistently above 60 or below 20, breathing is laboured (nostrils flaring, ribs visible), SpO2 drops below 94%, or baby changes colour (blue lips, pale skin).' },
-  { q: 'Can a baby monitor detect breathing problems?', a: 'Yes. Anvaya Smart\'s contactless radar sensing detects micro-movements from breathing 24/7. It learns your baby\'s unique baseline and alerts you when patterns deviate meaningfully — not for every normal variation.' },
+  { q: 'When should I worry about my baby\'s breathing?', a: 'Seek immediate medical attention if: breathing pauses last more than 20 seconds, breathing rate is consistently above 60 or below 20, breathing is laboured (nostrils flaring, ribs visible), or baby changes colour (blue lips, pale skin).' },
+  { q: 'Can a baby monitor detect breathing problems?', a: 'A consumer baby monitor is not a medical device and cannot diagnose breathing problems. Anvaya OMNI shows your baby\'s breathing and heart rate in the app without anything attached, which many parents find reassuring, but always call your doctor if you notice any of the warning signs above.' },
 ];
 
 export default function BabyBreathingPage() {
@@ -92,7 +92,6 @@ export default function BabyBreathingPage() {
           <p className="text-muted-foreground leading-relaxed">Your baby breathes rapidly for a few seconds, then <strong className="text-foreground">pauses for 5–10 seconds</strong>, then breathes normally again. This cycle can repeat several times. <strong className="text-foreground">This is completely normal</strong> and is caused by immaturity in the brainstem's breathing control centre. It typically resolves by 3 months.</p>
         </div>
 
-        <ExpertQuote quote="Periodic breathing in newborns is a normal developmental phenomenon. The brainstem's respiratory control is still maturing. Parents should be educated about this so they don't panic unnecessarily — but should absolutely monitor continuously during the newborn phase." author="Dr. Suresh Reddy" title="Neonatologist, AIIMS Delhi" />
 
         <h2 className="text-3xl font-bold mb-4 mt-10">Warning Signs to Watch For</h2>
         <p className="text-muted-foreground mb-5">While most baby breathing variations are normal, these signs require immediate medical attention:</p>
@@ -102,7 +101,6 @@ export default function BabyBreathingPage() {
             { sign: 'Consistent rate above 60 or below 20 breaths/min', action: 'Call your pediatrician immediately' },
             { sign: 'Nostrils flaring with each breath', action: 'Go to emergency — sign of respiratory distress' },
             { sign: 'Ribs visible during breathing (retractions)', action: 'Emergency — severe breathing difficulty' },
-            { sign: 'SpO2 consistently below 94%', action: 'Call pediatrician immediately' },
             { sign: 'Blue or pale lips/fingertips (cyanosis)', action: 'Emergency — call 112 immediately' },
           ].map(w => (
             <div key={w.sign} className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl p-4">
@@ -116,11 +114,11 @@ export default function BabyBreathingPage() {
         </div>
 
         <h2 className="text-3xl font-bold mb-4">How Anvaya Smart Monitors Baby Breathing</h2>
-        <p className="text-muted-foreground mb-5 leading-relaxed">Unlike traditional monitors that need a wearable sensor attached to your baby, Anvaya Smart monitors breathing contactlessly from beside the crib using radar and infrared sensing.</p>
+        <p className="text-muted-foreground mb-5 leading-relaxed">Unlike monitors that need a wearable sensor attached to your baby, Anvaya OMNI tracks breathing and heart rate contactlessly from beside the cot. It is a wellness monitor, not a medical device.</p>
         <div className="bg-gradient-to-br from-[#e8f2ee] to-[#f5ede0] rounded-2xl p-6 border border-primary/20 mb-8">
           <h3 className="font-bold mb-3">What Anvaya tracks:</h3>
           <ul className="space-y-2">
-            {['Breathing rate (breaths per minute) — continuously', 'Breathing pattern (regular, periodic, or irregular)', 'SpO2 blood oxygen saturation — contactlessly', 'Detects apnea events (pauses >15 seconds)', 'Learns your baby\'s personal baseline over 3 days'].map(f => (
+            {['Breathing rate (breaths per minute) — continuously', 'Breathing pattern (regular, periodic, or irregular)', 'Learns your baby\'s personal baseline over 3 days'].map(f => (
               <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span className="text-primary">✓</span>{f}
               </li>
@@ -153,7 +151,7 @@ export default function BabyBreathingPage() {
               { title: 'Baby Cry Types: Hungry vs Tired vs Uncomfortable', href: '/blog/baby-cry-types' },
               { title: 'Baby Monitoring India: The Complete Guide', href: '/baby-monitoring' },
               { title: 'Best Baby Monitor India 2025', href: '/blog/best-baby-monitor-india-2025' },
-              { title: 'Anvaya Smart SENSE — Breathing & SpO2 Monitor', href: '/anvaya#sense' },
+              { title: 'Anvaya OMNI — Contactless Breathing & Heart Rate', href: '/anvaya/omni' },
             ].map(l => (
               <Link key={l.href} href={l.href} className="flex items-center gap-2 text-sm text-primary hover:underline">
                 <ArrowRight className="w-3.5 h-3.5 shrink-0" />{l.title}

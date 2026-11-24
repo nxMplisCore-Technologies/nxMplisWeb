@@ -29,8 +29,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/products', destination: '/anvaya', permanent: true },
-      { source: '/buy', destination: '/early-access', permanent: true },
-      { source: '/shop', destination: '/early-access', permanent: true },
+      { source: '/buy', destination: '/anvaya', permanent: true },
+      { source: '/shop', destination: '/anvaya', permanent: true },
+      // Retired pages (old product info) → current pages
+      { source: '/early-access', destination: '/anvaya', permanent: true },
+      { source: '/tour', destination: '/anvaya', permanent: true },
+      { source: '/blog/baby-spo2-monitoring-india', destination: '/blog/baby-breathing-patterns', permanent: true },
+      { source: '/baby-spo2-monitor-india', destination: '/contactless-baby-monitor-india', permanent: true },
       { source: '/monitor', destination: '/anvaya', permanent: true },
       // ?p=X → /anvaya/X  (crawler-friendly SSR routes)
       { source: '/anvaya', has: [{ type: 'query', key: 'p', value: 'core' }], destination: '/anvaya/core', permanent: false },

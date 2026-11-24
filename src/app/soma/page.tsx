@@ -322,7 +322,7 @@ export default function SomaPage() {
                 <div className="w-12 h-12 rounded-xl bg-[#f0faf6] flex items-center justify-center text-2xl shrink-0">👶</div>
                 <div>
                   <div className="font-bold text-sm group-hover:text-primary transition-colors">Anvaya Smart — Baby Wellness Pod</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">Contactless breathing, SpO₂, cry analysis & sleep tracking for newborns</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">Smart baby monitor with AI alerts and contactless breathing & heart rate (OMNI)</div>
                 </div>
                 <div className="ml-auto text-muted-foreground text-sm">→</div>
               </Link>

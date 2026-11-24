@@ -16,10 +16,10 @@ const products = [
     color: '#d97706',
     bgLight: '#fffbeb',
     badge: null as string | null,
-    price: '₹6,800',
+    price: '₹5,999',
     priceNote: 'Without display',
     image: '/anvaya-core-01-hero-1080p-day-night.png',
-    href: '/anvaya?p=core',
+    href: '/anvaya/core',
   },
   {
     id: 'pulse',
@@ -32,7 +32,7 @@ const products = [
     price: '₹8,900',
     priceNote: 'Without display',
     image: '/anvaya-pulse-02-ai-safety-alerts.png',
-    href: '/anvaya?p=pulse',
+    href: '/anvaya/pulse',
   },
   {
     id: 'omni',
@@ -45,7 +45,7 @@ const products = [
     price: '₹12,999',
     priceNote: 'Without display',
     image: '/anvaya-omni-09-vitals-heart-breathing.png',
-    href: '/anvaya?p=omni',
+    href: '/anvaya/omni',
   },
 ];
 

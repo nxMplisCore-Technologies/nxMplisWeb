@@ -196,7 +196,7 @@ export function LeadModal({ open, onClose, product, source }: LeadModalProps) {
               </Button>
 
               <p className="text-center text-xs text-muted-foreground pt-1">
-                30-day guarantee · Free shipping India
+                7-day returns · Free shipping India
               </p>
             </form>
           )}

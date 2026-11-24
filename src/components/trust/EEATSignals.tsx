@@ -44,8 +44,8 @@ export function PediatricianBadge() {
     <div className="inline-flex items-center gap-2.5 bg-green-50 border border-green-200 rounded-xl px-4 py-2.5" role="note" aria-label="Medically reviewed">
       <Shield className="w-4 h-4 text-green-600 shrink-0" />
       <div>
-        <div className="text-xs font-bold text-green-800">Reviewed for Safety</div>
-        <div className="text-[10px] text-green-700">Aligned with AAP infant monitoring guidelines</div>
+        <div className="text-xs font-bold text-green-800">Wellness &amp; convenience monitor</div>
+        <div className="text-[10px] text-green-700">Not a medical device · Follow safe-sleep advice from your paediatrician</div>
       </div>
     </div>
   );
@@ -89,10 +89,10 @@ export function ResearchCitations() {
 // Trust badges bar — schema-backed trust signals
 export function TrustBar() {
   const signals = [
-    { icon: Shield, text: 'Safe for newborns', sub: 'No radiation, no lights' },
-    { icon: Award, text: 'IIT Research backed', sub: 'Academic partnership' },
-    { icon: Users, text: '47 beta families', sub: 'Real-world tested' },
-    { icon: BookOpen, text: 'AAP aligned', sub: 'Infant safety guidelines' },
+    { icon: Shield, text: 'Nothing on your baby', sub: 'Watches from beside the cot' },
+    { icon: Award, text: 'Free shipping', sub: 'Across India' },
+    { icon: Users, text: 'Cash on Delivery', sub: 'Pay when it arrives' },
+    { icon: BookOpen, text: '7-day returns', sub: 'WhatsApp support' },
   ];
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3" role="region" aria-label="Trust and safety credentials">

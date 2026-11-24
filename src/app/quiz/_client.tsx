@@ -22,7 +22,7 @@ const QUESTIONS = [
     options: [
       { value: 'breathing', emoji: '😮‍💨', label: 'Breathing pauses', sub: '' },
       { value: 'crying', emoji: '😶', label: 'Silent crying', sub: '' },
-      { value: 'spo2', emoji: '📉', label: 'Oxygen levels (SpO₂)', sub: '' },
+      { value: 'spo2', emoji: '❤️', label: 'Heart rate', sub: '' },
       { value: 'temp', emoji: '🌡️', label: 'Temperature changes', sub: '' },
     ],
   },

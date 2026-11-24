@@ -124,9 +124,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             {/* CTA */}
             <div className="mt-12 bg-gradient-to-br from-[#e8f2ee] to-[#f5ede0] rounded-2xl p-7 border border-primary/20">
               <h3 className="text-xl font-bold mb-2">Monitor your baby with Anvaya Smart</h3>
-              <p className="text-muted-foreground text-sm mb-4">India's only contactless AI baby monitor. Breathing, SpO2, cry analysis, sleep tracking. Starting ₹8,999.</p>
+              <p className="text-muted-foreground text-sm mb-4">AI safety alerts, 4MP night vision and contactless breathing & heart rate. Starting ₹5,999.</p>
               <Button asChild className="bg-primary text-white hover:bg-primary/90 gap-2">
-                <Link href="/anvaya">Get Early Access — Save ₹7,000 <ArrowRight className="w-4 h-4" /></Link>
+                <Link href="/anvaya">Compare Models <ArrowRight className="w-4 h-4" /></Link>
               </Button>
             </div>
 
@@ -201,9 +201,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-5 text-white">
                 <div className="text-xs font-bold uppercase tracking-widest opacity-75 mb-2">Early Access</div>
                 <div className="font-bold text-lg mb-1">Anvaya Smart</div>
-                <div className="text-xs opacity-80 mb-4">Contactless baby monitoring. Save ₹7,000 now.</div>
+                <div className="text-xs opacity-80 mb-4">Free shipping · Cash on Delivery · 7-day returns.</div>
                 <Button asChild size="sm" className="bg-white text-primary hover:bg-white/90 w-full font-semibold text-xs">
-                  <Link href="/anvaya">Reserve — ₹12,999</Link>
+                  <Link href="/anvaya">Shop from ₹5,999</Link>
                 </Button>
               </div>
 

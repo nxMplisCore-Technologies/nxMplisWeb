@@ -5,7 +5,7 @@ import { FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
 
 // Static product config — marketing copy, colors, features (lives on website)
 // Prices + variants + availability come live from Shopify; fallbackVariants used when Shopify is unreachable
-// 3-product lineup: CORE → PULSE → OMNI (SENSE retired)
+// 3-product lineup on the website: CORE → PULSE → OMNI
 export const productConfig = [
   {
     id: 'core',
@@ -19,7 +19,7 @@ export const productConfig = [
     handle: 'anvaya-smart-core-audio-and-video-baby-monitor',
     specs: '5" · 1080P · 3200mAh · Pan 355° Tilt 120°',
     fallbackVariants: [
-      { id: 'fallback-core-1', numericId: '50746014892255', title: 'Without Display', price: '6800.00', compareAtPrice: null, availableForSale: true },
+      { id: 'fallback-core-1', numericId: '50746014892255', title: 'Without Display', price: '5999.00', compareAtPrice: null, availableForSale: true },
     ],
     localImages: ['/anvaya-core-05-room-comfort-lullaby.png', '/anvaya-core-06-monitor-anywhere.png', '/anvaya-core-01-hero-1080p-day-night.png', '/anvaya-core-02-pan-tilt-whole-home.png', '/anvaya-core-04-two-way-talk.png', '/anvaya-core-07-feeding-reminder.png'],
     features: [
@@ -69,7 +69,7 @@ export const productConfig = [
     specs: '5.5" · 4MP · 4000mAh · Respiration + Heart Rate',
     fallbackVariants: [
       { id: 'fallback-omni-1', numericId: '50744670486751', title: 'Without Display', price: '12999.00', compareAtPrice: null, availableForSale: true },
-      { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5.5" Display', price: '17999.00', compareAtPrice: null, availableForSale: true },
+      { id: 'fallback-omni-2', numericId: '50817578696927', title: 'With 5.5" Display', price: '18999.00', compareAtPrice: null, availableForSale: true },
     ],
     localImages: ['/anvaya-omni-09-vitals-heart-breathing.png', '/anvaya-omni-01-hero-nursery.jpg', '/anvaya-omni-10-ai-safety-alerts.png', '/anvaya-omni-05-sleep-report.png', '/anvaya-omni-07-monitor-anywhere.png', '/anvaya-omni-06-danger-zones.png', '/anvaya-omni-11-product-hero-specs.png'],
     features: [
@@ -84,11 +84,11 @@ export const productConfig = [
 ];
 
 export const faqs = [
-  { q: 'Does anything touch my baby?', a: 'No. Anvaya is completely contactless. The wellness pod sits beside the crib on a shelf or table. It uses radar and infrared sensing — nothing attaches to your baby\'s skin.' },
-  { q: 'When will I receive my order?', a: 'Anvaya Smart is currently in pre-order. Delivery across India takes 3–7 working days after dispatch. Free shipping on all orders.' },
-  { q: 'What if I\'m not happy?', a: '7-day return policy — no questions asked. If Anvaya doesn\'t give you peace of mind, we\'ll refund every rupee including return shipping.' },
-  { q: 'Which model should I buy?', a: 'SENSE is our most popular for new parents — it covers breathing, SpO₂, cry analysis and sleep. For the complete picture with AI health reports, go with OMNI.' },
-  { q: 'Is my data private?', a: 'All processing happens on the device. No health data, video or audio is ever sent to external servers. Your family\'s privacy is a design principle.' },
+  { q: 'Does anything touch my baby?', a: 'No. Every Anvaya monitor sits beside the cot on a shelf, table or wall mount. OMNI tracks breathing and heart rate contactlessly — nothing attaches to your baby\'s skin.' },
+  { q: 'When will I receive my order?', a: 'CORE, PULSE and OMNI ship within 1–2 days and reach you in 3–7 working days. Free shipping across India, with Cash on Delivery available.' },
+  { q: 'What if I\'m not happy?', a: '7-day return policy. If Anvaya isn\'t right for you, message us on WhatsApp and we\'ll arrange the return.' },
+  { q: 'Which model should I buy?', a: 'OMNI is our most popular: contactless breathing and heart rate plus every PULSE feature. PULSE is best if you want AI face-cover and tummy-sleep alerts at a lower price. CORE is the simple 1080P camera with cry alerts.' },
+  { q: 'Is my data private?', a: 'You view video and readings in your own password-protected Anvaya app account. Only people you invite can see your baby.' },
 ];
 
 export default async function AnvayaPage() {

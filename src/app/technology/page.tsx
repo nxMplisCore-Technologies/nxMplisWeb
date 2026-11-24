@@ -66,7 +66,7 @@ const principles = [
       <circle cx="78" cy="165" r="6" fill="#e8957a" opacity="0.8"/>
       <text x="78" y="182" text-anchor="middle" font-size="7" fill="#e8957a" font-family="Poppins,sans-serif">Breathing ✓</text>
       <circle cx="240" cy="80" r="6" fill="#4a7c6f" opacity="0.8"/>
-      <text x="240" y="97" text-anchor="middle" font-size="7" fill="#4a7c6f" font-family="Poppins,sans-serif">SpO2 ✓</text>
+      <text x="240" y="97" text-anchor="middle" font-size="7" fill="#4a7c6f" font-family="Poppins,sans-serif">Heart ✓</text>
       <circle cx="252" cy="148" r="6" fill="#4a7c6f" opacity="0.6"/>
       <text x="252" y="165" text-anchor="middle" font-size="7" fill="#4a7c6f" font-family="Poppins,sans-serif">Temp ✓</text>
     </svg>`,

@@ -28,10 +28,10 @@ export default async function Image() {
           Smart Care. Gentle Beginnings.
         </div>
         <div style={{ fontSize: 22, color: '#6b7b77', maxWidth: 650, lineHeight: 1.5 }}>
-          India's most advanced contactless AI baby monitor. Breathing · SpO2 · Cry Analysis · Sleep Tracking. No wearables.
+          AI baby monitors designed in India. AI safety alerts · 4MP night vision · Contactless breathing & heart rate (OMNI).
         </div>
         <div style={{ marginTop: 48, display: 'flex', gap: 24 }}>
-          {['CORE ₹8,999', 'SENSE ₹12,999', 'PULSE ₹15,999', 'OMNI ₹19,999'].map(p => (
+          {['CORE ₹5,999', 'PULSE ₹8,900', 'OMNI ₹12,999'].map(p => (
             <div key={p} style={{ background: 'rgba(74,124,111,0.1)', border: '1px solid rgba(74,124,111,0.2)', borderRadius: 12, padding: '10px 20px', fontSize: 18, color: '#4a7c6f', fontWeight: 600 }}>
               {p}
             </div>

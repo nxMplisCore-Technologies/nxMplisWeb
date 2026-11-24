@@ -2,17 +2,17 @@
 
 export function OrganizationSchema() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-    '@context': 'https://schema.org', '@type': ['Organization', 'MedicalOrganization'],
+    '@context': 'https://schema.org', '@type': 'Organization',
     '@id': 'https://nxmplis.com/#organization',
     name: 'Nxmpliscore', alternateName: ['Anvaya Smart', 'Nxmpliscore Technologies'],
     url: 'https://nxmplis.com', logo: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-logo.webp', width: 200, height: 200 },
-    description: 'AI-powered contactless baby wellness pod monitoring. Anvaya Smart tracks breathing, SpO₂, cry patterns and sleep — no wearables, complete on-device privacy.',
+    description: 'AI-powered contactless baby wellness pod monitoring. Anvaya Smart baby monitors: 1080P and 4MP cameras, AI face-cover and tummy-sleep alerts, and contactless breathing and heart-rate tracking on OMNI.',
     foundingDate: '2024',
     address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' },
     founder: [{ '@type': 'Person', name: 'Nxmpliscore Founders', alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad' }, jobTitle: 'Founders' }],
     sameAs: ['https://www.instagram.com/anvayasmart', 'https://www.linkedin.com/company/nxmpliscore', 'https://twitter.com/anvayasmart'],
-    contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['English', 'Hindi', 'Telugu'], areaServed: 'IN', contactOption: 'TollFree' },
-    knowsAbout: ['Baby Monitoring', 'Baby Wellness Pod Monitoring', 'Infant Health', 'Infant Vital Signs Monitoring', 'Contactless Sensing', 'AI Health Technology', 'Baby Sleep Analysis', 'Newborn Wellness Technology', 'Baby SpO2 Monitoring'],
+    contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['English', 'Hindi', 'Telugu'], areaServed: 'IN', telephone: '+91-79874-49366', email: 'nxmpliscore@gmail.com' },
+    knowsAbout: ['Baby Monitoring', 'Baby Wellness Pod Monitoring', 'Infant Health', 'Infant Vital Signs Monitoring', 'Contactless Sensing', 'AI Health Technology', 'Baby Sleep Analysis', 'Newborn Wellness Technology'],
   })}} />;
 }
 
@@ -28,7 +28,7 @@ export function WebsiteSchema() {
   })}} />;
 }
 
-export function ProductSchema({ name, description, price, sku, image, features }: { name: string; description: string; price: string; sku: string; image?: string; features?: string[] }) {
+export function ProductSchema({ name, description, price, sku, image, features, url }: { name: string; description: string; price: string; sku: string; image?: string; features?: string[]; url?: string }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
     '@context': 'https://schema.org', '@type': 'Product',
     '@id': `https://nxmplis.com/anvaya#${sku}`,
@@ -36,14 +36,14 @@ export function ProductSchema({ name, description, price, sku, image, features }
     brand: { '@type': 'Brand', name: 'Anvaya Smart', url: 'https://nxmplis.com' },
     manufacturer: { '@id': 'https://nxmplis.com/#organization' },
     image: [image || 'https://nxmplis.com/anvaya-product.webp', 'https://nxmplis.com/anvaya-nursery.jpg'],
-    category: 'Baby Wellness Pod & Health Monitoring Devices',
+    category: 'Baby Monitors',
     audience: { '@type': 'PeopleAudience', audienceType: 'Parents of newborns and infants', suggestedMinAge: 0 },
     isAccessoryOrSparePartFor: { '@type': 'Product', name: 'Anvaya Smart App', operatingSystem: ['iOS', 'Android'] },
     offers: {
       '@type': 'Offer', priceCurrency: 'INR', price: price.replace(/[₹,]/g, ''),
       priceValidUntil: '2026-12-31',
-      availability: 'https://schema.org/PreOrder',
-      url: 'https://nxmplis.com/early-access',
+      availability: 'https://schema.org/InStock',
+      url: url || 'https://nxmplis.com/anvaya',
       seller: { '@id': 'https://nxmplis.com/#organization' },
       shippingDetails: {
         '@type': 'OfferShippingDetails',
@@ -51,16 +51,8 @@ export function ProductSchema({ name, description, price, sku, image, features }
         shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'IN' },
         deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' } },
       },
-      hasMerchantReturnPolicy: { '@type': 'MerchantReturnPolicy', returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow', merchantReturnDays: 30, returnMethod: 'https://schema.org/ReturnByMail', returnFees: 'https://schema.org/FreeReturn' },
+      hasMerchantReturnPolicy: { '@type': 'MerchantReturnPolicy', returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow', merchantReturnDays: 7, applicableCountry: 'IN', returnMethod: 'https://schema.org/ReturnByMail', returnFees: 'https://schema.org/FreeReturn' },
     },
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '47', bestRating: '5', worstRating: '1' },
-    review: [{
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'Meera S.' },
-      datePublished: '2025-01-15',
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'Slept through the night for the first time since baby came home. Knowing Anvaya is watching makes everything calmer. Breath monitoring is accurate and the cry analysis is remarkably helpful.',
-    }],
     additionalProperty: features?.map(f => ({ '@type': 'PropertyValue', name: 'Feature', value: f })),
   })}} />;
 }
@@ -114,7 +106,7 @@ export function HowToSchema({ name, steps }: { name: string; steps: { name: stri
     '@context': 'https://schema.org', '@type': 'HowTo',
     name, image: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-product.webp' },
     step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.name, text: s.text })),
-    tool: [{ '@type': 'HowToTool', name: 'Anvaya Smart Pod' }, { '@type': 'HowToTool', name: 'Anvaya Smart App (iOS/Android)' }],
+    tool: [{ '@type': 'HowToTool', name: 'Anvaya Smart baby monitor' }, { '@type': 'HowToTool', name: 'Anvaya Smart App (iOS/Android)' }],
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'INR', value: '12999' },
     totalTime: 'PT3M',
   })}} />;
@@ -135,16 +127,15 @@ export function LocalBusinessSchema() {
     '@context': 'https://schema.org', '@type': ['LocalBusiness', 'Store'],
     '@id': 'https://nxmplis.com/#localbusiness',
     name: 'Nxmpliscore — Anvaya Smart', description: 'AI-powered contactless baby wellness monitor. Smart Care. Gentle Beginnings.',
-    url: 'https://nxmplis.com', telephone: '+91-98765-43210', email: 'hello@nxmplis.com',
+    url: 'https://nxmplis.com', telephone: '+91-79874-49366', email: 'nxmpliscore@gmail.com',
     address: { '@type': 'PostalAddress', streetAddress: 'BITS Hyderabad Research Park', addressLocality: 'Hyderabad', addressRegion: 'Telangana', postalCode: '500078', addressCountry: 'IN' },
     geo: { '@type': 'GeoCoordinates', latitude: 17.385, longitude: 78.4867 },
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' }],
-    priceRange: '₹8,999 - ₹19,999',
+    priceRange: '₹5,999 - ₹18,999',
     currenciesAccepted: 'INR',
-    paymentAccepted: 'UPI, Credit Card, Debit Card, Net Banking, EMI',
+    paymentAccepted: 'UPI, Credit Card, Debit Card, Net Banking, Cash on Delivery',
     areaServed: { '@type': 'Country', name: 'India' },
     hasMap: 'https://maps.google.com/?q=Hyderabad+Telangana+India',
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '47' },
   })}} />;
 }
 
