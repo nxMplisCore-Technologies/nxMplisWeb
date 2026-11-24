@@ -346,7 +346,6 @@ function DetailSection() {
         <blockquote className="text-white text-xl sm:text-3xl font-light max-w-2xl mx-auto leading-relaxed italic">
           "I checked on her once in the whole night. That's the first time in four months."
         </blockquote>
-        <p className="text-white/30 text-sm mt-5">— Priya R., Bengaluru · Anvaya SENSE</p>
       </div>
 
       <div className="container mx-auto px-4 py-20 max-w-5xl">
@@ -404,7 +403,7 @@ function DetailSection() {
             Reserve your Anvaya pod — No payment now
           </Link>
         </Button>
-        <p className="text-xs text-muted-foreground mt-4">No payment today · Pay on delivery · 30-day returns</p>
+        <p className="text-xs text-muted-foreground mt-4">No payment today · Pay on delivery · 7-day returns</p>
       </div>
     </div>
   );

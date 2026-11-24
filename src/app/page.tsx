@@ -423,7 +423,7 @@ const HOME_FAQS = [
   { q: 'What is Anvaya Smart baby wellness pod?', a: 'Anvaya Smart is India\'s most advanced AI baby wellness pod. It monitors your baby\'s breathing, SpO₂, cry patterns, heart rate, temperature, and sleep — contactlessly, without anything on your baby\'s skin. It uses low-power radar, infrared sensing, and AI acoustic analysis to watch over your baby 24/7.' },
   { q: 'Is the Anvaya baby monitor safe for newborns?', a: 'Yes. Anvaya Smart is completely contactless — nothing is attached to your baby. The radar sensing uses power levels thousands of times lower than a Wi-Fi router. It is safe for premature babies and newborns from day one.' },
   { q: 'How does contactless baby breathing monitoring work?', a: 'Anvaya uses low-power radar to detect the micro-movements of your baby\'s chest caused by breathing — from up to 90cm away. No wearable, no skin contact. The AI identifies breathing rate, pattern, and alerts you if anything deviates from your baby\'s personal baseline.' },
-  { q: 'What is the price of Anvaya baby monitor in India?', a: 'Anvaya Smart is available in three models: CORE from ₹6,800, PULSE from ₹8,900, and OMNI from ₹12,999. Each model also comes with an optional dedicated 5.5-inch parent monitor. Free shipping across India, 30-day money-back guarantee.' },
+  { q: 'What is the price of Anvaya baby monitor in India?', a: 'Anvaya Smart is available in three models: CORE from ₹6,800, PULSE from ₹8,900, and OMNI from ₹12,999. Each model also comes with an optional dedicated 5.5-inch parent monitor. Free shipping across India, 7-day return policy.' },
   { q: 'Does Anvaya work without Wi-Fi?', a: 'Anvaya processes all data on-device. Core monitoring functions (cry alerts, temperature, motion) work without Wi-Fi. Wi-Fi is required for live video streaming and smartphone app sync.' },
   { q: 'What is the difference between Anvaya CORE, PULSE, and OMNI?', a: 'CORE covers 1080P HD video, cry detection, two-way audio, and temperature monitoring — your first step into smart monitoring. PULSE adds 4MP clarity, AI face cover and prone sleep detection, and electronic danger zones. OMNI includes everything in PULSE plus contactless respiration monitoring, heart rate detection, deep sleep analysis, and one-click partner calling — India\'s most advanced baby monitor.' },
   { q: 'Is Anvaya Smart available across India?', a: 'Yes. Anvaya Smart ships free across India. EMI is available at 0% through major cards and UPI platforms. Our team is based in Hyderabad with pan-India customer support in English, Hindi, and Telugu.' },
@@ -576,13 +576,9 @@ export default function Home() {
 
               {/* Trust row — compact, no list */}
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground mb-6">
-                <span className="flex items-center gap-1.5">
-                  <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}</div>
-                  <strong className="text-foreground">4.9</strong> · 47 families
-                </span>
-                <span className="flex items-center gap-1"><CheckCircle className="w-3 h-3 text-green-500" /> No payment now</span>
-                <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-primary" /> Free shipping</span>
-                <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-primary" /> 30-day guarantee</span>
+                <span className="flex items-center gap-1"><CheckCircle className="w-3 h-3 text-green-500" /> Free shipping India</span>
+                <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-primary" /> 0% EMI available</span>
+                <span className="flex items-center gap-1"><Shield className="w-3 h-3 text-primary" /> 7-day return</span>
               </div>
 
               {/* "How will it help me" — highlighted entry point */}
@@ -676,7 +672,7 @@ export default function Home() {
                   <div className="flex items-center gap-1 mb-0.5">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
                   </div>
-                  <div className="text-[10px] font-bold">Paediatrician-approved</div>
+                  <div className="text-[10px] font-bold">Safe for newborns</div>
                 </div>
               </div>
 
@@ -842,7 +838,7 @@ export default function Home() {
           {/* FOMO line */}
           <motion.p className="text-center text-xs text-white/20 mt-8"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-            147 families joined this week. Founding pricing ends when the first batch ships.
+            Ships free across India · 7-day return · 0% EMI.
           </motion.p>
         </div>
       </section>
@@ -1167,7 +1163,7 @@ export default function Home() {
               { name: 'OMNI', tagline: 'Breathes. Heart beats. You sleep.', bg: '', border: '#2d4a3e', color: '#A87FFF', features: ['Contactless Breathing', 'Heart Rate Monitor', 'Nightly Sleep Report', 'One-tap Calling'], dark: true, price: '₹12,999' },
             ].map((p, i) => (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
-              <Link href={`/anvaya#${p.name.toLowerCase()}`}
+              <Link href={`/anvaya?p=${p.name.toLowerCase()}`}
                 className={`card-hover group block rounded-2xl border p-4 sm:p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
                 style={{ borderColor: p.border }}>
                 {p.popular && (
@@ -1183,75 +1179,11 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className={`text-[9px] sm:text-xs font-semibold mt-2 ${p.dark ? 'text-yellow-300/70' : 'text-muted-foreground'}`}>Founding price — on sign-up</div>
+                <div className={`text-[9px] sm:text-xs font-semibold mt-2 ${p.dark ? 'text-yellow-300/70' : 'text-muted-foreground'}`}>Available now</div>
                 <div className={`mt-1.5 text-[10px] sm:text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all ${p.dark ? 'text-yellow-400' : 'text-primary'}`}>
                   Explore <ArrowRight className="w-3 h-3" />
                 </div>
               </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════ TESTIMONIALS ════════════ */}
-      <section className="py-14 lg:py-24 bg-gradient-to-b from-white to-[#faf8f5] overflow-hidden">
-        <div className="container mx-auto px-4">
-          <Reveal variant={fadeUp}>
-          <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Parent Stories</p>
-            <h2 className="text-4xl font-bold mb-3">What our pilot families are saying.</h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 star-filled fill-amber-400" />)}
-              <span className="text-lg font-bold ml-1">4.9/5</span>
-              <span className="text-muted-foreground text-sm">· Pilot family feedback</span>
-            </div>
-          </div>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'Priya Sharma',
-                location: 'Bangalore',
-                role: 'Mother of 3-month-old',
-                text: "Anvaya caught a breathing dip at 2am that I would have completely missed. The alert woke me up before it became anything serious. I genuinely don't know how I parented without this.",
-                rating: 5,
-                avatar: '👩🏽',
-              },
-              {
-                name: 'Rajesh & Meera',
-                location: 'Mumbai',
-                role: 'First-time parents',
-                text: "We were so anxious bringing our baby home. Anvaya changed that completely. Seeing her breathing live on the app the first night was the most reassuring thing we've ever experienced.",
-                rating: 5,
-                avatar: '👨🏽‍👩🏽',
-                featured: true,
-              },
-              {
-                name: 'Dr. Kavitha Nair',
-                location: 'Chennai',
-                role: 'Paediatrician · MBBS',
-                text: "As a paediatrician, I recommend Anvaya to parents who need reassurance. The contactless monitoring approach is exactly right — nothing on the baby's skin, accurate vitals, no false alarms.",
-                rating: 5,
-                avatar: '👩🏾‍⚕️',
-              },
-            ].map((t, i) => (
-              <motion.div key={t.name} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6, ease: [0.22, 0.68, 0, 1.2] }} className={`testimonial-card p-6 relative ${t.featured ? 'ring-2 ring-primary/30' : ''}`}>
-                {t.featured && (
-                  <div className="absolute -top-3 left-6 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full">Most Helpful</div>
-                )}
-                <Quote className="w-7 h-7 text-primary/20 mb-3" />
-                <p className="text-sm leading-relaxed text-foreground mb-4">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex mb-3">
-                  {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 star-filled fill-amber-400" />)}
-                </div>
-                <div className="flex items-center gap-3 pt-3 border-t border-border/50">
-                  <span className="text-2xl">{t.avatar}</span>
-                  <div>
-                    <div className="font-bold text-sm">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role} · {t.location}</div>
-                  </div>
-                </div>
               </motion.div>
             ))}
           </div>
@@ -1268,7 +1200,7 @@ export default function Home() {
               { icon: Moon, label: 'Healthy Sleep Support' },
               { icon: Zap, label: 'Instant Alerts' },
               { icon: Lock, label: 'On-Device Privacy' },
-              { icon: Heart, label: 'Paediatrician-approved' },
+              { icon: Heart, label: 'Safe for newborns' },
               { icon: CheckCircle, label: '30-Day Guarantee' },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="trust-pill">
@@ -1280,22 +1212,18 @@ export default function Home() {
           <div className="relative overflow-hidden">
             <div className="flex gap-16 animate-marquee whitespace-nowrap">
               {[
-                '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from pilot families',
-                '🩺 Recommended by Paediatricians',
+                '🛡️ 7-day return policy',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
-                '🛡️ 30-day money-back guarantee',
                 '👶 Safe for newborns from day 1',
-                '🏆 India\'s #1 Baby Wellness Pod',
-                '⭐ 4.9/5 from pilot families',
-                '🩺 Recommended by Paediatricians',
+                '📱 iOS & Android app included',
+                '🛡️ 7-day return policy',
                 '🔒 Zero health data leaves your home',
                 '🚀 Ships free across India',
                 '💰 0% EMI available',
-                '🛡️ 30-day money-back guarantee',
                 '👶 Safe for newborns from day 1',
+                '📱 iOS & Android app included',
               ].map((item, i) => (
                 <span key={i} className="text-sm font-semibold text-muted-foreground shrink-0">{item}</span>
               ))}
@@ -1313,14 +1241,14 @@ export default function Home() {
         <div className="container mx-auto px-4 relative">
           <div className="max-w-xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/80 border border-primary/20 rounded-full px-4 py-1.5 mb-7 text-xs text-primary font-bold shadow-sm">
-              <Sparkles className="w-3 h-3 animate-spin-slow" />
-              47 of 100 early access spots remaining
+              <Sparkles className="w-3 h-3" />
+              Now available · Ships free across India
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              Be among the<br />
-              <span className="text-gradient">first 100 families.</span>
+              Have a question?<br />
+              <span className="text-gradient">We'll WhatsApp you.</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-10">Founding families get exclusive pricing, priority shipping, and a free 1-year premium app subscription — revealed over WhatsApp.</p>
+            <p className="text-lg text-muted-foreground mb-10">Leave your name and number — we'll confirm availability, answer questions, and help you pick the right model within 24 hours.</p>
             {submitted ? (
               <div className="glass rounded-2xl p-10 shadow-xl border-white/70 text-center">
                 <CheckCircle className="w-12 h-12 text-primary mx-auto mb-3" />
@@ -1336,7 +1264,7 @@ export default function Home() {
                     {loading ? 'Saving...' : 'Claim Spot'}
                   </Button>
                 </form>
-                <p className="text-xs text-muted-foreground">No payment now · Free shipping · 30-day money-back guarantee · EMI available</p>
+                <p className="text-xs text-muted-foreground">No payment now · Free shipping · 7-day return policy · EMI available</p>
               </div>
             )}
           </div>
@@ -1394,7 +1322,7 @@ export default function Home() {
               <Link href="/anvaya">Explore All Products</Link>
             </Button>
           </div>
-          <p className="text-white/30 text-sm mt-7">Free shipping across India · 30-day guarantee · 0% EMI</p>
+          <p className="text-white/30 text-sm mt-7">Free shipping across India · 7-day return · 0% EMI</p>
         </div>
       </section>
 

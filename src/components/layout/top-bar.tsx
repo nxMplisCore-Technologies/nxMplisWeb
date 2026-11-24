@@ -6,9 +6,9 @@ export function TopBar() {
     <div className="w-full bg-primary text-white text-sm py-2 px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-y-1 gap-x-4">
         <div className="flex items-center gap-5 flex-wrap">
-          <a href="mailto:admin@nxmplis.com" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
+          <a href="mailto:nxmpliscore@gmail.com" className="flex items-center gap-1.5 hover:text-white/80 transition-colors">
             <Mail className="w-3.5 h-3.5 shrink-0" />
-            <span>admin@nxmplis.com</span>
+            <span>nxmpliscore@gmail.com</span>
           </a>
           <a
             href="https://wa.me/917987449366"

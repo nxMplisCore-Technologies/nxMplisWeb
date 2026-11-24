@@ -273,7 +273,7 @@ export default function QuizClient() {
             >
               Buy Anvaya {product.name} — ₹{product.price.toLocaleString('en-IN')} <ArrowRight className="w-4 h-4" />
             </Button>
-            <p className="text-center text-xs text-muted-foreground mb-5">Free shipping · 30-day returns · Secure checkout</p>
+            <p className="text-center text-xs text-muted-foreground mb-5">Free shipping · 7-day returns · Secure checkout</p>
 
             <div className="text-center text-xs text-muted-foreground mb-3">or get a callback first</div>
 

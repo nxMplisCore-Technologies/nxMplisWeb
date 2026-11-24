@@ -129,6 +129,7 @@ function normalizeProduct(raw: RawProduct): ShopifyProduct {
 
 // ── Cart URL helper ────────────────────────────────────────────────────────
 
-export function cartUrl(variantNumericId: string, domain = DOMAIN): string {
+export function cartUrl(variantNumericId: string, domain = DOMAIN): string | null {
+  if (!domain || domain === 'undefined') return null;
   return `https://${domain}/cart/${variantNumericId}:1?storefront=true`;
 }
