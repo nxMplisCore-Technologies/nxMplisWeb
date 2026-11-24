@@ -34,6 +34,13 @@ const nextConfig: NextConfig = {
       // Retired pages (old product info) → current pages
       { source: '/early-access', destination: '/anvaya', permanent: true },
       { source: '/tour', destination: '/anvaya', permanent: true },
+      // Old blog URLs still listed in Google (Search Console, Nov 2026) → live pages
+      { source: '/blog/best-baby-monitor-india-2026', destination: '/blog/best-baby-monitor-india-2025', permanent: true },
+      { source: '/blog/ai-baby-monitor-india-2026', destination: '/ai-baby-monitor-india', permanent: true },
+      { source: '/blog/baby-breathing-monitor-without-wearable', destination: '/contactless-baby-monitor-india', permanent: true },
+      { source: '/blog/what-does-baby-cry-mean', destination: '/blog/types-of-baby-cries', permanent: true },
+      { source: '/blog/baby-cry-types', destination: '/blog/types-of-baby-cries', permanent: true },
+      { source: '/blog/sids-prevention-india', destination: '/blog/baby-sleep-guide-india', permanent: true },
       { source: '/blog/baby-spo2-monitoring-india', destination: '/blog/baby-breathing-patterns', permanent: true },
       { source: '/baby-spo2-monitor-india', destination: '/contactless-baby-monitor-india', permanent: true },
       { source: '/monitor', destination: '/anvaya', permanent: true },

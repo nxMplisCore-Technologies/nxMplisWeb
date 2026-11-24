@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Baby Monitoring India: Complete Guide 2025 | How to Monitor Your Baby | Anvaya Smart',
+  title: 'Baby Monitoring India: Complete Guide 2026 | Which Monitor to Choose',
   description: 'The complete guide to baby monitoring in India — what to monitor, how it works, and which baby monitor is best for Indian parents. Written by IIT engineers, reviewed against AAP guidelines. Updated 2025.',
   keywords: ['baby monitoring India', 'how to monitor baby', 'baby monitor guide India', 'what is baby monitoring', 'best way to monitor baby India', 'infant monitoring guide', 'contactless baby monitor India'],
   alternates: { canonical: 'https://nxmplis.com/baby-monitoring' },
@@ -197,7 +197,7 @@ export default function BabyMonitoringPage() {
           <div className="grid md:grid-cols-2 gap-3">
             {[
               { title: 'Baby Breathing Patterns: What\'s Normal and What\'s Not', href: '/blog/baby-breathing-patterns' },
-              { title: '5 Types of Baby Cries and What They Mean', href: '/blog/baby-cry-types' },
+              { title: '5 Types of Baby Cries and What They Mean', href: '/blog/types-of-baby-cries' },
               { title: 'Best Baby Monitor India 2025: Complete Comparison', href: '/blog/best-baby-monitor-india-2025' },
               { title: 'How Anvaya Smart Technology Works', href: '/technology' },
               { title: 'Compare Anvaya vs Motorola vs Owlet', href: '/compare' },

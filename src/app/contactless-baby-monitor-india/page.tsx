@@ -32,6 +32,10 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
+    q: 'Which baby monitor detects breathing without a wearable?',
+    a: 'A contactless monitor. Anvaya OMNI detects breathing and heart rate from beside the cot, with no sock, band or clip, and also has a 4MP night-vision camera and AI face-cover and tummy-sleep alerts. Anvaya CORE and PULSE are camera monitors and do not track breathing.',
+  },
+  {
     q: 'What is a contactless baby monitor?',
     a: 'A contactless baby monitor tracks things like breathing and heart rate from beside the cot, without anything attached to your baby. There is no sock, band, clip or patch to fit every night. Anvaya OMNI is a contactless monitor that also includes a 4MP camera and AI safety alerts.',
   },

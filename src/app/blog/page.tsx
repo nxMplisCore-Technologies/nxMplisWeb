@@ -107,12 +107,12 @@ export default function BlogPage() {
           <p className="text-muted-foreground text-sm mb-6">Find exactly what you need for your baby's stage and situation.</p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
             {[
-              { topic: 'What Does Baby Cry Mean?', href: '/blog/what-does-baby-cry-mean', desc: '7 cry types decoded with AI tool' },
+              { topic: 'What Does Baby Cry Mean?', href: '/blog/types-of-baby-cries', desc: '7 cry types decoded with AI tool' },
               { topic: 'Baby Breathing', href: '/blog/baby-breathing-patterns', desc: 'Normal rates, warning signs, monitoring' },
               { topic: 'Baby Sleep', href: '/blog/baby-sleep-guide-india', desc: 'Schedules, regressions, sleep tracking' },
-              { topic: 'Best Baby Monitor', href: '/blog/best-baby-monitor-india-2025', desc: 'How to choose, with prices, India 2026' },
+              { topic: 'Contactless Monitors', href: '/contactless-baby-monitor-india', desc: 'Breathing & heart rate without wearables' },
               { topic: 'Contactless Monitoring', href: '/contactless-baby-monitor-india', desc: 'No wearables — how it works' },
-              { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india-2026', desc: 'Compare all India options 2026' },
+              { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india-2025', desc: 'Compare all India options 2026' },
             ].map(t => (
               <Link key={t.topic} href={t.href} className="flex items-start gap-3 p-4 rounded-xl border border-[#e2dbd4] hover:border-primary/30 hover:bg-[#faf8f5] transition-all group">
                 <ArrowRight className="w-4 h-4 text-primary shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />

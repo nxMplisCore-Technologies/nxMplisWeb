@@ -7,7 +7,7 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
-  title: 'Baby Wellness App India | Anvaya Smart — AI Baby Health Tracking',
+  title: 'Anvaya Smart App | Live Video, AI Alerts & Sleep Reports',
   description: 'The Anvaya Smart app shows live video, AI safety alerts, cry alerts, and on OMNI breathing, heart rate and a nightly sleep report. Free with every Anvaya monitor. iOS & Android.',
   keywords: ['baby wellness app India', 'baby health tracking app India', 'baby monitor app India', 'baby sleep tracker app', 'AI baby app India', 'baby breathing app India'],
   alternates: { canonical: 'https://nxmplis.com/baby-wellness-app' },

@@ -22,7 +22,7 @@ export async function generateMetadata(
   const cfg = productConfig.find(p => p.id === productId);
   if (!cfg) return {};
 
-  const title = `${cfg.fullName} Baby Monitor — ${cfg.tagline} | Anvaya Smart`;
+  const title = `${cfg.fullName} Baby Monitor — ${cfg.tagline}`;
   const description = cfg.desc;
   const url = `https://nxmplis.com/anvaya/${productId}`;
   const image = `https://nxmplis.com${OG_IMAGES[productId] ?? cfg.localImages[0]}`;

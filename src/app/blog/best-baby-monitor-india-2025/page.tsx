@@ -6,14 +6,14 @@ import { ArrowRight, CheckCircle, AlertCircle, ShieldCheck, Wifi, Brain, Baby, T
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
-  title: 'Best Baby Monitor India 2026: Complete Buying Guide | Anvaya Smart',
+  title: 'Best Baby Monitor India 2026: Buying Guide with Prices',
   description: 'How to choose the best baby monitor in India in 2026: night vision, AI safety alerts, contactless breathing & heart rate, room temperature and local support. Honest buying guide with prices.',
   keywords: ['best baby monitor India 2026', 'baby monitor buying guide India', 'contactless baby monitor India', 'baby monitor features India', 'smart baby monitor India 2026'],
-  alternates: { canonical: 'https://nxmplis.com/blog/best-baby-monitor-india-2026' },
+  alternates: { canonical: 'https://nxmplis.com/blog/best-baby-monitor-india-2025' },
   openGraph: {
     title: 'Best Baby Monitor India 2026: Complete Buying Guide',
     description: 'What features really matter when choosing a baby monitor for your Indian home. An honest guide.',
-    url: 'https://nxmplis.com/blog/best-baby-monitor-india-2026',
+    url: 'https://nxmplis.com/blog/best-baby-monitor-india-2025',
     images: [{ url: '/anvaya-nursery.jpg', width: 1200, height: 630 }],
   },
 };
@@ -58,6 +58,8 @@ const criteria = [
 ];
 
 const faqs = [
+  { q: 'Do smart baby monitors track breathing without wearables?', a: 'Some do. Contactless monitors sense the small movements of breathing from beside the cot, so nothing is attached to your baby. In India, Anvaya OMNI tracks breathing and heart rate this way and shows them live in the app. Camera-only monitors, including Anvaya CORE and PULSE, do not measure breathing.' },
+  { q: 'What is the most affordable smart baby monitor with breathing or movement tracking in India?', a: 'For movement and cry alerts on a budget, Anvaya CORE costs ₹5,999. For AI face-cover and tummy-sleep alerts, Anvaya PULSE starts at ₹8,900. If you specifically want breathing and heart-rate tracking without a wearable, Anvaya OMNI starts at ₹12,999, less than imported sock monitors once duties are added.' },
   { q: 'Which is the best baby monitor in India in 2026?', a: 'It depends on what you want. For a clear camera with cry alerts, Anvaya CORE (₹5,999) is great value. For AI face-cover and tummy-sleep alerts, choose Anvaya PULSE (from ₹8,900). For contactless breathing and heart-rate tracking plus every PULSE feature, choose Anvaya OMNI (from ₹12,999).' },
   { q: 'Do I need a wearable baby monitor?', a: 'No. Wearables (socks, clips, bands) need fitting every night and can be uncomfortable in Indian heat. A contactless monitor like Anvaya OMNI tracks breathing and heart rate from beside the cot instead. Neither type is a medical device.' },
   { q: 'Is a basic video baby monitor enough?', a: 'For many parents, yes: a good night-vision camera with cry alerts covers most needs. If you want alerts without watching the screen, AI monitors like Anvaya PULSE add face-cover and tummy-sleep alerts.' },
@@ -68,9 +70,9 @@ const faqs = [
 export default function BestBabyMonitorPage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title="Best Baby Monitor India 2026: Complete Buying Guide" description="What features really matter when choosing a baby monitor for Indian homes in 2026" url="https://nxmplis.com/blog/best-baby-monitor-india-2026" image="https://nxmplis.com/anvaya-nursery.jpg" datePublished="2026-04-28" dateModified="2026-05-01" author="Anvaya Smart Team" />
+      <ArticleSchema title="Best Baby Monitor India 2026: Complete Buying Guide" description="What features really matter when choosing a baby monitor for Indian homes in 2026" url="https://nxmplis.com/blog/best-baby-monitor-india-2025" image="https://nxmplis.com/anvaya-nursery.jpg" datePublished="2026-04-28" dateModified="2026-05-01" author="Anvaya Smart Team" />
       <FAQSchema faqs={faqs} />
-      <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Blog', url: 'https://nxmplis.com/blog' }, { name: 'Best Baby Monitor India 2026', url: 'https://nxmplis.com/blog/best-baby-monitor-india-2026' }]} />
+      <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Blog', url: 'https://nxmplis.com/blog' }, { name: 'Best Baby Monitor India 2026', url: 'https://nxmplis.com/blog/best-baby-monitor-india-2025' }]} />
 
       <section className="bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] py-14">
         <div className="container mx-auto px-4 max-w-4xl">

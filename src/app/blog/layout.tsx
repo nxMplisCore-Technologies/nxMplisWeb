@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Baby Wellness Blog | Sleep, Cry Analysis & Parenting Tips | Anvaya Smart',
+  title: 'Baby Care Blog India | Sleep, Cries & Choosing a Baby Monitor',
   description: 'Expert guides on baby sleep patterns, cry analysis, breathing monitoring, and infant wellness. From the team at Anvaya Smart — India\'s leading AI baby monitor.',
   keywords: ['baby sleep tips India', 'newborn breathing guide', 'baby cry types meaning', 'infant wellness India', 'new parent tips India', 'baby monitor blog'],
   alternates: { canonical: 'https://nxmplis.com/blog' },
