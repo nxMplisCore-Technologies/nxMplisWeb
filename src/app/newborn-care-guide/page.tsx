@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Newborn care guide for Indian parents: feeding, sleep, room temperature, bathing and when to call the doctor, for Indian family setups.',
   keywords: ['newborn care India', 'newborn baby guide India', 'first month baby care India', 'newborn care tips India', 'how to take care of newborn India', 'baby care guide first week'],
   alternates: { canonical: 'https://nxmplis.com/newborn-care-guide' },
-  openGraph: { title: 'Newborn Care Guide India 2025 | Anvaya Smart', description: 'Complete guide to caring for your newborn in India — feeding, sleep, temperature, safety and monitoring.', url: 'https://nxmplis.com/newborn-care-guide', images: [{ url: '/anvaya-lifestyle.webp' }] },
+  openGraph: { title: 'Newborn Care Guide India 2026 | Anvaya Smart', description: 'Complete guide to caring for your newborn in India — feeding, sleep, temperature, safety and monitoring.', url: 'https://nxmplis.com/newborn-care-guide', images: [{ url: '/anvaya-lifestyle.webp' }] },
 };
 
 const faqs = [
@@ -24,7 +24,7 @@ const faqs = [
 export default function NewbornCareGuidePage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ArticleSchema title="Newborn Care Guide India 2025" description="Complete guide to newborn care for Indian parents" url="https://nxmplis.com/newborn-care-guide" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2025-04-28" author="Anvaya Smart Team" />
+      <ArticleSchema title="Newborn Care Guide India 2026" description="Complete guide to newborn care for Indian parents" url="https://nxmplis.com/newborn-care-guide" image="https://nxmplis.com/anvaya-lifestyle.webp" datePublished="2025-04-28" dateModified="2026-11-24" author="Anvaya Smart Team" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Newborn Care Guide', url: 'https://nxmplis.com/newborn-care-guide' }]} />
 
@@ -33,8 +33,8 @@ export default function NewbornCareGuidePage() {
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-5">
             <Link href="/">Home</Link> <span className="mx-2">›</span><span>Newborn Care Guide India</span>
           </nav>
-          <div className="flex items-center gap-3 mb-5 flex-wrap"><PediatricianBadge /><LastUpdated date="2025-04-28" /></div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Newborn Care Guide India 2025</h1>
+          <div className="flex items-center gap-3 mb-5 flex-wrap"><PediatricianBadge /><LastUpdated date="2026-11-24" /></div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Newborn Care Guide India 2026</h1>
           <p className="text-xl text-muted-foreground mb-6">Everything Indian parents need to know about caring for their newborn — feeding, sleep, temperature, breathing, and safety. India-specific advice throughout.</p>
           <AuthorBio compact />
         </div>
@@ -47,11 +47,23 @@ export default function NewbornCareGuidePage() {
           <Image src="/anvaya-lifestyle.webp" alt="Newborn baby in Indian nursery — Anvaya Smart contactless monitoring" fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
         </div>
 
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4">The First 24 Hours at Home: What to Expect</h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">The first day home with your newborn is a mix of joy and uncertainty. Most newborns sleep 16–18 hours a day in short stretches, feed every 2–3 hours, and breathe in an irregular rhythm that can alarm new parents. All of this is normal.</p>
+          <ul className="space-y-2 bg-white rounded-xl border border-[#e2dbd4] p-5">
+            {['Expect short sleep stretches of 2–4 hours, day and night', 'Feed on demand, at least 8 times in 24 hours', 'Keep the room comfortable, not hot: one more layer than you are wearing is enough', 'Note wet and dirty nappies, your paediatrician will ask about them at the first visit', 'Ask family to wash hands before holding the baby'].map(p => (
+              <li key={p} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />{p}
+              </li>
+            ))}
+          </ul>
+        </section>
+
         {[
-          { title: 'Feeding Your Newborn', content: 'Feed on demand — 8–12 times per 24 hours. Look for hunger cues before crying: rooting, sucking on hands, increased alertness. Crying is a late hunger cue. Anvaya Smart\'s cry analysis identifies the hungry cry pattern and alerts you before your baby becomes distressed.', points: ['Breastfed: feed every 1.5–3 hours', 'Formula-fed: 60–90ml every 3–4 hours for newborns', 'Look for 6+ wet nappies per day as a feeding adequacy sign', 'Weight gain of 150–200g/week after initial drop is normal'] },
+          { title: 'Feeding Your Newborn', content: 'Feed on demand — 8–12 times per 24 hours. Look for hunger cues before crying: rooting, sucking on hands, increased alertness. Crying is a late hunger cue.', points: ['Breastfed: feed every 1.5–3 hours', 'Formula-fed: 60–90ml every 3–4 hours for newborns', 'Look for 6+ wet nappies per day as a feeding adequacy sign', 'Weight gain of 150–200g/week after initial drop is normal'] },
           { title: 'Safe Sleep for Indian Newborns', content: 'India has specific challenges: warm climate, multi-generational households, and cultural traditions around swaddling and co-sleeping. Here\'s what current paediatric guidelines recommend:', points: ['Back to sleep — every time, every sleep', 'Firm, flat surface — no soft mattresses, pillows or positioners', 'Room temperature 20–22°C — avoid over-bundling', 'No co-sleeping on adult bed with pillows, duvets or heavy blankets', 'Pacifier after breastfeeding is established (reduces SIDS risk)'] },
-          { title: 'Newborn Temperature & Warmth', content: 'Indian cultural practice often leads to over-bundling newborns. Overheating is a genuine risk factor for SIDS. The rule of thumb: your baby needs one more layer than you are comfortable in — not three more.', points: ['Normal body temperature: 36.5°C–37.5°C', 'Fever in newborn: above 38°C — call paediatrician immediately', 'Hypothermia: below 36°C — also dangerous', 'Anvaya Smart monitors room and body temperature continuously'] },
-          { title: 'Understanding Newborn Breathing', content: 'Newborn breathing is naturally irregular and often alarms first-time parents. Here is what is normal and what requires attention:', points: ['Normal: 40–60 breaths/min, may be irregular', 'Normal: brief pauses of 5–10 seconds (periodic breathing)', 'Normal: grunting, snuffling from narrow nasal passages', 'Call paediatrician: rate above 60 consistently, ribs visible, blue lips', 'Anvaya Smart monitors breathing rate and pattern 24/7 contactlessly'] },
+          { title: 'Newborn Temperature & Warmth', content: 'Indian cultural practice often leads to over-bundling newborns. Overheating is a genuine risk factor for SIDS. The rule of thumb: your baby needs one more layer than you are comfortable in — not three more.', points: ['Normal body temperature: 36.5°C–37.5°C', 'Fever in newborn: above 38°C — call paediatrician immediately', 'Hypothermia: below 36°C — also dangerous', 'All Anvaya monitors show room temperature and humidity in the app'] },
+          { title: 'Understanding Newborn Breathing', content: 'Newborn breathing is naturally irregular and often alarms first-time parents. Here is what is normal and what requires attention:', points: ['Normal: 40–60 breaths/min, may be irregular', 'Normal: brief pauses of 5–10 seconds (periodic breathing)', 'Normal: grunting, snuffling from narrow nasal passages', 'Call paediatrician: rate above 60 consistently, ribs visible, blue lips', 'Anvaya OMNI shows breathing and heart rate in the app, with nothing on your baby'] },
         ].map((section, i) => (
           <section key={i} className="mb-12">
             <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
@@ -81,7 +93,7 @@ export default function NewbornCareGuidePage() {
 
         <div className="bg-gradient-to-br from-[#e8f2ee] to-[#f5ede0] rounded-2xl p-7 border border-primary/20 text-center">
           <h2 className="text-2xl font-bold mb-2">Monitor your newborn with confidence</h2>
-          <p className="text-muted-foreground mb-5 max-w-xl mx-auto">Anvaya Smart tracks breathing, temperature, cries and sleep contactlessly — giving you the data to respond confidently, not anxiously.</p>
+          <p className="text-muted-foreground mb-5 max-w-xl mx-auto">Night-vision camera and cry alerts on every model, AI face-cover alerts on PULSE, and contactless breathing & heart rate on OMNI.</p>
           <Button asChild className="text-white font-bold gap-2 w-full sm:w-auto" style={{background:'linear-gradient(135deg,#e8957a,#d4784a)', boxShadow:'0 4px 20px rgba(232,149,122,0.4)'}}>
             <Link href="/anvaya">Explore Anvaya Smart <ArrowRight className="w-4 h-4" /></Link>
           </Button>

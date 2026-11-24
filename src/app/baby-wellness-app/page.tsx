@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ProductSchema, FAQSchema, BreadcrumbSchema, HowToSchema } from '@/components/seo/JsonLd';
+import { SoftwareApplicationSchema, FAQSchema, BreadcrumbSchema, HowToSchema } from '@/components/seo/JsonLd';
 import { AuthorBio, AISnippet, TrustBar, PediatricianBadge } from '@/components/trust/EEATSignals';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +31,7 @@ const faqs = [
 export default function BabyWellnessAppPage() {
   return (
     <div className="bg-[#faf8f5] min-h-screen">
-      <ProductSchema name="Anvaya Smart Baby Wellness App" description="AI baby wellness tracking app for iOS and Android. Live video, AI safety alerts, cry alerts, breathing and heart rate (OMNI) and sleep reports." price="₹0" sku="ANVAYA-APP-FREE" />
+      <SoftwareApplicationSchema name="Anvaya Smart App" description="Companion app for Anvaya Smart baby monitors on Android and iOS: live video, AI safety alerts, cry alerts, and breathing, heart rate and sleep reports on OMNI. Free with every monitor." url="https://nxmplis.com/baby-wellness-app" />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Baby Wellness App', url: 'https://nxmplis.com/baby-wellness-app' }]} />
 
@@ -42,7 +42,7 @@ export default function BabyWellnessAppPage() {
           </nav>
           <div className="flex items-center gap-3 mb-5"><PediatricianBadge /></div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            India's most complete<br /><span style={{color:'#4a7c6f'}}>baby wellness app.</span>
+            The Anvaya Smart app:<br /><span style={{color:'#4a7c6f'}}>your baby, on your phone.</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-6">Live video. AI safety alerts. Cries. Breathing &amp; heart rate (OMNI). Room temperature. All in one app — free with every Anvaya monitor.</p>
           <div className="flex gap-3 flex-wrap">

@@ -1,7 +1,7 @@
 import { getProductsByHandles } from '@/lib/shopify';
 import type { ShopifyProduct } from '@/lib/shopify';
 import { AnvayaProductPage } from './AnvayaProductPage';
-import { FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
+import { FAQSchema, BreadcrumbSchema, ProductSchema } from '@/components/seo/JsonLd';
 
 // Static product config — marketing copy, colors, features (lives on website)
 // Prices + variants + availability come live from Shopify; fallbackVariants used when Shopify is unreachable
@@ -106,10 +106,15 @@ export default async function AnvayaPage() {
 
   return (
     <>
+      {products.map(p => (
+        <ProductSchema key={p.id} name={p.fullName} description={p.desc} sku={`ANVAYA-${p.name}`}
+          price={`₹${Math.round(Number((p.shopify?.variants[0] ?? p.fallbackVariants[0]).price))}`}
+          image={`https://nxmplis.com${p.localImages[0]}`} url={`https://nxmplis.com/anvaya/${p.id}`} />
+      ))}
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://nxmplis.com' },
-        { name: 'Baby Wellness Pods', url: 'https://nxmplis.com/anvaya' },
+        { name: 'Baby Monitors', url: 'https://nxmplis.com/anvaya' },
       ]} />
       <AnvayaProductPage products={products} faqs={faqs} />
     </>

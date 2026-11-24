@@ -40,6 +40,7 @@ const nextConfig: NextConfig = {
       { source: '/blog/baby-breathing-monitor-without-wearable', destination: '/contactless-baby-monitor-india', permanent: true },
       { source: '/blog/what-does-baby-cry-mean', destination: '/blog/types-of-baby-cries', permanent: true },
       { source: '/blog/baby-cry-types', destination: '/blog/types-of-baby-cries', permanent: true },
+      { source: '/blog/newborn-care-india', destination: '/newborn-care-guide', permanent: true },
       { source: '/blog/sids-prevention-india', destination: '/blog/baby-sleep-guide-india', permanent: true },
       { source: '/blog/baby-spo2-monitoring-india', destination: '/blog/baby-breathing-patterns', permanent: true },
       { source: '/baby-spo2-monitor-india', destination: '/contactless-baby-monitor-india', permanent: true },

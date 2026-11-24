@@ -120,6 +120,19 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 prose-ul:my-4 prose-ol:my-4"
               dangerouslySetInnerHTML={{ __html: contentWithIds }}
             />
+            {(article as any).faqs && (
+              <section className="mt-10" aria-labelledby="post-faq">
+                <h2 id="post-faq" className="text-2xl font-bold mb-5">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {((article as any).faqs as { q: string; a: string }[]).map(f => (
+                    <div key={f.q} className="bg-white rounded-xl border border-[#e2dbd4] p-5">
+                      <h3 className="font-bold mb-2">{f.q}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{f.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* CTA */}
             <div className="mt-12 bg-gradient-to-br from-[#e8f2ee] to-[#f5ede0] rounded-2xl p-7 border border-primary/20">

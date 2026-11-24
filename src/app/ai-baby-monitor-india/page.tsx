@@ -139,7 +139,7 @@ export default function AIBabyMonitorIndiaPage() {
             What the AI in Anvaya Actually Does
           </h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
-            Most baby cameras only stream video and beep at loud sounds. Anvaya&apos;s AI looks at what the camera sees and tells you about the moments worth checking.
+            Most baby cameras only stream video and beep at loud sounds. Anvaya&apos;s AI looks at what the camera sees and tells you about the moments worth checking. Looking for breathing and heart-rate tracking without a wearable instead? See how a <Link href="/contactless-baby-monitor-india" className="text-primary underline">contactless baby monitor</Link> works.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">

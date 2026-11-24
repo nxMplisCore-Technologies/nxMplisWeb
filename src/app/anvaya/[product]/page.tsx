@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { productConfig, faqs } from '../page';
 import { getProductsByHandles } from '@/lib/shopify';
-import { FAQSchema, BreadcrumbSchema } from '@/components/seo/JsonLd';
+import { FAQSchema, BreadcrumbSchema, ProductSchema } from '@/components/seo/JsonLd';
 import { ProductDetailClient } from './ProductDetailClient';
 
 const OG_IMAGES: Record<string, string> = {
@@ -61,6 +61,9 @@ export default async function AnvayaProductPage(
 
   return (
     <>
+      <ProductSchema name={cfg.fullName} description={cfg.desc} sku={`ANVAYA-${cfg.name}`}
+        price={`₹${Math.round(Number((shopifyProduct?.variants[0] ?? cfg.fallbackVariants[0]).price))}`}
+        image={`https://nxmplis.com${cfg.localImages[0]}`} url={`https://nxmplis.com/anvaya/${productId}`} />
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://nxmplis.com' },

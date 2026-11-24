@@ -515,18 +515,21 @@ export default function Home() {
               {/* Single badge — no clutter */}
               <div className="inline-flex items-center gap-2 bg-white border border-primary/15 rounded-full px-4 py-1.5 text-xs text-primary font-bold shadow-sm self-start mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                🇮🇳 India&apos;s first AI baby wellness pod
+                🇮🇳 Designed in India for Indian parents
               </div>
 
-              {/* Headline — emotional, calm, one thought */}
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-4" style={{ color: '#0f1f1b' }}>
-                Your baby is<br />
-                safe tonight.{' '}
+              {/* Headline — keyword H1 + calm emotional line */}
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-3" style={{ color: '#0f1f1b' }}>
+                AI baby monitor<br />
+                for Indian parents.{' '}
                 <span style={{ color: '#4a7c6f' }}>🌙</span>
               </h1>
+              <p className="text-lg sm:text-xl font-semibold mb-4" style={{ color: '#4a7c6f' }}>
+                Rest easy tonight. Anvaya keeps watch.
+              </p>
 
               <p className="text-base sm:text-lg leading-relaxed mb-6 max-w-md" style={{ color: '#5a6e67' }}>
-                Anvaya watches every breath, every sound, every temperature change — contactlessly, while you rest. Nothing on baby&apos;s skin. Ever.
+                Night-vision camera and cry alerts on every model. AI face-cover and tummy-sleep alerts on PULSE. Contactless breathing and heart rate on OMNI. Nothing on baby&apos;s skin.
               </p>
 
               {/* Mobile-only: cute sleeping baby card */}
@@ -1163,7 +1166,7 @@ export default function Home() {
               { name: 'OMNI', tagline: 'Breathes. Heart beats. You sleep.', bg: '', border: '#2d4a3e', color: '#A87FFF', features: ['Contactless Breathing', 'Heart Rate Monitor', 'Nightly Sleep Report', 'One-tap Calling'], dark: true, price: '₹12,999' },
             ].map((p, i) => (
               <motion.div key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 0.68, 0, 1.2] }}>
-              <Link href={`/anvaya?p=${p.name.toLowerCase()}`}
+              <Link href={`/anvaya/${p.name.toLowerCase()}`}
                 className={`card-hover group block rounded-2xl border p-4 sm:p-6 relative overflow-hidden h-full ${p.dark ? 'bg-[#172720]' : `bg-gradient-to-br ${p.bg}`}`}
                 style={{ borderColor: p.border }}>
                 {p.popular && (

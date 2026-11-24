@@ -23,7 +23,6 @@ export function WebsiteSchema() {
     name: 'Anvaya Smart by Nxmpliscore', url: 'https://nxmplis.com',
     description: "India's most advanced contactless AI baby wellness pod",
     inLanguage: 'en-IN',
-    potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: 'https://nxmplis.com/blog?q={search_term_string}' }, 'query-input': 'required name=search_term_string' },
     publisher: { '@id': 'https://nxmplis.com/#organization' },
   })}} />;
 }
@@ -145,5 +144,16 @@ export function SpeakableSchema({ cssSelectors }: { cssSelectors: string[] }) {
     '@context': 'https://schema.org', '@type': 'WebPage',
     speakable: { '@type': 'SpeakableSpecification', cssSelector: cssSelectors },
     url: 'https://nxmplis.com',
+  })}} />;
+}
+
+export function SoftwareApplicationSchema({ name, description, url }: { name: string; description: string; url: string }) {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+    name, description, url,
+    applicationCategory: 'LifestyleApplication',
+    operatingSystem: 'Android, iOS',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+    publisher: { '@id': 'https://nxmplis.com/#organization' },
   })}} />;
 }

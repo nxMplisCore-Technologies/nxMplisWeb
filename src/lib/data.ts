@@ -14,7 +14,7 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-28',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-11-24',
     category: 'Baby Health',
     readTime: '8 min read',
     imageUrl: '/anvaya-sense.jpg',
@@ -57,26 +57,32 @@ export const ARTICLES = [
       <h3>My baby makes snoring sounds — should I worry?</h3>
       <p>Mild snuffling or snoring is usually caused by narrow nasal passages (common in newborns) or minor congestion. If breathing is otherwise normal and your baby is feeding well, this is usually not a concern. Ask your doctor if you are unsure.</p>
       <h3>Should I buy a baby breathing monitor in India?</h3>
-      <p>For the first 6 months especially, a contactless baby breathing monitor like Anvaya Smart provides significant peace of mind — particularly for parents of premature babies or those with a family history of SIDS.</p>
+      <p>For the first 6 months especially, a contactless monitor like Anvaya OMNI, which shows breathing and heart rate in the app, can give parents peace of mind. It is a wellness monitor, not a medical device: if your baby was premature or has a health condition, ask your paediatrician what monitoring they recommend.</p>
     `,
   },
   {
     slug: 'types-of-baby-cries',
-    title: '5 Types of Baby Cries and What They Mean (With How to Respond)',
+    title: 'Baby Cry Meaning: 5 Types of Cries and What to Do',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-25',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-11-24',
     category: 'Baby Wellness',
     readTime: '7 min read',
     imageUrl: '/anvaya-core.jpg',
     dataAiHint: 'baby crying parent comforting',
     excerpt: 'Every baby cry has a meaning. This guide explains the 5 distinct cry types — hungry, tired, uncomfortable, pain, and boredom — and exactly how to respond to each.',
     keywords: ['types of baby cries', 'baby cry meaning India', 'hungry cry vs tired cry', 'baby cry analysis'],
+    faqs: [
+      { q: 'Why is my baby crying for no reason?', a: 'There is usually a reason, even if it is hard to spot: hunger, tiredness, a wet nappy, wind, being too hot or cold, or simply wanting to be held. Work through these one at a time. Some babies also have a fussy period in the evening. If crying is constant, high-pitched or comes with fever, poor feeding or unusual sleepiness, call your doctor.' },
+      { q: 'How can I tell a hungry cry from a tired cry?', a: 'A hungry cry often builds steadily and comes with rooting or sucking on hands. A tired cry tends to be whiny and comes with eye rubbing, yawning or looking away. Watching for early cues, before crying starts, makes both easier to settle.' },
+      { q: 'Is it okay to let my newborn cry?', a: 'Newborns cry to communicate needs, so respond to them. You cannot spoil a newborn by picking them up. If you feel overwhelmed, it is okay to put your baby down safely on their back in the cot and take a few minutes to calm down.' },
+      { q: 'When should I worry about my baby\'s crying?', a: 'Call your doctor if your baby\'s cry sounds very different (very high-pitched or weak), if crying will not stop for hours, or if it comes with fever, vomiting, breathing difficulty, poor feeding or unusual floppiness.' },
+    ],
     content: `
       <h2>Why Understanding Baby Cries Matters</h2>
       <p>Crying is your baby's only language in the first months. Research shows that parents who learn to identify cry types respond more confidently, have lower anxiety levels, and report better bonding with their baby.</p>
-      <p>Anvaya Smart's AI cry analysis identifies cry type in real time — so you respond with confidence, not guesswork, even at 3am.</p>
+      <p>Want a second opinion at 3am? Try our free <a href="/cry-analyzer">AI Cry Analyzer</a>: record a few seconds of crying and it suggests the most likely reason.</p>
 
       <h2>The 5 Main Types of Baby Cries</h2>
 
@@ -93,7 +99,7 @@ export const ARTICLES = [
       <h3>3. The Discomfort Cry 😣</h3>
       <p><strong>Sound:</strong> High-pitched, continuous, urgent. The baby may arch their back.</p>
       <p><strong>Pattern:</strong> Less rhythmic than a hungry cry. Doesn't pause as regularly.</p>
-      <p><strong>How to respond:</strong> Check systematically — wet nappy, gas (try bicycle legs), clothing too tight, room temperature too hot or cold. Anvaya Smart's temperature monitoring helps rule out environmental discomfort.</p>
+      <p><strong>How to respond:</strong> Check systematically — wet nappy, gas (try bicycle legs), clothing too tight, room temperature too hot or cold. Anvaya monitors show room temperature in the app, which helps rule out a room that is too hot or cold.</p>
 
       <h3>4. The Pain Cry 🚨</h3>
       <p><strong>Sound:</strong> Sudden, high-pitched, sharp. A brief silence as the baby takes a breath, then screaming resumes. Very distinct from other cries.</p>
@@ -105,18 +111,18 @@ export const ARTICLES = [
       <p><strong>Pattern:</strong> Comes and goes. Baby stops and looks around when stimulated.</p>
       <p><strong>How to respond:</strong> Interaction, eye contact, gentle play, or a change of scenery. This cry is actually a positive developmental sign — your baby is communicating and expecting a response.</p>
 
-      <h2>How AI Cry Analysis Works in Anvaya Smart</h2>
-      <p>Anvaya Smart records and analyses your baby's cry using machine learning models trained on thousands of infant cry recordings. It identifies the acoustic signature of each cry type and delivers an alert to your phone: "Hungry cry — last fed 3 hours ago" or "Tired cry — awake for 90 minutes."</p>
-      <p>After 3 days of learning, Anvaya personalises its cry analysis to your baby's unique patterns — because no two babies cry exactly the same way.</p>
+      <h2>Try the Free AI Cry Analyzer</h2>
+      <p>Our free <a href="/cry-analyzer">AI Cry Analyzer</a> listens to a short recording and suggests whether the cry sounds most like hunger, tiredness, discomfort, belly pain or needing to burp. Use it as a hint, not a diagnosis.</p>
+      <p>It is a free web tool and works on any phone. Every Anvaya monitor also sends a cry alert to your phone when your baby cries, so you can check the camera straight away.</p>
     `,
   },
   {
     slug: 'best-baby-monitor-india-2025',
-    title: 'Best Baby Monitor India 2026: How to Choose (CORE vs PULSE vs OMNI)',
+    title: 'Best Baby Monitor India 2026: CORE vs PULSE vs OMNI',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-20',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-11-24',
     category: 'Buying Guide',
     readTime: '12 min read',
     imageUrl: '/anvaya-nursery.jpg',
@@ -144,17 +150,23 @@ export const ARTICLES = [
   },
   {
     slug: 'baby-sleep-guide-india',
-    title: 'Baby Sleep Guide India: Month-by-Month Schedule for 0–12 Months',
+    title: 'Baby Sleep Schedule by Month (0–12 Months) India',
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-15',
-    updatedDate: '2025-04-28',
+    updatedDate: '2026-11-24',
     category: 'Baby Sleep',
     readTime: '10 min read',
     imageUrl: '/anvaya-omni.jpg',
     dataAiHint: 'baby sleep schedule chart',
     excerpt: 'Month-by-month baby sleep guide for Indian parents: total sleep hours, nap schedules, sleep regressions and healthy sleep habits from birth.',
     keywords: ['baby sleep schedule India', 'newborn sleep hours India', 'baby sleep tracker India', 'infant sleep guide'],
+    faqs: [
+      { q: 'How many hours should a newborn sleep?', a: 'Newborns usually sleep 14–17 hours in 24 hours, in short stretches of 2–4 hours, day and night (National Sleep Foundation). It is normal for them to wake often to feed.' },
+      { q: 'When do babies start sleeping through the night?', a: 'It varies a lot. Many babies sleep for longer stretches of 5–6 hours by around 3–6 months, but night waking is still common in the first year, especially during growth spurts and sleep regressions.' },
+      { q: 'What is the safest way for my baby to sleep?', a: 'The AAP advises placing your baby on their back for every sleep, on a firm flat mattress, with no pillows, bumpers, toys or loose blankets, in the same room as you for at least the first 6 months.' },
+      { q: 'What is the 4-month sleep regression?', a: 'Around 4 months, many babies start waking more often because their sleep pattern is maturing to become more like an adult\'s. It is a normal developmental phase and usually settles within a few weeks with a consistent bedtime routine.' },
+    ],
     content: `
       <h2>How Much Should a Baby Sleep? (India Guide)</h2>
       <p>Baby sleep needs change dramatically in the first year. Here is what to expect month by month:</p>
@@ -172,7 +184,7 @@ export const ARTICLES = [
 
       <h2>Understanding Baby Sleep Cycles</h2>
       <p>Unlike adults who have 90-minute sleep cycles, babies cycle through sleep stages every 45–50 minutes. This is why babies often wake between sleep cycles — and why a sleep monitor that tracks these transitions is so valuable.</p>
-      <p>Anvaya Smart's sleep analysis identifies which sleep stage your baby is in and tracks how many complete cycles they achieve each night — giving you actionable data, not just total hours.</p>
+      <p>Anvaya OMNI gives a sleep report every morning, so you can see how the night went without guessing.</p>
 
       <h2>Sleep Regression: What Indian Parents Need to Know</h2>
       <p>Sleep regressions happen at predictable times: 4 months, 8–10 months, and 12 months. During a regression, a previously good sleeper suddenly wakes frequently again. This is developmental — not a problem to fix, but a phase to support.</p>
@@ -192,55 +204,11 @@ export const ARTICLES = [
         <li><strong>Drowsy but awake:</strong> Put baby down when sleepy, not fully asleep</li>
         <li><strong>Dark room:</strong> Even during daytime naps — darkness signals sleep hormone release</li>
         <li><strong>White noise:</strong> Mimics the womb environment, very effective for newborns</li>
-        <li><strong>Temperature:</strong> 20–22°C is optimal — Anvaya monitors this automatically</li>
+        <li><strong>Temperature:</strong> 20–22°C is optimal — all Anvaya monitors show room temperature in the app</li>
       </ul>
     `,
   },
-  {
-    slug: 'newborn-care-india',
-    title: 'Newborn Care India: Complete First-Week Guide for New Parents',
-    author: 'Deepak Singh',
-    authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
-    date: '2025-04-05',
-    updatedDate: '2025-04-28',
-    category: 'Newborn Care',
-    readTime: '11 min read',
-    imageUrl: '/anvaya-nursery.jpg',
-    dataAiHint: 'newborn baby care India',
-    excerpt: 'The first week with a newborn is overwhelming. This India guide covers feeding, sleep, room temperature, bathing and when to call the doctor.',
-    keywords: ['newborn care India', 'newborn baby guide India', 'first week with newborn India', 'baby care tips India'],
-    content: `
-      <h2>The First 24 Hours: What to Expect</h2>
-      <p>The first day home with your newborn is a mix of joy and uncertainty. Most newborns sleep 16–18 hours in short intervals, feed every 2–3 hours, and have very irregular breathing that can alarm new parents. All of this is normal.</p>
 
-      <h2>Feeding Your Newborn</h2>
-      <p>Newborns need to feed 8–12 times per 24 hours. Whether breastfeeding or formula-feeding, watch for these hunger cues before crying starts:</p>
-      <ul>
-        <li>Rooting (turning head and opening mouth)</li>
-        <li>Sucking on hands or fingers</li>
-        <li>Increased alertness and eye movement</li>
-        <li>Soft sounds or light fussiness</li>
-      </ul>
-      <p><strong>Crying is a late hunger cue.</strong> Anvaya Smart's cry analysis identifies the hungry cry pattern and sends an alert, so you respond before your baby becomes distressed.</p>
-
-      <h2>Newborn Temperature: What's Safe</h2>
-      <p>A healthy newborn's body temperature should be between 36.5°C and 37.5°C. Indian parents often over-bundle newborns due to cultural practice, but overheating is a genuine risk factor. The ideal room temperature for a newborn is 20–22°C.</p>
-      <p>Anvaya Smart monitors both room and body temperature continuously, alerting you if either moves outside the safe range.</p>
-
-      <h2>Understanding Newborn Breathing</h2>
-      <p>Newborn breathing is naturally irregular. Expect fast rates (40–60 breaths/min), occasional grunting, snuffling, and brief pauses. This is normal. See our full guide on <a href="/blog/baby-breathing-patterns">Baby Breathing Patterns</a> for what requires attention.</p>
-
-      <h2>Setting Up Safe Sleep</h2>
-      <p>The AAP and Indian paediatricians recommend:</p>
-      <ul>
-        <li>Back to sleep — always place baby on their back</li>
-        <li>Firm, flat mattress — no soft bedding, pillows, or positioners</li>
-        <li>No co-sleeping on adult bed with pillows/blankets</li>
-        <li>Room temperature 20–22°C</li>
-        <li>No smoking in the home</li>
-      </ul>
-    `,
-  },
 ];
 
 // ── BLOG CATEGORIES ──────────────────────────────────────────────────────────

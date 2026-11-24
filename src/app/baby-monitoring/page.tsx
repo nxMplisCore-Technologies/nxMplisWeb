@@ -48,7 +48,6 @@ export default function BabyMonitoringPage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-[#f2ece0] via-[#faf8f5] to-[#e4eeea] py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <BreadcrumbSchema items={[{ name: 'Home', url: 'https://nxmplis.com' }, { name: 'Baby Monitoring India Guide', url: 'https://nxmplis.com/baby-monitoring' }]} />
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-6">
             <Link href="/" className="hover:text-primary">Home</Link>
             <span className="mx-2">›</span>
@@ -62,7 +61,7 @@ export default function BabyMonitoringPage() {
 
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" id="main-heading">
             Baby Monitoring India:<br />
-            <span style={{color:'#4a7c6f'}}>The Complete Guide (2025)</span>
+            <span style={{color:'#4a7c6f'}}>The Complete Guide (2026)</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
             Everything Indian parents need to know about monitoring their baby — what to track, how it works, what's normal, and which baby monitor is best for Indian conditions.

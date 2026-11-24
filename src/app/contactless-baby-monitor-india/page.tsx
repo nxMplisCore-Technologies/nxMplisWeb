@@ -8,7 +8,7 @@ const UPDATED = '2026-11-24';
 
 export const metadata: Metadata = {
   title: 'Contactless Baby Monitor India — No Wearables',
-  description: 'Anvaya OMNI tracks breathing and heart rate contactlessly: no socks or bands. 4MP camera, AI safety alerts, sleep report. From ₹12,999, COD.',
+  description: 'How contactless baby monitors track breathing and heart rate with no sock or band, contactless vs wearable vs video, and Anvaya OMNI. From ₹12,999.',
   keywords: [
     'contactless baby monitor India', 'contactless baby monitor', 'baby breathing monitor India',
     'baby breathing monitor without wearable', 'non contact baby monitor', 'baby heart rate monitor',
@@ -68,10 +68,6 @@ const benefits = [
   { icon: Moon, title: 'Sleep report every morning', desc: 'A simple report of how the night went, so you can spot patterns over the weeks.', color: '#e8957a' },
 ];
 
-const models = [
-  { name: 'PULSE', slug: 'pulse', price: 'from ₹8,900', features: ['4MP night-vision camera', 'AI face-cover & tummy-sleep alerts', 'Danger zones', 'No breathing / heart-rate tracking'] },
-  { name: 'OMNI', slug: 'omni', price: 'from ₹12,999', features: ['Everything in PULSE', 'Contactless breathing tracking', 'Contactless heart-rate tracking', 'Nightly sleep report + one-tap calling'], badge: 'Contactless' },
-];
 
 export default function ContactlessBabyMonitorIndiaPage() {
   return (
@@ -112,7 +108,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
           </h1>
 
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl leading-relaxed ai-snippet">
-            Anvaya OMNI tracks your baby&apos;s breathing and heart rate from beside the cot, with no sock, band or patch. It also has a 4MP night-vision camera, AI face-cover and tummy-sleep alerts, and a sleep report every morning. From ₹12,999, with free shipping and Cash on Delivery across India.
+            Anvaya OMNI tracks your baby&apos;s breathing and heart rate from beside the cot, with no sock, band or patch. It shows the readings live in the app and gives you a sleep report every morning. From ₹12,999, with free shipping and Cash on Delivery across India.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -164,7 +160,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
       {/* Contactless vs wearable */}
       <section className="py-14 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: '#1a2e28' }}>Contactless vs Wearable Baby Monitor</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: '#1a2e28' }}>Contactless vs Wearable vs Video Baby Monitor</h2>
           <div className="overflow-x-auto rounded-2xl border border-[#e8e0d8]">
             <table className="w-full text-sm">
               <thead className="bg-[#f0f5f3]">
@@ -172,20 +168,24 @@ export default function ContactlessBabyMonitorIndiaPage() {
                   <th className="text-left p-3 font-semibold" style={{ color: '#1a2e28' }}></th>
                   <th className="text-left p-3 font-semibold" style={{ color: '#1a2e28' }}>Contactless (Anvaya OMNI)</th>
                   <th className="text-left p-3 font-semibold" style={{ color: '#1a2e28' }}>Wearable (sock / band)</th>
+                  <th className="text-left p-3 font-semibold" style={{ color: '#1a2e28' }}>Video-only camera</th>
                 </tr>
               </thead>
               <tbody className="text-muted-foreground">
                 {[
-                  ['On the baby', 'Nothing', 'Sensor on foot, chest or arm'],
-                  ['Nightly setup', 'None, it stays in place', 'Fit and position every night'],
-                  ['Charging', 'Plugged in beside the cot', 'Wearable battery to charge'],
-                  ['Camera', '4MP night-vision camera included', 'Often sold separately'],
-                  ['Medical device?', 'No, wellness monitor', 'Consumer versions: no'],
+                  ['On the baby', 'Nothing', 'Sensor on foot, chest or arm', 'Nothing'],
+                  ['Breathing & heart rate', 'Yes, from beside the cot', 'Yes, through the skin', 'No'],
+                  ['Nightly setup', 'None, it stays in place', 'Fit and position every night', 'None'],
+                  ['Charging', 'Plugged in beside the cot', 'Wearable battery to charge', 'Plugged in'],
+                  ['Comfort in Indian heat', 'Nothing on the skin', 'Can feel warm or irritate skin', 'Nothing on the skin'],
+                  ['See your baby', '4MP night-vision camera included', 'Often needs a separate camera', 'Yes'],
+                  ['Medical device?', 'No, wellness monitor', 'Consumer versions: no', 'No'],
                 ].map(row => (
                   <tr key={row[0]} className="border-t border-[#e8e0d8]">
                     <td className="p-3 font-medium" style={{ color: '#1a2e28' }}>{row[0]}</td>
                     <td className="p-3">{row[1]}</td>
                     <td className="p-3">{row[2]}</td>
+                    <td className="p-3">{row[3]}</td>
                   </tr>
                 ))}
               </tbody>
@@ -194,46 +194,40 @@ export default function ContactlessBabyMonitorIndiaPage() {
         </div>
       </section>
 
-      {/* Models */}
+      {/* How contactless sensing works */}
       <section className="py-14">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#1a2e28' }}>OMNI or PULSE?</h2>
-          <p className="text-muted-foreground mb-8 text-sm">Both have the 4MP camera and AI safety alerts. Only OMNI tracks breathing and heart rate.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {models.map(m => (
-              <div
-                key={m.name}
-                className="bg-white rounded-2xl p-5 border shadow-sm flex flex-col relative"
-                style={{ borderColor: m.badge ? '#4a7c6f' : '#e8e0d8', borderWidth: m.badge ? 2 : 1 }}
-              >
-                {m.badge && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-bold text-white" style={{ background: '#4a7c6f' }}>
-                    {m.badge}
-                  </span>
-                )}
-                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#4a7c6f' }}>ANVAYA</div>
-                <div className="text-2xl font-bold mb-1" style={{ color: '#1a2e28' }}>{m.name}</div>
-                <div className="text-xl font-bold mb-4" style={{ color: '#e8957a' }}>{m.price}</div>
-                <ul className="space-y-2 flex-1 mb-5">
-                  {m.features.map(f => (
-                    <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
-                      <CheckCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: '#4a7c6f' }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/anvaya/${m.slug}`}
-                  className="block text-center py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-all"
-                  style={{ background: m.badge ? '#4a7c6f' : '#f0f5f3', color: m.badge ? '#fff' : '#4a7c6f' }}
-                >
-                  View {m.name}
-                </Link>
-              </div>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: '#1a2e28' }}>How Contactless Breathing Tracking Works</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Every breath moves your baby&apos;s chest and tummy by a few millimetres. A contactless monitor picks up these tiny, repeating movements from beside the cot and turns them into a breathing rate, without anything touching your baby. OMNI tracks heart rate contactlessly as well.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Anvaya OMNI shows these readings live in the app, so you can check on your baby from the next room without opening the door. In the morning it gives a sleep report, so you can see how the night went instead of guessing from memory.
+          </p>
+          <p className="text-muted-foreground mb-8 leading-relaxed">
+            Newborn breathing is naturally irregular. A typical newborn breathes about 30–60 times a minute, often with short pauses of a few seconds, which is normal (NHS). Read more in our guide to <Link href="/blog/baby-breathing-patterns" className="text-primary underline">normal baby breathing patterns</Link>.
+          </p>
+
+          <h3 className="text-xl font-bold mb-3" style={{ color: '#1a2e28' }}>Setting it up for the best readings</h3>
+          <ul className="space-y-2 bg-white rounded-xl border border-[#e8e0d8] p-5 mb-8">
+            {[
+              'Place the monitor beside or above the cot with a clear view of your baby, and keep the cable well out of reach.',
+              'Readings work best when your baby is lying still and asleep. Movement, feeding or being held will interrupt them.',
+              'Use one monitor per cot: a contactless monitor is designed to watch one sleeping baby.',
+              'Keep following safe-sleep basics: baby on their back, on a firm flat mattress, with nothing else in the cot.',
+            ].map(t => (
+              <li key={t} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" style={{ color: '#4a7c6f' }} />{t}
+              </li>
             ))}
-          </div>
-          <p className="text-center text-xs text-muted-foreground mt-6">
-            Both are available with a 5.5-inch parent display. Looking for a simple camera? See <Link href="/anvaya/core" className="underline">CORE (₹5,999)</Link>.
+          </ul>
+
+          <h3 className="text-xl font-bold mb-3" style={{ color: '#1a2e28' }}>What a contactless monitor can and can&apos;t do</h3>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            A contactless monitor gives you a window into your baby&apos;s breathing and heart rate at night, which many parents find reassuring. It is a wellness and convenience device, not a medical monitor: it does not diagnose illness, and no consumer baby monitor has been shown to prevent SIDS. If you notice warning signs such as laboured breathing, flaring nostrils or a blue tinge to the lips, call your doctor straight away, whatever the monitor shows.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Want alerts for a covered face or tummy sleeping too? Those come from the camera&apos;s AI, explained on our <Link href="/ai-baby-monitor-india" className="text-primary underline">AI baby monitor</Link> page. OMNI has both. To see every model side by side, <Link href="/compare" className="text-primary underline">compare CORE, PULSE and OMNI</Link>, or read the <Link href="/blog/best-baby-monitor-india-2025" className="text-primary underline">best baby monitor India buying guide</Link>.
           </p>
         </div>
       </section>

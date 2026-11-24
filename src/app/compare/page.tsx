@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Check, X, ChevronLeft, ArrowRight, MessageCircle } from 'lucide-react';
+import { sections } from '@/lib/compare-data';
+import type { RowValue } from '@/lib/compare-data';
 
 const AMAZON_URL = 'https://www.amazon.in/stores/AnvayaSmart/page/4E8B6271-F5B1-4D84-A055-E6A5E2DCE3D7?lp_asin=B0HK85L2XB&ref_=ast_bln&store_ref=bl_ast_dp_brandlogo_sto&bl_grd_status=override';
 
@@ -46,74 +48,6 @@ const products = [
     priceNote: 'Without display',
     image: '/anvaya-omni-09-vitals-heart-breathing.png',
     href: '/anvaya/omni',
-  },
-];
-
-type RowValue = boolean | string;
-
-interface Row {
-  label: string;
-  core: RowValue;
-  pulse: RowValue;
-  omni: RowValue;
-  highlight?: boolean;
-}
-
-interface Section {
-  title: string;
-  rows: Row[];
-}
-
-const sections: Section[] = [
-  {
-    title: 'Camera & Display',
-    rows: [
-      { label: 'Camera resolution', core: '1080P HD', pulse: '4MP Ultra', omni: '4MP Ultra' },
-      { label: 'Parent display', core: '5" screen', pulse: '5.5" screen', omni: '5.5" screen' },
-      { label: 'Pan & tilt coverage', core: '355° · 120°', pulse: '355° · 120°', omni: '355° · 120°' },
-      { label: 'Night vision', core: true, pulse: true, omni: true },
-    ],
-  },
-  {
-    title: 'Core Monitoring',
-    rows: [
-      { label: 'Live video & audio', core: true, pulse: true, omni: true },
-      { label: 'Cry & sound alert', core: true, pulse: true, omni: true },
-      { label: 'Motion detection', core: true, pulse: true, omni: true },
-      { label: 'Two-way talk', core: true, pulse: true, omni: true },
-      { label: 'Lullabies', core: '8 built-in', pulse: '8 built-in', omni: '8 built-in' },
-      { label: 'Temp & humidity sensor', core: true, pulse: true, omni: true },
-      { label: 'App monitoring (iOS & Android)', core: true, pulse: true, omni: true },
-    ],
-  },
-  {
-    title: 'AI Safety Features',
-    rows: [
-      { label: 'Face covering alert', core: false, pulse: true, omni: true, highlight: true },
-      { label: 'Prone sleep (tummy roll) alert', core: false, pulse: true, omni: true, highlight: true },
-      { label: 'Danger zone alerts', core: false, pulse: true, omni: true },
-      { label: 'Geofencing', core: false, pulse: true, omni: true },
-      { label: 'Night light', core: false, pulse: true, omni: true },
-      { label: 'Auto timeline album', core: false, pulse: true, omni: true },
-    ],
-  },
-  {
-    title: 'Wellness Monitoring',
-    rows: [
-      { label: 'Contactless breathing detection', core: false, pulse: false, omni: true, highlight: true },
-      { label: 'Heart rate monitoring', core: false, pulse: false, omni: true, highlight: true },
-      { label: 'Nightly sleep analysis report', core: false, pulse: false, omni: true, highlight: true },
-      { label: 'One-tap partner call', core: false, pulse: false, omni: true },
-    ],
-  },
-  {
-    title: 'Hardware',
-    rows: [
-      { label: 'Battery', core: '3200mAh', pulse: '4000mAh', omni: '4000mAh' },
-      { label: 'Warranty', core: '1 year', pulse: '1 year', omni: '1 year' },
-      { label: 'Free shipping', core: true, pulse: true, omni: true },
-      { label: '7-day returns', core: true, pulse: true, omni: true },
-    ],
   },
 ];
 
@@ -247,7 +181,7 @@ export default function ComparePage() {
           <p className="text-xs text-gray-500 mb-3 leading-relaxed">
             Contactless breathing + heart rate + AI safety — the only monitor that covers everything. Nothing touches your baby. Ever.
           </p>
-          <Link href="/anvaya?p=omni"
+          <Link href="/anvaya/omni"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-purple-600 hover:underline">
             See Anvaya OMNI <ArrowRight className="w-4 h-4" />
           </Link>

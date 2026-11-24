@@ -3,7 +3,11 @@ import { ARTICLES } from '@/lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://nxmplis.com';
-  const now = new Date();
+  // Real content dates, NOT the build time: Google ignores lastmod that changes on every deploy.
+  // When you change a page's content, update its date here.
+  const d = (iso: string) => new Date(iso);
+  const CONTENT_2026_11_24 = d('2026-11-24');
+  const now = CONTENT_2026_11_24;
 
   const staticPages: MetadataRoute.Sitemap = [
     // Core brand pages
