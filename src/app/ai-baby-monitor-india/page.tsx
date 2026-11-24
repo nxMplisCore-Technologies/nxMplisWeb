@@ -7,8 +7,8 @@ import { ArrowRight, CheckCircle, Shield, Baby, Zap, Moon } from 'lucide-react';
 const UPDATED = '2026-11-24';
 
 export const metadata: Metadata = {
-  title: 'AI Baby Monitor India 2026 — Face-Cover, Tummy-Sleep & Cry Alerts',
-  description: 'Anvaya Smart AI baby monitors: 4MP night vision, AI face-cover and tummy-sleep alerts, danger zones and cry alerts. OMNI adds contactless breathing & heart rate. From ₹5,999. Free shipping, COD.',
+  title: 'AI Baby Monitor India 2026 — Smart Safety Alerts',
+  description: 'AI baby monitors with 4MP night vision, face-cover and tummy-sleep alerts, danger zones and cry alerts. OMNI adds breathing & heart rate. From ₹5,999.',
   keywords: [
     'AI baby monitor India', 'AI baby monitor', 'smart baby monitor India', 'AI baby monitor night vision',
     'best AI baby monitor India', 'baby monitor face cover alert', 'baby rollover alert',

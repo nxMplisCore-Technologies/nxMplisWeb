@@ -4,8 +4,8 @@ import { ArrowRight, Shield, Heart } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'How Anvaya Helps You | Real Parent Scenarios | AI Baby Monitor India',
-  description: 'See how Anvaya Smart helps Indian parents in every moment — from the office to midnight alerts, cry decoding, breathing checks, milestones and growth tracking. Real AI. Real peace of mind.',
+  title: 'How Anvaya Helps Parents, Day and Night',
+  description: 'See how Anvaya Smart helps Indian parents: checking on baby from work, cry alerts at midnight, AI safety alerts and morning sleep reports.',
   keywords: ['AI baby monitor use cases India', 'how baby monitor helps parents', 'baby cry analyzer India', 'contactless baby breathing monitor', 'baby wellness app scenarios India'],
   alternates: { canonical: 'https://nxmplis.com/use-cases' },
   openGraph: {
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description: 'From office to midnight alerts. Crying, breathing, milestones, growth. Anvaya Smart handles every parenting moment.',
     url: 'https://nxmplis.com/use-cases',
     type: 'website',
+    images: [{ url: '/anvaya-nursery.jpg', width: 1200, height: 630, alt: 'Anvaya Smart baby monitor' }],
   },
 };
 

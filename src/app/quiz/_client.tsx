@@ -354,6 +354,7 @@ export default function QuizClient() {
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
+      <h1 className="sr-only">Which Anvaya baby monitor is right for you?</h1>
       <div style={{ background: 'linear-gradient(135deg, #2d5c52 0%, #4a7c6f 100%)' }}>
         <div className="container mx-auto px-4 pt-6 pb-8">
           <div className="max-w-lg mx-auto">

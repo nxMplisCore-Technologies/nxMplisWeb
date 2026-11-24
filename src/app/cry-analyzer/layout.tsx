@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free AI Baby Cry Analyzer — What Is Your Baby Crying About?',
+  title: 'Free AI Baby Cry Analyzer — Online Tool',
   description: 'Upload a 10-second recording or record live. Our AI identifies 5 cry types — Hungry, Tired, Discomfort, Belly Pain, Needs Burping — instantly and free. Powered by Anvaya Smart\'s 4-model ensemble.',
   keywords: [
     'baby cry analyzer India', 'AI baby cry analysis', 'baby cry decoder India',

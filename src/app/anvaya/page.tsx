@@ -61,7 +61,7 @@ export const productConfig = [
     name: 'OMNI',
     fullName: 'Anvaya OMNI',
     tagline: 'Breathes. Heart beats. You sleep.',
-    desc: 'India\'s only baby monitor with contactless respiration and heart rate detection. Deep sleep analysis, one-click calling, and every PULSE feature — the complete picture.',
+    desc: 'Contactless breathing and heart-rate tracking, a deep sleep report every morning, one-tap calling and every PULSE feature. Nothing on your baby.',
     color: '#7c3aed',
     bgLight: '#f5f3ff',
     badge: '⭐ Most Popular' as string | null,

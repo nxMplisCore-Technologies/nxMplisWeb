@@ -7,8 +7,8 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
-  title: 'Newborn Care Guide India 2026 | First Month Baby Care',
-  description: 'Complete newborn care guide for Indian parents — feeding, sleep, temperature, bathing, breathing monitoring and what to watch for. Written by IIT engineers, India-specific advice.',
+  title: 'Newborn Care Guide India: First Month',
+  description: 'Newborn care guide for Indian parents: feeding, sleep, room temperature, bathing and when to call the doctor, for Indian family setups.',
   keywords: ['newborn care India', 'newborn baby guide India', 'first month baby care India', 'newborn care tips India', 'how to take care of newborn India', 'baby care guide first week'],
   alternates: { canonical: 'https://nxmplis.com/newborn-care-guide' },
   openGraph: { title: 'Newborn Care Guide India 2025 | Anvaya Smart', description: 'Complete guide to caring for your newborn in India — feeding, sleep, temperature, safety and monitoring.', url: 'https://nxmplis.com/newborn-care-guide', images: [{ url: '/anvaya-lifestyle.webp' }] },

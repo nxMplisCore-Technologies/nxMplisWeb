@@ -24,10 +24,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Anvaya Smart | AI Baby Monitor India | Contactless Breathing & Heart Rate',
+    default: 'Anvaya Smart — AI Baby Monitor India | Breathing & Heart Rate',
     template: '%s | Anvaya Smart',
   },
-  description: 'Smart baby monitors designed in India. CORE 1080P from ₹5,999, PULSE 4MP with AI face-cover & tummy-sleep alerts from ₹8,900, OMNI with contactless breathing & heart rate from ₹12,999. Free shipping, COD, 7-day returns.',
+  description: 'AI baby monitors designed in India. CORE ₹5,999, PULSE (AI face-cover alerts) from ₹8,900, OMNI (contactless breathing & heart rate) from ₹12,999. COD.',
   keywords: [
     // Zero-competition category terms — own these
     'baby wellness pod', 'baby wellness pod India', 'baby wellness pod monitor',

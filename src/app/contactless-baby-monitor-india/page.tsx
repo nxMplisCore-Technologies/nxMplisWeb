@@ -7,8 +7,8 @@ import { ArrowRight, CheckCircle, Heart, Activity, Moon, EyeOff } from 'lucide-r
 const UPDATED = '2026-11-24';
 
 export const metadata: Metadata = {
-  title: 'Contactless Baby Monitor India 2026 — Breathing & Heart Rate, No Wearables',
-  description: 'Anvaya OMNI tracks your baby\'s breathing and heart rate contactlessly: no socks, bands or patches. 4MP camera, AI face-cover & tummy-sleep alerts, nightly sleep report. From ₹12,999. Free shipping, COD.',
+  title: 'Contactless Baby Monitor India — No Wearables',
+  description: 'Anvaya OMNI tracks breathing and heart rate contactlessly: no socks or bands. 4MP camera, AI safety alerts, sleep report. From ₹12,999, COD.',
   keywords: [
     'contactless baby monitor India', 'contactless baby monitor', 'baby breathing monitor India',
     'baby breathing monitor without wearable', 'non contact baby monitor', 'baby heart rate monitor',

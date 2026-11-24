@@ -7,8 +7,8 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
-  title: 'Baby Breathing Patterns: What\'s Normal and What\'s Not | Anvaya Smart India',
-  description: 'New parents guide to normal baby breathing patterns — rates, sounds, periodic breathing, and when to call a doctor. Written by IIT engineers, reviewed against AAP guidelines. India-specific.',
+  title: "Baby Breathing Patterns: What's Normal",
+  description: 'A guide to normal newborn breathing: typical rates, sounds, periodic breathing, and the warning signs that mean you should call a doctor.',
   keywords: ['baby breathing patterns India', 'normal baby breathing rate', 'newborn breathing', 'baby breathing monitor India', 'infant breathing irregular', 'baby periodic breathing', 'SIDS prevention India'],
   alternates: { canonical: 'https://nxmplis.com/blog/baby-breathing-patterns' },
   openGraph: {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Baby Care Blog India | Sleep, Cries & Choosing a Baby Monitor',
-  description: 'Expert guides on baby sleep patterns, cry analysis, breathing monitoring, and infant wellness. From the team at Anvaya Smart — India\'s leading AI baby monitor.',
+  description: 'Guides for Indian parents on baby sleep, cries, breathing patterns, newborn care and choosing the right baby monitor.',
   keywords: ['baby sleep tips India', 'newborn breathing guide', 'baby cry types meaning', 'infant wellness India', 'new parent tips India', 'baby monitor blog'],
   alternates: { canonical: 'https://nxmplis.com/blog' },
   openGraph: {

@@ -41,7 +41,7 @@ interface Props {
 }
 
 /* ─── Gallery ─── */
-function Gallery({ images, color }: { images: string[]; color: string }) {
+function Gallery({ images, color, name }: { images: string[]; color: string; name: string }) {
   const [idx, setIdx] = useState(0);
   const [dir, setDir] = useState(0);
   const dragX = useMotionValue(0);
@@ -73,7 +73,7 @@ function Gallery({ images, color }: { images: string[]; color: string }) {
             <button key={i} onClick={() => go(i, i > idx ? 1 : -1)}
               className={cn('relative shrink-0 rounded-xl overflow-hidden border-2 transition-all bg-gray-50 w-14 h-14 lg:w-16 lg:h-16',
                 idx === i ? 'border-gray-900 shadow-sm' : 'border-gray-100 opacity-50 hover:opacity-80 hover:border-gray-300')}>
-              <Image src={img} alt="" fill className="object-contain p-1.5" sizes="64px" draggable={false} />
+              <Image src={img} alt={`${name} baby monitor — photo ${i + 1}`} fill className="object-contain p-1.5" sizes="64px" draggable={false} />
             </button>
           ))}
         </div>
@@ -227,7 +227,7 @@ function ProductDetail({ products, selected, onBack, faqs }: {
             {/* Gallery */}
             <div className="lg:sticky lg:top-4">
               <div className="px-4 sm:px-0 pt-4 lg:py-0">
-                <Gallery images={gallery} color={cfg.color} />
+                <Gallery images={gallery} color={cfg.color} name={cfg.fullName} />
               </div>
               <div className="hidden lg:grid grid-cols-3 gap-px bg-gray-100 mt-6 rounded-xl overflow-hidden border border-gray-100">
                 {[

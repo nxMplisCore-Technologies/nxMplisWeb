@@ -440,6 +440,7 @@ export default function HowItWorksPage() {
 
   return (
     <>
+      <h1 className="sr-only">How Anvaya Smart baby monitors work</h1>
       {/* ── Cinematic player ── */}
       <div className="relative h-screen w-full overflow-hidden" style={{ background: BG[scene] }}>
 

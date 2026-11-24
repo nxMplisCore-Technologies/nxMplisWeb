@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Baby Monitoring India: Complete Guide 2026 | Which Monitor to Choose',
-  description: 'The complete guide to baby monitoring in India — what to monitor, how it works, and which baby monitor is best for Indian parents. Written by IIT engineers, reviewed against AAP guidelines. Updated 2025.',
+  title: 'Baby Monitoring India: Complete 2026 Guide',
+  description: 'A guide to baby monitoring in India: what to keep an eye on, camera vs AI vs contactless monitors, safe-sleep basics and how to choose.',
   keywords: ['baby monitoring India', 'how to monitor baby', 'baby monitor guide India', 'what is baby monitoring', 'best way to monitor baby India', 'infant monitoring guide', 'contactless baby monitor India'],
   alternates: { canonical: 'https://nxmplis.com/baby-monitoring' },
   openGraph: {

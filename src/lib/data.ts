@@ -10,7 +10,7 @@ export const JOBS = [
 export const ARTICLES = [
   {
     slug: 'baby-breathing-patterns',
-    title: "Baby Breathing Patterns: What's Normal and What's Not (India Guide 2025)",
+    title: "Baby Breathing Patterns: What's Normal (India Guide)",
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-28',
@@ -19,7 +19,7 @@ export const ARTICLES = [
     readTime: '8 min read',
     imageUrl: '/anvaya-sense.jpg',
     dataAiHint: 'sleeping baby peaceful nursery',
-    excerpt: 'New parents in India are often alarmed by their newborn\'s breathing patterns. This expert guide covers normal rates, periodic breathing, and exactly when to call a doctor.',
+    excerpt: 'Newborn breathing often looks irregular. This guide covers normal rates, periodic breathing, and the warning signs that mean you should call a doctor.',
     keywords: ['baby breathing patterns India', 'normal baby breathing rate', 'newborn breathing', 'baby breathing monitor India'],
     content: `
       <h2>What Is a Normal Breathing Rate for a Baby?</h2>
@@ -153,7 +153,7 @@ export const ARTICLES = [
     readTime: '10 min read',
     imageUrl: '/anvaya-omni.jpg',
     dataAiHint: 'baby sleep schedule chart',
-    excerpt: 'A complete month-by-month baby sleep guide for Indian parents — total sleep hours, nap schedules, sleep regression signs, and how to build healthy sleep habits from birth.',
+    excerpt: 'Month-by-month baby sleep guide for Indian parents: total sleep hours, nap schedules, sleep regressions and healthy sleep habits from birth.',
     keywords: ['baby sleep schedule India', 'newborn sleep hours India', 'baby sleep tracker India', 'infant sleep guide'],
     content: `
       <h2>How Much Should a Baby Sleep? (India Guide)</h2>
@@ -207,7 +207,7 @@ export const ARTICLES = [
     readTime: '11 min read',
     imageUrl: '/anvaya-nursery.jpg',
     dataAiHint: 'newborn baby care India',
-    excerpt: 'The first week with a newborn is overwhelming. This India-specific guide covers feeding, sleep, temperature, bathing, and what to monitor — written for Indian family setups.',
+    excerpt: 'The first week with a newborn is overwhelming. This India guide covers feeding, sleep, room temperature, bathing and when to call the doctor.',
     keywords: ['newborn care India', 'newborn baby guide India', 'first week with newborn India', 'baby care tips India'],
     content: `
       <h2>The First 24 Hours: What to Expect</h2>

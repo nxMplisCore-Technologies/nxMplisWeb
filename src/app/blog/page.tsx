@@ -6,7 +6,7 @@ import { BreadcrumbSchema } from '@/components/seo/JsonLd';
 import { Clock, Tag, ArrowRight, TrendingUp, Mic, Activity, Brain } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Baby Wellness Blog | Sleep, Breathing, Cry Analysis | Anvaya Smart India',
+  title: 'Baby Care Blog India: Sleep, Cries & Monitors',
   description: 'Expert guides on baby breathing patterns, cry types, sleep schedules, choosing a baby monitor and newborn care — updated 2026. For Indian parents.',
   keywords: ['baby wellness blog India', 'baby breathing guide', 'baby sleep tips India', 'infant monitoring guide', 'baby cry types India', 'newborn care India'],
   alternates: { canonical: 'https://nxmplis.com/blog' },

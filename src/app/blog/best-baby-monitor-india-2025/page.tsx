@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Best Baby Monitor India 2026: Buying Guide with Prices',
-  description: 'How to choose the best baby monitor in India in 2026: night vision, AI safety alerts, contactless breathing & heart rate, room temperature and local support. Honest buying guide with prices.',
+  description: 'How to choose the best baby monitor in India in 2026: night vision, AI safety alerts, contactless breathing & heart rate, and prices compared.',
   keywords: ['best baby monitor India 2026', 'baby monitor buying guide India', 'contactless baby monitor India', 'baby monitor features India', 'smart baby monitor India 2026'],
   alternates: { canonical: 'https://nxmplis.com/blog/best-baby-monitor-india-2025' },
   openGraph: {
