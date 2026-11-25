@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Buy Anvaya Baby Monitor | CORE, PULSE & OMNI',
-  description: 'Compare and buy Anvaya baby monitors: CORE ₹5,999, PULSE from ₹8,900 with AI alerts, OMNI from ₹12,999 with breathing & heart rate. Free shipping, COD.',
+  title: 'Smart Baby Monitors from ₹5,999 — Cash on Delivery',
+  description: 'CORE ₹5,999 · PULSE ₹8,900 (AI face-cover alerts) · OMNI ₹12,999 (contactless breathing & heart rate). Free shipping, COD, 7-day returns, 1-year warranty.',
   keywords: ['Anvaya CORE baby monitor', 'Anvaya PULSE', 'Anvaya OMNI', 'buy smart baby monitor India', 'baby monitor price India 2026', 'contactless baby monitor buy', 'AI baby monitor buy India'],
   alternates: { canonical: 'https://nxmplis.com/anvaya' },
   openGraph: {
