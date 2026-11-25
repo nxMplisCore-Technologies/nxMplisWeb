@@ -73,7 +73,7 @@ function Gallery({ images, color, name }: { images: string[]; color: string; nam
             <button key={i} onClick={() => go(i, i > idx ? 1 : -1)}
               className={cn('relative shrink-0 rounded-xl overflow-hidden border-2 transition-all bg-gray-50 w-14 h-14 lg:w-16 lg:h-16',
                 idx === i ? 'border-gray-900 shadow-sm' : 'border-gray-100 opacity-50 hover:opacity-80 hover:border-gray-300')}>
-              <Image src={img} alt={`${name} baby monitor — photo ${i + 1}`} fill className="object-contain p-1.5" sizes="64px" draggable={false} />
+              <Image src={img.startsWith('/') && img.endsWith('.jpg') ? img.replace(/\.jpg$/, '-thumb.jpg') : img} alt={`${name} baby monitor — photo ${i + 1}`} fill className="object-contain p-1.5" sizes="64px" draggable={false} />
             </button>
           ))}
         </div>
