@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESC,
     url: 'https://nxmplis.com/compare',
-    images: [{ url: '/anvaya-pulse-02-ai-safety-alerts.png', width: 1200, height: 630, alt: TITLE }],
+    images: [{ url: '/anvaya-pulse-02-ai-safety-alerts.jpg', width: 1200, height: 630, alt: TITLE }],
   },
 };
 

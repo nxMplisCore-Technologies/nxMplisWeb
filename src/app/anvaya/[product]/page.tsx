@@ -8,9 +8,9 @@ import Link from 'next/link';
 import { productDetails } from '@/lib/product-details';
 
 const OG_IMAGES: Record<string, string> = {
-  core: '/anvaya-core-05-room-comfort-lullaby.png',
-  pulse: '/anvaya-pulse-02-ai-safety-alerts.png',
-  omni: '/anvaya-omni-09-vitals-heart-breathing.png',
+  core: '/anvaya-core-05-room-comfort-lullaby.jpg',
+  pulse: '/anvaya-pulse-02-ai-safety-alerts.jpg',
+  omni: '/anvaya-omni-09-vitals-heart-breathing.jpg',
 };
 
 export async function generateStaticParams() {

@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     title: 'AI Baby Monitor India 2026 | Anvaya Smart',
     description: 'AI face-cover and tummy-sleep alerts, danger zones, 4MP night vision. OMNI adds contactless breathing & heart rate.',
     url: 'https://nxmplis.com/ai-baby-monitor-india',
-    images: [{ url: '/anvaya-pulse-02-ai-safety-alerts.png', width: 1200, height: 630, alt: 'Anvaya Smart AI baby monitor safety alerts' }],
+    images: [{ url: '/anvaya-pulse-02-ai-safety-alerts.jpg', width: 1200, height: 630, alt: 'Anvaya Smart AI baby monitor safety alerts' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AI Baby Monitor India 2026 | Anvaya Smart',
     description: 'AI face-cover and tummy-sleep alerts, danger zones, 4MP night vision. From ₹5,999.',
-    images: ['/anvaya-pulse-02-ai-safety-alerts.png'],
+    images: ['/anvaya-pulse-02-ai-safety-alerts.jpg'],
   },
 };
 
@@ -81,7 +81,7 @@ export default function AIBabyMonitorIndiaPage() {
         title="AI Baby Monitor India 2026 — Face-Cover, Tummy-Sleep & Cry Alerts"
         description="What an AI baby monitor does, which Anvaya model has which AI alerts, and prices in India."
         url="https://nxmplis.com/ai-baby-monitor-india"
-        image="https://nxmplis.com/anvaya-pulse-02-ai-safety-alerts.png"
+        image="https://nxmplis.com/anvaya-pulse-02-ai-safety-alerts.jpg"
         datePublished="2025-06-01"
         dateModified={UPDATED}
         author="Anvaya Smart Team"

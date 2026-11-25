@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     title: 'Contactless Baby Monitor India — Breathing & Heart Rate | Anvaya OMNI',
     description: 'Breathing and heart-rate tracking with nothing on your baby. 4MP camera, AI safety alerts, nightly sleep report.',
     url: 'https://nxmplis.com/contactless-baby-monitor-india',
-    images: [{ url: '/anvaya-omni-09-vitals-heart-breathing.png', width: 1200, height: 630, alt: 'Anvaya OMNI contactless breathing and heart rate baby monitor' }],
+    images: [{ url: '/anvaya-omni-09-vitals-heart-breathing.jpg', width: 1200, height: 630, alt: 'Anvaya OMNI contactless breathing and heart rate baby monitor' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contactless Baby Monitor India | Anvaya OMNI',
     description: 'Breathing and heart-rate tracking with nothing on your baby. From ₹12,999.',
-    images: ['/anvaya-omni-09-vitals-heart-breathing.png'],
+    images: ['/anvaya-omni-09-vitals-heart-breathing.jpg'],
   },
 };
 
@@ -81,7 +81,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
         title="Contactless Baby Monitor India 2026 — Breathing & Heart Rate, No Wearables"
         description="How contactless baby monitors work, contactless vs wearable, and what Anvaya OMNI tracks."
         url="https://nxmplis.com/contactless-baby-monitor-india"
-        image="https://nxmplis.com/anvaya-omni-09-vitals-heart-breathing.png"
+        image="https://nxmplis.com/anvaya-omni-09-vitals-heart-breathing.jpg"
         datePublished="2025-06-01"
         dateModified={UPDATED}
         author="Anvaya Smart Team"

@@ -84,10 +84,10 @@ function Gallery({ images, color, name }: { images: string[]; color: string; nam
         <motion.div drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={0.12}
           onDragEnd={handleDragEnd} style={{ x: dragX, opacity: dragOpacity, aspectRatio: '4/3' }}
           className="relative overflow-hidden rounded-2xl bg-[#f8f7f5] cursor-grab active:cursor-grabbing touch-pan-y">
-          <AnimatePresence custom={dir} mode="wait">
+          <AnimatePresence custom={dir} mode="wait" initial={false}>
             <motion.div key={idx} custom={dir} variants={slideVariants} initial="enter" animate="center" exit="exit"
               transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }} className="absolute inset-0">
-              <Image src={images[idx]} alt="product" fill className="object-contain p-6 lg:p-10"
+              <Image src={images[idx]} alt={`${name} baby monitor`} fill className="object-contain p-6 lg:p-10"
                 sizes="(max-width: 1024px) 100vw, 55vw" priority draggable={false} />
             </motion.div>
           </AnimatePresence>
