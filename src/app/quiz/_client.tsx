@@ -60,7 +60,7 @@ type AnswerMap = Partial<Record<string, string>>;
 
 const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN ?? 'anvayasmart.myshopify.com';
 function shopifyCartUrl(variantId: string) {
-  return `https://${SHOPIFY_DOMAIN}/cart/${variantId}:1?storefront=true`;
+  return `https://${SHOPIFY_DOMAIN}/cart/${variantId}:1`;
 }
 
 const PRODUCTS = {

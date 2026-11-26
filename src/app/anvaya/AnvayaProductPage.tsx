@@ -190,7 +190,7 @@ function ProductDetail({ products, selected, onBack, faqs }: {
 
   function handleBuyNow() {
     const url = currentVariant?.numericId ? cartUrl(currentVariant.numericId) : null;
-    window.open(url ?? AMAZON_URL, '_blank');
+    window.location.assign(url ?? AMAZON_URL);
   }
 
   const discount = currentVariant?.compareAtPrice
@@ -302,10 +302,6 @@ function ProductDetail({ products, selected, onBack, faqs }: {
                   style={{ background: cfg.color }}>
                   {available ? 'Buy Now' : 'Out of Stock'}
                 </button>
-                <a href={AMAZON_URL} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center px-5 py-4 rounded-2xl text-sm font-bold border-2 border-[#FF9900]/50 text-[#B45309] bg-[#FFF8EE] hover:bg-[#FFF0D6] transition-colors whitespace-nowrap">
-                  Amazon
-                </a>
               </div>
 
               <button className="w-full flex items-center justify-center gap-2 py-3 text-sm text-gray-500 hover:text-gray-700 transition-colors mb-5"
@@ -381,21 +377,6 @@ function ProductDetail({ products, selected, onBack, faqs }: {
                   </div>
                 </div>
               )}
-
-              {/* Amazon link */}
-              <div className="flex items-center gap-3 bg-[#FFF8EE] rounded-2xl px-4 py-3.5 mb-6 border border-[#FF9900]/20">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M2 8.5C2 8.5 6.5 3 12 3C17.5 3 22 8.5 22 8.5" stroke="#FF9900" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M3.5 15C7 19.5 17 19.5 20.5 15" stroke="#FF9900" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M12 3V21M12 21L9 18M12 21L15 18" stroke="#FF9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <div className="flex-1">
-                  <p className="text-xs font-bold text-[#B45309]">Available on Amazon India</p>
-                  <p className="text-xs text-[#92400e]/70">Fast delivery · Secure checkout</p>
-                </div>
-                <a href={AMAZON_URL} target="_blank" rel="noopener noreferrer"
-                  className="text-xs font-bold text-[#B45309] hover:underline shrink-0">Shop →</a>
-              </div>
 
               {/* FAQ */}
               <div className="mb-6">

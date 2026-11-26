@@ -3,6 +3,10 @@ import Link from 'next/link';
 import { FAQSchema, BreadcrumbSchema, ArticleSchema, SpeakableSchema } from '@/components/seo/JsonLd';
 import { AuthorBio, PediatricianBadge, LastUpdated, TrustBar } from '@/components/trust/EEATSignals';
 import { ArrowRight, CheckCircle, Shield, Baby, Zap, Moon } from 'lucide-react';
+import { cartUrl } from '@/lib/shopify';
+
+// Buy button goes straight to Shopify checkout (PULSE, no display)
+const BUY_PULSE = cartUrl('50745881690335') ?? '/anvaya/pulse';
 
 const UPDATED = '2026-11-24';
 
@@ -112,19 +116,19 @@ export default function AIBabyMonitorIndiaPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
-            <Link
-              href="/anvaya"
+            <a
+              href={BUY_PULSE}
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white shadow-lg transition-all hover:opacity-90"
               style={{ background: '#4a7c6f' }}
             >
-              Compare &amp; Buy <ArrowRight className="w-4 h-4" />
-            </Link>
+              Buy PULSE · from ₹8,900 <ArrowRight className="w-4 h-4" />
+            </a>
             <Link
               href="/anvaya/pulse"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold border-2 transition-all hover:bg-primary/5"
               style={{ borderColor: '#4a7c6f', color: '#4a7c6f' }}
             >
-              See PULSE AI Alerts
+              See PULSE details
             </Link>
           </div>
 

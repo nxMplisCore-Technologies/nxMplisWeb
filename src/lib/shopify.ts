@@ -131,5 +131,6 @@ function normalizeProduct(raw: RawProduct): ShopifyProduct {
 
 export function cartUrl(variantNumericId: string, domain = DOMAIN): string | null {
   if (!domain || domain === 'undefined') return null;
-  return `https://${domain}/cart/${variantNumericId}:1?storefront=true`;
+  // Cart permalink WITHOUT ?storefront=true: Shopify skips the cart page and opens checkout directly.
+  return `https://${domain}/cart/${variantNumericId}:1`;
 }
