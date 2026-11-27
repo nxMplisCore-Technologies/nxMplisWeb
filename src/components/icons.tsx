@@ -3,9 +3,11 @@ import type { SVGProps } from 'react';
 export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
+      role="img"
+      aria-label="Anvaya Smart"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 200 40"
-      width="120"
+      viewBox="0 0 230 40"
+      width="138"
       height="24"
       {...props}
     >
@@ -17,9 +19,8 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         x="0"
         y="30"
       >
-        Nxmlis
-        <tspan fill="hsl(var(--primary))">c</tspan>
-        ore
+        Anvaya
+        <tspan fill="hsl(var(--primary))"> Smart</tspan>
       </text>
     </svg>
   );
