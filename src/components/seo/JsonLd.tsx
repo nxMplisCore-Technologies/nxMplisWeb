@@ -9,7 +9,9 @@ export function OrganizationSchema() {
     url: 'https://nxmplis.com', logo: { '@type': 'ImageObject', url: 'https://nxmplis.com/anvaya-logo.webp', width: 200, height: 200 },
     description: 'AI-powered contactless baby wellness pod monitoring. Anvaya Smart baby monitors: 1080P and 4MP cameras, AI face-cover and tummy-sleep alerts, and contactless breathing and heart-rate tracking on OMNI.',
     foundingDate: '2025',
-    address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' },
+    // Registered office in Karnataka; branch office in Hyderabad
+    address: { '@type': 'PostalAddress', addressRegion: 'Karnataka', addressCountry: 'IN' },
+    location: [{ '@type': 'Place', name: 'Hyderabad branch office', address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' } }],
     founder: [{ '@type': 'Person', name: 'Maya Singh', jobTitle: 'Founder' }],
     sameAs: ['https://www.instagram.com/anvayasmart/', 'https://www.instagram.com/nxmpliscore/', 'https://www.amazon.in/stores/AnvayaSmart', 'https://www.linkedin.com/company/nxmpliscore'],
     contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['English', 'Hindi', 'Telugu'], areaServed: 'IN', telephone: '+91-79874-49366', email: 'info@nxmplis.com' },

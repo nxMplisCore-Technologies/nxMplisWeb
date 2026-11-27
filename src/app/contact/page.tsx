@@ -22,7 +22,7 @@ const formSchema = z.object({
 const contacts = [
   { icon: MessageCircle, label: 'WhatsApp', value: 'Chat on WhatsApp →', href: 'https://wa.me/917987449366' },
   { icon: Mail, label: 'Email', value: 'info@nxmplis.com', href: 'mailto:info@nxmplis.com' },
-  { icon: MapPin, label: 'Based in', value: 'Hyderabad, India', href: null },
+  { icon: MapPin, label: 'Based in', value: 'Karnataka (registered office) · Hyderabad (branch)', href: null },
 ];
 
 export default function ContactPage() {
