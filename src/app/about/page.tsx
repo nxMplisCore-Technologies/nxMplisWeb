@@ -106,7 +106,7 @@ export default function AboutPage() {
               </Reveal>
               <Reveal variant={fadeUp} custom={4}>
                 <div className="mt-8 inline-flex items-center gap-3 bg-white/70 border border-primary/15 rounded-full px-5 py-2 text-xs font-semibold text-muted-foreground backdrop-blur-sm">
-                  Founded 2025 · Karnataka &amp; Hyderabad · Mission: Calm parenting
+                  Founded 2025 · IIT Alumni · Karnataka &amp; Hyderabad · Mission: Calm parenting
                 </div>
               </Reveal>
             </div>

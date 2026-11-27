@@ -22,6 +22,7 @@ const FACTS = [
   ['Registered office', 'Karnataka, India'],
   ['Branch office', 'Hyderabad, Telangana'],
   ['Founder', 'Maya Singh'],
+  ['Team', 'Founded by IIT alumni engineers'],
   ['Founded', '2025'],
   ['What we make', 'AI baby monitors with contactless breathing and heart-rate tracking'],
   ['Sold through', 'nxmplis.com, Anvaya Smart official store and Amazon.in'],
@@ -73,7 +74,7 @@ export default function PressPage() {
           <h2 id="about-h" className="text-2xl font-bold mb-4">About Anvaya Smart</h2>
           <div className="bg-white rounded-2xl border border-[#e2dbd4] p-6 space-y-3 text-muted-foreground leading-relaxed">
             <p><strong className="text-foreground">Short version:</strong> Anvaya Smart makes AI baby monitors designed in India, including OMNI, which tracks a sleeping baby’s breathing and heart rate without anything touching the baby.</p>
-            <p><strong className="text-foreground">Longer version:</strong> Anvaya Smart is the consumer brand of Nxmpliscore, an Indian wellness-technology company registered in Karnataka with a branch office in Hyderabad. Its three monitors range from CORE, a 1080P nursery camera with cry alerts, to PULSE, which uses on-device AI to alert parents if a baby’s face is covered or they roll onto their tummy, and OMNI, which adds contactless, radar-based breathing and heart-rate tracking. Anvaya also offers a free AI baby cry analyzer online. Its monitors are sold at nxmplis.com and on Amazon.in with free shipping and Cash on Delivery across India.</p>
+            <p><strong className="text-foreground">Longer version:</strong> Anvaya Smart is the consumer brand of Nxmpliscore, an Indian wellness-technology company founded by IIT alumni, registered in Karnataka with a branch office in Hyderabad. Its three monitors range from CORE, a 1080P nursery camera with cry alerts, to PULSE, which uses on-device AI to alert parents if a baby’s face is covered or they roll onto their tummy, and OMNI, which adds contactless, radar-based breathing and heart-rate tracking. Anvaya also offers a free AI baby cry analyzer online. Its monitors are sold at nxmplis.com and on Amazon.in with free shipping and Cash on Delivery across India.</p>
           </div>
         </section>
 

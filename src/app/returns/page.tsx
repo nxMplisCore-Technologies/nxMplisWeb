@@ -5,13 +5,13 @@ import { BreadcrumbSchema, FAQSchema } from '@/components/seo/JsonLd';
 const UPDATED = '2026-11-27';
 
 export const metadata: Metadata = {
-  title: 'Return & Refund Policy — 7-Day Returns',
-  description: 'Anvaya Smart return policy: 7-day returns on CORE, PULSE and OMNI baby monitors, how to start a return on WhatsApp, refunds for prepaid and Cash on Delivery orders, and the 1-year warranty.',
+  title: 'Return & Refund Policy — Free 7-Day Returns',
+  description: 'Anvaya Smart return policy: free 7-day returns on CORE, PULSE and OMNI baby monitors, how to start a return on WhatsApp, refunds for prepaid and Cash on Delivery orders, and the 1-year warranty.',
   alternates: { canonical: 'https://nxmplis.com/returns' },
 };
 
 const faqs = [
-  { q: 'What is the Anvaya Smart return policy?', a: 'You can return an Anvaya CORE, PULSE or OMNI baby monitor within 7 days of delivery. Message us on WhatsApp at +91 79874 49366 or email info@nxmplis.com with your order number to start a return.' },
+  { q: 'What is the Anvaya Smart return policy?', a: 'You can return an Anvaya CORE, PULSE or OMNI baby monitor within 7 days of delivery, and returns are free. Message us on WhatsApp at +91 79874 49366 or email info@nxmplis.com with your order number to start a return.' },
   { q: 'How do I get a refund on a Cash on Delivery order?', a: 'Once we receive and check the returned monitor, we refund Cash on Delivery orders to the bank account or UPI ID you share with us. Prepaid orders are refunded to the original payment method.' },
   { q: 'What if my monitor arrives damaged or stops working?', a: 'Tell us on WhatsApp as soon as possible with photos or a short video. If it arrived damaged or faulty, we replace it. After the return window, the 1-year warranty covers manufacturing defects.' },
   { q: 'I bought on Amazon.in. Does this policy apply?', a: 'Orders placed on Amazon.in follow Amazon’s return process. Start the return from Your Orders on Amazon. You can still message us on WhatsApp for help with setup or the warranty.' },
@@ -30,7 +30,7 @@ export default function ReturnsPage() {
           {[
             ['7 days', 'to return, from the day it is delivered'],
             ['1 year', 'warranty against manufacturing defects'],
-            ['Free', 'shipping on every order in India'],
+            ['Free', 'shipping and free returns in India'],
           ].map(([big, small]) => (
             <div key={big} className="bg-white border border-[#e2dbd4] rounded-2xl p-4">
               <div className="text-2xl font-bold text-primary">{big}</div>
@@ -45,6 +45,7 @@ export default function ReturnsPage() {
           <ul>
             <li>Return the monitor with everything that came in the box: camera, parent display (if you bought one), cables, adapter and mounting parts.</li>
             <li>Please pack it in the original box where possible, and reset the device in the Anvaya Smart app before sending it back.</li>
+            <li><strong>Returns are free.</strong> We cover the cost of sending it back.</li>
           </ul>
 
           <h2>How to start a return</h2>
