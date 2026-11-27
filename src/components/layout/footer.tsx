@@ -52,7 +52,7 @@ export function Footer({ className = '' }: { className?: string }) {
             </p>
             <div className="flex gap-3">
               {[
-                { Icon: Instagram, href: 'https://www.instagram.com/nxmpliscore/', label: 'Anvaya Smart on Instagram' },
+                { Icon: Instagram, href: 'https://www.instagram.com/anvayasmart/', label: 'Anvaya Smart on Instagram' },
                 { Icon: ShoppingBag, href: 'https://www.amazon.in/stores/AnvayaSmart', label: 'Anvaya Smart on Amazon' },
                 { Icon: Linkedin, href: 'https://www.linkedin.com/company/nxmpliscore', label: 'Nxmpliscore on LinkedIn' },
               ].map(({ Icon, href, label }) => (

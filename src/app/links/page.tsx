@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, MessageCircle, ShoppingBag, Mic, BookOpen, Scale, Baby, Newspaper } from 'lucide-react';
+import { ArrowRight, Instagram, MessageCircle, ShoppingBag, Mic, BookOpen, Scale, Baby, Newspaper } from 'lucide-react';
 
 // The link in the Instagram bio points here, so bio clicks land on nxmplis.com
 // instead of a third-party link page. Use https://nxmplis.com/links?utm_source=instagram&utm_medium=bio
@@ -29,6 +29,7 @@ const FREE = [
 const EXTERNAL = [
   { href: 'https://wa.me/917987449366', label: 'Chat on WhatsApp', sub: '+91 79874 49366', icon: MessageCircle },
   { href: 'https://www.amazon.in/stores/AnvayaSmart', label: 'Buy on Amazon.in', sub: 'Anvaya Smart brand store', icon: ShoppingBag },
+  { href: 'https://www.instagram.com/anvayasmart/', label: 'Follow @anvayasmart', sub: 'Parenting tips and product demos on Instagram', icon: Instagram },
 ];
 
 function Row({ href, label, sub, icon: Icon, external = false }: { href: string; label: string; sub: string; icon: React.ElementType; external?: boolean }) {

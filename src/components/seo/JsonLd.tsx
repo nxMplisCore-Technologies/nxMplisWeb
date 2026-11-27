@@ -11,7 +11,7 @@ export function OrganizationSchema() {
     foundingDate: '2024',
     address: { '@type': 'PostalAddress', addressLocality: 'Hyderabad', addressRegion: 'Telangana', addressCountry: 'IN' },
     founder: [{ '@type': 'Person', name: 'Deepak Singh', jobTitle: 'Founder', alumniOf: { '@type': 'CollegeOrUniversity', name: 'IIT Hyderabad' } }],
-    sameAs: ['https://www.instagram.com/nxmpliscore/', 'https://www.amazon.in/stores/AnvayaSmart', 'https://anvayasmart.myshopify.com/', 'https://www.linkedin.com/company/nxmpliscore'],
+    sameAs: ['https://www.instagram.com/anvayasmart/', 'https://www.instagram.com/nxmpliscore/', 'https://www.amazon.in/stores/AnvayaSmart', 'https://www.linkedin.com/company/nxmpliscore'],
     contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['English', 'Hindi', 'Telugu'], areaServed: 'IN', telephone: '+91-79874-49366', email: 'nxmpliscore@gmail.com' },
     knowsAbout: ['Baby Monitoring', 'Baby Wellness Pod Monitoring', 'Infant Health', 'Infant Vital Signs Monitoring', 'Contactless Sensing', 'AI Health Technology', 'Baby Sleep Analysis', 'Newborn Wellness Technology'],
   })}} />;

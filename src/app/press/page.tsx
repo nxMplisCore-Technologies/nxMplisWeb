@@ -24,6 +24,7 @@ const FACTS = [
   ['What we make', 'AI baby monitors with contactless breathing and heart-rate tracking'],
   ['Sold through', 'nxmplis.com, Anvaya Smart official store and Amazon.in'],
   ['Website', 'nxmplis.com'],
+  ['Instagram', '@anvayasmart'],
 ];
 
 const PRODUCTS = [
