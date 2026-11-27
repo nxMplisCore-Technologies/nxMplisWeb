@@ -39,12 +39,19 @@ const ANGLES = [
   { t: 'Honest about what monitors can’t do', d: 'Anvaya describes its devices as wellness monitors, not medical devices, and its guides follow the American Academy of Pediatrics’ safe-sleep advice that no monitor prevents SIDS.' },
 ];
 
+// Official product images from the Anvaya Smart Shopify store (Files), so the
+// press kit always matches the listings. Avoid the old "trusted by 40000
+// families" and CORE "breathing, heart rate" badge images: neither claim is true.
+const SHOPIFY = 'https://cdn.shopify.com/s/files/1/0821/1664/0991/files/';
 const IMAGES = [
   { src: '/anvaya-logo.png', label: 'Anvaya Smart logo (PNG)' },
-  { src: '/anvaya-omni-01-hero-nursery.jpg', label: 'Anvaya OMNI in a nursery' },
-  { src: '/anvaya-pulse-01-hero-anywhere.jpg', label: 'Anvaya PULSE' },
-  { src: '/anvaya-core-01-hero-1080p-day-night.jpg', label: 'Anvaya CORE' },
-  { src: '/anvaya-nursery.jpg', label: 'Monitor in a nursery' },
+  { src: SHOPIFY + 'anvaya-omni-01-hero-nursery.jpg?v=1788532113', label: 'Anvaya OMNI in a nursery' },
+  { src: SHOPIFY + 'anvaya-omni-11-product-hero-specs.png?v=1793793510', label: 'Anvaya OMNI with display and app' },
+  { src: SHOPIFY + 'anvaya-omni-09-vitals-heart-breathing.png?v=1793793473', label: 'OMNI breathing and heart rate' },
+  { src: SHOPIFY + 'anvaya-pulse-07-product-hero.png?v=1793793543', label: 'Anvaya PULSE' },
+  { src: SHOPIFY + 'anvaya-pulse-02-ai-safety-alerts.png?v=1793793543', label: 'PULSE AI face-cover alert' },
+  { src: SHOPIFY + 'anvaya-core-01-hero-1080p-day-night.png?v=1793793542', label: 'Anvaya CORE' },
+  { src: SHOPIFY + 'anvaya-core-02-pan-tilt-whole-home.png?v=1793793544', label: 'CORE pan and tilt' },
 ];
 
 export default function PressPage() {
@@ -108,12 +115,12 @@ export default function PressPage() {
 
         <section aria-labelledby="images-h">
           <h2 id="images-h" className="text-2xl font-bold mb-4">Images</h2>
-          <p className="text-sm text-muted-foreground mb-4">Free to use in coverage of Anvaya Smart. Credit: Anvaya Smart.</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <p className="text-sm text-muted-foreground mb-4">Click an image to open the full-size file. Free to use in coverage of Anvaya Smart. Credit: Anvaya Smart.</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {IMAGES.map(img => (
-              <a key={img.src} href={img.src} download className="group bg-white rounded-2xl border border-[#e2dbd4] overflow-hidden hover:border-primary">
+              <a key={img.src} href={img.src} target="_blank" rel="noopener" className="group bg-white rounded-2xl border border-[#e2dbd4] overflow-hidden hover:border-primary">
                 <div className="relative aspect-square bg-[#f5f1ec]"><Image src={img.src} alt={img.label} fill className="object-contain p-2" sizes="(max-width: 768px) 50vw, 240px" /></div>
-                <div className="flex items-center gap-2 px-3 py-2 text-xs font-semibold"><Download className="w-3.5 h-3.5 text-primary" aria-hidden="true" />{img.label}</div>
+                <div className="flex items-center gap-2 px-3 py-2 text-xs font-semibold"><Download className="w-3.5 h-3.5 text-primary shrink-0" aria-hidden="true" />{img.label}</div>
               </a>
             ))}
           </div>
