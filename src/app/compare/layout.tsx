@@ -111,7 +111,7 @@ export default function CompareLayout({ children }: { children: React.ReactNode 
           </div>
 
           <p className="text-sm text-muted-foreground mt-6">
-            Still deciding? Read our <Link href="/blog/best-baby-monitor-india-2025" className="text-primary underline">best baby monitor India buying guide</Link>, or learn how a <Link href="/contactless-baby-monitor-india" className="text-primary underline">contactless baby monitor</Link> and an <Link href="/ai-baby-monitor-india" className="text-primary underline">AI baby monitor</Link> work.
+            Still deciding? Read our <Link href="/blog/best-baby-monitor-india" className="text-primary underline">best baby monitor India buying guide</Link>, or learn how a <Link href="/contactless-baby-monitor-india" className="text-primary underline">contactless baby monitor</Link> and an <Link href="/ai-baby-monitor-india" className="text-primary underline">AI baby monitor</Link> work.
           </p>
 
           <h2 className="text-2xl sm:text-3xl font-bold mt-14 mb-6" style={{ color: '#1a2e28' }}>Comparison FAQ</h2>

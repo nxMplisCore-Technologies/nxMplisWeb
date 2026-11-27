@@ -8,7 +8,7 @@ import { cartUrl } from '@/lib/shopify';
 // Buy button goes straight to Shopify checkout (OMNI, no display)
 const BUY_OMNI = cartUrl('50744670486751') ?? '/anvaya/omni';
 
-const UPDATED = '2026-11-24';
+const UPDATED = '2026-11-27';
 
 export const metadata: Metadata = {
   title: 'Contactless Baby Monitor India — No Wearables',
@@ -35,6 +35,14 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
+  {
+    q: 'Do smart monitors track breathing without wearables?',
+    a: 'Yes, contactless ones do. Anvaya OMNI senses the tiny movements of breathing and heartbeat from beside the cot, so there is no sock, band or sensor on your baby. Camera-only smart monitors, including Anvaya CORE and PULSE, do not track breathing.',
+  },
+  {
+    q: 'What is the most affordable smart baby monitor with breathing tracking in India?',
+    a: 'Anvaya OMNI tracks breathing and heart rate contactlessly from ₹12,999, with free shipping, Cash on Delivery and 7-day returns. Wearable sock monitors usually have to be imported, which adds duty and leaves you without local support. If you do not need breathing tracking, Anvaya CORE (₹5,999) is a nursery camera with cry alerts.',
+  },
   {
     q: 'Which baby monitor detects breathing without a wearable?',
     a: 'A contactless monitor. Anvaya OMNI detects breathing and heart rate from beside the cot, with no sock, band or clip, and also has a 4MP night-vision camera and AI face-cover and tummy-sleep alerts. Anvaya CORE and PULSE are camera monitors and do not track breathing.',
@@ -231,7 +239,7 @@ export default function ContactlessBabyMonitorIndiaPage() {
             A contactless monitor gives you a window into your baby&apos;s breathing and heart rate at night, which many parents find reassuring. It is a wellness and convenience device, not a medical monitor: it does not diagnose illness, and no consumer baby monitor has been shown to prevent SIDS. If you notice warning signs such as laboured breathing, flaring nostrils or a blue tinge to the lips, call your doctor straight away, whatever the monitor shows.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Want alerts for a covered face or tummy sleeping too? Those come from the camera&apos;s AI, explained on our <Link href="/ai-baby-monitor-india" className="text-primary underline">AI baby monitor</Link> page. OMNI has both. To see every model side by side, <Link href="/compare" className="text-primary underline">compare CORE, PULSE and OMNI</Link>, or read the <Link href="/blog/best-baby-monitor-india-2025" className="text-primary underline">best baby monitor India buying guide</Link>.
+            Want alerts for a covered face or tummy sleeping too? Those come from the camera&apos;s AI, explained on our <Link href="/ai-baby-monitor-india" className="text-primary underline">AI baby monitor</Link> page. OMNI has both. To see every model side by side, <Link href="/compare" className="text-primary underline">compare CORE, PULSE and OMNI</Link>, or read the <Link href="/blog/best-baby-monitor-india" className="text-primary underline">best baby monitor India buying guide</Link>.
           </p>
         </div>
       </section>

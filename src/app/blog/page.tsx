@@ -83,7 +83,7 @@ export default function BlogPage() {
               Choosing a baby monitor in India means weighing camera quality, alerts, comfort in Indian heat and price. Our buying guides explain the difference between a simple camera, an AI baby monitor with safety alerts and a contactless monitor that tracks breathing and heart rate, so you can pick what fits your family.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Read the <Link href="/blog/best-baby-monitor-india-2025" className="text-primary underline">best baby monitor India buying guide</Link>, learn how a <Link href="/contactless-baby-monitor-india" className="text-primary underline">contactless baby monitor</Link> works, see what an <Link href="/ai-baby-monitor-india" className="text-primary underline">AI baby monitor</Link> does, or <Link href="/compare" className="text-primary underline">compare CORE, PULSE and OMNI</Link>.
+              Read the <Link href="/blog/best-baby-monitor-india" className="text-primary underline">best baby monitor India buying guide</Link>, learn how a <Link href="/contactless-baby-monitor-india" className="text-primary underline">contactless baby monitor</Link> works, see what an <Link href="/ai-baby-monitor-india" className="text-primary underline">AI baby monitor</Link> does, or <Link href="/compare" className="text-primary underline">compare CORE, PULSE and OMNI</Link>.
             </p>
           </div>
         </section>
@@ -147,7 +147,7 @@ export default function BlogPage() {
               { topic: 'Baby Sleep', href: '/blog/baby-sleep-guide-india', desc: 'Schedules, regressions, sleep tracking' },
               { topic: 'Contactless Monitors', href: '/contactless-baby-monitor-india', desc: 'Breathing & heart rate without wearables' },
               { topic: 'Newborn Care', href: '/newborn-care-guide', desc: 'Feeding, sleep and warmth in the first month' },
-              { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india-2025', desc: 'How to choose, with prices' },
+              { topic: 'Baby Monitor Buying Guide', href: '/blog/best-baby-monitor-india', desc: 'How to choose, with prices' },
             ].map(t => (
               <Link key={t.topic} href={t.href} className="flex items-start gap-3 p-4 rounded-xl border border-[#e2dbd4] hover:border-primary/30 hover:bg-[#faf8f5] transition-all group">
                 <ArrowRight className="w-4 h-4 text-primary shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />

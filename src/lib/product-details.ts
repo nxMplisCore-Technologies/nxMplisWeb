@@ -47,7 +47,7 @@ export const productDetails: Record<'core' | 'pulse' | 'omni', ProductDetail> = 
     ],
     related: [
       { label: 'Compare CORE vs PULSE vs OMNI', href: '/compare' },
-      { label: 'Best baby monitor India buying guide', href: '/blog/best-baby-monitor-india-2025' },
+      { label: 'Best baby monitor India buying guide', href: '/blog/best-baby-monitor-india' },
       { label: 'The Anvaya Smart app', href: '/baby-wellness-app' },
     ],
   },
@@ -82,7 +82,7 @@ export const productDetails: Record<'core' | 'pulse' | 'omni', ProductDetail> = 
     related: [
       { label: 'What an AI baby monitor does', href: '/ai-baby-monitor-india' },
       { label: 'Compare CORE vs PULSE vs OMNI', href: '/compare' },
-      { label: 'Best baby monitor India buying guide', href: '/blog/best-baby-monitor-india-2025' },
+      { label: 'Best baby monitor India buying guide', href: '/blog/best-baby-monitor-india' },
     ],
   },
   omni: {
@@ -109,6 +109,7 @@ export const productDetails: Record<'core' | 'pulse' | 'omni', ProductDetail> = 
     ],
     perfectFor: 'Parents of newborns who want extra peace of mind: breathing, heart rate and sleep tracked every night, without a single sensor on the baby.',
     faqs: [
+      { q: 'Does OMNI track breathing without a wearable?', a: 'Yes. OMNI tracks breathing and heart rate with no sock, band or sensor on your baby. It senses from beside the cot and shows the readings live in the app.' },
       { q: 'How does OMNI track breathing without touching my baby?', a: 'OMNI uses radar-based sensing to pick up the tiny movements of breathing and heartbeat from beside the cot. Nothing is attached to your baby: no sock, band or patch.' },
       { q: 'What is in the OMNI sleep report?', a: 'Each morning OMNI shows total sleep time, light vs deep sleep and a nightly sleep score in the app.' },
       { q: 'Does OMNI include the PULSE AI alerts?', a: 'Yes. OMNI includes every PULSE feature: AI face-cover and tummy-sleep alerts, danger zones, the 4MP camera and the optional parent display.' },

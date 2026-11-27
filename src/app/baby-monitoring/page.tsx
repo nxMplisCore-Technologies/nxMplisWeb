@@ -197,7 +197,7 @@ export default function BabyMonitoringPage() {
             {[
               { title: 'Baby Breathing Patterns: What\'s Normal and What\'s Not', href: '/blog/baby-breathing-patterns' },
               { title: '5 Types of Baby Cries and What They Mean', href: '/blog/types-of-baby-cries' },
-              { title: 'Best Baby Monitor India 2025: Complete Comparison', href: '/blog/best-baby-monitor-india-2025' },
+              { title: 'Best Baby Monitor in India 2026: 6 Options Compared', href: '/blog/best-baby-monitor-india' },
               { title: 'How Anvaya Smart Technology Works', href: '/technology' },
               { title: 'Compare Anvaya vs Motorola vs Owlet', href: '/compare' },
               { title: 'Explore All Anvaya Smart Models', href: '/anvaya' },

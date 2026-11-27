@@ -35,7 +35,8 @@ const nextConfig: NextConfig = {
       { source: '/early-access', destination: '/anvaya', permanent: true },
       { source: '/tour', destination: '/anvaya', permanent: true },
       // Old blog URLs still listed in Google (Search Console, Nov 2026) → live pages
-      { source: '/blog/best-baby-monitor-india-2026', destination: '/blog/best-baby-monitor-india-2025', permanent: true },
+      { source: '/blog/best-baby-monitor-india-2026', destination: '/blog/best-baby-monitor-india', permanent: true },
+      { source: '/blog/best-baby-monitor-india-2025', destination: '/blog/best-baby-monitor-india', permanent: true },
       { source: '/blog/ai-baby-monitor-india-2026', destination: '/ai-baby-monitor-india', permanent: true },
       { source: '/blog/baby-breathing-monitor-without-wearable', destination: '/contactless-baby-monitor-india', permanent: true },
       { source: '/blog/what-does-baby-cry-mean', destination: '/blog/types-of-baby-cries', permanent: true },

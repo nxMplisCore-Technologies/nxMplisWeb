@@ -150,7 +150,7 @@ export default function BabyBreathingPage() {
             {[
               { title: 'Baby Cry Types: Hungry vs Tired vs Uncomfortable', href: '/blog/types-of-baby-cries' },
               { title: 'Baby Monitoring India: The Complete Guide', href: '/baby-monitoring' },
-              { title: 'Best Baby Monitor India 2025', href: '/blog/best-baby-monitor-india-2025' },
+              { title: 'Best Baby Monitor in India 2026', href: '/blog/best-baby-monitor-india' },
               { title: 'Anvaya OMNI — Contactless Breathing & Heart Rate', href: '/anvaya/omni' },
             ].map(l => (
               <Link key={l.href} href={l.href} className="flex items-center gap-2 text-sm text-primary hover:underline">
