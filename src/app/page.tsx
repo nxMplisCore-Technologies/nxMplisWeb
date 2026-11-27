@@ -520,6 +520,7 @@ export default function Home() {
 
               {/* Headline — keyword H1 + calm emotional line */}
               <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-3" style={{ color: '#0f1f1b' }}>
+                <span className="block text-2xl sm:text-3xl mb-2" style={{ color: '#4a7c6f' }}>Anvaya Smart</span>
                 AI baby monitor<br />
                 for Indian parents.{' '}
                 <span style={{ color: '#4a7c6f' }}>🌙</span>

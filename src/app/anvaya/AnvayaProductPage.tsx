@@ -460,7 +460,7 @@ function AnvayaInner({ products, faqs }: Props) {
       {/* Header */}
       <div className="px-4 pt-6 pb-5">
         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Anvaya Smart</p>
-        <h1 className="text-2xl font-bold text-gray-900">Baby Monitors</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Anvaya Baby Monitors</h1>
         <p className="text-sm text-gray-500 mt-1">3 models · tap to explore</p>
       </div>
 

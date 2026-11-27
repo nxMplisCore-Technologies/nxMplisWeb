@@ -84,6 +84,10 @@ export const productConfig = [
 ];
 
 export const faqs = [
+  { q: 'Who makes Anvaya baby monitors?', a: 'Anvaya Smart baby monitors are designed by Nxmpliscore, a wellness-technology company in Hyderabad, India, founded by IIT alumni. There are three models: Anvaya CORE, Anvaya PULSE and Anvaya OMNI.' },
+  { q: 'Where can I buy Anvaya Smart baby monitors?', a: 'On nxmplis.com (with Cash on Delivery) and on the Anvaya Smart store on Amazon.in. Shipping is free across India.' },
+  { q: 'What is the price of the Anvaya baby monitor?', a: 'Anvaya CORE costs ₹5,999. Anvaya PULSE costs ₹8,900, or ₹15,999 with the parent display. Anvaya OMNI costs ₹12,999, or ₹18,999 with the parent display.' },
+  { q: 'Which app works with Anvaya monitors?', a: 'The free Anvaya Smart app for Android and iOS. It shows live video, cry and AI safety alerts, and on OMNI breathing, heart rate and the nightly sleep report. There is no subscription.' },
   { q: 'Does anything touch my baby?', a: 'No. Every Anvaya monitor sits beside the cot on a shelf, table or wall mount. OMNI tracks breathing and heart rate contactlessly — nothing attaches to your baby\'s skin.' },
   { q: 'When will I receive my order?', a: 'CORE, PULSE and OMNI ship within 1–2 days and reach you in 3–7 working days. Free shipping across India, with Cash on Delivery available.' },
   { q: 'What if I\'m not happy?', a: '7-day return policy. If Anvaya isn\'t right for you, message us on WhatsApp and we\'ll arrange the return.' },

@@ -57,7 +57,8 @@ export default function ContactPage() {
       <section className="bg-gradient-to-br from-[#f5ede0] via-[#faf8f5] to-[#e8f2ee] py-16 text-center">
         <div className="container mx-auto px-4 max-w-2xl animate-fade-in">
           <p className="text-sm font-semibold uppercase tracking-widest mb-4" style={{color:'#e8957a'}}>Get in Touch</p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">We'd love to hear from you.</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Anvaya Smart</h1>
+          <p className="text-2xl font-semibold mb-3" style={{ color: '#4a7c6f' }}>We'd love to hear from you.</p>
           <p className="text-lg text-muted-foreground">Whether you're a parent, investor, partner, or just curious — reach out.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <a href="https://wa.me/917987449366" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-colors text-sm">
