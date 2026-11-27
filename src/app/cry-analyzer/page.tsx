@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import CryAnalyzerClient from './_client';
+import { EmbedSnippet } from '@/components/cry-analyzer/EmbedSnippet';
 
 export const metadata: Metadata = {
   title: 'Free AI Baby Cry Analyzer — Online Tool',
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function CryAnalyzerPage() {
-  return <CryAnalyzerClient />;
+  return (
+    <>
+      <CryAnalyzerClient />
+      <div className="bg-[#faf8f5]"><EmbedSnippet /></div>
+    </>
+  );
 }

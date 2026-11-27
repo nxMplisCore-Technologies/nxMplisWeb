@@ -15,6 +15,7 @@ const footerLinks = {
     { href: '/industries', label: 'Industries' },
     { href: '/blog', label: 'Blog' },
     { href: '/careers', label: 'Careers' },
+    { href: '/press', label: 'Press' },
     { href: '/contactless-baby-monitor-india', label: 'Contactless Baby Monitor' },
     { href: '/ai-baby-monitor-india', label: 'AI Baby Monitor India' },
     { href: '/baby-monitoring', label: 'Baby Monitoring Guide' },

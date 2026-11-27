@@ -15,10 +15,19 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],
+      },
+      // Every page except /embed/* refuses to be framed by other sites
+      {
+        source: '/((?!embed/).*)',
+        headers: [{ key: 'X-Frame-Options', value: 'DENY' }],
+      },
+      // /embed/* is made to be iframed on blogs and parenting sites
+      {
+        source: '/embed/:path*',
+        headers: [{ key: 'Content-Security-Policy', value: 'frame-ancestors *' }],
       },
       {
         source: '/(.*)\\.(png|jpg|jpeg|webp|avif|svg|ico)',

@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/anvaya/core`, lastModified: now, changeFrequency: 'weekly', priority: 0.93 },
     { url: `${base}/anvaya/pulse`, lastModified: now, changeFrequency: 'weekly', priority: 0.93 },
     { url: `${base}/anvaya/omni`, lastModified: now, changeFrequency: 'weekly', priority: 0.94 },
-    { url: `${base}/cry-analyzer`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },
+    { url: `${base}/cry-analyzer`, lastModified: CONTENT_2026_11_27, changeFrequency: 'monthly', priority: 0.92 },
     { url: `${base}/how-it-works`, lastModified: now, changeFrequency: 'monthly', priority: 0.93 },
     { url: `${base}/use-cases`, lastModified: now, changeFrequency: 'monthly', priority: 0.91 },
     // Zero-competition SEO landing pages (own the category)
@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/technology`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${base}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: 'yearly', priority: 0.60 },
+    { url: `${base}/press`, lastModified: CONTENT_2026_11_27, changeFrequency: 'monthly', priority: 0.60 },
     { url: `${base}/careers`, lastModified: now, changeFrequency: 'monthly', priority: 0.60 },
     { url: `${base}/quiz`, lastModified: now, changeFrequency: 'monthly', priority: 0.65 },
   ];

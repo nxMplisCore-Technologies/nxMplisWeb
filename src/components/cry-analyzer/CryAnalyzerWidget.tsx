@@ -129,7 +129,7 @@ function MicBtn({ onClick, glowColor, btnColor }: { onClick: () => void; glowCol
   );
 }
 
-export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'green' | 'purple' }) {
+export default function CryAnalyzerWidget({ variant = 'green', embedded = false }: { variant?: 'green' | 'purple'; embedded?: boolean }) {
   // Both variants now use the clean brand-teal theme — purple was too heavy
   const accent = '#4a7c6f';
   const accentLight = '#f1f5f9';
@@ -418,11 +418,19 @@ export default function CryAnalyzerWidget({ variant = 'green' }: { variant?: 'gr
 
       {/* ── Footer ── */}
       <div className="px-4 pb-3 pt-0">
-        <Link href="/cry-analyzer"
-          className="flex items-center justify-center gap-1.5 w-full py-2 rounded-xl text-[11px] font-semibold transition-all hover:opacity-80"
-          style={{ background: accentLight, color: accent }}>
-          Open full analyzer <ChevronRight className="w-3 h-3" />
-        </Link>
+        {embedded ? (
+          <a href="https://nxmplis.com/cry-analyzer?utm_source=embed&utm_medium=widget" target="_blank" rel="noopener"
+            className="flex items-center justify-center gap-1.5 w-full py-2 rounded-xl text-[11px] font-semibold transition-all hover:opacity-80"
+            style={{ background: accentLight, color: accent }}>
+            Free tool by Anvaya Smart · Open full analyzer <ChevronRight className="w-3 h-3" />
+          </a>
+        ) : (
+          <Link href="/cry-analyzer"
+            className="flex items-center justify-center gap-1.5 w-full py-2 rounded-xl text-[11px] font-semibold transition-all hover:opacity-80"
+            style={{ background: accentLight, color: accent }}>
+            Open full analyzer <ChevronRight className="w-3 h-3" />
+          </Link>
+        )}
       </div>
     </div>
   );
