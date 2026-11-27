@@ -92,7 +92,7 @@ export function MedicalWebPageSchema({ title, description, url, dateModified, me
     lastReviewed: dateModified,
     mainContentOfPage: { '@type': 'WebPageElement' },
     ...(medicalReviewer && {
-      reviewedBy: { '@type': 'Person', name: medicalReviewer.name, jobTitle: medicalReviewer.credentials },
+      reviewedBy: { '@type': 'Person', name: medicalReviewer.name, honorificSuffix: medicalReviewer.credentials, jobTitle: 'Physician' },
     }),
     medicalAudience: { '@type': 'MedicalAudience', audienceType: 'Patient' },
     publisher: { '@id': 'https://nxmplis.com/#organization' },

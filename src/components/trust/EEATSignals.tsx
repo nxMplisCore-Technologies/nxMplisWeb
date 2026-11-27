@@ -64,9 +64,8 @@ export function LastUpdated({ date }: { date: string }) {
 // Research citations — E-E-A-T demands linking to authoritative sources
 export function ResearchCitations() {
   const citations = [
-    { source: 'American Academy of Pediatrics', claim: 'Recommends monitoring infant breathing patterns during sleep', href: 'https://pediatrics.aappublications.org' },
-    { source: 'WHO Infant Care Guidelines', claim: 'Thermal comfort and environment monitoring for newborns', href: 'https://www.who.int/health-topics/child-health' },
-    { source: 'BITS Hyderabad Research Lab', claim: 'Radar-based contactless vital sensing for infants', href: 'https://www.bits-pilani.ac.in/hyderabad/' },
+    { source: 'World Health Organization, IMCI', claim: 'Fast breathing: 60+/min under 2 months, 50+/min at 2–11 months, 40+/min at 1–5 years', href: 'https://scielosp.org/pdf/bwho/2003.v81n4/298-300/en' },
+    { source: 'American Academy of Pediatrics (Moon et al., Pediatrics 2022;150(1):e2022057990)', claim: 'Back to sleep, firm flat surface, room-sharing; home monitors are not a way to reduce SIDS', href: 'https://pubmed.ncbi.nlm.nih.gov/35726558/' },
   ];
   return (
     <div className="bg-[#faf8f5] rounded-xl p-5 border border-[#e2dbd4]">
@@ -78,7 +77,7 @@ export function ResearchCitations() {
         {citations.map((c, i) => (
           <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
             <span className="text-primary font-bold shrink-0">[{i + 1}]</span>
-            <span>{c.source}: <span className="italic">{c.claim}</span></span>
+            <span><a href={c.href} target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">{c.source}</a>: <span className="italic">{c.claim}</span></span>
           </li>
         ))}
       </ul>

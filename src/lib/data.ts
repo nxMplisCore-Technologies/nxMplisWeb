@@ -1,3 +1,5 @@
+import { MEDICAL_REVIEWER } from './reviewer';
+
 // ── JOBS ─────────────────────────────────────────────────────────────────────
 export const JOBS = [
   { title: 'AI & ML Engineer — Baby Sensing', location: 'Hyderabad, India', type: 'Full-time' },
@@ -14,12 +16,13 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-28',
-    updatedDate: '2026-11-24',
+    updatedDate: '2026-11-27',
+    medicalReviewer: MEDICAL_REVIEWER,
     category: 'Baby Health',
     readTime: '8 min read',
     imageUrl: '/anvaya-sense.jpg',
     dataAiHint: 'sleeping baby peaceful nursery',
-    excerpt: 'Newborn breathing often looks irregular. This guide covers normal rates, periodic breathing, and the warning signs that mean you should call a doctor.',
+    excerpt: 'Newborn breathing often looks irregular. Normal rates by age, periodic breathing, the WHO fast-breathing cut-offs, and the warning signs that mean you should call a doctor.',
     keywords: ['baby breathing patterns India', 'normal baby breathing rate', 'newborn breathing', 'baby breathing monitor India'],
     content: `
       <h2>What Is a Normal Breathing Rate for a Baby?</h2>
@@ -39,10 +42,23 @@ export const ARTICLES = [
       <p>Periodic breathing is when your baby briefly pauses breathing for 5–10 seconds, then resumes normally. This is <strong>completely normal</strong> in newborns and is caused by immaturity in the brainstem's breathing control centre. It typically resolves by 3 months.</p>
       <p>If periodic breathing worries you, talk to your paediatrician. They can explain what is normal for your baby.</p>
 
+      <h2>When Does Breathing Count as Too Fast?</h2>
+      <p>Doctors use the World Health Organization's fast-breathing cut-offs from its IMCI guidelines, the same ones health workers use across India. Count breaths for a <strong>full 60 seconds</strong> while your baby is calm or asleep, watching the tummy rise, because a baby's breathing speeds up and slows down within a minute.</p>
+      <table>
+        <thead><tr><th>Baby's age</th><th>Fast breathing (WHO)</th></tr></thead>
+        <tbody>
+          <tr><td>Under 2 months</td><td>60 or more breaths/min</td></tr>
+          <tr><td>2 to 11 months</td><td>50 or more breaths/min</td></tr>
+          <tr><td>12 months to 5 years</td><td>40 or more breaths/min</td></tr>
+        </tbody>
+      </table>
+      <p>If a repeat count is at or above the cut-off, or you see any warning sign below, see a doctor the same day. In a baby under 2 months, fast breathing alone is a reason to be seen urgently.</p>
+      <p><em>Sources: WHO IMCI fast-breathing thresholds (<a href="https://scielosp.org/pdf/bwho/2003.v81n4/298-300/en" target="_blank" rel="noopener">Bulletin of the WHO, 2003</a>); American Academy of Pediatrics safe-sleep policy (<a href="https://pubmed.ncbi.nlm.nih.gov/35726558/" target="_blank" rel="noopener">Pediatrics, 2022</a>).</em></p>
+
       <h2>Warning Signs That Need Immediate Attention</h2>
       <ul>
         <li><strong>Breathing pauses longer than 20 seconds</strong> — call emergency services immediately</li>
-        <li><strong>Rate consistently above 60 or below 20</strong> — call your paediatrician immediately</li>
+        <li><strong>Breathing at or above the WHO cut-off for their age</strong> — see a doctor the same day; under 2 months, go urgently</li>
         <li><strong>Nostrils flaring with each breath</strong> — sign of respiratory distress</li>
         <li><strong>Ribs visible during breathing (retractions)</strong> — severe breathing difficulty</li>
         <li><strong>Blue or pale lips (cyanosis)</strong> — call 112 immediately</li>
@@ -66,7 +82,8 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-25',
-    updatedDate: '2026-11-24',
+    updatedDate: '2026-11-27',
+    medicalReviewer: MEDICAL_REVIEWER,
     category: 'Baby Wellness',
     readTime: '7 min read',
     imageUrl: '/anvaya-core.jpg',
@@ -154,7 +171,8 @@ export const ARTICLES = [
     author: 'Deepak Singh',
     authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
     date: '2025-04-15',
-    updatedDate: '2026-11-24',
+    updatedDate: '2026-11-27',
+    medicalReviewer: MEDICAL_REVIEWER,
     category: 'Baby Sleep',
     readTime: '10 min read',
     imageUrl: '/anvaya-omni.jpg',
@@ -209,6 +227,83 @@ export const ARTICLES = [
     `,
   },
 
+  {
+    slug: 'baby-monitor-vs-cctv-camera',
+    title: 'Baby Monitor vs CCTV Camera: Which Is Right for a Nursery?',
+    author: 'Deepak Singh',
+    authorTitle: 'Founder, Nxmpliscore · IIT Alumni',
+    date: '2026-11-27',
+    updatedDate: '2026-11-27',
+    medicalReviewer: MEDICAL_REVIEWER,
+    category: 'Buying Guide',
+    readTime: '7 min read',
+    imageUrl: '/anvaya-nursery.jpg',
+    dataAiHint: 'baby monitor camera nursery cot',
+    excerpt: 'Many Indian homes already have a WiFi CCTV camera. Can it watch your baby? What a security camera does well, what it misses, and when a baby monitor is worth it.',
+    keywords: ['baby monitor vs CCTV', 'can I use CCTV as baby monitor', 'WiFi camera for baby room India', 'baby monitor or security camera', 'baby camera India'],
+    related: ['best-baby-monitor-india-2025', 'baby-breathing-patterns', 'baby-sleep-guide-india'],
+    faqs: [
+      { q: 'Can I use a CCTV or WiFi home camera as a baby monitor?', a: 'Yes, for simply seeing your baby on your phone. A good home camera has night vision, two-way talk and motion alerts. What it usually lacks is anything built around a sleeping baby: cry detection tuned to infants, alerts if the face is covered or the baby rolls onto the tummy, room temperature, and breathing or heart-rate tracking.' },
+      { q: 'Is a baby monitor safer than a CCTV camera?', a: 'Neither device makes sleep safe on its own. The American Academy of Pediatrics (2022) says monitors are not a way to reduce the risk of SIDS. Safe sleep comes from putting your baby on their back, on a firm flat surface, with nothing loose in the cot. A monitor helps you notice and respond faster.' },
+      { q: 'Are WiFi cameras in a baby room a privacy risk?', a: 'Any internet-connected camera can be, if it keeps its default password or never gets firmware updates. India’s IT ministry has issued advisories on information leaking from CCTV systems. Whatever you use, set a strong unique password, turn on two-factor login in the app, and keep the firmware updated.' },
+      { q: 'Which Anvaya model is closest to a CCTV camera?', a: 'Anvaya CORE (₹5,999) is a 1080P pan-tilt camera like a home CCTV, but adds cry alerts, room temperature, lullabies and feeding reminders. PULSE adds AI face-cover and tummy-sleep alerts, and OMNI adds contactless breathing and heart rate.' },
+    ],
+    content: `
+      <p><strong>Short answer:</strong> a WiFi CCTV camera lets you <em>see</em> your baby. A baby monitor is built to <em>tell you</em> when something needs your attention, so you don’t have to keep watching the screen. If you only want to peek in during a nap, the camera you already own may be enough. If you want to sleep while your baby sleeps, you need alerts designed for babies.</p>
+
+      <h2>What a Home CCTV Camera Does Well</h2>
+      <ul>
+        <li><strong>Live video on your phone</strong>, usually 1080P or better, with infrared night vision.</li>
+        <li><strong>Two-way talk</strong> and pan-tilt on many models.</li>
+        <li><strong>Motion and sound alerts</strong>, designed for intruders and doors, not for a baby stirring.</li>
+        <li><strong>Low price.</strong> Popular home WiFi cameras in India typically cost ₹1,500 to ₹3,500.</li>
+      </ul>
+
+      <h2>What It Misses in a Nursery</h2>
+      <p>Security cameras are tuned to spot people walking through a room. A baby who has rolled onto their tummy, pulled a blanket over their face, or is crying softly at 3 a.m. doesn’t look like an intruder, so the camera usually stays quiet. Generic motion alerts also fire every time your baby wriggles, and most parents switch them off within a week.</p>
+
+      <h2>Side-by-Side Comparison</h2>
+      <table>
+        <thead><tr><th>Feature</th><th>Typical WiFi CCTV</th><th>Anvaya CORE</th><th>Anvaya PULSE</th><th>Anvaya OMNI</th></tr></thead>
+        <tbody>
+          <tr><td>Live video + night vision</td><td>Yes</td><td>1080P</td><td>4MP</td><td>4MP</td></tr>
+          <tr><td>Two-way talk</td><td>Often</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Baby cry alerts</td><td>Generic sound alert</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Room temperature</td><td>Rarely</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Face-cover / tummy-sleep alert</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Danger-zone alerts</td><td>Some (person zones)</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Breathing &amp; heart rate (contactless)</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Nightly sleep report</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Price</td><td>₹1,500–3,500</td><td>₹5,999</td><td>from ₹8,900</td><td>from ₹12,999</td></tr>
+        </tbody>
+      </table>
+
+      <h2>What the Evidence Says About Monitors</h2>
+      <p>It’s worth being honest here. In its 2022 safe-sleep policy, the <a href="https://pubmed.ncbi.nlm.nih.gov/35726558/" target="_blank" rel="noopener">American Academy of Pediatrics</a> says home monitors should not be used as a way to reduce the risk of SIDS, and warns that they can give parents a false sense of security. What does reduce risk is the same for every family:</p>
+      <ul>
+        <li>Baby on their <strong>back</strong> for every sleep, naps included.</li>
+        <li>A <strong>firm, flat</strong> mattress with a fitted sheet, and nothing else in the cot: no pillows, bumpers, toys or loose blankets.</li>
+        <li><strong>Room-sharing</strong> (not bed-sharing) for at least the first 6 months.</li>
+        <li>No overheating. Dress your baby for the room, not for the season outside.</li>
+      </ul>
+      <p>So the real question isn’t “which device keeps my baby safe?” It’s “which device helps me notice sooner, and lets me rest?”</p>
+
+      <h2>When Fast Breathing Means You Should See a Doctor</h2>
+      <p>Neither a camera nor a monitor replaces counting breaths yourself when you’re worried. The WHO counts breathing as fast at <strong>60 or more breaths a minute under 2 months</strong>, <strong>50 or more at 2–11 months</strong> and <strong>40 or more from 1 to 5 years</strong>. Count for a full minute while your baby is calm. Our <a href="/blog/baby-breathing-patterns">baby breathing guide</a> explains what’s normal.</p>
+
+      <h2>Privacy: Whatever You Choose</h2>
+      <p>A camera in the nursery is a camera in your home. Change the default password, use a unique one, turn on two-factor login in the app if it offers it, and install firmware updates. India’s IT ministry has issued advisories on information leaking from CCTV systems, and the same care applies to any WiFi camera.</p>
+
+      <h2>Which Should You Buy?</h2>
+      <ul>
+        <li><strong>Keep your CCTV</strong> if you mostly check in during the day and your baby sleeps in your room.</li>
+        <li><strong>Choose <a href="/anvaya/core">CORE</a></strong> if you want a nursery camera with cry alerts, temperature and lullabies at a CCTV-like price.</li>
+        <li><strong>Choose <a href="/anvaya/pulse">PULSE</a></strong> if your baby has started rolling, or you worry about blankets over the face.</li>
+        <li><strong>Choose <a href="/anvaya/omni">OMNI</a></strong> if you also want to see breathing and heart rate without putting anything on your baby.</li>
+      </ul>
+      <p>Not sure? See all three side by side on our <a href="/compare">comparison page</a>.</p>
+    `,
+  },
 ];
 
 // ── BLOG CATEGORIES ──────────────────────────────────────────────────────────

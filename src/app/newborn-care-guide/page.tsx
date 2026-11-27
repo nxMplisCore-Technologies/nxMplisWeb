@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FAQSchema, BreadcrumbSchema, ArticleSchema } from '@/components/seo/JsonLd';
-import { AuthorBio, AISnippet, TrustBar, PediatricianBadge, LastUpdated } from '@/components/trust/EEATSignals';
+import { AuthorBio, AISnippet, TrustBar, PediatricianBadge, LastUpdated, MedicalReviewerBio } from '@/components/trust/EEATSignals';
+import { MEDICAL_REVIEWER } from '@/lib/reviewer';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -33,10 +34,13 @@ export default function NewbornCareGuidePage() {
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-5">
             <Link href="/">Home</Link> <span className="mx-2">›</span><span>Newborn Care Guide India</span>
           </nav>
-          <div className="flex items-center gap-3 mb-5 flex-wrap"><PediatricianBadge /><LastUpdated date="2026-11-24" /></div>
+          <div className="flex items-center gap-3 mb-5 flex-wrap"><PediatricianBadge /><LastUpdated date="2026-11-27" /></div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Newborn Care Guide India 2026</h1>
           <p className="text-xl text-muted-foreground mb-6">Everything Indian parents need to know about caring for their newborn — feeding, sleep, temperature, breathing, and safety. India-specific advice throughout.</p>
-          <AuthorBio compact />
+          <div className="space-y-3">
+            <AuthorBio compact />
+            <MedicalReviewerBio name={MEDICAL_REVIEWER.name} credentials={MEDICAL_REVIEWER.credentials} />
+          </div>
         </div>
       </section>
 

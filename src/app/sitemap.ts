@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // When you change a page's content, update its date here.
   const d = (iso: string) => new Date(iso);
   const CONTENT_2026_11_24 = d('2026-11-24');
+  const CONTENT_2026_11_27 = d('2026-11-27');
   const now = CONTENT_2026_11_24;
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -24,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/ai-baby-monitor-india`, lastModified: now, changeFrequency: 'monthly', priority: 0.91 },
     { url: `${base}/baby-monitoring`, lastModified: now, changeFrequency: 'monthly', priority: 0.90 },
     { url: `${base}/baby-wellness-app`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
-    { url: `${base}/newborn-care-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
+    { url: `${base}/newborn-care-guide`, lastModified: CONTENT_2026_11_27, changeFrequency: 'monthly', priority: 0.88 },
     { url: `${base}/compare`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     // Blog hub
     { url: `${base}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
