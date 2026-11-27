@@ -203,13 +203,6 @@ export function ProductDetailClient({
                   {discount && <span className="text-sm font-bold text-green-600">{discount}% off</span>}
                 </div>
                 <p className="text-xs text-gray-400 mt-0.5">Inclusive of all taxes · Free shipping</p>
-                {cfg.id === 'omni' && (
-                  <a href="https://www.amazon.in/dp/B0HK7Z1ST3#customerReviews" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-[#B45309] hover:underline">
-                    <span className="text-[#FF9900]" aria-hidden="true">★★★★★</span>
-                    Rated 4.5 out of 5 on Amazon.in (2 ratings) · Read the reviews
-                  </a>
-                )}
               </div>
 
               {/* Variant picker */}
