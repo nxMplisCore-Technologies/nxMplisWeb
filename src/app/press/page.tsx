@@ -20,7 +20,8 @@ const FACTS = [
   ['Company', 'Nxmpliscore'],
   ['Consumer brand', 'Anvaya Smart'],
   ['Headquarters', 'Hyderabad, Telangana, India'],
-  ['Founders', 'IIT alumni engineers; Deepak Singh, Founder'],
+  ['Founder', 'Maya Singh'],
+  ['Founded', '2025'],
   ['What we make', 'AI baby monitors with contactless breathing and heart-rate tracking'],
   ['Sold through', 'nxmplis.com, Anvaya Smart official store and Amazon.in'],
   ['Website', 'nxmplis.com'],
@@ -130,7 +131,7 @@ export default function PressPage() {
         <section aria-labelledby="contact-h">
           <h2 id="contact-h" className="text-2xl font-bold mb-4">Media contact</h2>
           <div className="bg-white rounded-2xl border border-[#e2dbd4] p-6 flex flex-col gap-3 text-sm">
-            <a href="mailto:nxmpliscore@gmail.com" className="inline-flex items-center gap-2 text-primary font-semibold"><Mail className="w-4 h-4" aria-hidden="true" />nxmpliscore@gmail.com</a>
+            <a href="mailto:info@nxmplis.com" className="inline-flex items-center gap-2 text-primary font-semibold"><Mail className="w-4 h-4" aria-hidden="true" />info@nxmplis.com</a>
             <a href="https://wa.me/917987449366" target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-primary font-semibold"><MessageCircle className="w-4 h-4" aria-hidden="true" />WhatsApp +91 79874 49366</a>
             <p className="text-muted-foreground">We can arrange interviews with the founders, review units and product demos.</p>
           </div>

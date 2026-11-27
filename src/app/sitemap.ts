@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/technology`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${base}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: 'yearly', priority: 0.60 },
+    { url: `${base}/returns`, lastModified: CONTENT_2026_11_27, changeFrequency: 'yearly', priority: 0.50 },
     { url: `${base}/press`, lastModified: CONTENT_2026_11_27, changeFrequency: 'monthly', priority: 0.60 },
     { url: `${base}/careers`, lastModified: now, changeFrequency: 'monthly', priority: 0.60 },
     { url: `${base}/quiz`, lastModified: now, changeFrequency: 'monthly', priority: 0.65 },

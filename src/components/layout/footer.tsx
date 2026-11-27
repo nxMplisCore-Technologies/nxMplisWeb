@@ -30,6 +30,7 @@ const footerLinks = {
   support: [
     { href: '/contact', label: 'Contact Us' },
     { href: '/contact', label: 'WhatsApp Support' },
+    { href: '/returns', label: 'Return & Refund Policy' },
     { href: 'https://anvayasmart.myshopify.com/policies/privacy-policy', label: 'Privacy Policy' },
     { href: 'https://www.amazon.in/stores/AnvayaSmart', label: 'Buy on Amazon' },
     { href: 'https://anvayasmart.myshopify.com/', label: 'Official Store' },
